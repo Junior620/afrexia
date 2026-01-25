@@ -1,0 +1,387 @@
+{
+  "navigation": {
+    "home": "Home",
+    "products": "Products",
+    "solutions": "Solutions",
+    "quality": "Quality & Compliance",
+    "traceability": "Traceability",
+    "about": "About",
+    "resources": "Resources",
+    "blog": "Blog",
+    "contact": "Contact",
+    "rfq": "Request for Quote"
+  },
+  "common": {
+    "learnMore": "Learn more",
+    "readMore": "Read more",
+    "viewAll": "View all",
+    "download": "Download",
+    "submit": "Submit",
+    "send": "Send",
+    "cancel": "Cancel",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "required": "Required",
+    "optional": "Optional",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "clear": "Clear",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "forms": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "company": "Company",
+    "country": "Country",
+    "message": "Message",
+    "subject": "Subject",
+    "quantity": "Quantity",
+    "product": "Product",
+    "selectProduct": "Select a product",
+    "selectCountry": "Select a country",
+    "errors": {
+      "required": "This field is required",
+      "invalidEmail": "Invalid email address",
+      "invalidPhone": "Invalid phone number",
+      "minLength": "Minimum {{min}} characters",
+      "maxLength": "Maximum {{max}} characters",
+      "minValue": "Minimum value: {{min}}",
+      "maxValue": "Maximum value: {{max}}"
+    },
+    "success": {
+      "submitted": "Form submitted successfully",
+      "contactSent": "Your message has been sent. We'll get back to you soon.",
+      "rfqSent": "Your quote request has been sent. We'll contact you shortly."
+    }
+  },
+  "rfq": {
+    "title": "Request for Quote",
+    "subtitle": "Tell us about your requirements and we'll provide a customized quote",
+    "steps": {
+      "product": "Product & Quantity",
+      "logistics": "Delivery Details",
+      "contact": "Your Information"
+    },
+    "fields": {
+      "productId": "Product",
+      "quantity": "Quantity",
+      "quantityUnit": "Unit",
+      "incoterm": "Incoterm",
+      "destinationPort": "Destination Port",
+      "targetDate": "Target Delivery Date",
+      "message": "Additional Requirements",
+      "gdprConsent": "I accept the privacy policy and terms of service"
+    },
+    "placeholders": {
+      "quantity": "Enter quantity",
+      "destinationPort": "e.g., Port of Rotterdam",
+      "targetDate": "YYYY-MM-DD",
+      "message": "Any specific requirements or questions..."
+    },
+    "units": {
+      "kg": "Kilograms (kg)",
+      "mt": "Metric Tons (MT)",
+      "container": "Container(s)"
+    },
+    "buttons": {
+      "next": "Next Step",
+      "back": "Previous Step",
+      "submit": "Submit Request",
+      "clearDraft": "Clear Draft"
+    },
+    "draft": {
+      "saved": "Draft saved",
+      "loaded": "Draft loaded",
+      "cleared": "Draft cleared"
+    },
+    "progress": "Step {{current}} of {{total}}"
+  },
+  "footer": {
+    "tagline": "Your trusted partner for African agricultural commodities",
+    "quickLinks": "Quick Links",
+    "products": "Products",
+    "company": "Company",
+    "legal": "Legal",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "followUs": "Follow Us",
+    "newsletter": "Newsletter",
+    "newsletterPlaceholder": "Your email",
+    "subscribe": "Subscribe",
+    "copyright": "© {{year}} Afrexia. All rights reserved."
+  },
+  "language": {
+    "switchTo": "Passer au français",
+    "current": "English"
+  },
+  "solutions": {
+    "title": "Our Solutions & Services",
+    "subtitle": "Comprehensive supply chain solutions for African agricultural commodities",
+    "services": {
+      "logistics": {
+        "title": "Logistics & Shipping",
+        "description": "End-to-end logistics management from origin to destination. We handle customs clearance, freight forwarding, and delivery coordination to ensure your products arrive on time and in perfect condition."
+      },
+      "warehousing": {
+        "title": "Warehousing & Storage",
+        "description": "Climate-controlled storage facilities at strategic locations. Our warehouses maintain optimal conditions for agricultural commodities with real-time inventory tracking and quality monitoring."
+      },
+      "processing": {
+        "title": "Processing & Packaging",
+        "description": "Custom processing and packaging solutions tailored to your specifications. From sorting and grading to custom packaging formats, we ensure your products meet exact requirements."
+      },
+      "traceability": {
+        "title": "Traceability & Compliance",
+        "description": "Full supply chain traceability with EUDR compliance. Track your products from farm to port with complete documentation and third-party verification for regulatory compliance."
+      },
+      "quality": {
+        "title": "Quality Assurance",
+        "description": "Rigorous quality control at every stage. Our QA team conducts comprehensive testing and inspection to ensure products meet international standards and your specifications."
+      },
+      "consulting": {
+        "title": "Trade Consulting",
+        "description": "Expert guidance on international trade, regulations, and market entry. We help you navigate complex import/export requirements and optimize your supply chain strategy."
+      }
+    },
+    "cta": {
+      "title": "Ready to discuss your requirements?",
+      "subtitle": "Contact us to learn how our solutions can support your business",
+      "contact": "Contact Us",
+      "rfq": "Request a Quote"
+    }
+  },
+  "quality": {
+    "title": "Quality & Compliance",
+    "subtitle": "Rigorous standards and certifications ensuring excellence in every shipment",
+    "certifications": {
+      "title": "Our Certifications",
+      "subtitle": "Internationally recognized certifications demonstrating our commitment to quality and compliance"
+    },
+    "standards": {
+      "title": "Quality Standards",
+      "subtitle": "We adhere to the highest international standards for agricultural commodities",
+      "grading": {
+        "title": "Grading Standards",
+        "description": "All products are graded according to international standards (ISO, USDA, ICO) with detailed quality metrics for moisture content, defect rates, and physical characteristics."
+      },
+      "testing": {
+        "title": "Laboratory Testing",
+        "description": "Comprehensive laboratory analysis including microbiological testing, pesticide residue screening, and nutritional analysis conducted by accredited third-party laboratories."
+      },
+      "inspection": {
+        "title": "Pre-Shipment Inspection",
+        "description": "Independent pre-shipment inspection by SGS, Bureau Veritas, or other recognized inspection agencies to verify quality, quantity, and compliance before export."
+      },
+      "documentation": {
+        "title": "Documentation & Traceability",
+        "description": "Complete documentation package including certificates of origin, phytosanitary certificates, quality certificates, and full traceability records from farm to port."
+      }
+    },
+    "process": {
+      "title": "Our QA Process",
+      "steps": {
+        "sourcing": {
+          "title": "Sourcing & Selection",
+          "description": "Partner with certified farms and cooperatives"
+        },
+        "inspection": {
+          "title": "Initial Inspection",
+          "description": "Quality check at collection points"
+        },
+        "testing": {
+          "title": "Laboratory Testing",
+          "description": "Comprehensive analysis by accredited labs"
+        },
+        "storage": {
+          "title": "Controlled Storage",
+          "description": "Climate-controlled warehousing"
+        },
+        "preshipment": {
+          "title": "Pre-Shipment Verification",
+          "description": "Final inspection before export"
+        },
+        "documentation": {
+          "title": "Documentation",
+          "description": "Complete certification package"
+        }
+      }
+    },
+    "download": "Download Certificate",
+    "validUntil": "Valid until",
+    "issuedBy": "Issued by"
+  },
+  "traceability": {
+    "title": "Traceability & EUDR Compliance",
+    "subtitle": "Full supply chain transparency from farm to port, ensuring compliance with EU Deforestation Regulation",
+    "eudr": {
+      "title": "EUDR Compliance",
+      "subtitle": "Meeting the European Union's strict requirements for deforestation-free supply chains",
+      "description": "The EU Deforestation Regulation (EUDR) requires companies to ensure that products sold in the EU are not linked to deforestation or forest degradation. We provide complete due diligence documentation and traceability for all our products."
+    },
+    "dueDiligence": {
+      "title": "Our Due Diligence Process",
+      "subtitle": "Comprehensive verification at every stage of the supply chain",
+      "steps": {
+        "farmMapping": {
+          "title": "Farm Mapping & Geolocation",
+          "description": "GPS coordinates for all production sites with satellite imagery verification to confirm no deforestation has occurred"
+        },
+        "documentation": {
+          "title": "Documentation Collection",
+          "description": "Complete records including land ownership, harvest dates, and chain of custody documentation"
+        },
+        "riskAssessment": {
+          "title": "Risk Assessment",
+          "description": "Evaluation of deforestation risk based on location, production practices, and historical data"
+        },
+        "verification": {
+          "title": "Third-Party Verification",
+          "description": "Independent audits by certified bodies to verify compliance with EUDR requirements"
+        },
+        "monitoring": {
+          "title": "Continuous Monitoring",
+          "description": "Ongoing satellite monitoring and periodic field visits to ensure continued compliance"
+        },
+        "reporting": {
+          "title": "Compliance Reporting",
+          "description": "Detailed due diligence statements and supporting documentation for customs clearance"
+        }
+      }
+    },
+    "supplyChain": {
+      "title": "Supply Chain Journey",
+      "subtitle": "Track your products from origin to destination",
+      "description": "Our integrated traceability system provides complete visibility across the entire supply chain, from smallholder farms to international ports."
+    },
+    "compliance": {
+      "title": "Compliance Measures",
+      "subtitle": "Ensuring adherence to international regulations",
+      "measures": {
+        "geolocation": {
+          "title": "Geolocation Data",
+          "description": "GPS coordinates for all production plots with polygon mapping of farm boundaries"
+        },
+        "chainOfCustody": {
+          "title": "Chain of Custody",
+          "description": "Complete tracking from farm to warehouse to port with timestamped handover documentation"
+        },
+        "satelliteMonitoring": {
+          "title": "Satellite Monitoring",
+          "description": "Regular satellite imagery analysis to detect any deforestation or land use changes"
+        },
+        "certification": {
+          "title": "Certification Verification",
+          "description": "Validation of all sustainability certifications and compliance documents"
+        },
+        "auditTrail": {
+          "title": "Digital Audit Trail",
+          "description": "Blockchain-backed records ensuring data integrity and immutability"
+        },
+        "reporting": {
+          "title": "Regulatory Reporting",
+          "description": "Automated generation of EUDR due diligence statements and supporting documentation"
+        }
+      }
+    },
+    "documentation": {
+      "title": "Available Documentation",
+      "subtitle": "Download compliance documents and guides",
+      "eudrGuide": "EUDR Compliance Guide",
+      "dueDiligenceStatement": "Due Diligence Statement Template",
+      "traceabilityReport": "Traceability Report Sample"
+    },
+    "cta": {
+      "title": "Need EUDR-compliant products?",
+      "subtitle": "Contact us to discuss your traceability requirements",
+      "contact": "Contact Us",
+      "rfq": "Request a Quote"
+    }
+  },
+  "about": {
+    "title": "About Afrexia",
+    "subtitle": "Your trusted partner for premium African agricultural commodities",
+    "story": {
+      "title": "Our Story",
+      "content": "Founded in Cameroon, Afrexia has grown to become a leading exporter of premium African agricultural commodities. With deep roots in local farming communities and a commitment to sustainable practices, we bridge the gap between African producers and international markets. Our mission is to deliver exceptional quality while supporting the livelihoods of smallholder farmers and promoting environmental stewardship."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "content": "To be the most trusted partner for African agricultural commodities, delivering exceptional quality, complete traceability, and sustainable value to our customers and farming communities."
+    },
+    "values": {
+      "title": "Our Values",
+      "quality": {
+        "title": "Quality Excellence",
+        "description": "Uncompromising standards in every shipment"
+      },
+      "transparency": {
+        "title": "Transparency",
+        "description": "Complete traceability from farm to port"
+      },
+      "sustainability": {
+        "title": "Sustainability",
+        "description": "Environmental and social responsibility"
+      },
+      "partnership": {
+        "title": "Partnership",
+        "description": "Long-term relationships built on trust"
+      }
+    },
+    "team": {
+      "title": "Our Team",
+      "subtitle": "Meet the experts behind Afrexia"
+    },
+    "governance": {
+      "title": "Governance & Structure",
+      "subtitle": "Committed to transparency and accountability",
+      "content": "Afrexia operates under a robust governance framework that ensures ethical business practices, regulatory compliance, and stakeholder accountability. Our management team brings decades of combined experience in agricultural commodities, international trade, and supply chain management."
+    },
+    "partnerships": {
+      "title": "Partnerships & Memberships",
+      "subtitle": "Collaborating with industry leaders",
+      "content": "We are proud members of leading industry associations and maintain strategic partnerships with certification bodies, logistics providers, and agricultural cooperatives across Africa."
+    },
+    "cta": {
+      "title": "Ready to work with us?",
+      "subtitle": "Let's discuss how we can support your sourcing needs",
+      "contact": "Contact Us",
+      "rfq": "Request a Quote"
+    }
+  },
+  "resources": {
+    "title": "Resources & Downloads",
+    "subtitle": "Access product specifications, compliance documents, and industry guides",
+    "categories": {
+      "all": "All Resources",
+      "productSpecs": "Product Specifications",
+      "compliance": "Compliance Documents",
+      "guides": "Industry Guides",
+      "certificates": "Certificates",
+      "other": "Other"
+    },
+    "filters": {
+      "category": "Filter by Category",
+      "search": "Search resources..."
+    },
+    "metadata": {
+      "size": "Size",
+      "format": "Format",
+      "updated": "Last Updated"
+    },
+    "noResults": "No resources found matching your criteria",
+    "downloadCount": "{{count}} downloads"
+  }
+}

@@ -74,3 +74,66 @@ export interface AnalyticsEvent {
   name: string;
   properties?: Record<string, string | number | boolean>;
 }
+
+// Blog types
+export interface BlogPost {
+  _id: string;
+  _type: 'blogPost';
+  title: MultilingualString;
+  slug: {
+    fr: { current: string };
+    en: { current: string };
+  };
+  i18nId: string;
+  excerpt: MultilingualText;
+  content: {
+    fr: any[];
+    en: any[];
+  };
+  featuredImage: {
+    asset: {
+      _ref: string;
+      _type: 'reference';
+    };
+    alt?: string;
+    hotspot?: {
+      x: number;
+      y: number;
+      height: number;
+      width: number;
+    };
+  };
+  author: TeamMember;
+  publishedAt: string;
+  categories: BlogCategory[];
+  tags: string[];
+  seo?: {
+    metaTitle?: MultilingualString;
+    metaDescription?: MultilingualText;
+  };
+  workflowStatus?: string;
+}
+
+export interface TeamMember {
+  _id: string;
+  name: string;
+  role: MultilingualString;
+  bio?: MultilingualText;
+  photo?: {
+    asset: {
+      _ref: string;
+      _type: 'reference';
+    };
+    alt?: string;
+  };
+}
+
+export interface BlogCategory {
+  _id: string;
+  name: MultilingualString;
+  slug: {
+    fr: { current: string };
+    en: { current: string };
+  };
+  description?: MultilingualText;
+}
