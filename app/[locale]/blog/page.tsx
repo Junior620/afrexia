@@ -6,7 +6,7 @@ import { BlogSearch } from '@/components/blog/BlogSearch';
 import { generateMetaTags } from '@/lib/seo/metadata';
 
 interface BlogPageProps {
-  params: {
+  params: Promise<{
     locale: Locale;
   };
 }

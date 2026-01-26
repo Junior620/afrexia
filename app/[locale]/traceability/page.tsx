@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 
 interface TraceabilityPageProps {
-  params: {
+  params: Promise<{
     locale: Locale;
   };
 }
@@ -29,7 +29,7 @@ async function getTranslations(locale: Locale) {
 }
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: TraceabilityPageProps): Promise<Metadata> {
   const t = await getTranslations(locale);
 
@@ -47,7 +47,7 @@ export async function generateMetadata({
 }
 
 export default async function TraceabilityPage({
-  params: { locale },
+  params,
 }: TraceabilityPageProps) {
   const t = await getTranslations(locale);
 

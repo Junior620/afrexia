@@ -16,8 +16,10 @@ import {
 } from 'lucide-react';
 
 interface AboutPageProps {
-  params: {
+  params: Promise<{
     locale: Locale;
+  }>;
+}
   };
 }
 
@@ -28,8 +30,9 @@ async function getTranslations(locale: Locale) {
 }
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: AboutPageProps): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations(locale);
 
   return {
@@ -46,8 +49,9 @@ export async function generateMetadata({
 }
 
 export default async function AboutPage({
-  params: { locale },
+  params,
 }: AboutPageProps) {
+  const { locale } = await params;
   const t = await getTranslations(locale);
   const teamMembers = await getAllTeamMembers();
 

@@ -7,7 +7,7 @@ import { FileText, Calendar, HardDrive } from 'lucide-react';
 import { DownloadButton } from '@/components/ui/DownloadButton';
 
 interface ResourcesPageProps {
-  params: {
+  params: Promise<{
     locale: Locale;
   };
 }
@@ -19,7 +19,7 @@ async function getTranslations(locale: Locale) {
 }
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: ResourcesPageProps): Promise<Metadata> {
   const t = await getTranslations(locale);
 
@@ -56,7 +56,7 @@ function formatDate(dateString: string, locale: Locale): string {
 }
 
 export default async function ResourcesPage({
-  params: { locale },
+  params,
 }: ResourcesPageProps) {
   const t = await getTranslations(locale);
   const resources = await getAllResources();

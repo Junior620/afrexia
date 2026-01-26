@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 
 interface SolutionsPageProps {
-  params: {
+  params: Promise<{
     locale: Locale;
   };
 }
@@ -24,7 +24,7 @@ async function getTranslations(locale: Locale) {
 }
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: SolutionsPageProps): Promise<Metadata> {
   const t = await getTranslations(locale);
 
@@ -42,7 +42,7 @@ export async function generateMetadata({
 }
 
 export default async function SolutionsPage({
-  params: { locale },
+  params,
 }: SolutionsPageProps) {
   const t = await getTranslations(locale);
 

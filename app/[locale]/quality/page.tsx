@@ -7,7 +7,7 @@ import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { Download, Award, CheckCircle2, FileCheck, ClipboardCheck } from 'lucide-react';
 
 interface QualityPageProps {
-  params: {
+  params: Promise<{
     locale: Locale;
   };
 }
@@ -19,7 +19,7 @@ async function getTranslations(locale: Locale) {
 }
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: QualityPageProps): Promise<Metadata> {
   const t = await getTranslations(locale);
 
@@ -37,7 +37,7 @@ export async function generateMetadata({
 }
 
 export default async function QualityPage({
-  params: { locale },
+  params,
 }: QualityPageProps) {
   const t = await getTranslations(locale);
   const certifications = await getAllCertifications();

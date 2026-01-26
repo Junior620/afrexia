@@ -15,7 +15,7 @@ import { generateMetaTags } from '@/lib/seo/metadata';
 import { generateArticleSchema } from '@/lib/seo/schema';
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     locale: Locale;
     slug: string;
   };
