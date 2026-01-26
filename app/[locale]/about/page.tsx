@@ -98,7 +98,7 @@ export default async function AboutPage({
               <h2 className="text-4xl md:text-5xl font-bold text-primary mb-8 text-center">
                 {t.about.story.title}
               </h2>
-              <p className="text-lg text-gray-700 leading-relaxed text-center">
+              <p className="text-lg text-foreground leading-relaxed text-center">
                 {t.about.story.content}
               </p>
             </ScrollReveal>
@@ -120,7 +120,7 @@ export default async function AboutPage({
                 <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6 text-center">
                   {t.about.mission.title}
                 </h2>
-                <p className="text-lg text-gray-700 leading-relaxed text-center">
+                <p className="text-lg text-foreground leading-relaxed text-center">
                   {t.about.mission.content}
                 </p>
               </div>
@@ -156,7 +156,7 @@ export default async function AboutPage({
                     <h3 className="text-xl font-bold text-primary mb-3">
                       {value.title}
                     </h3>
-                    <p className="text-gray-700">{value.description}</p>
+                    <p className="text-foreground">{value.description}</p>
                   </div>
                 </ScrollReveal>
               );
@@ -174,7 +174,7 @@ export default async function AboutPage({
                 <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
                   {t.about.team.title}
                 </h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                   {t.about.team.subtitle}
                 </p>
               </div>
@@ -189,7 +189,7 @@ export default async function AboutPage({
                 >
                   <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
                     {member.photo && (
-                      <div className="relative h-80 bg-gray-200">
+                      <div className="relative h-80 bg-muted">
                         <Image
                           src={urlFor(member.photo).width(400).height(500).url()}
                           alt={member.name}
@@ -208,7 +208,7 @@ export default async function AboutPage({
                         </p>
                       )}
                       {member.bio && (
-                        <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                        <p className="text-foreground text-sm leading-relaxed mb-4">
                           {member.bio[locale] || member.bio.en}
                         </p>
                       )}
@@ -246,10 +246,10 @@ export default async function AboutPage({
                 <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
                   {t.about.governance.title}
                 </h2>
-                <p className="text-xl text-gray-600 mb-6">
+                <p className="text-xl text-muted-foreground mb-6">
                   {t.about.governance.subtitle}
                 </p>
-                <p className="text-lg text-gray-700 leading-relaxed">
+                <p className="text-lg text-foreground leading-relaxed">
                   {t.about.governance.content}
                 </p>
               </div>
@@ -272,10 +272,10 @@ export default async function AboutPage({
                 <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
                   {t.about.partnerships.title}
                 </h2>
-                <p className="text-xl text-gray-600 mb-6">
+                <p className="text-xl text-muted-foreground mb-6">
                   {t.about.partnerships.subtitle}
                 </p>
-                <p className="text-lg text-gray-700 leading-relaxed">
+                <p className="text-lg text-foreground leading-relaxed">
                   {t.about.partnerships.content}
                 </p>
               </div>

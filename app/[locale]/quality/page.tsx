@@ -116,7 +116,7 @@ export default async function QualityPage({
               <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
                 {t.quality.certifications.title}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 {t.quality.certifications.subtitle}
               </p>
             </div>
@@ -146,18 +146,18 @@ export default async function QualityPage({
                     {cert.name[locale] || cert.name.en}
                   </h3>
                   {cert.description && (
-                    <p className="text-gray-700 mb-4 text-center">
+                    <p className="text-foreground mb-4 text-center">
                       {cert.description[locale] || cert.description.en}
                     </p>
                   )}
                   {cert.issuingBody && (
-                    <p className="text-sm text-gray-600 mb-2 text-center">
+                    <p className="text-sm text-muted-foreground mb-2 text-center">
                       <span className="font-semibold">{t.quality.issuedBy}:</span>{' '}
                       {cert.issuingBody}
                     </p>
                   )}
                   {cert.validUntil && (
-                    <p className="text-sm text-gray-600 mb-4 text-center">
+                    <p className="text-sm text-muted-foreground mb-4 text-center">
                       <span className="font-semibold">{t.quality.validUntil}:</span>{' '}
                       {new Date(cert.validUntil).toLocaleDateString(locale)}
                     </p>
@@ -188,7 +188,7 @@ export default async function QualityPage({
               <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
                 {t.quality.standards.title}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 {t.quality.standards.subtitle}
               </p>
             </div>
@@ -210,7 +210,7 @@ export default async function QualityPage({
                     <h3 className="text-2xl font-bold text-primary mb-4">
                       {standard.title}
                     </h3>
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-foreground leading-relaxed">
                       {standard.description}
                     </p>
                   </div>
@@ -253,7 +253,7 @@ export default async function QualityPage({
                       <h3 className="text-xl font-bold text-primary mb-2">
                         {step.title}
                       </h3>
-                      <p className="text-gray-700">{step.description}</p>
+                      <p className="text-foreground">{step.description}</p>
                     </div>
                   </div>
                 </ScrollReveal>

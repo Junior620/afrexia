@@ -13,13 +13,14 @@ interface NavItem {
 interface NavigationProps {
   locale: Locale;
   navItems: NavItem[];
+  rfqItem: NavItem;
 }
 
 /**
  * Navigation component with desktop and mobile views
  * Highlights active page
  */
-export function Navigation({ locale, navItems }: NavigationProps) {
+export function Navigation({ locale, navItems, rfqItem }: NavigationProps) {
   const pathname = usePathname();
 
   const isActive = (href: string) => {
@@ -34,7 +35,7 @@ export function Navigation({ locale, navItems }: NavigationProps) {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden lg:block">
+      <nav className="hidden lg:block" aria-label="Main navigation">
         <ul className="flex items-center gap-1">
           {navItems.map((item) => (
             <li key={item.href}>
@@ -45,6 +46,7 @@ export function Navigation({ locale, navItems }: NavigationProps) {
                     ? 'bg-primary/10 text-primary'
                     : 'text-neutral hover:bg-light hover:text-primary'
                 }`}
+                aria-current={isActive(item.href) ? 'page' : undefined}
               >
                 {item.label}
               </Link>
@@ -54,7 +56,7 @@ export function Navigation({ locale, navItems }: NavigationProps) {
       </nav>
 
       {/* Mobile Navigation */}
-      <MobileNav locale={locale} navItems={navItems} />
+      <MobileNav locale={locale} navItems={navItems} rfqItem={rfqItem} />
     </>
   );
 }

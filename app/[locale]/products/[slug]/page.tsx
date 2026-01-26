@@ -194,10 +194,10 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
   // Availability labels
   const availabilityLabels: Record<string, { fr: string; en: string; color: string }> = {
-    in_stock: { fr: 'En stock', en: 'In Stock', color: 'bg-green-100 text-green-800' },
-    pre_order: { fr: 'Pré-commande', en: 'Pre-Order', color: 'bg-blue-100 text-blue-800' },
-    seasonal: { fr: 'Saisonnier', en: 'Seasonal', color: 'bg-yellow-100 text-yellow-800' },
-    out_of_stock: { fr: 'Rupture', en: 'Out of Stock', color: 'bg-gray-100 text-gray-800' },
+    in_stock: { fr: 'En stock', en: 'In Stock', color: 'bg-success-light text-success-dark' },
+    pre_order: { fr: 'Pré-commande', en: 'Pre-Order', color: 'bg-info-light text-info-dark' },
+    seasonal: { fr: 'Saisonnier', en: 'Seasonal', color: 'bg-warning-light text-warning-dark' },
+    out_of_stock: { fr: 'Rupture', en: 'Out of Stock', color: 'bg-muted text-muted-foreground' },
   };
 
   const availabilityInfo = availabilityLabels[product.availability] || availabilityLabels.in_stock;
@@ -247,15 +247,15 @@ export default async function ProductDetailPage({ params }: PageProps) {
         <div className="bg-light py-4">
           <div className="container mx-auto px-4">
             <nav className="flex items-center gap-2 text-sm">
-              <Link href={`/${locale}`} className="text-gray-600 hover:text-primary">
+              <Link href={`/${locale}`} className="text-muted-foreground hover:text-primary">
                 {locale === 'fr' ? 'Accueil' : 'Home'}
               </Link>
-              <span className="text-gray-400">/</span>
-              <Link href={`/${locale}/products`} className="text-gray-600 hover:text-primary">
+              <span className="text-muted-foreground">/</span>
+              <Link href={`/${locale}/products`} className="text-muted-foreground hover:text-primary">
                 {locale === 'fr' ? 'Produits' : 'Products'}
               </Link>
-              <span className="text-gray-400">/</span>
-              <span className="text-gray-900 font-medium">{name}</span>
+              <span className="text-muted-foreground">/</span>
+              <span className="text-foreground font-medium">{name}</span>
             </nav>
           </div>
         </div>
@@ -282,12 +282,12 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 </div>
 
                 {/* Title */}
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
                   {name}
                 </h1>
 
                 {/* Description */}
-                <div className="prose prose-lg max-w-none text-gray-700">
+                <div className="prose prose-lg max-w-none text-foreground">
                   {description.split('\n\n').map((paragraph, index) => (
                     <p key={index}>{paragraph}</p>
                   ))}
@@ -296,14 +296,14 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 {/* Certifications */}
                 {product.certifications && product.certifications.length > 0 && (
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-3">
+                    <h3 className="font-semibold text-foreground mb-3">
                       {locale === 'fr' ? 'Certifications' : 'Certifications'}
                     </h3>
                     <div className="flex flex-wrap gap-3">
                       {product.certifications.map((cert: any) => (
                         <div
                           key={cert._id}
-                          className="inline-flex items-center gap-2 bg-light rounded-lg px-4 py-2 border border-gray-200"
+                          className="inline-flex items-center gap-2 bg-light rounded-lg px-4 py-2 border border-border"
                           title={cert.name}
                         >
                           {cert.logo && (
@@ -313,7 +313,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                               className="w-6 h-6 object-contain"
                             />
                           )}
-                          <span className="text-sm font-medium text-gray-700">{cert.name}</span>
+                          <span className="text-sm font-medium text-foreground">{cert.name}</span>
                         </div>
                       ))}
                     </div>
@@ -338,7 +338,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                     <a
                       href={product.specificationPDF.asset.url}
                       download
-                      className="inline-flex items-center justify-center bg-white hover:bg-gray-50 text-primary border-2 border-primary px-8 py-4 rounded-lg font-semibold transition-colors text-center"
+                      className="inline-flex items-center justify-center bg-white hover:bg-light text-primary border-2 border-primary px-8 py-4 rounded-lg font-semibold transition-colors text-center"
                     >
                       <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -349,21 +349,21 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 </div>
 
                 {/* Quick Info */}
-                <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-200">
+                <div className="grid grid-cols-2 gap-4 pt-4 border-t border-border">
                   {product.moq && (
                     <div>
-                      <p className="text-sm text-gray-500 mb-1">
+                      <p className="text-sm text-muted-foreground mb-1">
                         {locale === 'fr' ? 'MOQ' : 'MOQ'}
                       </p>
-                      <p className="font-semibold text-gray-900">{product.moq}</p>
+                      <p className="font-semibold text-foreground">{product.moq}</p>
                     </div>
                   )}
                   {product.harvestSeason && (
                     <div>
-                      <p className="text-sm text-gray-500 mb-1">
+                      <p className="text-sm text-muted-foreground mb-1">
                         {locale === 'fr' ? 'Saison' : 'Season'}
                       </p>
-                      <p className="font-semibold text-gray-900">{product.harvestSeason}</p>
+                      <p className="font-semibold text-foreground">{product.harvestSeason}</p>
                     </div>
                   )}
                 </div>
@@ -376,7 +376,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
         {originRegions.length > 0 && (
           <section className="py-12 md:py-16 bg-light">
             <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">
+              <h2 className="text-3xl font-bold text-foreground mb-8">
                 {locale === 'fr' ? 'Origine du Produit' : 'Product Origin'}
               </h2>
               <ProductOriginMap origins={originRegions} productName={name} locale={locale} />
@@ -387,7 +387,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
         {/* Specifications */}
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">
+            <h2 className="text-3xl font-bold text-foreground mb-8">
               {locale === 'fr' ? 'Spécifications Techniques' : 'Technical Specifications'}
             </h2>
             <ProductSpecifications
@@ -421,7 +421,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 href={`/${locale}/rfq?product=${product._id}`}
                 text={locale === 'fr' ? 'Demander un devis' : 'Request a Quote'}
                 ctaLocation="product_detail_page_bottom"
-                className="inline-block bg-white hover:bg-gray-100 text-primary px-8 py-3 rounded-lg font-semibold transition-colors"
+                className="inline-block bg-white hover:bg-light text-primary px-8 py-3 rounded-lg font-semibold transition-colors"
               />
               <CTAButton
                 href={`/${locale}/contact`}

@@ -126,13 +126,13 @@ export default async function ResourcesPage({
 
                         {/* Description */}
                         {resource.description && (
-                          <p className="text-gray-700 text-sm mb-4 flex-grow">
+                          <p className="text-foreground text-sm mb-4 flex-grow">
                             {resource.description[locale] || resource.description.en}
                           </p>
                         )}
 
                         {/* Metadata */}
-                        <div className="space-y-2 mb-4 text-sm text-gray-600">
+                        <div className="space-y-2 mb-4 text-sm text-muted-foreground">
                           {resource.file?.asset?.size && (
                             <div className="flex items-center gap-2">
                               <HardDrive className="w-4 h-4" />
@@ -165,7 +165,7 @@ export default async function ResourcesPage({
                         {/* Related Products */}
                         {resource.relatedProducts && resource.relatedProducts.length > 0 && (
                           <div className="mb-4">
-                            <p className="text-xs font-semibold text-gray-600 mb-2">
+                            <p className="text-xs font-semibold text-muted-foreground mb-2">
                               Related Products:
                             </p>
                             <div className="flex flex-wrap gap-2">
@@ -205,8 +205,8 @@ export default async function ResourcesPage({
           {resources.length === 0 && (
             <ScrollReveal animation="fade">
               <div className="text-center py-20">
-                <FileText className="w-16 h-16 mx-auto mb-4 text-gray-400" />
-                <p className="text-xl text-gray-600">{t.resources.noResults}</p>
+                <FileText className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
+                <p className="text-xl text-muted-foreground">{t.resources.noResults}</p>
               </div>
             </ScrollReveal>
           )}

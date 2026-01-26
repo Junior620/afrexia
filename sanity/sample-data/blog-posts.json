@@ -1,0 +1,278 @@
+[
+  {
+    "_type": "blogPost",
+    "i18nId": "blog-cocoa-market-2024",
+    "title": {
+      "fr": "Tendances du Marché du Cacao en 2024",
+      "en": "Cocoa Market Trends in 2024"
+    },
+    "slug": {
+      "fr": { "current": "tendances-marche-cacao-2024" },
+      "en": { "current": "cocoa-market-trends-2024" }
+    },
+    "excerpt": {
+      "fr": "Analyse des principales tendances qui façonnent le marché mondial du cacao en 2024, incluant la demande croissante pour le chocolat premium et l'impact des réglementations environnementales.",
+      "en": "Analysis of the main trends shaping the global cocoa market in 2024, including growing demand for premium chocolate and the impact of environmental regulations."
+    },
+    "content": {
+      "fr": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Le marché du cacao connaît des transformations majeures en 2024. La demande pour le chocolat premium et les produits certifiés durables continue de croître, particulièrement en Europe et en Amérique du Nord."
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Demande Croissante pour le Cacao Durable"
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Les consommateurs sont de plus en plus conscients de l'origine de leur chocolat. Les certifications comme Rainforest Alliance et Fair Trade deviennent essentielles pour accéder aux marchés premium."
+            }
+          ]
+        }
+      ],
+      "en": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "The cocoa market is undergoing major transformations in 2024. Demand for premium chocolate and sustainably certified products continues to grow, particularly in Europe and North America."
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Growing Demand for Sustainable Cocoa"
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Consumers are increasingly aware of the origin of their chocolate. Certifications like Rainforest Alliance and Fair Trade are becoming essential for accessing premium markets."
+            }
+          ]
+        }
+      ]
+    },
+    "tags": ["cacao", "marché", "durabilité", "tendances"],
+    "publishedAt": "2024-01-15T10:00:00Z",
+    "readingTime": 5,
+    "seo": {
+      "metaTitle": {
+        "fr": "Tendances du Marché du Cacao 2024 | Afrexia Blog",
+        "en": "Cocoa Market Trends 2024 | Afrexia Blog"
+      },
+      "metaDescription": {
+        "fr": "Découvrez les principales tendances du marché du cacao en 2024 et leur impact sur l'industrie du chocolat.",
+        "en": "Discover the main cocoa market trends in 2024 and their impact on the chocolate industry."
+      }
+    },
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "blogPost",
+    "i18nId": "blog-eudr-compliance",
+    "title": {
+      "fr": "Comprendre la Réglementation EUDR : Guide Complet",
+      "en": "Understanding EUDR Regulation: Complete Guide"
+    },
+    "slug": {
+      "fr": { "current": "comprendre-reglementation-eudr" },
+      "en": { "current": "understanding-eudr-regulation" }
+    },
+    "excerpt": {
+      "fr": "Guide détaillé sur la réglementation européenne contre la déforestation (EUDR) et son impact sur les importateurs de commodités agricoles.",
+      "en": "Detailed guide on the European Union Deforestation Regulation (EUDR) and its impact on agricultural commodity importers."
+    },
+    "content": {
+      "fr": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "La réglementation EUDR (European Union Deforestation Regulation) entre en vigueur en 2024 et impose de nouvelles obligations de traçabilité pour les importateurs de produits agricoles en Europe."
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Qu'est-ce que l'EUDR ?"
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "L'EUDR vise à garantir que les produits importés dans l'UE ne contribuent pas à la déforestation. Les entreprises doivent prouver l'origine géographique de leurs produits avec des coordonnées GPS précises."
+            }
+          ]
+        }
+      ],
+      "en": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "The EUDR (European Union Deforestation Regulation) comes into force in 2024 and imposes new traceability obligations on importers of agricultural products in Europe."
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [
+            {
+              "_type": "span",
+              "text": "What is EUDR?"
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "EUDR aims to ensure that products imported into the EU do not contribute to deforestation. Companies must prove the geographical origin of their products with precise GPS coordinates."
+            }
+          ]
+        }
+      ]
+    },
+    "tags": ["EUDR", "réglementation", "traçabilité", "conformité"],
+    "publishedAt": "2024-02-01T09:00:00Z",
+    "readingTime": 8,
+    "seo": {
+      "metaTitle": {
+        "fr": "Guide Complet EUDR 2024 | Afrexia Blog",
+        "en": "Complete EUDR Guide 2024 | Afrexia Blog"
+      },
+      "metaDescription": {
+        "fr": "Tout ce que vous devez savoir sur la réglementation EUDR et comment assurer la conformité de vos importations.",
+        "en": "Everything you need to know about EUDR regulation and how to ensure compliance of your imports."
+      }
+    },
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "blogPost",
+    "i18nId": "blog-coffee-quality",
+    "title": {
+      "fr": "Les Critères de Qualité du Café Arabica",
+      "en": "Arabica Coffee Quality Criteria"
+    },
+    "slug": {
+      "fr": { "current": "criteres-qualite-cafe-arabica" },
+      "en": { "current": "arabica-coffee-quality-criteria" }
+    },
+    "excerpt": {
+      "fr": "Découvrez les critères essentiels pour évaluer la qualité du café Arabica, de la culture à la tasse.",
+      "en": "Discover the essential criteria for evaluating Arabica coffee quality, from cultivation to cup."
+    },
+    "content": {
+      "fr": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "La qualité du café Arabica dépend de nombreux facteurs, depuis les conditions de culture jusqu'aux méthodes de traitement post-récolte."
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [
+            {
+              "_type": "span",
+              "text": "L'Altitude et le Terroir"
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Les meilleurs cafés Arabica sont cultivés en altitude (1200-2000m). L'altitude influence le développement des arômes et la densité des grains."
+            }
+          ]
+        }
+      ],
+      "en": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Arabica coffee quality depends on many factors, from growing conditions to post-harvest processing methods."
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "style": "h2",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Altitude and Terroir"
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "The best Arabica coffees are grown at altitude (1200-2000m). Altitude influences aroma development and bean density."
+            }
+          ]
+        }
+      ]
+    },
+    "tags": ["café", "qualité", "arabica", "guide"],
+    "publishedAt": "2024-01-20T11:00:00Z",
+    "readingTime": 6,
+    "seo": {
+      "metaTitle": {
+        "fr": "Critères de Qualité du Café Arabica | Afrexia Blog",
+        "en": "Arabica Coffee Quality Criteria | Afrexia Blog"
+      },
+      "metaDescription": {
+        "fr": "Guide complet sur les critères de qualité du café Arabica pour les acheteurs professionnels.",
+        "en": "Complete guide on Arabica coffee quality criteria for professional buyers."
+      }
+    },
+    "workflowStatus": "published"
+  }
+]

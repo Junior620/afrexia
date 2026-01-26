@@ -56,15 +56,15 @@ export function BlogPostCard({ post, locale }: BlogPostCardProps) {
           )}
 
           {/* Title */}
-          <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors line-clamp-2">
+          <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
             {title}
           </h3>
 
           {/* Excerpt */}
-          <p className="text-gray-600 mb-4 line-clamp-3">{excerpt}</p>
+          <p className="text-support mb-4 line-clamp-3">{excerpt}</p>
 
           {/* Meta information */}
-          <div className="flex items-center justify-between text-sm text-gray-500">
+          <div className="flex items-center justify-between text-sm text-support">
             <div className="flex items-center gap-4">
               {/* Author */}
               {post.author && (

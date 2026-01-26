@@ -8,16 +8,22 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 /**
  * Hook to enable smooth scrolling with Lenis
  * Only enabled on desktop (>= 1024px) and when reduced motion is not preferred
+ * Optimized for performance by disabling on mobile devices
  */
 export function useSmoothScroll() {
   useEffect(() => {
-    // Skip on mobile devices
-    if (typeof window === 'undefined' || window.innerWidth < 1024) {
+    // Skip on server
+    if (typeof window === 'undefined') return;
+
+    // Skip on mobile devices (< 1024px)
+    const isMobile = window.innerWidth < 1024;
+    if (isMobile) {
       return;
     }
 
     // Skip if user prefers reduced motion
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
       return;
     }
 
@@ -44,8 +50,18 @@ export function useSmoothScroll() {
     // Disable lag smoothing for better performance
     gsap.ticker.lagSmoothing(0);
 
+    // Handle window resize to disable on mobile
+    const handleResize = () => {
+      if (window.innerWidth < 1024) {
+        lenis.destroy();
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
     // Cleanup function
     return () => {
+      window.removeEventListener('resize', handleResize);
       lenis.destroy();
       gsap.ticker.remove(lenis.raf);
     };
@@ -55,16 +71,22 @@ export function useSmoothScroll() {
 /**
  * Hook to enable smooth scrolling with Lenis and provide scroll control
  * Returns Lenis instance for programmatic control
+ * Only enabled on desktop (>= 1024px) and when reduced motion is not preferred
  */
 export function useSmoothScrollWithControl() {
   useEffect(() => {
-    // Skip on mobile devices
-    if (typeof window === 'undefined' || window.innerWidth < 1024) {
+    // Skip on server
+    if (typeof window === 'undefined') return;
+
+    // Skip on mobile devices (< 1024px)
+    const isMobile = window.innerWidth < 1024;
+    if (isMobile) {
       return;
     }
 
     // Skip if user prefers reduced motion
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
       return;
     }
 
@@ -93,8 +115,19 @@ export function useSmoothScrollWithControl() {
     // Store lenis instance globally for access
     (window as any).__lenis = lenis;
 
+    // Handle window resize to disable on mobile
+    const handleResize = () => {
+      if (window.innerWidth < 1024) {
+        lenis.destroy();
+        delete (window as any).__lenis;
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
     // Cleanup
     return () => {
+      window.removeEventListener('resize', handleResize);
       lenis.destroy();
       gsap.ticker.remove(lenis.raf);
       delete (window as any).__lenis;

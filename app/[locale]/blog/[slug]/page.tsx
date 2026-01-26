@@ -177,12 +177,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             )}
 
             {/* Title */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
               {title}
             </h1>
 
             {/* Meta Information */}
-            <div className="flex flex-wrap items-center gap-4 text-gray-600 mb-8">
+            <div className="flex flex-wrap items-center gap-4 text-muted-foreground mb-8">
               {/* Author */}
               {post.author && (
                 <div className="flex items-center gap-3">
@@ -198,7 +198,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     </div>
                   )}
                   <div>
-                    <p className="font-medium text-gray-900">
+                    <p className="font-medium text-foreground">
                       {post.author.name}
                     </p>
                     {post.author.role && (
@@ -208,14 +208,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </div>
               )}
 
-              <span className="text-gray-400">•</span>
+              <span className="text-muted-foreground">•</span>
 
               {/* Date */}
               <time dateTime={post.publishedAt}>
                 {t.publishedOn} {publishedDate}
               </time>
 
-              <span className="text-gray-400">•</span>
+              <span className="text-muted-foreground">•</span>
 
               {/* Reading Time */}
               <span>{t.readingTime(readingTime)}</span>
@@ -236,7 +236,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             )}
 
             {/* Social Share */}
-            <div className="mb-12 pb-8 border-b border-gray-200">
+            <div className="mb-12 pb-8 border-b border-border">
               <SocialShare url={postUrl} title={title} locale={locale} />
             </div>
 
@@ -247,12 +247,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
             {/* Tags */}
             {post.tags && post.tags.length > 0 && (
-              <div className="mb-12 pb-8 border-b border-gray-200">
+              <div className="mb-12 pb-8 border-b border-border">
                 <div className="flex flex-wrap gap-2">
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full"
+                      className="text-sm text-muted-foreground bg-muted px-3 py-1 rounded-full"
                     >
                       #{tag}
                     </span>

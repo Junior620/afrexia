@@ -7,6 +7,7 @@ import { ErrorBoundary } from '@/components/providers/ErrorBoundary';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CookieConsent } from '@/components/layout/CookieConsent';
+import { SkipToContent } from '@/components/layout/SkipToContent';
 import { locales, isValidLocale } from '@/lib/i18n/config';
 
 const inter = Inter({
@@ -44,12 +45,27 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 
   return (
     <html lang={locale} className={inter.variable} suppressHydrationWarning>
+      <head>
+        {/* Preconnect to critical third-party origins */}
+        <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://api.mapbox.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://events.mapbox.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://plausible.io" crossOrigin="anonymous" />
+        
+        {/* DNS prefetch for additional third-party services */}
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.google.com" />
+      </head>
       <body className="font-sans antialiased">
         <ErrorBoundary>
           <AnalyticsProvider>
+            <SkipToContent />
             <div className="flex min-h-screen flex-col">
               <Header locale={locale} />
-              <main className="flex-1">{children}</main>
+              <main id="main-content" className="flex-1" tabIndex={-1}>
+                {children}
+              </main>
               <Footer locale={locale} />
               <CookieConsent locale={locale} />
             </div>

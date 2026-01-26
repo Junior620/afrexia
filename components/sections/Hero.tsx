@@ -25,7 +25,7 @@ export function Hero({ locale }: HeroProps) {
     },
   };
 
-  const t = content[locale];
+  const t = content[locale] || content.en; // Fallback to English if locale not found
 
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">

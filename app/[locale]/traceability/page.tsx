@@ -141,10 +141,10 @@ export default async function TraceabilityPage({
               <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
                 {t.traceability.eudr.title}
               </h2>
-              <p className="text-xl text-gray-600 mb-6">
+              <p className="text-xl text-muted-foreground mb-6">
                 {t.traceability.eudr.subtitle}
               </p>
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="text-lg text-foreground leading-relaxed">
                 {t.traceability.eudr.description}
               </p>
             </div>
@@ -160,7 +160,7 @@ export default async function TraceabilityPage({
               <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
                 {t.traceability.dueDiligence.title}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 {t.traceability.dueDiligence.subtitle}
               </p>
             </div>
@@ -182,7 +182,7 @@ export default async function TraceabilityPage({
                     <h3 className="text-2xl font-bold text-primary mb-4">
                       {step.title}
                     </h3>
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-foreground leading-relaxed">
                       {step.description}
                     </p>
                   </div>
@@ -201,10 +201,10 @@ export default async function TraceabilityPage({
               <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
                 {t.traceability.supplyChain.title}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
                 {t.traceability.supplyChain.subtitle}
               </p>
-              <p className="text-lg text-gray-700 max-w-4xl mx-auto">
+              <p className="text-lg text-foreground max-w-4xl mx-auto">
                 {t.traceability.supplyChain.description}
               </p>
             </div>
@@ -213,7 +213,7 @@ export default async function TraceabilityPage({
           {/* Placeholder for SupplyChainAnimation component */}
           <ScrollReveal animation="fade">
             <div className="bg-light rounded-xl p-12 border border-neutral">
-              <div className="text-center text-gray-600">
+              <div className="text-center text-muted-foreground">
                 <Satellite className="w-16 h-16 mx-auto mb-4 text-primary" />
                 <p className="text-lg">
                   Interactive supply chain visualization coming soon
@@ -232,7 +232,7 @@ export default async function TraceabilityPage({
               <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
                 {t.traceability.compliance.title}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 {t.traceability.compliance.subtitle}
               </p>
             </div>
@@ -254,7 +254,7 @@ export default async function TraceabilityPage({
                     <h3 className="text-2xl font-bold text-primary mb-4">
                       {measure.title}
                     </h3>
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-foreground leading-relaxed">
                       {measure.description}
                     </p>
                   </div>
@@ -273,7 +273,7 @@ export default async function TraceabilityPage({
               <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
                 {t.traceability.documentation.title}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12">
                 {t.traceability.documentation.subtitle}
               </p>
             </div>

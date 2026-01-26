@@ -383,5 +383,15 @@
     },
     "noResults": "No resources found matching your criteria",
     "downloadCount": "{{count}} downloads"
+  },
+  "productsShowcase": {
+    "title": "Our Premium Products",
+    "subtitle": "Discover our range of high-quality African agricultural commodities",
+    "viewAll": "View All Products"
+  },
+  "certificationsSection": {
+    "title": "Quality Certifications",
+    "subtitle": "Internationally recognized standards ensuring excellence in every shipment",
+    "viewAll": "View All Certifications"
   }
 }

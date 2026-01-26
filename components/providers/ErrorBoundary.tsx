@@ -1,6 +1,7 @@
 'use client';
 
 import { Component, ReactNode } from 'react';
+import * as Sentry from '@sentry/nextjs';
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -10,10 +11,12 @@ interface ErrorBoundaryProps {
 interface ErrorBoundaryState {
   hasError: boolean;
   error?: Error;
+  eventId?: string;
 }
 
 /**
  * Error Boundary component to catch and handle React errors
+ * Requirements: 25.1
  * Integrates with Sentry for error tracking
  */
 export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
@@ -27,16 +30,19 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    // Log error to Sentry
-    if (typeof window !== 'undefined' && (window as any).Sentry) {
-      (window as any).Sentry.captureException(error, {
-        contexts: {
-          react: {
-            componentStack: errorInfo.componentStack,
-          },
+    // Log error to Sentry with additional context
+    const eventId = Sentry.captureException(error, {
+      contexts: {
+        react: {
+          componentStack: errorInfo.componentStack,
         },
-      });
-    }
+      },
+      tags: {
+        errorBoundary: true,
+      },
+    });
+
+    this.setState({ eventId });
 
     // Log to console in development
     if (process.env.NODE_ENV === 'development') {
@@ -59,12 +65,26 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
             <p className="mb-6 text-neutral">
               We&apos;re sorry for the inconvenience. Please try refreshing the page.
             </p>
-            <button
-              onClick={() => window.location.reload()}
-              className="rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-dark"
-            >
-              Refresh Page
-            </button>
+            <div className="flex flex-col gap-3">
+              <button
+                onClick={() => window.location.reload()}
+                className="rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-dark"
+              >
+                Refresh Page
+              </button>
+              {this.state.eventId && (
+                <button
+                  onClick={() => {
+                    Sentry.showReportDialog({
+                      eventId: this.state.eventId,
+                    });
+                  }}
+                  className="rounded-lg border-2 border-primary px-6 py-3 font-semibold text-primary transition-colors hover:bg-light"
+                >
+                  Report Feedback
+                </button>
+              )}
+            </div>
           </div>
         </div>
       );

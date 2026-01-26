@@ -64,7 +64,7 @@ export function Statistics({ locale }: StatisticsProps) {
     },
   };
 
-  const t = content[locale];
+  const t = content[locale] || content.en; // Fallback to English if locale not found
 
   return (
     <section className="py-16 md:py-24 bg-light">
@@ -75,7 +75,7 @@ export function Statistics({ locale }: StatisticsProps) {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4">
               {t.title}
             </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-support max-w-2xl mx-auto">
               {t.subtitle}
             </p>
           </div>
@@ -98,7 +98,7 @@ export function Statistics({ locale }: StatisticsProps) {
                     className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary"
                   />
                 </div>
-                <p className="text-base md:text-lg text-gray-700 font-medium">
+                <p className="text-base md:text-lg text-foreground font-medium">
                   {stat.label[locale]}
                 </p>
               </div>

@@ -1,0 +1,172 @@
+[
+  {
+    "_type": "resource",
+    "title": {
+      "fr": "Catalogue Produits 2024",
+      "en": "Product Catalog 2024"
+    },
+    "slug": { "current": "product-catalog-2024" },
+    "description": {
+      "fr": "Catalogue complet de tous nos produits avec spécifications techniques et conditions commerciales.",
+      "en": "Complete catalog of all our products with technical specifications and commercial terms."
+    },
+    "category": "catalogs",
+    "language": "both",
+    "publishedAt": "2024-01-01",
+    "order": 1,
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "resource",
+    "title": {
+      "fr": "Fiche Technique - Cacao Premium",
+      "en": "Technical Specification - Premium Cocoa"
+    },
+    "slug": { "current": "spec-sheet-premium-cocoa" },
+    "description": {
+      "fr": "Spécifications techniques détaillées pour nos fèves de cacao premium.",
+      "en": "Detailed technical specifications for our premium cocoa beans."
+    },
+    "category": "specifications",
+    "language": "both",
+    "publishedAt": "2024-01-15",
+    "order": 1,
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "resource",
+    "title": {
+      "fr": "Certificat ISO 22000",
+      "en": "ISO 22000 Certificate"
+    },
+    "slug": { "current": "iso-22000-certificate" },
+    "description": {
+      "fr": "Certificat ISO 22000 pour la sécurité alimentaire.",
+      "en": "ISO 22000 certificate for food safety."
+    },
+    "category": "certifications",
+    "language": "en",
+    "publishedAt": "2023-03-31",
+    "order": 1,
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "resource",
+    "title": {
+      "fr": "Guide de Conformité EUDR",
+      "en": "EUDR Compliance Guide"
+    },
+    "slug": { "current": "eudr-compliance-guide" },
+    "description": {
+      "fr": "Guide complet sur la conformité à la réglementation EUDR pour nos produits.",
+      "en": "Complete guide on EUDR regulation compliance for our products."
+    },
+    "category": "compliance",
+    "language": "both",
+    "publishedAt": "2024-02-01",
+    "order": 1,
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "resource",
+    "title": {
+      "fr": "Guide des Incoterms 2020",
+      "en": "Incoterms 2020 Guide"
+    },
+    "slug": { "current": "incoterms-2020-guide" },
+    "description": {
+      "fr": "Guide pratique des Incoterms 2020 pour le commerce international.",
+      "en": "Practical guide to Incoterms 2020 for international trade."
+    },
+    "category": "guides",
+    "language": "both",
+    "publishedAt": "2023-06-01",
+    "order": 1,
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "resource",
+    "title": {
+      "fr": "Étude de Cas - Export Cacao vers l'Europe",
+      "en": "Case Study - Cocoa Export to Europe"
+    },
+    "slug": { "current": "case-study-cocoa-export-europe" },
+    "description": {
+      "fr": "Étude de cas détaillée sur un projet d'export de cacao vers l'Europe.",
+      "en": "Detailed case study on a cocoa export project to Europe."
+    },
+    "category": "case_studies",
+    "language": "both",
+    "publishedAt": "2023-09-15",
+    "order": 1,
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "resource",
+    "title": {
+      "fr": "Certificat Rainforest Alliance",
+      "en": "Rainforest Alliance Certificate"
+    },
+    "slug": { "current": "rainforest-alliance-certificate" },
+    "description": {
+      "fr": "Certificat Rainforest Alliance pour nos plantations de cacao.",
+      "en": "Rainforest Alliance certificate for our cocoa plantations."
+    },
+    "category": "certifications",
+    "language": "en",
+    "publishedAt": "2023-06-30",
+    "order": 2,
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "resource",
+    "title": {
+      "fr": "Fiche Technique - Café Arabica",
+      "en": "Technical Specification - Arabica Coffee"
+    },
+    "slug": { "current": "spec-sheet-arabica-coffee" },
+    "description": {
+      "fr": "Spécifications techniques pour notre café Arabica des hauts plateaux.",
+      "en": "Technical specifications for our highland Arabica coffee."
+    },
+    "category": "specifications",
+    "language": "both",
+    "publishedAt": "2024-01-20",
+    "order": 2,
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "resource",
+    "title": {
+      "fr": "Fiche Technique - Poivre Blanc de Penja",
+      "en": "Technical Specification - Penja White Pepper"
+    },
+    "slug": { "current": "spec-sheet-penja-white-pepper" },
+    "description": {
+      "fr": "Spécifications techniques pour notre poivre blanc de Penja IGP.",
+      "en": "Technical specifications for our Penja white pepper PGI."
+    },
+    "category": "specifications",
+    "language": "both",
+    "publishedAt": "2024-01-25",
+    "order": 3,
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "resource",
+    "title": {
+      "fr": "Documentation de Traçabilité",
+      "en": "Traceability Documentation"
+    },
+    "slug": { "current": "traceability-documentation" },
+    "description": {
+      "fr": "Documentation complète sur notre système de traçabilité et due diligence.",
+      "en": "Complete documentation on our traceability and due diligence system."
+    },
+    "category": "compliance",
+    "language": "both",
+    "publishedAt": "2024-02-10",
+    "order": 2,
+    "workflowStatus": "published"
+  }
+]

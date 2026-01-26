@@ -22,7 +22,7 @@ export function ProductsShowcase({ products, locale }: ProductsShowcaseProps) {
     },
   };
 
-  const t = content[locale];
+  const t = content[locale] || content.en; // Fallback to English if locale not found
 
   // Show first 3 or 4 products as featured
   const featuredProducts = products.slice(0, 3);
@@ -36,7 +36,7 @@ export function ProductsShowcase({ products, locale }: ProductsShowcaseProps) {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4">
               {t.title}
             </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-support max-w-2xl mx-auto">
               {t.subtitle}
             </p>
           </div>

@@ -196,11 +196,11 @@ export function RFQForm({
 
   if (submitSuccess) {
     return (
-      <div className="rounded-lg bg-green-50 p-6 text-center">
-        <h3 className="mb-2 text-2xl font-bold text-green-900">
+      <div className="rounded-lg bg-success-light p-6 text-center">
+        <h3 className="mb-2 text-2xl font-bold text-success-dark">
           {locale === 'fr' ? 'Demande envoyée !' : 'Request Sent!'}
         </h3>
-        <p className="text-green-800">
+        <p className="text-success-dark">
           {locale === 'fr'
             ? 'Nous vous contacterons sous peu avec un devis personnalisé.'
             : "We'll contact you shortly with a customized quote."}
@@ -210,9 +210,9 @@ export function RFQForm({
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" aria-label="Request for quote form">
       {/* Progress Indicator */}
-      <div className="mb-8">
+      <div className="mb-8" role="progressbar" aria-valuenow={currentStepIndex + 1} aria-valuemin={1} aria-valuemax={3} aria-label="Form progress">
         <div className="flex items-center justify-between">
           {steps.map((step, index) => (
             <div key={step} className="flex flex-1 items-center">
@@ -221,8 +221,9 @@ export function RFQForm({
                   className={`flex h-10 w-10 items-center justify-center rounded-full ${
                     index <= currentStepIndex
                       ? 'bg-primary text-white'
-                      : 'bg-gray-200 text-gray-600'
+                      : 'bg-muted text-muted-foreground'
                   }`}
+                  aria-current={index === currentStepIndex ? 'step' : undefined}
                 >
                   {index + 1}
                 </div>
@@ -230,7 +231,7 @@ export function RFQForm({
                   className={`mt-2 text-sm ${
                     index === currentStepIndex
                       ? 'font-bold text-primary'
-                      : 'text-gray-600'
+                      : 'text-muted-foreground'
                   }`}
                 >
                   {locale === 'fr'
@@ -249,8 +250,9 @@ export function RFQForm({
               {index < steps.length - 1 && (
                 <div
                   className={`mx-2 h-1 flex-1 ${
-                    index < currentStepIndex ? 'bg-primary' : 'bg-gray-200'
+                    index < currentStepIndex ? 'bg-primary' : 'bg-muted'
                   }`}
+                  aria-hidden="true"
                 />
               )}
             </div>
@@ -266,13 +268,17 @@ export function RFQForm({
           </h3>
 
           <div>
-            <label className="mb-1 block text-sm font-medium">
+            <label htmlFor="rfq-product" className="mb-1 block text-sm font-medium">
               {locale === 'fr' ? 'Produit' : 'Product'}{' '}
-              <span className="text-red-500">*</span>
+              <span className="text-destructive">*</span>
             </label>
             <select
+              id="rfq-product"
               {...register('productId')}
-              className="w-full rounded-lg border border-gray-300 px-4 py-2"
+              className="w-full rounded-lg border border-border px-4 py-2"
+              aria-required="true"
+              aria-invalid={errors.productId ? 'true' : 'false'}
+              aria-describedby={errors.productId ? 'rfq-product-error' : undefined}
             >
               <option value="">
                 {locale === 'fr'
@@ -286,7 +292,7 @@ export function RFQForm({
               ))}
             </select>
             {errors.productId && (
-              <p className="mt-1 text-sm text-red-600">
+              <p id="rfq-product-error" className="mt-1 text-sm text-destructive" role="alert">
                 {errors.productId.message}
               </p>
             )}
@@ -294,32 +300,41 @@ export function RFQForm({
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1 block text-sm font-medium">
+              <label htmlFor="rfq-quantity" className="mb-1 block text-sm font-medium">
                 {locale === 'fr' ? 'Quantité' : 'Quantity'}{' '}
-                <span className="text-red-500">*</span>
+                <span className="text-destructive">*</span>
               </label>
               <input
+                id="rfq-quantity"
                 type="number"
+                inputMode="decimal"
                 step="0.01"
                 {...register('quantity', { valueAsNumber: true })}
-                className="w-full rounded-lg border border-gray-300 px-4 py-2"
+                className="w-full rounded-lg border border-border px-4 py-2"
                 placeholder={locale === 'fr' ? 'Entrez la quantité' : 'Enter quantity'}
+                aria-required="true"
+                aria-invalid={errors.quantity ? 'true' : 'false'}
+                aria-describedby={errors.quantity ? 'rfq-quantity-error' : undefined}
               />
               {errors.quantity && (
-                <p className="mt-1 text-sm text-red-600">
+                <p id="rfq-quantity-error" className="mt-1 text-sm text-destructive" role="alert">
                   {errors.quantity.message}
                 </p>
               )}
             </div>
 
             <div>
-              <label className="mb-1 block text-sm font-medium">
+              <label htmlFor="rfq-quantity-unit" className="mb-1 block text-sm font-medium">
                 {locale === 'fr' ? 'Unité' : 'Unit'}{' '}
-                <span className="text-red-500">*</span>
+                <span className="text-destructive">*</span>
               </label>
               <select
+                id="rfq-quantity-unit"
                 {...register('quantityUnit')}
-                className="w-full rounded-lg border border-gray-300 px-4 py-2"
+                className="w-full rounded-lg border border-border px-4 py-2"
+                aria-required="true"
+                aria-invalid={errors.quantityUnit ? 'true' : 'false'}
+                aria-describedby={errors.quantityUnit ? 'rfq-quantity-unit-error' : undefined}
               >
                 {quantityUnits.map((unit) => (
                   <option key={unit} value={unit}>
@@ -338,7 +353,7 @@ export function RFQForm({
                 ))}
               </select>
               {errors.quantityUnit && (
-                <p className="mt-1 text-sm text-red-600">
+                <p id="rfq-quantity-unit-error" className="mt-1 text-sm text-destructive" role="alert">
                   {errors.quantityUnit.message}
                 </p>
               )}
@@ -364,11 +379,11 @@ export function RFQForm({
 
           <div>
             <label className="mb-1 block text-sm font-medium">
-              Incoterm <span className="text-red-500">*</span>
+              Incoterm <span className="text-destructive">*</span>
             </label>
             <select
               {...register('incoterm')}
-              className="w-full rounded-lg border border-gray-300 px-4 py-2"
+              className="w-full rounded-lg border border-border px-4 py-2"
             >
               {incoterms.map((term) => (
                 <option key={term} value={term}>
@@ -377,7 +392,7 @@ export function RFQForm({
               ))}
             </select>
             {errors.incoterm && (
-              <p className="mt-1 text-sm text-red-600">
+              <p className="mt-1 text-sm text-destructive">
                 {errors.incoterm.message}
               </p>
             )}
@@ -386,12 +401,12 @@ export function RFQForm({
           <div>
             <label className="mb-1 block text-sm font-medium">
               {locale === 'fr' ? 'Port de Destination' : 'Destination Port'}{' '}
-              <span className="text-red-500">*</span>
+              <span className="text-destructive">*</span>
             </label>
             <input
               type="text"
               {...register('destinationPort')}
-              className="w-full rounded-lg border border-gray-300 px-4 py-2"
+              className="w-full rounded-lg border border-border px-4 py-2"
               placeholder={
                 locale === 'fr'
                   ? 'ex: Port de Rotterdam'
@@ -399,7 +414,7 @@ export function RFQForm({
               }
             />
             {errors.destinationPort && (
-              <p className="mt-1 text-sm text-red-600">
+              <p className="mt-1 text-sm text-destructive">
                 {errors.destinationPort.message}
               </p>
             )}
@@ -410,15 +425,15 @@ export function RFQForm({
               {locale === 'fr'
                 ? 'Date de Livraison Souhaitée'
                 : 'Target Delivery Date'}{' '}
-              <span className="text-red-500">*</span>
+              <span className="text-destructive">*</span>
             </label>
             <input
               type="date"
               {...register('targetDate')}
-              className="w-full rounded-lg border border-gray-300 px-4 py-2"
+              className="w-full rounded-lg border border-border px-4 py-2"
             />
             {errors.targetDate && (
-              <p className="mt-1 text-sm text-red-600">
+              <p className="mt-1 text-sm text-destructive">
                 {errors.targetDate.message}
               </p>
             )}
@@ -454,15 +469,16 @@ export function RFQForm({
             <div>
               <label className="mb-1 block text-sm font-medium">
                 {locale === 'fr' ? 'Prénom' : 'First Name'}{' '}
-                <span className="text-red-500">*</span>
+                <span className="text-destructive">*</span>
               </label>
               <input
                 type="text"
+                autoComplete="given-name"
                 {...register('firstName')}
-                className="w-full rounded-lg border border-gray-300 px-4 py-2"
+                className="w-full rounded-lg border border-border px-4 py-2"
               />
               {errors.firstName && (
-                <p className="mt-1 text-sm text-red-600">
+                <p className="mt-1 text-sm text-destructive">
                   {errors.firstName.message}
                 </p>
               )}
@@ -471,15 +487,16 @@ export function RFQForm({
             <div>
               <label className="mb-1 block text-sm font-medium">
                 {locale === 'fr' ? 'Nom' : 'Last Name'}{' '}
-                <span className="text-red-500">*</span>
+                <span className="text-destructive">*</span>
               </label>
               <input
                 type="text"
+                autoComplete="family-name"
                 {...register('lastName')}
-                className="w-full rounded-lg border border-gray-300 px-4 py-2"
+                className="w-full rounded-lg border border-border px-4 py-2"
               />
               {errors.lastName && (
-                <p className="mt-1 text-sm text-red-600">
+                <p className="mt-1 text-sm text-destructive">
                   {errors.lastName.message}
                 </p>
               )}
@@ -488,15 +505,17 @@ export function RFQForm({
 
           <div>
             <label className="mb-1 block text-sm font-medium">
-              Email <span className="text-red-500">*</span>
+              Email <span className="text-destructive">*</span>
             </label>
             <input
               type="email"
+              inputMode="email"
+              autoComplete="email"
               {...register('email')}
-              className="w-full rounded-lg border border-gray-300 px-4 py-2"
+              className="w-full rounded-lg border border-border px-4 py-2"
             />
             {errors.email && (
-              <p className="mt-1 text-sm text-red-600">
+              <p className="mt-1 text-sm text-destructive">
                 {errors.email.message}
               </p>
             )}
@@ -505,16 +524,18 @@ export function RFQForm({
           <div>
             <label className="mb-1 block text-sm font-medium">
               {locale === 'fr' ? 'Téléphone' : 'Phone'}{' '}
-              <span className="text-red-500">*</span>
+              <span className="text-destructive">*</span>
             </label>
             <input
               type="tel"
+              inputMode="tel"
+              autoComplete="tel"
               {...register('phone')}
-              className="w-full rounded-lg border border-gray-300 px-4 py-2"
+              className="w-full rounded-lg border border-border px-4 py-2"
               placeholder="+1234567890"
             />
             {errors.phone && (
-              <p className="mt-1 text-sm text-red-600">
+              <p className="mt-1 text-sm text-destructive">
                 {errors.phone.message}
               </p>
             )}
@@ -523,15 +544,16 @@ export function RFQForm({
           <div>
             <label className="mb-1 block text-sm font-medium">
               {locale === 'fr' ? 'Entreprise' : 'Company'}{' '}
-              <span className="text-red-500">*</span>
+              <span className="text-destructive">*</span>
             </label>
             <input
               type="text"
+              autoComplete="organization"
               {...register('company')}
-              className="w-full rounded-lg border border-gray-300 px-4 py-2"
+              className="w-full rounded-lg border border-border px-4 py-2"
             />
             {errors.company && (
-              <p className="mt-1 text-sm text-red-600">
+              <p className="mt-1 text-sm text-destructive">
                 {errors.company.message}
               </p>
             )}
@@ -540,15 +562,16 @@ export function RFQForm({
           <div>
             <label className="mb-1 block text-sm font-medium">
               {locale === 'fr' ? 'Pays' : 'Country'}{' '}
-              <span className="text-red-500">*</span>
+              <span className="text-destructive">*</span>
             </label>
             <input
               type="text"
+              autoComplete="country-name"
               {...register('country')}
-              className="w-full rounded-lg border border-gray-300 px-4 py-2"
+              className="w-full rounded-lg border border-border px-4 py-2"
             />
             {errors.country && (
-              <p className="mt-1 text-sm text-red-600">
+              <p className="mt-1 text-sm text-destructive">
                 {errors.country.message}
               </p>
             )}
@@ -563,7 +586,7 @@ export function RFQForm({
             <textarea
               {...register('message')}
               rows={4}
-              className="w-full rounded-lg border border-gray-300 px-4 py-2"
+              className="w-full rounded-lg border border-border px-4 py-2"
               placeholder={
                 locale === 'fr'
                   ? 'Exigences spécifiques ou questions...'
@@ -571,7 +594,7 @@ export function RFQForm({
               }
             />
             {errors.message && (
-              <p className="mt-1 text-sm text-red-600">
+              <p className="mt-1 text-sm text-destructive">
                 {errors.message.message}
               </p>
             )}
@@ -587,17 +610,17 @@ export function RFQForm({
               {locale === 'fr'
                 ? "J'accepte la politique de confidentialité et les conditions d'utilisation"
                 : 'I accept the privacy policy and terms of service'}{' '}
-              <span className="text-red-500">*</span>
+              <span className="text-destructive">*</span>
             </label>
           </div>
           {errors.gdprConsent && (
-            <p className="text-sm text-red-600">
+            <p className="text-sm text-destructive">
               {errors.gdprConsent.message}
             </p>
           )}
 
           {submitError && (
-            <div className="rounded-lg bg-red-50 p-4 text-red-800">
+            <div className="rounded-lg bg-destructive/10 p-4 text-destructive">
               {submitError}
             </div>
           )}
@@ -628,7 +651,7 @@ export function RFQForm({
           <button
             type="button"
             onClick={handleClearDraft}
-            className="w-full text-sm text-gray-600 hover:text-gray-800"
+            className="w-full text-sm text-muted-foreground hover:text-foreground"
           >
             {locale === 'fr' ? 'Effacer le brouillon' : 'Clear draft'}
           </button>
@@ -636,7 +659,7 @@ export function RFQForm({
       )}
 
       {/* reCAPTCHA badge notice */}
-      <p className="text-xs text-gray-500">
+      <p className="text-xs text-muted-foreground">
         {locale === 'fr'
           ? 'Ce site est protégé par reCAPTCHA et les '
           : 'This site is protected by reCAPTCHA and the '}

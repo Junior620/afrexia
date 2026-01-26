@@ -51,7 +51,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
             <h1 className="mb-4 text-4xl font-bold text-primary md:text-5xl">
               {locale === 'fr' ? 'Contactez-Nous' : 'Contact Us'}
             </h1>
-            <p className="text-lg text-gray-700">
+            <p className="text-lg text-foreground">
               {locale === 'fr'
                 ? 'Nous sommes là pour répondre à toutes vos questions. Envoyez-nous un message et nous vous répondrons dans les plus brefs délais.'
                 : "We're here to answer all your questions. Send us a message and we'll get back to you as soon as possible."}
@@ -99,7 +99,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                         </svg>
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-gray-700">
+                        <p className="text-sm font-semibold text-foreground">
                           Email
                         </p>
                         <a
@@ -129,7 +129,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                         </svg>
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-gray-700">
+                        <p className="text-sm font-semibold text-foreground">
                           {locale === 'fr' ? 'Téléphone' : 'Phone'}
                         </p>
                         <a
@@ -165,10 +165,10 @@ export default async function ContactPage({ params }: ContactPageProps) {
                         </svg>
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-gray-700">
+                        <p className="text-sm font-semibold text-foreground">
                           {locale === 'fr' ? 'Adresse' : 'Address'}
                         </p>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-muted-foreground">
                           {locale === 'fr'
                             ? 'Douala, Cameroun'
                             : 'Douala, Cameroon'}
@@ -194,12 +194,12 @@ export default async function ContactPage({ params }: ContactPageProps) {
                         </svg>
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-gray-700">
+                        <p className="text-sm font-semibold text-foreground">
                           {locale === 'fr'
                             ? "Heures d'Ouverture"
                             : 'Business Hours'}
                         </p>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-muted-foreground">
                           {locale === 'fr'
                             ? 'Lun - Ven: 8h00 - 17h00 WAT'
                             : 'Mon - Fri: 8:00 AM - 5:00 PM WAT'}
@@ -319,36 +319,36 @@ export default async function ContactPage({ params }: ContactPageProps) {
             </h2>
             <div className="space-y-6">
               <div>
-                <h3 className="mb-2 font-semibold text-gray-900">
+                <h3 className="mb-2 font-semibold text-foreground">
                   {locale === 'fr'
                     ? 'Quel est le délai de réponse moyen?'
                     : 'What is the average response time?'}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   {locale === 'fr'
                     ? 'Nous nous efforçons de répondre à toutes les demandes dans les 24 à 48 heures ouvrables.'
                     : 'We strive to respond to all inquiries within 24-48 business hours.'}
                 </p>
               </div>
               <div>
-                <h3 className="mb-2 font-semibold text-gray-900">
+                <h3 className="mb-2 font-semibold text-foreground">
                   {locale === 'fr'
                     ? 'Puis-je visiter vos installations?'
                     : 'Can I visit your facilities?'}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   {locale === 'fr'
                     ? 'Oui, nous accueillons les visites sur rendez-vous. Veuillez nous contacter pour planifier votre visite.'
                     : 'Yes, we welcome visits by appointment. Please contact us to schedule your visit.'}
                 </p>
               </div>
               <div>
-                <h3 className="mb-2 font-semibold text-gray-900">
+                <h3 className="mb-2 font-semibold text-foreground">
                   {locale === 'fr'
                     ? 'Offrez-vous un support dans d\'autres langues?'
                     : 'Do you offer support in other languages?'}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   {locale === 'fr'
                     ? 'Nous offrons un support en français et en anglais. Pour d\'autres langues, veuillez nous contacter.'
                     : 'We offer support in French and English. For other languages, please contact us.'}

@@ -36,7 +36,7 @@ export function CTAButton({
   
   const variantClasses = {
     primary: 'bg-primary hover:bg-primary-dark text-white',
-    secondary: 'bg-white hover:bg-gray-50 text-primary border-2 border-primary',
+    secondary: 'bg-white hover:bg-light text-primary border-2 border-primary',
     ghost: 'bg-white/10 hover:bg-white/20 text-white border-2 border-white',
   };
 

@@ -24,11 +24,11 @@ vi.mock('@vercel/kv', () => ({
 }));
 
 vi.mock('resend', () => ({
-  Resend: vi.fn().mockImplementation(() => ({
-    emails: {
+  Resend: class MockResend {
+    emails = {
       send: vi.fn().mockResolvedValue({ data: { id: 'test-email-id' }, error: null }),
-    },
-  })),
+    };
+  },
 }));
 
 vi.mock('@sentry/nextjs', () => ({

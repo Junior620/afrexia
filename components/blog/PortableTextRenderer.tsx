@@ -17,7 +17,7 @@ const components: PortableTextComponents = {
     ),
     normal: ({ children }) => <p className="mb-4 leading-relaxed">{children}</p>,
     blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-primary pl-6 py-2 my-6 italic text-gray-700">
+      <blockquote className="border-l-4 border-primary pl-6 py-2 my-6 italic text-support">
         {children}
       </blockquote>
     ),
@@ -38,7 +38,7 @@ const components: PortableTextComponents = {
     strong: ({ children }) => <strong className="font-bold">{children}</strong>,
     em: ({ children }) => <em className="italic">{children}</em>,
     code: ({ children }) => (
-      <code className="bg-gray-100 px-2 py-1 rounded text-sm font-mono">
+      <code className="bg-light px-2 py-1 rounded text-sm font-mono">
         {children}
       </code>
     ),
@@ -64,7 +64,7 @@ const components: PortableTextComponents = {
           className="rounded-lg w-full"
         />
         {value.caption && (
-          <figcaption className="text-center text-sm text-gray-600 mt-2">
+          <figcaption className="text-center text-sm text-support mt-2">
             {value.caption}
           </figcaption>
         )}

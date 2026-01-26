@@ -152,7 +152,7 @@ export function JourneySection({ locale }: JourneySectionProps) {
     },
   };
 
-  const t = content[locale];
+  const t = content[locale] || content.en; // Fallback to English if locale not found
 
   return (
     <section className="py-16 md:py-24 bg-gradient-to-b from-white to-light">
@@ -163,7 +163,7 @@ export function JourneySection({ locale }: JourneySectionProps) {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4">
               {t.title}
             </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
               {t.subtitle}
             </p>
           </div>
@@ -216,7 +216,7 @@ export function JourneySection({ locale }: JourneySectionProps) {
                       {journey.title[locale]}
                     </h3>
                   </div>
-                  <p className="text-gray-600 text-base md:text-lg">
+                  <p className="text-muted-foreground text-base md:text-lg">
                     {journey.description[locale]}
                   </p>
                 </div>
@@ -237,10 +237,10 @@ export function JourneySection({ locale }: JourneySectionProps) {
 
                       {/* Step Content */}
                       <div className="flex-1 pt-1">
-                        <h4 className="text-lg font-semibold text-gray-900 mb-1">
+                        <h4 className="text-lg font-semibold text-foreground mb-1">
                           {step.title[locale]}
                         </h4>
-                        <p className="text-gray-600 text-sm">
+                        <p className="text-muted-foreground text-sm">
                           {step.description[locale]}
                         </p>
                       </div>

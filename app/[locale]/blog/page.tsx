@@ -84,7 +84,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
         <div className="container mx-auto px-4">
           {posts.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-gray-600 text-lg">{t.noPosts}</p>
+              <p className="text-muted-foreground text-lg">{t.noPosts}</p>
             </div>
           ) : (
             <BlogSearch posts={posts} locale={locale} />

@@ -41,16 +41,16 @@ export function SocialShare({ url, title, locale }: SocialShareProps) {
 
   return (
     <div className="flex items-center gap-4">
-      <span className="text-sm font-medium text-gray-700">{t.share}:</span>
+      <span className="text-sm font-medium text-primary">{t.share}:</span>
       <div className="flex gap-2">
         {/* Twitter */}
         <button
           onClick={() => handleShare('twitter')}
-          className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+          className="p-2 rounded-full bg-light hover:bg-neutral transition-colors"
           aria-label="Share on Twitter"
         >
           <svg
-            className="w-5 h-5 text-gray-700"
+            className="w-5 h-5 text-primary"
             fill="currentColor"
             viewBox="0 0 24 24"
             aria-hidden="true"
@@ -62,11 +62,11 @@ export function SocialShare({ url, title, locale }: SocialShareProps) {
         {/* LinkedIn */}
         <button
           onClick={() => handleShare('linkedin')}
-          className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+          className="p-2 rounded-full bg-light hover:bg-neutral transition-colors"
           aria-label="Share on LinkedIn"
         >
           <svg
-            className="w-5 h-5 text-gray-700"
+            className="w-5 h-5 text-primary"
             fill="currentColor"
             viewBox="0 0 24 24"
             aria-hidden="true"
@@ -78,11 +78,11 @@ export function SocialShare({ url, title, locale }: SocialShareProps) {
         {/* Facebook */}
         <button
           onClick={() => handleShare('facebook')}
-          className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+          className="p-2 rounded-full bg-light hover:bg-neutral transition-colors"
           aria-label="Share on Facebook"
         >
           <svg
-            className="w-5 h-5 text-gray-700"
+            className="w-5 h-5 text-primary"
             fill="currentColor"
             viewBox="0 0 24 24"
             aria-hidden="true"
@@ -94,11 +94,11 @@ export function SocialShare({ url, title, locale }: SocialShareProps) {
         {/* Email */}
         <button
           onClick={() => handleShare('email')}
-          className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+          className="p-2 rounded-full bg-light hover:bg-neutral transition-colors"
           aria-label="Share via Email"
         >
           <svg
-            className="w-5 h-5 text-gray-700"
+            className="w-5 h-5 text-primary"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

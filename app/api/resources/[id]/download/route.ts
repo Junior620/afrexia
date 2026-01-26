@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getResourceById } from '@/lib/sanity/queries';
+import {
+  handleAPIError,
+  createNotFoundError,
+} from '@/lib/api/error-handler';
 
 /**
  * Resource download API route
+ * Requirements: 12.2, 12.3, 19.6
  * Tracks download event and redirects to Sanity CDN file URL
  */
 export async function GET(
@@ -16,10 +21,7 @@ export async function GET(
     const resource = await getResourceById(id);
 
     if (!resource || !resource.file?.asset?.url) {
-      return NextResponse.json(
-        { error: 'Resource not found' },
-        { status: 404 }
-      );
+      throw createNotFoundError('Resource');
     }
 
     // Track download event (analytics)
@@ -38,10 +40,13 @@ export async function GET(
     const fileUrl = resource.file.asset.url;
     return NextResponse.redirect(fileUrl);
   } catch (error) {
-    console.error('Resource download error:', error);
-    return NextResponse.json(
-      { error: 'Failed to download resource' },
-      { status: 500 }
+    return handleAPIError(
+      error instanceof Error ? error : new Error('Unknown error'),
+      {
+        endpoint: '/api/resources/[id]/download',
+        method: 'GET',
+        resourceId: params.id,
+      }
     );
   }
 }

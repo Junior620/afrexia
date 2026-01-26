@@ -114,7 +114,7 @@ export default async function SolutionsPage({
                     <h3 className="text-2xl font-bold text-primary mb-4">
                       {service.title}
                     </h3>
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-foreground leading-relaxed">
                       {service.description}
                     </p>
                   </div>

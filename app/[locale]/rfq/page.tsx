@@ -58,7 +58,7 @@ export default async function RFQPage({ params, searchParams }: RFQPageProps) {
             <h1 className="mb-4 text-4xl font-bold text-primary md:text-5xl">
               {locale === 'fr' ? 'Demande de Devis' : 'Request for Quote'}
             </h1>
-            <p className="text-lg text-gray-700">
+            <p className="text-lg text-foreground">
               {locale === 'fr'
                 ? 'Parlez-nous de vos besoins et nous vous fournirons un devis personnalisé dans les 24-48 heures.'
                 : "Tell us about your requirements and we'll provide a customized quote within 24-48 hours."}
@@ -87,7 +87,7 @@ export default async function RFQPage({ params, searchParams }: RFQPageProps) {
                       ? 'Besoin d\'Aide?'
                       : 'Need Help?'}
                   </h3>
-                  <p className="mb-4 text-sm text-gray-600">
+                  <p className="mb-4 text-sm text-muted-foreground">
                     {locale === 'fr'
                       ? 'Notre équipe commerciale est disponible pour répondre à vos questions.'
                       : 'Our sales team is available to answer your questions.'}
@@ -95,7 +95,7 @@ export default async function RFQPage({ params, searchParams }: RFQPageProps) {
 
                   <div className="space-y-3">
                     <div>
-                      <p className="text-sm font-semibold text-gray-700">
+                      <p className="text-sm font-semibold text-foreground">
                         Email
                       </p>
                       <a
@@ -107,7 +107,7 @@ export default async function RFQPage({ params, searchParams }: RFQPageProps) {
                     </div>
 
                     <div>
-                      <p className="text-sm font-semibold text-gray-700">
+                      <p className="text-sm font-semibold text-foreground">
                         {locale === 'fr' ? 'Téléphone' : 'Phone'}
                       </p>
                       <a
@@ -119,10 +119,10 @@ export default async function RFQPage({ params, searchParams }: RFQPageProps) {
                     </div>
 
                     <div>
-                      <p className="text-sm font-semibold text-gray-700">
+                      <p className="text-sm font-semibold text-foreground">
                         {locale === 'fr' ? 'Heures d\'Ouverture' : 'Business Hours'}
                       </p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-muted-foreground">
                         {locale === 'fr'
                           ? 'Lun - Ven: 8h00 - 17h00 WAT'
                           : 'Mon - Fri: 8:00 AM - 5:00 PM WAT'}
@@ -187,7 +187,7 @@ export default async function RFQPage({ params, searchParams }: RFQPageProps) {
                   <h3 className="mb-4 text-lg font-bold text-primary">
                     {locale === 'fr' ? 'Certifications' : 'Certifications'}
                   </h3>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-muted-foreground">
                     {locale === 'fr'
                       ? 'Nos produits sont certifiés selon les normes internationales les plus strictes.'
                       : 'Our products are certified to the highest international standards.'}
@@ -212,7 +212,7 @@ export default async function RFQPage({ params, searchParams }: RFQPageProps) {
                 <h3 className="mb-2 font-semibold">
                   {locale === 'fr' ? 'Soumission' : 'Submission'}
                 </h3>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-muted-foreground">
                   {locale === 'fr'
                     ? 'Vous soumettez votre demande avec vos besoins spécifiques.'
                     : 'You submit your request with your specific requirements.'}
@@ -225,7 +225,7 @@ export default async function RFQPage({ params, searchParams }: RFQPageProps) {
                 <h3 className="mb-2 font-semibold">
                   {locale === 'fr' ? 'Analyse' : 'Review'}
                 </h3>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-muted-foreground">
                   {locale === 'fr'
                     ? 'Notre équipe analyse votre demande et prépare un devis personnalisé.'
                     : 'Our team reviews your request and prepares a customized quote.'}
@@ -238,7 +238,7 @@ export default async function RFQPage({ params, searchParams }: RFQPageProps) {
                 <h3 className="mb-2 font-semibold">
                   {locale === 'fr' ? 'Réponse' : 'Response'}
                 </h3>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-muted-foreground">
                   {locale === 'fr'
                     ? 'Vous recevez votre devis détaillé dans les 24-48 heures.'
                     : 'You receive your detailed quote within 24-48 hours.'}

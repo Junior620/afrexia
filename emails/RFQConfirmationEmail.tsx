@@ -134,15 +134,17 @@ export function RFQConfirmationEmail({
   );
 }
 
+import { EMAIL_COLORS } from '@/lib/brand/colors';
+
 // Styles with Afrexia branding
 const main = {
-  backgroundColor: '#f6f9fc',
+  backgroundColor: EMAIL_COLORS.muted,
   fontFamily:
     '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
 };
 
 const container = {
-  backgroundColor: '#ffffff',
+  backgroundColor: EMAIL_COLORS.body,
   margin: '0 auto',
   padding: '20px 0 48px',
   marginBottom: '64px',
@@ -150,13 +152,13 @@ const container = {
 };
 
 const header = {
-  backgroundColor: '#194424',
+  backgroundColor: EMAIL_COLORS.header,
   padding: '32px 24px',
   textAlign: 'center' as const,
 };
 
 const h1 = {
-  color: '#ffffff',
+  color: EMAIL_COLORS.headerText,
   fontSize: '32px',
   fontWeight: 'bold',
   margin: '0',
@@ -169,39 +171,39 @@ const section = {
 };
 
 const h2 = {
-  color: '#194424',
+  color: EMAIL_COLORS.footerText,
   fontSize: '20px',
   fontWeight: 'bold',
   margin: '0 0 16px',
 };
 
 const h3 = {
-  color: '#194424',
+  color: EMAIL_COLORS.footerText,
   fontSize: '16px',
   fontWeight: 'bold',
   margin: '0 0 12px',
 };
 
 const text = {
-  color: '#333',
+  color: EMAIL_COLORS.bodyText,
   fontSize: '14px',
   lineHeight: '24px',
   margin: '0 0 12px',
 };
 
 const hr = {
-  borderColor: '#e6ebf1',
+  borderColor: EMAIL_COLORS.border,
   margin: '0',
 };
 
 const footer = {
   padding: '24px',
-  backgroundColor: '#E9EBE5',
+  backgroundColor: EMAIL_COLORS.footer,
   textAlign: 'center' as const,
 };
 
 const footerText = {
-  color: '#194424',
+  color: EMAIL_COLORS.footerText,
   fontSize: '12px',
   lineHeight: '20px',
   margin: '0 0 8px',

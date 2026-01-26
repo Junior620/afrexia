@@ -81,7 +81,7 @@ export function BlogSearch({ posts, locale }: BlogSearchProps) {
           />
           {/* Search Icon */}
           <svg
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400"
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 text-neutral"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -100,7 +100,7 @@ export function BlogSearch({ posts, locale }: BlogSearchProps) {
         {query.length > 0 && (
           <button
             onClick={() => setQuery('')}
-            className="absolute right-12 top-1/2 -translate-y-1/2 text-sm text-gray-500 hover:text-gray-700"
+            className="absolute right-12 top-1/2 -translate-y-1/2 text-sm text-support hover:text-primary"
             aria-label={t.clearSearch}
           >
             <svg
@@ -122,7 +122,7 @@ export function BlogSearch({ posts, locale }: BlogSearchProps) {
 
       {/* Results Count */}
       {query.length >= 2 && (
-        <div className="text-center text-gray-600">
+        <div className="text-center text-support">
           <p className="text-sm font-medium">{t.resultsCount(results.length)}</p>
         </div>
       )}
@@ -137,7 +137,7 @@ export function BlogSearch({ posts, locale }: BlogSearchProps) {
       {/* No Results Message */}
       {query.length >= 2 && results.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-gray-600 text-lg">
+          <p className="text-support text-lg">
             {locale === 'fr'
               ? 'Aucun article ne correspond à votre recherche.'
               : 'No articles match your search.'}

@@ -1,0 +1,92 @@
+[
+  {
+    "_type": "certification",
+    "name": {
+      "fr": "Certification Biologique UE",
+      "en": "EU Organic Certification"
+    },
+    "description": {
+      "fr": "Certification garantissant que nos produits sont cultivés selon les normes biologiques de l'Union Européenne, sans pesticides ni engrais chimiques.",
+      "en": "Certification ensuring our products are grown according to EU organic standards, without pesticides or chemical fertilizers."
+    },
+    "issuingBody": "Ecocert",
+    "validUntil": "2026-12-31",
+    "certificateUrl": "https://www.ecocert.com",
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "certification",
+    "name": {
+      "fr": "Certification Rainforest Alliance",
+      "en": "Rainforest Alliance Certified"
+    },
+    "description": {
+      "fr": "Certification attestant de pratiques agricoles durables qui protègent les forêts, améliorent les moyens de subsistance des agriculteurs et favorisent les droits de l'homme.",
+      "en": "Certification attesting to sustainable farming practices that protect forests, improve farmer livelihoods, and promote human rights."
+    },
+    "issuingBody": "Rainforest Alliance",
+    "validUntil": "2027-06-30",
+    "certificateUrl": "https://www.rainforest-alliance.org",
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "certification",
+    "name": {
+      "fr": "Certification Fair Trade",
+      "en": "Fair Trade Certified"
+    },
+    "description": {
+      "fr": "Certification garantissant des prix équitables pour les producteurs, des conditions de travail décentes et des pratiques commerciales éthiques.",
+      "en": "Certification guaranteeing fair prices for producers, decent working conditions, and ethical business practices."
+    },
+    "issuingBody": "Fairtrade International",
+    "validUntil": "2026-09-30",
+    "certificateUrl": "https://www.fairtrade.net",
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "certification",
+    "name": {
+      "fr": "Certification ISO 22000",
+      "en": "ISO 22000 Food Safety"
+    },
+    "description": {
+      "fr": "Norme internationale de management de la sécurité des denrées alimentaires couvrant toute la chaîne d'approvisionnement.",
+      "en": "International food safety management standard covering the entire supply chain."
+    },
+    "issuingBody": "ISO",
+    "validUntil": "2027-03-31",
+    "certificateUrl": "https://www.iso.org",
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "certification",
+    "name": {
+      "fr": "Certification HACCP",
+      "en": "HACCP Certified"
+    },
+    "description": {
+      "fr": "Système d'analyse des dangers et points critiques pour leur maîtrise, garantissant la sécurité alimentaire.",
+      "en": "Hazard Analysis and Critical Control Points system, ensuring food safety."
+    },
+    "issuingBody": "Bureau Veritas",
+    "validUntil": "2026-11-30",
+    "certificateUrl": "https://www.bureauveritas.com",
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "certification",
+    "name": {
+      "fr": "Conformité EUDR",
+      "en": "EUDR Compliant"
+    },
+    "description": {
+      "fr": "Conformité au Règlement de l'UE sur la déforestation, garantissant que nos produits ne contribuent pas à la déforestation.",
+      "en": "Compliance with EU Deforestation Regulation, ensuring our products do not contribute to deforestation."
+    },
+    "issuingBody": "European Commission",
+    "validUntil": "2028-12-31",
+    "certificateUrl": "https://ec.europa.eu",
+    "workflowStatus": "published"
+  }
+]

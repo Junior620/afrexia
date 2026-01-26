@@ -127,8 +127,8 @@ export function ProductGallery({ images, productName, locale }: ProductGalleryPr
 
   if (!images || images.length === 0) {
     return (
-      <div className="aspect-[4/3] bg-gray-100 rounded-lg flex items-center justify-center">
-        <p className="text-gray-400">No images available</p>
+      <div className="aspect-[4/3] bg-muted rounded-lg flex items-center justify-center">
+        <p className="text-muted-foreground">No images available</p>
       </div>
     );
   }
@@ -136,7 +136,7 @@ export function ProductGallery({ images, productName, locale }: ProductGalleryPr
   return (
     <div className="space-y-4">
       {/* Main Image */}
-      <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100 group">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-muted group">
         <Image
           src={mainImageUrl || '/assets/placeholder.svg'}
           alt={mainImageAlt}
@@ -154,7 +154,7 @@ export function ProductGallery({ images, productName, locale }: ProductGalleryPr
             className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 rounded-full p-3 hover:bg-white"
             aria-label={locale === 'fr' ? 'Agrandir l\'image' : 'Enlarge image'}
           >
-            <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
             </svg>
           </button>
@@ -171,7 +171,7 @@ export function ProductGallery({ images, productName, locale }: ProductGalleryPr
               className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
               aria-label={locale === 'fr' ? 'Image précédente' : 'Previous image'}
             >
-              <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
@@ -183,7 +183,7 @@ export function ProductGallery({ images, productName, locale }: ProductGalleryPr
               className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
               aria-label={locale === 'fr' ? 'Image suivante' : 'Next image'}
             >
-              <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
@@ -212,7 +212,7 @@ export function ProductGallery({ images, productName, locale }: ProductGalleryPr
                 className={`relative aspect-[4/3] overflow-hidden rounded-lg border-2 transition-all ${
                   index === selectedIndex
                     ? 'border-primary ring-2 ring-primary ring-offset-2'
-                    : 'border-gray-200 hover:border-gray-400'
+                    : 'border-border hover:border-border'
                 }`}
                 aria-label={`${locale === 'fr' ? 'Voir l\'image' : 'View image'} ${index + 1}`}
               >

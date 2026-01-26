@@ -6,6 +6,12 @@ import { contactFormSchema } from '@/lib/forms/contact-schema';
 import { ContactEmail } from '@/emails/ContactEmail';
 import { ContactConfirmationEmail } from '@/emails/ContactConfirmationEmail';
 import { sanitizeString, sanitizeOptionalString } from '@/lib/security';
+import {
+  handleAPIError,
+  createValidationError,
+  createRateLimitError,
+  createExternalServiceError,
+} from '@/lib/api/error-handler';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -94,7 +100,7 @@ function getClientIp(request: NextRequest): string {
 
 /**
  * Contact Form Submission Handler
- * Requirements: 14.1, 19.2, 20.3
+ * Requirements: 14.1, 19.2, 19.6, 20.3
  */
 export async function POST(request: NextRequest) {
   try {
@@ -104,10 +110,7 @@ export async function POST(request: NextRequest) {
     // Check rate limit
     const withinRateLimit = await checkRateLimit(clientIp);
     if (!withinRateLimit) {
-      return NextResponse.json(
-        { error: 'Too many requests. Please try again later.' },
-        { status: 429 }
-      );
+      throw createRateLimitError();
     }
 
     // Parse request body
@@ -121,10 +124,7 @@ export async function POST(request: NextRequest) {
       );
 
       if (!isValidRecaptcha) {
-        return NextResponse.json(
-          { error: 'reCAPTCHA verification failed' },
-          { status: 400 }
-        );
+        throw createValidationError('reCAPTCHA verification failed');
       }
     }
 
@@ -132,12 +132,9 @@ export async function POST(request: NextRequest) {
     const validationResult = contactFormSchema.safeParse(body);
 
     if (!validationResult.success) {
-      return NextResponse.json(
-        {
-          error: 'Validation failed',
-          details: validationResult.error.errors,
-        },
-        { status: 400 }
+      throw createValidationError(
+        'Validation failed',
+        validationResult.error.errors
       );
     }
 
@@ -168,7 +165,10 @@ export async function POST(request: NextRequest) {
     });
 
     if (teamEmailResult.error) {
-      throw new Error(`Failed to send team email: ${teamEmailResult.error}`);
+      throw createExternalServiceError(
+        'Resend',
+        new Error(teamEmailResult.error.message)
+      );
     }
 
     // Send confirmation email to customer
@@ -189,8 +189,15 @@ export async function POST(request: NextRequest) {
       // Log error but don't fail the request
       Sentry.captureException(
         new Error(
-          `Failed to send confirmation email: ${confirmationEmailResult.error}`
-        )
+          `Failed to send confirmation email: ${confirmationEmailResult.error.message}`
+        ),
+        {
+          level: 'warning',
+          tags: {
+            errorType: 'email_delivery',
+            emailType: 'confirmation',
+          },
+        }
       );
     }
 
@@ -202,18 +209,12 @@ export async function POST(request: NextRequest) {
       { status: 200 }
     );
   } catch (error) {
-    // Log error to Sentry
-    Sentry.captureException(error);
-
-    console.error('Contact form submission error:', error);
-
-    return NextResponse.json(
+    return handleAPIError(
+      error instanceof Error ? error : new Error('Unknown error'),
       {
-        error: 'An error occurred while processing your request',
-        message:
-          error instanceof Error ? error.message : 'Unknown error',
-      },
-      { status: 500 }
+        endpoint: '/api/contact',
+        method: 'POST',
+      }
     );
   }
 }

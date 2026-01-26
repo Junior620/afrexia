@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { createHmac } from 'crypto';
 import * as Sentry from '@sentry/nextjs';
+import {
+  handleAPIError,
+  createValidationError,
+  APIError,
+} from '@/lib/api/error-handler';
 
 /**
  * Sanity Webhook Revalidation Handler
@@ -141,6 +146,7 @@ function revalidateContent(payload: SanityWebhookPayload): string[] {
 
 /**
  * POST handler for Sanity webhook
+ * Requirements: 4.2, 19.6
  */
 export async function POST(request: NextRequest) {
   try {
@@ -150,11 +156,7 @@ export async function POST(request: NextRequest) {
 
     // Verify webhook signature
     if (!verifySignature(body, signature)) {
-      console.error('Invalid webhook signature');
-      return NextResponse.json(
-        { error: 'Invalid signature' },
-        { status: 401 }
-      );
+      throw new APIError('Invalid webhook signature', 401);
     }
 
     // Parse the payload
@@ -162,18 +164,12 @@ export async function POST(request: NextRequest) {
     try {
       payload = JSON.parse(body);
     } catch (error) {
-      return NextResponse.json(
-        { error: 'Invalid JSON payload' },
-        { status: 400 }
-      );
+      throw createValidationError('Invalid JSON payload');
     }
 
     // Validate required fields
     if (!payload._type || !payload._id) {
-      return NextResponse.json(
-        { error: 'Missing required fields (_type, _id)' },
-        { status: 400 }
-      );
+      throw createValidationError('Missing required fields (_type, _id)');
     }
 
     // Revalidate appropriate paths
@@ -188,15 +184,12 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Revalidation error:', error);
-    Sentry.captureException(error);
-
-    return NextResponse.json(
+    return handleAPIError(
+      error instanceof Error ? error : new Error('Unknown error'),
       {
-        error: 'Revalidation failed',
-        message: error instanceof Error ? error.message : 'Unknown error',
-      },
-      { status: 500 }
+        endpoint: '/api/revalidate',
+        method: 'POST',
+      }
     );
   }
 }

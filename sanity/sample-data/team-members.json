@@ -1,0 +1,190 @@
+[
+  {
+    "_type": "teamMember",
+    "name": "Jean-Paul Mbarga",
+    "slug": { "current": "jean-paul-mbarga" },
+    "position": {
+      "fr": "Directeur Général",
+      "en": "Chief Executive Officer"
+    },
+    "bio": {
+      "fr": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Jean-Paul Mbarga possède plus de 20 ans d'expérience dans le commerce international de commodités agricoles. Diplômé en commerce international de l'Université de Yaoundé, il a dirigé plusieurs entreprises d'export avant de fonder Afrexia en 2010."
+            }
+          ]
+        }
+      ],
+      "en": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Jean-Paul Mbarga has over 20 years of experience in international agricultural commodity trading. A graduate in international trade from the University of Yaoundé, he led several export companies before founding Afrexia in 2010."
+            }
+          ]
+        }
+      ]
+    },
+    "email": "jp.mbarga@afrexia.com",
+    "phone": "+237 6 XX XX XX XX",
+    "linkedin": "https://www.linkedin.com/in/jeanpaul-mbarga",
+    "order": 1,
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "teamMember",
+    "name": "Marie-Claire Nkolo",
+    "slug": { "current": "marie-claire-nkolo" },
+    "position": {
+      "fr": "Directrice des Opérations",
+      "en": "Chief Operations Officer"
+    },
+    "bio": {
+      "fr": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Marie-Claire Nkolo supervise l'ensemble de la chaîne logistique d'Afrexia. Ingénieure agronome de formation, elle a travaillé 15 ans dans la gestion de la qualité et la traçabilité des produits agricoles."
+            }
+          ]
+        }
+      ],
+      "en": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Marie-Claire Nkolo oversees Afrexia's entire supply chain. An agricultural engineer by training, she has worked for 15 years in quality management and traceability of agricultural products."
+            }
+          ]
+        }
+      ]
+    },
+    "email": "mc.nkolo@afrexia.com",
+    "phone": "+237 6 XX XX XX XX",
+    "linkedin": "https://www.linkedin.com/in/marieclaire-nkolo",
+    "order": 2,
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "teamMember",
+    "name": "Thomas Ekani",
+    "slug": { "current": "thomas-ekani" },
+    "position": {
+      "fr": "Responsable Qualité et Conformité",
+      "en": "Quality and Compliance Manager"
+    },
+    "bio": {
+      "fr": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Thomas Ekani est responsable de toutes les certifications et de la conformité réglementaire d'Afrexia. Expert en normes internationales, il assure que tous nos produits respectent les standards les plus élevés."
+            }
+          ]
+        }
+      ],
+      "en": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Thomas Ekani is responsible for all certifications and regulatory compliance at Afrexia. An expert in international standards, he ensures that all our products meet the highest standards."
+            }
+          ]
+        }
+      ]
+    },
+    "email": "t.ekani@afrexia.com",
+    "phone": "+237 6 XX XX XX XX",
+    "order": 3,
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "teamMember",
+    "name": "Sophie Atangana",
+    "slug": { "current": "sophie-atangana" },
+    "position": {
+      "fr": "Directrice Commerciale",
+      "en": "Sales Director"
+    },
+    "bio": {
+      "fr": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Sophie Atangana dirige l'équipe commerciale d'Afrexia et gère les relations avec nos clients internationaux. Avec 12 ans d'expérience dans le développement commercial B2B, elle a établi des partenariats solides en Europe, Asie et Amérique du Nord."
+            }
+          ]
+        }
+      ],
+      "en": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Sophie Atangana leads Afrexia's sales team and manages relationships with our international clients. With 12 years of experience in B2B business development, she has established strong partnerships in Europe, Asia, and North America."
+            }
+          ]
+        }
+      ]
+    },
+    "email": "s.atangana@afrexia.com",
+    "phone": "+237 6 XX XX XX XX",
+    "linkedin": "https://www.linkedin.com/in/sophie-atangana",
+    "order": 4,
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "teamMember",
+    "name": "David Fouda",
+    "slug": { "current": "david-fouda" },
+    "position": {
+      "fr": "Responsable Logistique",
+      "en": "Logistics Manager"
+    },
+    "bio": {
+      "fr": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "David Fouda coordonne toutes les opérations d'expédition et de transport d'Afrexia. Expert en logistique internationale, il optimise nos chaînes d'approvisionnement pour garantir des livraisons ponctuelles et efficaces."
+            }
+          ]
+        }
+      ],
+      "en": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "David Fouda coordinates all shipping and transportation operations at Afrexia. An expert in international logistics, he optimizes our supply chains to ensure timely and efficient deliveries."
+            }
+          ]
+        }
+      ]
+    },
+    "email": "d.fouda@afrexia.com",
+    "phone": "+237 6 XX XX XX XX",
+    "order": 5,
+    "workflowStatus": "published"
+  }
+]

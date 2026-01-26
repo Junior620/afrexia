@@ -6,6 +6,12 @@ import { rfqFormSchema } from '@/lib/forms/rfq-schema';
 import { RFQEmail } from '@/emails/RFQEmail';
 import { RFQConfirmationEmail } from '@/emails/RFQConfirmationEmail';
 import { sanitizeString, sanitizeOptionalString } from '@/lib/security';
+import {
+  handleAPIError,
+  createValidationError,
+  createRateLimitError,
+  createExternalServiceError,
+} from '@/lib/api/error-handler';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -94,7 +100,7 @@ function getClientIp(request: NextRequest): string {
 
 /**
  * RFQ Form Submission Handler
- * Requirements: 3.1, 3.2, 3.5, 19.1, 19.3, 19.4, 20.3
+ * Requirements: 3.1, 3.2, 3.5, 19.1, 19.3, 19.4, 19.6, 20.3
  */
 export async function POST(request: NextRequest) {
   try {
@@ -104,10 +110,7 @@ export async function POST(request: NextRequest) {
     // Check rate limit
     const withinRateLimit = await checkRateLimit(clientIp);
     if (!withinRateLimit) {
-      return NextResponse.json(
-        { error: 'Too many requests. Please try again later.' },
-        { status: 429 }
-      );
+      throw createRateLimitError();
     }
 
     // Parse request body
@@ -121,10 +124,7 @@ export async function POST(request: NextRequest) {
       );
 
       if (!isValidRecaptcha) {
-        return NextResponse.json(
-          { error: 'reCAPTCHA verification failed' },
-          { status: 400 }
-        );
+        throw createValidationError('reCAPTCHA verification failed');
       }
     }
 
@@ -132,12 +132,9 @@ export async function POST(request: NextRequest) {
     const validationResult = rfqFormSchema.safeParse(body);
 
     if (!validationResult.success) {
-      return NextResponse.json(
-        {
-          error: 'Validation failed',
-          details: validationResult.error.errors,
-        },
-        { status: 400 }
+      throw createValidationError(
+        'Validation failed',
+        validationResult.error.errors
       );
     }
 
@@ -166,7 +163,10 @@ export async function POST(request: NextRequest) {
     });
 
     if (salesEmailResult.error) {
-      throw new Error(`Failed to send sales email: ${salesEmailResult.error}`);
+      throw createExternalServiceError(
+        'Resend',
+        new Error(salesEmailResult.error.message)
+      );
     }
 
     // Send confirmation email to customer
@@ -187,8 +187,15 @@ export async function POST(request: NextRequest) {
       // Log error but don't fail the request
       Sentry.captureException(
         new Error(
-          `Failed to send confirmation email: ${confirmationEmailResult.error}`
-        )
+          `Failed to send confirmation email: ${confirmationEmailResult.error.message}`
+        ),
+        {
+          level: 'warning',
+          tags: {
+            errorType: 'email_delivery',
+            emailType: 'confirmation',
+          },
+        }
       );
     }
 
@@ -200,18 +207,12 @@ export async function POST(request: NextRequest) {
       { status: 200 }
     );
   } catch (error) {
-    // Log error to Sentry
-    Sentry.captureException(error);
-
-    console.error('RFQ submission error:', error);
-
-    return NextResponse.json(
+    return handleAPIError(
+      error instanceof Error ? error : new Error('Unknown error'),
       {
-        error: 'An error occurred while processing your request',
-        message:
-          error instanceof Error ? error.message : 'Unknown error',
-      },
-      { status: 500 }
+        endpoint: '/api/rfq',
+        method: 'POST',
+      }
     );
   }
 }

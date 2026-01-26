@@ -61,10 +61,10 @@ export function ProductCard({ product, locale }: ProductCardProps) {
 
   // Availability badge
   const availabilityLabels: Record<string, { fr: string; en: string; color: string }> = {
-    in_stock: { fr: 'En stock', en: 'In Stock', color: 'bg-green-100 text-green-800' },
-    pre_order: { fr: 'Pré-commande', en: 'Pre-Order', color: 'bg-blue-100 text-blue-800' },
-    seasonal: { fr: 'Saisonnier', en: 'Seasonal', color: 'bg-yellow-100 text-yellow-800' },
-    out_of_stock: { fr: 'Rupture', en: 'Out of Stock', color: 'bg-gray-100 text-gray-800' },
+    in_stock: { fr: 'En stock', en: 'In Stock', color: 'bg-success-light text-success-dark' },
+    pre_order: { fr: 'Pré-commande', en: 'Pre-Order', color: 'bg-info-light text-info-dark' },
+    seasonal: { fr: 'Saisonnier', en: 'Seasonal', color: 'bg-warning-light text-warning-dark' },
+    out_of_stock: { fr: 'Rupture', en: 'Out of Stock', color: 'bg-muted text-muted-foreground' },
   };
 
   const availabilityInfo = availabilityLabels[product.availability] || availabilityLabels.in_stock;
@@ -87,7 +87,7 @@ export function ProductCard({ product, locale }: ProductCardProps) {
       className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow overflow-hidden block"
     >
       {/* Image */}
-      <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
+      <div className="relative aspect-[4/3] overflow-hidden bg-muted">
         <Image
           src={imageUrl || '/assets/placeholder.svg'}
           alt={imageAlt}
@@ -112,12 +112,12 @@ export function ProductCard({ product, locale }: ProductCardProps) {
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">
+        <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
           {name}
         </h3>
 
         {/* Description */}
-        <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+        <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
           {description}
         </p>
 
@@ -139,11 +139,11 @@ export function ProductCard({ product, locale }: ProductCardProps) {
                     className="object-contain"
                   />
                 )}
-                <span className="text-xs text-gray-700">{cert.name}</span>
+                <span className="text-xs text-foreground">{cert.name}</span>
               </div>
             ))}
             {product.certifications.length > 3 && (
-              <span className="text-xs text-gray-500">
+              <span className="text-xs text-muted-foreground">
                 +{product.certifications.length - 3}
               </span>
             )}

@@ -1,6 +1,34 @@
-// Export all animation components
-export { ScrollReveal } from './ScrollReveal';
-export { CounterAnimation } from './CounterAnimation';
-export { SupplyChainAnimation } from './SupplyChainAnimation';
-export { SupplyChainAnimation } from './SupplyChainAnimation';
+// Export all animation components with dynamic imports for code splitting
+import dynamic from 'next/dynamic';
+
+// Lazy load animation components to reduce initial bundle size
+// These components use GSAP which is a heavy library
+export const ScrollReveal = dynamic(
+  () => import('./ScrollReveal').then((mod) => mod.ScrollReveal),
+  {
+    ssr: true,
+    loading: () => <div style={{ opacity: 0 }} />,
+  }
+);
+
+export const CounterAnimation = dynamic(
+  () => import('./CounterAnimation').then((mod) => mod.CounterAnimation),
+  {
+    ssr: true,
+    loading: () => <span>0</span>,
+  }
+);
+
+export const SupplyChainAnimation = dynamic(
+  () => import('./SupplyChainAnimation').then((mod) => mod.SupplyChainAnimation),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-[500px] bg-light flex items-center justify-center rounded-xl">
+        <p className="text-support">Loading animation...</p>
+      </div>
+    ),
+  }
+);
+
 export type { AnimationType } from './ScrollReveal';

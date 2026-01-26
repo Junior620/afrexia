@@ -11,6 +11,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Brand colors
         primary: {
           DEFAULT: '#194424',
           dark: '#0F2916',
@@ -29,6 +30,28 @@ const config: Config = {
         light: '#E9EBE5',
         support: '#80996F',
         neutral: '#B0BCA4',
+        
+        // Semantic colors mapped to brand palette
+        success: {
+          DEFAULT: '#337A49', // secondary
+          light: '#E8F5E9',
+          dark: '#194424',
+          foreground: '#ffffff',
+        },
+        warning: {
+          DEFAULT: '#655E2C', // accent
+          light: '#FFF9E6',
+          dark: '#4A441F',
+          foreground: '#ffffff',
+        },
+        info: {
+          DEFAULT: '#80996F', // support
+          light: '#F1F5EE',
+          dark: '#556A47',
+          foreground: '#ffffff',
+        },
+        
+        // shadcn/ui colors
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

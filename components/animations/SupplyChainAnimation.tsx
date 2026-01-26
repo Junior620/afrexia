@@ -13,7 +13,7 @@ const Map = dynamic(() => import('react-map-gl').then((mod) => mod.Map), {
   ssr: false,
   loading: () => (
     <div className="w-full h-full bg-light flex items-center justify-center">
-      <p className="text-gray-600">Loading map...</p>
+      <p className="text-support">Loading map...</p>
     </div>
   ),
 });
@@ -164,7 +164,7 @@ export function SupplyChainAnimation({
                               ? 'text-accent'
                               : index < activeStep
                               ? 'text-primary'
-                              : 'text-gray-400'
+                              : 'text-neutral'
                           }`}
                           fill="currentColor"
                         />
@@ -200,7 +200,7 @@ export function SupplyChainAnimation({
                     ? 'bg-accent text-white'
                     : index < activeStep
                     ? 'bg-primary text-white'
-                    : 'bg-gray-300 text-gray-600'
+                    : 'bg-neutral text-foreground'
                 }`}
               >
                 {index + 1}
@@ -217,7 +217,7 @@ export function SupplyChainAnimation({
                 <h3 className="text-xl font-bold mb-2">{step.title}</h3>
                 <p
                   className={`text-sm leading-relaxed ${
-                    index === activeStep ? 'text-white/90' : 'text-gray-700'
+                    index === activeStep ? 'text-white/90' : 'text-foreground'
                   }`}
                 >
                   {step.description}
@@ -229,7 +229,7 @@ export function SupplyChainAnimation({
                 <div className="absolute -bottom-3 left-1/2 -translate-x-1/2">
                   <ArrowRight
                     className={`w-6 h-6 rotate-90 ${
-                      index < activeStep ? 'text-primary' : 'text-gray-300'
+                      index < activeStep ? 'text-primary' : 'text-neutral'
                     }`}
                   />
                 </div>

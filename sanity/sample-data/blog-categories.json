@@ -1,0 +1,77 @@
+[
+  {
+    "_type": "blogCategory",
+    "title": {
+      "fr": "Actualités du Marché",
+      "en": "Market News"
+    },
+    "slug": {
+      "fr": { "current": "actualites-marche" },
+      "en": { "current": "market-news" }
+    },
+    "description": {
+      "fr": "Dernières tendances et analyses du marché des commodités agricoles",
+      "en": "Latest trends and analysis of agricultural commodity markets"
+    }
+  },
+  {
+    "_type": "blogCategory",
+    "title": {
+      "fr": "Durabilité",
+      "en": "Sustainability"
+    },
+    "slug": {
+      "fr": { "current": "durabilite" },
+      "en": { "current": "sustainability" }
+    },
+    "description": {
+      "fr": "Pratiques durables et impact environnemental",
+      "en": "Sustainable practices and environmental impact"
+    }
+  },
+  {
+    "_type": "blogCategory",
+    "title": {
+      "fr": "Qualité et Certifications",
+      "en": "Quality and Certifications"
+    },
+    "slug": {
+      "fr": { "current": "qualite-certifications" },
+      "en": { "current": "quality-certifications" }
+    },
+    "description": {
+      "fr": "Standards de qualité et processus de certification",
+      "en": "Quality standards and certification processes"
+    }
+  },
+  {
+    "_type": "blogCategory",
+    "title": {
+      "fr": "Guides Pratiques",
+      "en": "Practical Guides"
+    },
+    "slug": {
+      "fr": { "current": "guides-pratiques" },
+      "en": { "current": "practical-guides" }
+    },
+    "description": {
+      "fr": "Conseils et guides pour les acheteurs B2B",
+      "en": "Tips and guides for B2B buyers"
+    }
+  },
+  {
+    "_type": "blogCategory",
+    "title": {
+      "fr": "Traçabilité",
+      "en": "Traceability"
+    },
+    "slug": {
+      "fr": { "current": "tracabilite" },
+      "en": { "current": "traceability" }
+    },
+    "description": {
+      "fr": "Transparence de la chaîne d'approvisionnement et conformité EUDR",
+      "en": "Supply chain transparency and EUDR compliance"
+    }
+  }
+]

@@ -112,13 +112,13 @@ export default async function ProductsPage({ params }: PageProps) {
         <div className="container mx-auto px-4">
           {products.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-gray-600 text-lg">{content.noProducts}</p>
+              <p className="text-muted-foreground text-lg">{content.noProducts}</p>
             </div>
           ) : (
             <>
               {/* All Products */}
               <div className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                <h2 className="text-3xl font-bold text-foreground mb-8">
                   {content.allProducts}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -135,7 +135,7 @@ export default async function ProductsPage({ params }: PageProps) {
 
                 return (
                   <div key={category} className="mb-12">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                    <h2 className="text-3xl font-bold text-foreground mb-8">
                       {categoryLabels[category][locale]}
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -154,12 +154,12 @@ export default async function ProductsPage({ params }: PageProps) {
       {/* CTA Section */}
       <section className="bg-light py-12 md:py-16">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold text-foreground mb-4">
             {locale === 'fr' 
               ? 'Vous ne trouvez pas ce que vous cherchez ?' 
               : "Can't find what you're looking for?"}
           </h2>
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
             {locale === 'fr'
               ? 'Contactez-nous pour discuter de vos besoins spécifiques. Nous pouvons sourcer une large gamme de produits agricoles africains.'
               : 'Contact us to discuss your specific needs. We can source a wide range of African agricultural products.'}
@@ -173,7 +173,7 @@ export default async function ProductsPage({ params }: PageProps) {
             </a>
             <a
               href={`/${locale}/contact`}
-              className="inline-block bg-white hover:bg-gray-50 text-primary border-2 border-primary px-8 py-3 rounded-lg font-semibold transition-colors"
+              className="inline-block bg-white hover:bg-light text-primary border-2 border-primary px-8 py-3 rounded-lg font-semibold transition-colors"
             >
               {locale === 'fr' ? 'Nous contacter' : 'Contact Us'}
             </a>

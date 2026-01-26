@@ -1,6 +1,7 @@
 import { afterEach, beforeAll, vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import React, { forwardRef } from 'react';
+import 'jest-axe/extend-expect';
 
 // Set up test environment variables
 process.env.NEXT_PUBLIC_SANITY_PROJECT_ID = 'test-project-id';
@@ -64,6 +65,23 @@ beforeAll(() => {
   global.cancelAnimationFrame = (_id: number) => {
     // No-op for tests
   };
+
+  // Mock IntersectionObserver for lazy loading and scroll animations
+  global.IntersectionObserver = class IntersectionObserver {
+    constructor(public callback: IntersectionObserverCallback) {}
+    observe() {
+      return null;
+    }
+    unobserve() {
+      return null;
+    }
+    disconnect() {
+      return null;
+    }
+    takeRecords() {
+      return [];
+    }
+  } as any;
 });
 
 // Cleanup after each test

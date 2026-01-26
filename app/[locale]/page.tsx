@@ -56,7 +56,7 @@ export async function generateMetadata({
     },
   };
 
-  const t = content[locale];
+  const t = content[locale] || content.en; // Fallback to English if locale not found
 
   const metadata = generateMetaTags({
     title: t.title,

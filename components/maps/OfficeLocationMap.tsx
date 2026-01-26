@@ -8,8 +8,8 @@ import { Locale } from '@/types';
 const Map = dynamic(() => import('react-map-gl').then((mod) => mod.Map), {
   ssr: false,
   loading: () => (
-    <div className="flex h-full w-full items-center justify-center bg-gray-100">
-      <p className="text-gray-600">Loading map...</p>
+    <div className="flex h-full w-full items-center justify-center bg-light">
+      <p className="text-support">Loading map...</p>
     </div>
   ),
 });
@@ -56,8 +56,8 @@ export function OfficeLocationMap({ locale }: OfficeLocationMapProps) {
 
   if (!mapboxToken) {
     return (
-      <div className="flex h-[400px] w-full items-center justify-center rounded-lg bg-gray-100">
-        <p className="text-gray-600">
+      <div className="flex h-[400px] w-full items-center justify-center rounded-lg bg-light">
+        <p className="text-support">
           {locale === 'fr'
             ? 'Carte non disponible'
             : 'Map not available'}

@@ -51,6 +51,7 @@ export function Header({ locale }: HeaderProps) {
   ];
 
   const rfqLabel = getTranslation(locale, 'navigation.rfq');
+  const rfqItem = { href: `/${locale}/rfq`, label: rfqLabel };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-neutral/20 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
@@ -59,20 +60,23 @@ export function Header({ locale }: HeaderProps) {
         <Link
           href={`/${locale}`}
           className="flex items-center gap-2 text-2xl font-bold text-primary transition-colors hover:text-primary-dark"
+          aria-label="Afrexia home"
         >
           <span>Afrexia</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <Navigation locale={locale} navItems={navItems} />
+        <Navigation locale={locale} navItems={navItems} rfqItem={rfqItem} />
 
         {/* Right side: Language switcher and RFQ button */}
         <div className="flex items-center gap-2 sm:gap-4">
           <LanguageSwitcher locale={locale} />
           
+          {/* RFQ button - hidden on mobile, shown on tablet+ */}
           <Link
             href={`/${locale}/rfq`}
-            className="hidden rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-dark sm:block"
+            className="hidden rounded-lg bg-primary px-4 py-2 min-h-[44px] text-sm font-semibold text-white transition-colors hover:bg-primary-dark sm:flex sm:items-center"
+            aria-label={rfqLabel}
           >
             {rfqLabel}
           </Link>

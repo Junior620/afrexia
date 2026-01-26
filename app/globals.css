@@ -4,25 +4,58 @@
 
 @layer base {
   :root {
+    /* Base colors */
     --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --foreground: 142 45% 13%; /* primary color for text */
+    
+    /* Card colors */
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card-foreground: 142 45% 13%;
+    
+    /* Popover colors */
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
+    --popover-foreground: 142 45% 13%;
+    
+    /* Brand primary (green #194424) */
     --primary: 142 45% 13%;
     --primary-foreground: 0 0% 98%;
+    
+    /* Brand secondary (green #337A49) */
     --secondary: 142 45% 35%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
+    
+    /* Muted using light brand color (#E9EBE5) */
+    --muted: 80 20% 92%;
+    --muted-foreground: 142 45% 13%;
+    
+    /* Accent using brand accent (#655E2C) */
     --accent: 45 40% 29%;
     --accent-foreground: 0 0% 98%;
+    
+    /* Destructive - keep standard red for errors */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
+    
+    /* Success using secondary green */
+    --success: 142 45% 35%;
+    --success-foreground: 0 0% 98%;
+    
+    /* Warning using accent gold */
+    --warning: 45 40% 29%;
+    --warning-foreground: 0 0% 98%;
+    
+    /* Info using support green (#80996F) */
+    --info: 100 20% 52%;
+    --info-foreground: 0 0% 98%;
+    
+    /* Border using neutral (#B0BCA4) */
+    --border: 80 20% 70%;
+    --input: 80 20% 70%;
+    
+    /* Ring using primary */
     --ring: 142 45% 13%;
+    
+    /* Border radius */
     --radius: 0.5rem;
   }
 
@@ -40,6 +73,134 @@
   .text-balance {
     text-wrap: balance;
   }
+  
+  /* Prevent horizontal scrolling */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  /* Container queries for responsive components */
+  .container-responsive {
+    container-type: inline-size;
+  }
+}
+
+/* Responsive base styles */
+html {
+  /* Prevent horizontal scroll */
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  /* Prevent horizontal scroll */
+  overflow-x: hidden;
+  width: 100%;
+  /* Responsive font sizing */
+  font-size: 16px;
+}
+
+/* Responsive typography scale */
+@media (max-width: 640px) {
+  body {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1920px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+/* Ensure images don't overflow */
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive container max-widths */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
+/* Ultra-wide screen support */
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1920px;
+  }
+}
+
+@media (min-width: 2560px) {
+  .container {
+    max-width: 2560px;
+  }
 }
 
 /* Smooth scroll behavior */
@@ -56,5 +217,53 @@ html {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Accessibility: Focus indicators */
+*:focus-visible {
+  outline: 2px solid #194424;
+  outline-offset: 2px;
+}
+
+/* Skip to content link - screen reader only by default */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Show skip link on focus */
+.sr-only:focus,
+.sr-only:active {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Ensure sufficient color contrast for links */
+a {
+  text-decoration-skip-ink: auto;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  * {
+    border-color: currentColor !important;
+  }
+  
+  button,
+  a {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
   }
 }

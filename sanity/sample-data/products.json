@@ -1,0 +1,512 @@
+[
+  {
+    "_type": "product",
+    "i18nId": "cocoa-beans-001",
+    "name": {
+      "fr": "Fèves de Cacao Premium",
+      "en": "Premium Cocoa Beans"
+    },
+    "slug": {
+      "fr": { "current": "feves-de-cacao-premium" },
+      "en": { "current": "premium-cocoa-beans" }
+    },
+    "category": "cocoa",
+    "description": {
+      "fr": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Nos fèves de cacao premium proviennent des meilleures plantations du Cameroun. Cultivées de manière durable et récoltées à maturité optimale, elles offrent un profil aromatique riche et complexe, idéal pour la production de chocolat fin."
+            }
+          ]
+        }
+      ],
+      "en": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Our premium cocoa beans come from the finest plantations in Cameroon. Sustainably grown and harvested at optimal maturity, they offer a rich and complex aromatic profile, ideal for fine chocolate production."
+            }
+          ]
+        }
+      ]
+    },
+    "originRegions": [
+      {
+        "region": "Centre Region, Cameroon",
+        "coordinates": { "lat": 4.0511, "lng": 11.5021 },
+        "description": {
+          "fr": "Région du Centre du Cameroun, connue pour ses sols fertiles et son climat idéal pour la culture du cacao.",
+          "en": "Central Region of Cameroon, known for its fertile soils and ideal climate for cocoa cultivation."
+        }
+      },
+      {
+        "region": "South Region, Cameroon",
+        "coordinates": { "lat": 2.9333, "lng": 11.5167 },
+        "description": {
+          "fr": "Région du Sud, produisant du cacao de haute qualité avec des notes fruitées distinctives.",
+          "en": "Southern Region, producing high-quality cocoa with distinctive fruity notes."
+        }
+      }
+    ],
+    "harvestSeason": "October - March",
+    "packagingOptions": [
+      {
+        "type": "Jute Bags",
+        "weight": "60-65 kg",
+        "description": {
+          "fr": "Sacs en jute traditionnels, respirants et écologiques.",
+          "en": "Traditional jute bags, breathable and eco-friendly."
+        }
+      },
+      {
+        "type": "Bulk Container",
+        "weight": "20 MT",
+        "description": {
+          "fr": "Conteneur en vrac pour grandes commandes.",
+          "en": "Bulk container for large orders."
+        }
+      }
+    ],
+    "moq": "1 container (20 MT)",
+    "incoterms": ["FOB", "CIF", "CFR"],
+    "qaMetrics": [
+      {
+        "metric": "Moisture Content",
+        "value": "≤ 7.5%",
+        "standard": "ISO 2451"
+      },
+      {
+        "metric": "Bean Count",
+        "value": "100-110 beans/100g",
+        "standard": "ISO 1114"
+      },
+      {
+        "metric": "Fermentation",
+        "value": "≥ 75% well fermented",
+        "standard": "ISO 1114"
+      },
+      {
+        "metric": "Defects",
+        "value": "≤ 3%",
+        "standard": "AFNOR"
+      }
+    ],
+    "hsCode": "1801.00.00",
+    "availability": "in_stock",
+    "targetMarkets": ["Europe", "North America", "Asia"],
+    "seo": {
+      "metaTitle": {
+        "fr": "Fèves de Cacao Premium du Cameroun | Afrexia",
+        "en": "Premium Cocoa Beans from Cameroon | Afrexia"
+      },
+      "metaDescription": {
+        "fr": "Fèves de cacao premium certifiées biologiques et équitables du Cameroun. Qualité supérieure pour chocolatiers exigeants.",
+        "en": "Premium organic and fair trade certified cocoa beans from Cameroon. Superior quality for demanding chocolatiers."
+      }
+    },
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "product",
+    "i18nId": "coffee-arabica-001",
+    "name": {
+      "fr": "Café Arabica des Hauts Plateaux",
+      "en": "Highland Arabica Coffee"
+    },
+    "slug": {
+      "fr": { "current": "cafe-arabica-hauts-plateaux" },
+      "en": { "current": "highland-arabica-coffee" }
+    },
+    "category": "coffee",
+    "description": {
+      "fr": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Café Arabica cultivé en altitude dans les montagnes de l'Ouest Cameroun. Notes florales et fruitées avec une acidité équilibrée. Idéal pour les torréfacteurs spécialisés recherchant des cafés de terroir."
+            }
+          ]
+        }
+      ],
+      "en": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Arabica coffee grown at high altitude in the mountains of Western Cameroon. Floral and fruity notes with balanced acidity. Ideal for specialty roasters seeking terroir coffees."
+            }
+          ]
+        }
+      ]
+    },
+    "originRegions": [
+      {
+        "region": "West Region, Cameroon",
+        "coordinates": { "lat": 5.4667, "lng": 10.4167 },
+        "description": {
+          "fr": "Hauts plateaux de l'Ouest, altitude 1200-1800m, conditions idéales pour l'Arabica.",
+          "en": "Western Highlands, altitude 1200-1800m, ideal conditions for Arabica."
+        }
+      }
+    ],
+    "harvestSeason": "November - February",
+    "packagingOptions": [
+      {
+        "type": "Jute Bags",
+        "weight": "60 kg",
+        "description": {
+          "fr": "Sacs en jute avec doublure GrainPro pour préserver la fraîcheur.",
+          "en": "Jute bags with GrainPro lining to preserve freshness."
+        }
+      }
+    ],
+    "moq": "1 container (18 MT)",
+    "incoterms": ["FOB", "CIF", "FCA"],
+    "qaMetrics": [
+      {
+        "metric": "Moisture Content",
+        "value": "10-12%",
+        "standard": "SCA"
+      },
+      {
+        "metric": "Screen Size",
+        "value": "15-18",
+        "standard": "SCA"
+      },
+      {
+        "metric": "Defects",
+        "value": "≤ 5 per 300g",
+        "standard": "SCA Grade 1"
+      },
+      {
+        "metric": "Cup Score",
+        "value": "83-86 points",
+        "standard": "SCA"
+      }
+    ],
+    "hsCode": "0901.11.00",
+    "availability": "seasonal",
+    "targetMarkets": ["Europe", "North America", "Middle East"],
+    "seo": {
+      "metaTitle": {
+        "fr": "Café Arabica des Hauts Plateaux du Cameroun | Afrexia",
+        "en": "Highland Arabica Coffee from Cameroon | Afrexia"
+      },
+      "metaDescription": {
+        "fr": "Café Arabica de spécialité cultivé en altitude. Notes florales et fruitées, certifié biologique et équitable.",
+        "en": "Specialty Arabica coffee grown at high altitude. Floral and fruity notes, organic and fair trade certified."
+      }
+    },
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "product",
+    "i18nId": "white-pepper-001",
+    "name": {
+      "fr": "Poivre Blanc de Penja",
+      "en": "Penja White Pepper"
+    },
+    "slug": {
+      "fr": { "current": "poivre-blanc-penja" },
+      "en": { "current": "penja-white-pepper" }
+    },
+    "category": "pepper",
+    "description": {
+      "fr": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Le poivre blanc de Penja est une IGP (Indication Géographique Protégée) reconnue mondialement. Cultivé dans la région de Penja au Cameroun, il offre un arôme délicat et une saveur subtile très prisée par les chefs gastronomiques."
+            }
+          ]
+        }
+      ],
+      "en": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Penja white pepper is a globally recognized PGI (Protected Geographical Indication). Grown in the Penja region of Cameroon, it offers a delicate aroma and subtle flavor highly prized by gourmet chefs."
+            }
+          ]
+        }
+      ]
+    },
+    "originRegions": [
+      {
+        "region": "Penja, Littoral Region",
+        "coordinates": { "lat": 4.6167, "lng": 9.7167 },
+        "description": {
+          "fr": "Région de Penja, terroir unique produisant le célèbre poivre blanc IGP.",
+          "en": "Penja region, unique terroir producing the famous PGI white pepper."
+        }
+      }
+    ],
+    "harvestSeason": "Year-round",
+    "packagingOptions": [
+      {
+        "type": "Vacuum Sealed Bags",
+        "weight": "25 kg",
+        "description": {
+          "fr": "Sacs sous vide pour préserver l'arôme.",
+          "en": "Vacuum sealed bags to preserve aroma."
+        }
+      },
+      {
+        "type": "Bulk Bags",
+        "weight": "50 kg",
+        "description": {
+          "fr": "Sacs en vrac pour grandes quantités.",
+          "en": "Bulk bags for large quantities."
+        }
+      }
+    ],
+    "moq": "500 kg",
+    "incoterms": ["FOB", "CIF", "EXW"],
+    "qaMetrics": [
+      {
+        "metric": "Moisture Content",
+        "value": "≤ 12%",
+        "standard": "ISO 959"
+      },
+      {
+        "metric": "Piperine Content",
+        "value": "≥ 4.5%",
+        "standard": "ISO 5564"
+      },
+      {
+        "metric": "Bulk Density",
+        "value": "550-600 g/L",
+        "standard": "ISO 948"
+      }
+    ],
+    "hsCode": "0904.11.00",
+    "availability": "in_stock",
+    "targetMarkets": ["Europe", "North America", "Asia"],
+    "seo": {
+      "metaTitle": {
+        "fr": "Poivre Blanc de Penja IGP | Afrexia",
+        "en": "Penja White Pepper PGI | Afrexia"
+      },
+      "metaDescription": {
+        "fr": "Poivre blanc de Penja IGP, reconnu mondialement pour son arôme délicat. Qualité premium pour la gastronomie.",
+        "en": "Penja white pepper PGI, globally recognized for its delicate aroma. Premium quality for gastronomy."
+      }
+    },
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "product",
+    "i18nId": "timber-sapelli-001",
+    "name": {
+      "fr": "Bois de Sapelli",
+      "en": "Sapelli Timber"
+    },
+    "slug": {
+      "fr": { "current": "bois-sapelli" },
+      "en": { "current": "sapelli-timber" }
+    },
+    "category": "wood",
+    "description": {
+      "fr": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Le Sapelli est un bois tropical de haute qualité, similaire à l'acajou. Durable et résistant, il est idéal pour l'ameublement, la menuiserie et la construction. Nos sources sont certifiées FSC et conformes EUDR."
+            }
+          ]
+        }
+      ],
+      "en": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Sapelli is a high-quality tropical wood, similar to mahogany. Durable and resistant, it is ideal for furniture, joinery, and construction. Our sources are FSC certified and EUDR compliant."
+            }
+          ]
+        }
+      ]
+    },
+    "originRegions": [
+      {
+        "region": "East Region, Cameroon",
+        "coordinates": { "lat": 4.5, "lng": 14.5 },
+        "description": {
+          "fr": "Forêts gérées durablement dans l'Est du Cameroun.",
+          "en": "Sustainably managed forests in Eastern Cameroon."
+        }
+      }
+    ],
+    "harvestSeason": "Year-round",
+    "packagingOptions": [
+      {
+        "type": "Logs",
+        "weight": "Variable",
+        "description": {
+          "fr": "Grumes de différentes dimensions selon spécifications.",
+          "en": "Logs of various dimensions according to specifications."
+        }
+      },
+      {
+        "type": "Sawn Timber",
+        "weight": "Variable",
+        "description": {
+          "fr": "Bois scié selon dimensions client.",
+          "en": "Sawn timber according to customer dimensions."
+        }
+      }
+    ],
+    "moq": "1 container (25 m³)",
+    "incoterms": ["FOB", "CFR", "CIF"],
+    "qaMetrics": [
+      {
+        "metric": "Moisture Content",
+        "value": "12-15%",
+        "standard": "FSC"
+      },
+      {
+        "metric": "Density",
+        "value": "620-650 kg/m³",
+        "standard": "ISO 3131"
+      },
+      {
+        "metric": "Grade",
+        "value": "FAS/1st & 2nd",
+        "standard": "NHLA"
+      }
+    ],
+    "hsCode": "4403.41.00",
+    "availability": "in_stock",
+    "targetMarkets": ["Europe", "Asia", "Middle East"],
+    "seo": {
+      "metaTitle": {
+        "fr": "Bois de Sapelli Certifié FSC | Afrexia",
+        "en": "FSC Certified Sapelli Timber | Afrexia"
+      },
+      "metaDescription": {
+        "fr": "Bois de Sapelli de qualité supérieure, certifié FSC et conforme EUDR. Idéal pour ameublement et construction.",
+        "en": "Premium Sapelli timber, FSC certified and EUDR compliant. Ideal for furniture and construction."
+      }
+    },
+    "workflowStatus": "published"
+  },
+  {
+    "_type": "product",
+    "i18nId": "yellow-corn-001",
+    "name": {
+      "fr": "Maïs Jaune",
+      "en": "Yellow Corn"
+    },
+    "slug": {
+      "fr": { "current": "mais-jaune" },
+      "en": { "current": "yellow-corn" }
+    },
+    "category": "corn",
+    "description": {
+      "fr": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Maïs jaune de qualité alimentaire et fourragère, cultivé dans les régions fertiles du Cameroun. Séché et trié selon les normes internationales, adapté à l'alimentation animale et à la transformation industrielle."
+            }
+          ]
+        }
+      ],
+      "en": [
+        {
+          "_type": "block",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Food and feed grade yellow corn, grown in the fertile regions of Cameroon. Dried and sorted according to international standards, suitable for animal feed and industrial processing."
+            }
+          ]
+        }
+      ]
+    },
+    "originRegions": [
+      {
+        "region": "North Region, Cameroon",
+        "coordinates": { "lat": 9.3167, "lng": 13.3833 },
+        "description": {
+          "fr": "Région du Nord, principale zone de production de maïs au Cameroun.",
+          "en": "Northern Region, main corn production area in Cameroon."
+        }
+      }
+    ],
+    "harvestSeason": "March - May, September - November",
+    "packagingOptions": [
+      {
+        "type": "PP Bags",
+        "weight": "50 kg",
+        "description": {
+          "fr": "Sacs en polypropylène résistants à l'humidité.",
+          "en": "Moisture-resistant polypropylene bags."
+        }
+      },
+      {
+        "type": "Bulk Container",
+        "weight": "25 MT",
+        "description": {
+          "fr": "Conteneur en vrac pour grandes commandes.",
+          "en": "Bulk container for large orders."
+        }
+      }
+    ],
+    "moq": "1 container (25 MT)",
+    "incoterms": ["FOB", "CFR", "CIF"],
+    "qaMetrics": [
+      {
+        "metric": "Moisture Content",
+        "value": "≤ 14%",
+        "standard": "USDA"
+      },
+      {
+        "metric": "Foreign Matter",
+        "value": "≤ 2%",
+        "standard": "USDA"
+      },
+      {
+        "metric": "Broken Kernels",
+        "value": "≤ 3%",
+        "standard": "USDA"
+      },
+      {
+        "metric": "Aflatoxin",
+        "value": "≤ 20 ppb",
+        "standard": "EU Regulation"
+      }
+    ],
+    "hsCode": "1005.90.00",
+    "availability": "seasonal",
+    "targetMarkets": ["Africa", "Middle East", "Asia"],
+    "seo": {
+      "metaTitle": {
+        "fr": "Maïs Jaune de Qualité Alimentaire | Afrexia",
+        "en": "Food Grade Yellow Corn | Afrexia"
+      },
+      "metaDescription": {
+        "fr": "Maïs jaune de qualité alimentaire et fourragère du Cameroun. Conforme aux normes internationales.",
+        "en": "Food and feed grade yellow corn from Cameroon. Compliant with international standards."
+      }
+    },
+    "workflowStatus": "published"
+  }
+]

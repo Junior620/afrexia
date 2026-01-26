@@ -28,7 +28,7 @@ export function CertificationsSection({
     },
   };
 
-  const t = content[locale];
+  const t = content[locale] || content.en; // Fallback to English if locale not found
 
   // Show first 6 certifications
   const displayedCertifications = certifications.slice(0, 6);
@@ -42,7 +42,7 @@ export function CertificationsSection({
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4">
               {t.title}
             </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
               {t.subtitle}
             </p>
           </div>
@@ -84,7 +84,7 @@ export function CertificationsSection({
                           />
                         </svg>
                       </div>
-                      <p className="text-xs text-gray-700 font-medium">
+                      <p className="text-xs text-foreground font-medium">
                         {cert.name}
                       </p>
                     </div>
@@ -109,7 +109,7 @@ export function CertificationsSection({
                   d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
                 />
               </svg>
-              <span className="text-gray-700 font-medium">
+              <span className="text-foreground font-medium">
                 {locale === 'fr'
                   ? 'Certifications internationales disponibles'
                   : 'International certifications available'}

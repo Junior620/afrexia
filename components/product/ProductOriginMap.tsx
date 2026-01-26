@@ -3,15 +3,16 @@
 import { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import type { MapRef } from 'react-map-gl';
+import { BRAND_COLORS } from '@/lib/brand/colors';
 
 // Lazy load Mapbox to reduce initial bundle size
 const Map = dynamic(() => import('react-map-gl').then((mod) => mod.Map), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full flex items-center justify-center bg-gray-100 rounded-lg">
+    <div className="w-full h-full flex items-center justify-center bg-muted rounded-lg">
       <div className="text-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-        <p className="text-gray-600">Loading map...</p>
+        <p className="text-muted-foreground">Loading map...</p>
       </div>
     </div>
   ),
@@ -114,8 +115,8 @@ export function ProductOriginMap({ origins, locale }: ProductOriginMapProps) {
 
   if (!origins || origins.length === 0) {
     return (
-      <div className="w-full h-[400px] bg-gray-100 rounded-lg flex items-center justify-center">
-        <p className="text-gray-500">
+      <div className="w-full h-[400px] bg-muted rounded-lg flex items-center justify-center">
+        <p className="text-muted-foreground">
           {locale === 'fr' ? 'Aucune information de localisation disponible' : 'No location information available'}
         </p>
       </div>
@@ -126,8 +127,8 @@ export function ProductOriginMap({ origins, locale }: ProductOriginMapProps) {
 
   if (!mapboxToken) {
     return (
-      <div className="w-full h-[400px] bg-gray-100 rounded-lg flex items-center justify-center">
-        <p className="text-gray-500">
+      <div className="w-full h-[400px] bg-muted rounded-lg flex items-center justify-center">
+        <p className="text-muted-foreground">
           {locale === 'fr' ? 'Configuration de la carte manquante' : 'Map configuration missing'}
         </p>
       </div>
@@ -177,8 +178,8 @@ export function ProductOriginMap({ origins, locale }: ProductOriginMapProps) {
                   >
                     <path
                       d="M20 0C8.954 0 0 8.954 0 20c0 11.046 20 30 20 30s20-18.954 20-30C40 8.954 31.046 0 20 0z"
-                      fill="#194424"
-                      className="group-hover:fill-[#337A49] transition-colors"
+                      fill={BRAND_COLORS.primary.DEFAULT}
+                      className="group-hover:fill-secondary transition-colors"
                     />
                     <circle cx="20" cy="20" r="8" fill="white" />
                     <text
@@ -187,7 +188,7 @@ export function ProductOriginMap({ origins, locale }: ProductOriginMapProps) {
                       textAnchor="middle"
                       fontSize="12"
                       fontWeight="bold"
-                      fill="#194424"
+                      fill={BRAND_COLORS.primary.DEFAULT}
                     >
                       {index + 1}
                     </text>
@@ -209,15 +210,15 @@ export function ProductOriginMap({ origins, locale }: ProductOriginMapProps) {
               className="origin-popup"
             >
               <div className="p-2 min-w-[200px]">
-                <h3 className="font-bold text-gray-900 mb-2">
+                <h3 className="font-bold text-foreground mb-2">
                   {origins[selectedMarker].region}
                 </h3>
                 {origins[selectedMarker].description?.[locale] && (
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-muted-foreground">
                     {origins[selectedMarker].description[locale]}
                   </p>
                 )}
-                <div className="mt-2 text-xs text-gray-500">
+                <div className="mt-2 text-xs text-muted-foreground">
                   <p>
                     {locale === 'fr' ? 'Coordonnées' : 'Coordinates'}:{' '}
                     {origins[selectedMarker].coordinates.lat.toFixed(4)},{' '}
@@ -232,7 +233,7 @@ export function ProductOriginMap({ origins, locale }: ProductOriginMapProps) {
 
       {/* Legend */}
       <div className="bg-light rounded-lg p-4">
-        <h4 className="font-semibold text-gray-900 mb-3">
+        <h4 className="font-semibold text-foreground mb-3">
           {locale === 'fr' ? 'Régions d\'origine' : 'Origin Regions'}
         </h4>
         <div className="space-y-2">
@@ -255,11 +256,11 @@ export function ProductOriginMap({ origins, locale }: ProductOriginMapProps) {
                 {index + 1}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-medium text-gray-900 group-hover:text-primary transition-colors">
+                <p className="font-medium text-foreground group-hover:text-primary transition-colors">
                   {origin.region}
                 </p>
                 {origin.description?.[locale] && (
-                  <p className="text-sm text-gray-600 line-clamp-2">
+                  <p className="text-sm text-muted-foreground line-clamp-2">
                     {origin.description[locale]}
                   </p>
                 )}
@@ -270,7 +271,7 @@ export function ProductOriginMap({ origins, locale }: ProductOriginMapProps) {
       </div>
 
       {/* Map Instructions */}
-      <div className="text-sm text-gray-500 text-center">
+      <div className="text-sm text-muted-foreground text-center">
         <p>
           {locale === 'fr'
             ? 'Cliquez sur les marqueurs pour plus d\'informations. Utilisez les contrôles pour zoomer et naviguer.'
