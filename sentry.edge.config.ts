@@ -7,8 +7,11 @@
 
 import * as Sentry from '@sentry/nextjs';
 
-Sentry.init({
-  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+// Only initialize Sentry if DSN is configured
+const dsn = process.env.NEXT_PUBLIC_SENTRY_DSN;
+if (dsn && dsn !== 'your_sentry_dsn' && dsn.startsWith('https://')) {
+  Sentry.init({
+    dsn,
 
   // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
   // We recommend adjusting this value in production
@@ -45,3 +48,6 @@ Sentry.init({
   // Set release version
   release: process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA,
 });
+} else {
+  console.log('Sentry edge not initialized: DSN not configured');
+}

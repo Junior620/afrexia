@@ -67,6 +67,7 @@ npm run dev
 - `npm run test:e2e` - Run end-to-end tests
 - `npm run test:pbt` - Run property-based tests
 - `npm run test:all` - Run all tests
+- `npm run test:kv` - Test Vercel KV connection
 
 **Analysis:**
 - `npm run analyze` - Analyze bundle size

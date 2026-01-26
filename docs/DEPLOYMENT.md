@@ -175,47 +175,91 @@ vercel --prod
 
 ## Vercel KV Setup for Rate Limiting
 
-### 1. Create KV Database
+Vercel KV (Redis) is used for rate limiting API endpoints to prevent abuse.
 
-1. Go to Vercel Dashboard → Storage
-2. Click "Create Database"
-3. Select "KV" (Redis)
-4. Name: `afrexia-rate-limiting`
-5. Region: Same as your deployment region (iad1)
+### Quick Setup
 
-### 2. Connect to Project
+1. **Create KV Database** in Vercel Dashboard → Storage → Create Database → KV
+2. **Name**: `afrexia-rate-limiting`
+3. **Region**: Same as your deployment region (iad1)
+4. **Connect to Project**: Vercel automatically adds environment variables
+5. **Test Connection**: Run `npm run test:kv` locally
 
-1. Select your project
-2. Vercel will automatically add environment variables
-3. Redeploy to apply changes
+### Detailed Documentation
 
-### 3. Verify Connection
+For comprehensive setup instructions, testing, and troubleshooting, see:
+- **[Vercel KV Setup Guide](./VERCEL_KV_SETUP.md)** - Complete documentation
 
-```bash
-# Test rate limiting endpoint
-curl -X POST https://afrexia.com/api/rfq \
-  -H "Content-Type: application/json" \
-  -d '{"test": "data"}'
+### Environment Variables
+
+The following variables are automatically created when you set up KV:
 ```
+KV_URL=<auto_generated_by_vercel>
+KV_REST_API_URL=<auto_generated_by_vercel>
+KV_REST_API_TOKEN=<auto_generated_by_vercel>
+KV_REST_API_READ_ONLY_TOKEN=<auto_generated_by_vercel>
+```
+
+### Local Development
+
+Pull environment variables to your local machine:
+```bash
+vercel env pull .env.local
+```
+
+### Testing
+
+Test the KV connection and rate limiting:
+```bash
+# Test KV connection
+npm run test:kv
+
+# Test rate limiting on API endpoint
+for i in {1..6}; do
+  curl -X POST http://localhost:3000/api/rfq \
+    -H "Content-Type: application/json" \
+    -d '{"test": "data"}'
+  echo "\nRequest $i"
+done
+```
+
+Expected: First 5 requests succeed, 6th returns 429 Too Many Requests.
 
 ## Sanity Webhook Configuration
 
-### 1. Create Webhook in Sanity
+The Sanity webhook enables automatic content revalidation when content is updated in the CMS.
 
-1. Go to Sanity Dashboard → API → Webhooks
-2. Click "Create webhook"
-3. Name: `Vercel Revalidation`
-4. URL: `https://afrexia.com/api/revalidate`
-5. Dataset: `production`
-6. Trigger on: Create, Update, Delete
-7. HTTP method: POST
-8. Secret: Use the value from `SANITY_WEBHOOK_SECRET`
+### Quick Setup
 
-### 2. Test Webhook
+Follow the [Webhook Quick Start Guide](./WEBHOOK_QUICK_START.md) for a 5-minute setup.
 
-1. Make a change in Sanity Studio
-2. Check Vercel logs for revalidation requests
-3. Verify content updates on the website
+### Detailed Configuration
+
+For comprehensive setup instructions, troubleshooting, and security considerations, see:
+- **[Sanity Webhook Setup Guide](./SANITY_WEBHOOK_SETUP.md)** - Complete documentation
+
+### Quick Steps
+
+1. Generate webhook secret: `openssl rand -base64 32`
+2. Add `SANITY_WEBHOOK_SECRET` to Vercel environment variables
+3. Create webhook in Sanity Dashboard:
+   - URL: `https://afrexia.com/api/revalidate`
+   - Dataset: `production`
+   - Triggers: Create, Update, Delete
+   - Secret: [your generated secret]
+4. Test webhook and verify revalidation
+
+### Verification
+
+After setup, verify webhook is working:
+
+```bash
+# Check Vercel logs
+vercel logs /api/revalidate
+
+# Test by publishing content in Sanity Studio
+# Changes should appear on website within 60 seconds
+```
 
 ## Build Configuration
 

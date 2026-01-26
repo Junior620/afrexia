@@ -147,8 +147,16 @@ If changes needed:
 If content is ready:
 1. Change **Workflow Status** to "Published"
 2. Click **"Publish"** button
-3. Content goes live within 60 seconds
+3. Content goes live within 60 seconds via automatic revalidation
 4. Notify editor (if needed)
+
+**How automatic revalidation works**:
+- Sanity webhook triggers when content is published
+- Website receives notification and updates cached pages
+- Changes appear on the website within 60 seconds
+- No manual rebuild required
+
+For more details, see [Sanity Webhook Setup Guide](../SANITY_WEBHOOK_SETUP.md).
 
 #### 4. Monitor Published Content
 

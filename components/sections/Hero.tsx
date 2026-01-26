@@ -32,12 +32,13 @@ export function Hero({ locale }: HeroProps) {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/assets/placeholder.svg"
+          src="/assets/hero.jpg"
           alt="African agricultural commodities"
           fill
           priority
           className="object-cover"
           sizes="100vw"
+          quality={90}
         />
         {/* Dark overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />

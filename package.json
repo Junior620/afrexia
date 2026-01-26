@@ -18,8 +18,11 @@
     "test:e2e:debug": "playwright test --debug",
     "test:pbt": "vitest --run --grep 'Property:'",
     "test:all": "npm run test:run && npm run test:e2e",
+    "test:webhook": "node scripts/test-webhook.js",
+    "test:kv": "node scripts/test-kv-connection.js",
     "lighthouse": "lhci autorun",
-    "analyze": "ANALYZE=true npm run build"
+    "analyze": "ANALYZE=true npm run build",
+    "verify:monitoring": "node scripts/verify-monitoring-analytics.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -72,6 +75,7 @@
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "tailwindcss": "^3.4.17",
+    "tsx": "^4.21.0",
     "vitest": "^4.0.18"
   }
 }

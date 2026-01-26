@@ -17,4 +17,9 @@ export default defineConfig({
   plugins: [structureTool(), visionTool({ defaultApiVersion: apiVersion })],
 
   schema,
+
+  // Disable update notifications in development
+  __internal: {
+    disableVersionCheck: true,
+  },
 })
