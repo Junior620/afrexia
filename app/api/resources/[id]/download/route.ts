@@ -35,9 +35,8 @@ export async function GET(
         category: resource.category,
         timestamp: new Date().toISOString(),
         userAgent: request.headers.get('user-agent'),
+        ip: request.ip || request.headers.get('x-forwarded-for'),
       },
-    });
-      ip: request.ip || request.headers.get('x-forwarded-for'),
     });
 
     // Redirect to Sanity CDN file URL
