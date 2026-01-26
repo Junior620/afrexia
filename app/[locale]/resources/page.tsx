@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Locale } from '@/types';
 import { getAllResources } from '@/lib/sanity/queries';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
-import { Download, FileText, Calendar, HardDrive } from 'lucide-react';
+import { FileText, Calendar, HardDrive } from 'lucide-react';
 import { DownloadButton } from '@/components/ui/DownloadButton';
 
 interface ResourcesPageProps {
@@ -94,7 +94,7 @@ export default async function ResourcesPage({
       {/* Resources Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          {categories.map((category, categoryIndex) => {
+          {categories.map((category) => {
             const categoryResources = resourcesByCategory[category];
             if (!categoryResources || categoryResources.length === 0) return null;
 

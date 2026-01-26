@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { revalidatePath, revalidateTag } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 import { createHmac } from 'crypto';
 import * as Sentry from '@sentry/nextjs';
 import {
@@ -163,7 +163,7 @@ export async function POST(request: NextRequest) {
     let payload: SanityWebhookPayload;
     try {
       payload = JSON.parse(body);
-    } catch (error) {
+    } catch {
       throw createValidationError('Invalid JSON payload');
     }
 
@@ -175,7 +175,7 @@ export async function POST(request: NextRequest) {
     // Revalidate appropriate paths
     const revalidatedPaths = revalidateContent(payload);
 
-    console.log(`Revalidated paths for ${payload._type}:`, revalidatedPaths);
+    Sentry.captureMessage(`Revalidated paths for ${payload._type}: ${revalidatedPaths.join(', ')}`, 'info');
 
     return NextResponse.json({
       revalidated: true,

@@ -47,7 +47,7 @@ interface SupplyChainAnimationProps {
  */
 export function SupplyChainAnimation({
   steps,
-  locale,
+  locale: _locale,
   className = '',
 }: SupplyChainAnimationProps) {
   const containerRef = useRef<HTMLDivElement>(null);

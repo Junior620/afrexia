@@ -27,12 +27,16 @@ export async function GET(
     // Track download event (analytics)
     // In a production environment, you would send this to your analytics service
     // Example: trackEvent('resource_download', { resourceId: id, title: resource.title })
-    console.log('Resource downloaded:', {
-      id: resource._id,
-      title: resource.title,
-      category: resource.category,
-      timestamp: new Date().toISOString(),
-      userAgent: request.headers.get('user-agent'),
+    Sentry.captureMessage('Resource downloaded', {
+      level: 'info',
+      extra: {
+        id: resource._id,
+        title: resource.title,
+        category: resource.category,
+        timestamp: new Date().toISOString(),
+        userAgent: request.headers.get('user-agent'),
+      },
+    });
       ip: request.ip || request.headers.get('x-forwarded-for'),
     });
 

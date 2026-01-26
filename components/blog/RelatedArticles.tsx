@@ -1,4 +1,4 @@
-import { BlogPost, Locale } from '@/types';
+import { Locale } from '@/types';
 import { getRelatedBlogPosts } from '@/lib/sanity/queries';
 import { BlogPostCard } from './BlogPostCard';
 
