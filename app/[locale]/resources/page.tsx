@@ -9,7 +9,7 @@ import { DownloadButton } from '@/components/ui/DownloadButton';
 interface ResourcesPageProps {
   params: Promise<{
     locale: Locale;
-  };
+  }>;
 }
 
 // Get translations
@@ -21,6 +21,7 @@ async function getTranslations(locale: Locale) {
 export async function generateMetadata({
   params,
 }: ResourcesPageProps): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations(locale);
 
   return {
@@ -58,6 +59,7 @@ function formatDate(dateString: string, locale: Locale): string {
 export default async function ResourcesPage({
   params,
 }: ResourcesPageProps) {
+  const { locale } = await params;
   const t = await getTranslations(locale);
   const resources = await getAllResources();
 

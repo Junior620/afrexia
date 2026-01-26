@@ -14,7 +14,7 @@ import {
 interface SolutionsPageProps {
   params: Promise<{
     locale: Locale;
-  };
+  }>;
 }
 
 // Get translations
@@ -26,6 +26,7 @@ async function getTranslations(locale: Locale) {
 export async function generateMetadata({
   params,
 }: SolutionsPageProps): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations(locale);
 
   return {
@@ -44,6 +45,7 @@ export async function generateMetadata({
 export default async function SolutionsPage({
   params,
 }: SolutionsPageProps) {
+  const { locale } = await params;
   const t = await getTranslations(locale);
 
   const services = [

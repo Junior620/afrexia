@@ -18,7 +18,7 @@ interface BlogPostPageProps {
   params: Promise<{
     locale: Locale;
     slug: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -39,7 +39,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
-  const { locale, slug } = params;
+  const { locale, slug } = await params;
   const post = await getBlogPostBySlug(slug, locale);
 
   if (!post) {
@@ -83,7 +83,7 @@ export async function generateMetadata({
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { locale, slug } = params;
+  const { locale, slug } = await params;
 
   // Validate locale
   if (!['fr', 'en'].includes(locale)) {

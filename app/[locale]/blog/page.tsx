@@ -8,13 +8,13 @@ import { generateMetaTags } from '@/lib/seo/metadata';
 interface BlogPageProps {
   params: Promise<{
     locale: Locale;
-  };
+  }>;
 }
 
 export async function generateMetadata({
   params,
 }: BlogPageProps): Promise<Metadata> {
-  const { locale } = params;
+  const { locale } = await params;
 
   const title =
     locale === 'fr'
@@ -39,7 +39,7 @@ export async function generateMetadata({
 }
 
 export default async function BlogPage({ params }: BlogPageProps) {
-  const { locale } = params;
+  const { locale } = await params;
 
   // Validate locale
   if (!['fr', 'en'].includes(locale)) {

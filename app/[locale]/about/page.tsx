@@ -20,8 +20,6 @@ interface AboutPageProps {
     locale: Locale;
   }>;
 }
-  };
-}
 
 // Get translations
 async function getTranslations(locale: Locale) {

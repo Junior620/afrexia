@@ -9,7 +9,7 @@ import { Download, Award, CheckCircle2, FileCheck, ClipboardCheck } from 'lucide
 interface QualityPageProps {
   params: Promise<{
     locale: Locale;
-  };
+  }>;
 }
 
 // Get translations
@@ -21,6 +21,7 @@ async function getTranslations(locale: Locale) {
 export async function generateMetadata({
   params,
 }: QualityPageProps): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations(locale);
 
   return {
@@ -39,6 +40,7 @@ export async function generateMetadata({
 export default async function QualityPage({
   params,
 }: QualityPageProps) {
+  const { locale } = await params;
   const t = await getTranslations(locale);
   const certifications = await getAllCertifications();
 

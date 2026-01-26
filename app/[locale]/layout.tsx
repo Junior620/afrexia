@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+// import { Inter } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import '../globals.css';
 import { AnalyticsProvider } from '@/components/providers/AnalyticsProvider';
@@ -10,11 +10,12 @@ import { CookieConsent } from '@/components/layout/CookieConsent';
 import { SkipToContent } from '@/components/layout/SkipToContent';
 import { locales, isValidLocale } from '@/lib/i18n/config';
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-});
+// Temporarily disabled Google Fonts due to network issues
+// const inter = Inter({
+//   subsets: ['latin'],
+//   variable: '--font-inter',
+//   display: 'swap',
+// });
 
 export const metadata: Metadata = {
   title: 'Afrexia - Premium African Agricultural Commodities',
@@ -44,7 +45,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   }
 
   return (
-    <html lang={locale} className={inter.variable} suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         {/* Preconnect to critical third-party origins */}
         <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />

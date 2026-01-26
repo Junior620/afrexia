@@ -19,7 +19,7 @@ import {
 interface TraceabilityPageProps {
   params: Promise<{
     locale: Locale;
-  };
+  }>;
 }
 
 // Get translations
@@ -31,6 +31,7 @@ async function getTranslations(locale: Locale) {
 export async function generateMetadata({
   params,
 }: TraceabilityPageProps): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations(locale);
 
   return {
@@ -49,6 +50,7 @@ export async function generateMetadata({
 export default async function TraceabilityPage({
   params,
 }: TraceabilityPageProps) {
+  const { locale } = await params;
   const t = await getTranslations(locale);
 
   const dueDiligenceSteps = [
