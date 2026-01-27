@@ -1,6 +1,6 @@
 import { Locale } from '@/types';
 
-export const locales = ['fr', 'en'] as const;
+export const locales = ['fr', 'en', 'es', 'de', 'ru'] as const;
 export const defaultLocale: Locale = 'fr';
 
 export const LOCALE_COOKIE = 'NEXT_LOCALE';
@@ -23,18 +23,14 @@ export function getValidLocale(locale: string | undefined): Locale {
 }
 
 /**
- * Get alternate locale (opposite of current)
- */
-export function getAlternateLocale(locale: Locale): Locale {
-  return locale === 'fr' ? 'en' : 'fr';
-}
-
-/**
  * Locale display names
  */
 export const localeNames: Record<Locale, string> = {
   fr: 'Français',
   en: 'English',
+  es: 'Español',
+  de: 'Deutsch',
+  ru: 'Русский',
 };
 
 /**
@@ -43,4 +39,7 @@ export const localeNames: Record<Locale, string> = {
 export const localeFlags: Record<Locale, string> = {
   fr: '🇫🇷',
   en: '🇬🇧',
+  es: '🇪🇸',
+  de: '🇩🇪',
+  ru: '🇷🇺',
 };

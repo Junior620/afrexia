@@ -1,11 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const locales = ['fr', 'en'] as const;
+const locales = ['fr', 'en', 'es', 'de', 'ru'] as const;
 const defaultLocale = 'fr' as const;
 
 type Locale = (typeof locales)[number];
 
 const LOCALE_COOKIE = 'NEXT_LOCALE';
+
+// Language code mapping for Accept-Language header
+const languageCodeMap: Record<string, Locale> = {
+  'fr': 'fr',
+  'en': 'en',
+  'es': 'es',
+  'de': 'de',
+  'ru': 'ru',
+  // Common variants
+  'fr-fr': 'fr',
+  'fr-ca': 'fr',
+  'en-us': 'en',
+  'en-gb': 'en',
+  'es-es': 'es',
+  'es-mx': 'es',
+  'de-de': 'de',
+  'de-at': 'de',
+  'ru-ru': 'ru',
+};
 
 /**
  * Parse Accept-Language header to extract preferred locale
@@ -13,22 +32,27 @@ const LOCALE_COOKIE = 'NEXT_LOCALE';
 function getLocaleFromAcceptLanguage(acceptLanguage: string | null): Locale | null {
   if (!acceptLanguage) return null;
 
-  // Parse Accept-Language header (e.g., "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7")
-  const languages = acceptLanguage
-    .split(',')
-    .map((lang) => {
-      const [locale, qValue] = lang.trim().split(';q=');
-      const quality = qValue ? parseFloat(qValue) : 1.0;
-      const langCode = locale.split('-')[0].toLowerCase();
-      return { locale: langCode, quality };
-    })
-    .sort((a, b) => b.quality - a.quality);
+  try {
+    // Parse Accept-Language header (e.g., "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7")
+    const languages = acceptLanguage
+      .split(',')
+      .map((lang) => {
+        const [locale, qValue] = lang.trim().split(';q=');
+        const quality = qValue ? parseFloat(qValue) : 1.0;
+        const langCode = locale.toLowerCase();
+        return { locale: langCode, quality };
+      })
+      .sort((a, b) => b.quality - a.quality);
 
-  // Find first matching locale
-  for (const { locale } of languages) {
-    if (locales.includes(locale as Locale)) {
-      return locale as Locale;
+    // Find first matching locale using language code map
+    for (const { locale } of languages) {
+      const mappedLocale = languageCodeMap[locale];
+      if (mappedLocale) {
+        return mappedLocale;
+      }
     }
+  } catch (error) {
+    console.error('Error parsing Accept-Language header:', error);
   }
 
   return null;

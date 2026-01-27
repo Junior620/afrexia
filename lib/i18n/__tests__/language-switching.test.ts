@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import * as fc from 'fast-check';
-import { getAlternateLocale, isValidLocale, getValidLocale } from '../config';
+import { isValidLocale, getValidLocale, locales } from '../config';
 import { getStaticTranslatedPath } from '../route-mapping';
 import { Locale } from '@/types';
 
@@ -11,15 +11,13 @@ import { Locale } from '@/types';
  * **Validates: Requirements 1.2, 1.4, 10.4, 10.8**
  * 
  * This test suite validates that:
- * 1. Language switching always produces valid locales
- * 2. Switching back and forth returns to the original locale
- * 3. Route mappings are bidirectional (can switch both ways)
- * 4. Static routes maintain their structure across languages
+ * 1. Route mappings are bidirectional (can switch both ways)
+ * 2. Static routes maintain their structure across languages
  */
 
 describe('Property 1: Language switching preserves page context', () => {
-  // Arbitrary for generating valid locales
-  const localeArbitrary = fc.constantFrom<Locale>('fr', 'en');
+  // Arbitrary for generating valid locales (updated for 5 locales)
+  const localeArbitrary = fc.constantFrom<Locale>('fr', 'en', 'es', 'de', 'ru');
 
   // Arbitrary for generating paths
   const staticPathArbitrary = fc.constantFrom(
@@ -35,45 +33,21 @@ describe('Property 1: Language switching preserves page context', () => {
     '/rfq'
   );
 
-  it('should always produce a valid alternate locale', () => {
-    fc.assert(
-      fc.property(localeArbitrary, (locale) => {
-        const alternate = getAlternateLocale(locale);
-        
-        // The alternate locale must be valid
-        expect(isValidLocale(alternate)).toBe(true);
-        
-        // The alternate locale must be different from the original
-        expect(alternate).not.toBe(locale);
-      })
-    );
-  });
-
-  it('should be reversible (switching twice returns to original)', () => {
-    fc.assert(
-      fc.property(localeArbitrary, (locale) => {
-        const alternate = getAlternateLocale(locale);
-        const backToOriginal = getAlternateLocale(alternate);
-        
-        // Switching twice should return to the original locale
-        expect(backToOriginal).toBe(locale);
-      })
-    );
-  });
-
   it('should maintain route structure when switching languages', () => {
     fc.assert(
       fc.property(
         localeArbitrary,
+        localeArbitrary,
         staticPathArbitrary,
-        (sourceLocale, path) => {
-          const targetLocale = getAlternateLocale(sourceLocale);
+        (sourceLocale, targetLocale, path) => {
+          // Skip if source and target are the same
+          fc.pre(sourceLocale !== targetLocale);
           
           // Get translated path
           const translatedPath = getStaticTranslatedPath(path, targetLocale);
           
           // If translation exists, it should be a valid path
-          if (translatedPath !== null) {
+          if (translatedPath !== null && translatedPath !== undefined) {
             expect(translatedPath).toBeTruthy();
             expect(typeof translatedPath).toBe('string');
             
@@ -132,19 +106,22 @@ describe('Property 1: Language switching preserves page context', () => {
     fc.assert(
       fc.property(
         localeArbitrary,
+        localeArbitrary,
         staticPathArbitrary,
-        (locale, path) => {
-          const targetLocale = getAlternateLocale(locale);
+        (sourceLocale, targetLocale, path) => {
+          // Skip if source and target are the same
+          fc.pre(sourceLocale !== targetLocale);
+          
           const translatedPath = getStaticTranslatedPath(path, targetLocale);
           
-          if (translatedPath !== null) {
+          if (translatedPath !== null && translatedPath !== undefined) {
             // Construct full paths
-            const sourcePath = `/${locale}${path}`;
+            const sourcePath = `/${sourceLocale}${path}`;
             const targetPath = `/${targetLocale}${translatedPath}`;
             
             // Both paths should be valid
-            expect(sourcePath).toMatch(/^\/(fr|en)\//);
-            expect(targetPath).toMatch(/^\/(fr|en)\//);
+            expect(sourcePath).toMatch(/^\/(fr|en|es|de|ru)\//);
+            expect(targetPath).toMatch(/^\/(fr|en|es|de|ru)\//);
             
             // Locales should be different
             expect(sourcePath.split('/')[1]).not.toBe(targetPath.split('/')[1]);
@@ -159,8 +136,11 @@ describe('Locale validation properties', () => {
   it('should correctly identify valid locales', () => {
     expect(isValidLocale('fr')).toBe(true);
     expect(isValidLocale('en')).toBe(true);
-    expect(isValidLocale('es')).toBe(false);
-    expect(isValidLocale('de')).toBe(false);
+    expect(isValidLocale('es')).toBe(true);
+    expect(isValidLocale('de')).toBe(true);
+    expect(isValidLocale('ru')).toBe(true);
+    expect(isValidLocale('zh')).toBe(false);
+    expect(isValidLocale('ja')).toBe(false);
     expect(isValidLocale('')).toBe(false);
   });
 

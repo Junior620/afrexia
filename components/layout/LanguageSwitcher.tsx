@@ -1,8 +1,9 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
+import { useState, useRef, useEffect } from 'react';
 import { Locale } from '@/types';
-import { localeNames, localeFlags, LOCALE_COOKIE } from '@/lib/i18n/config';
+import { locales, localeNames, localeFlags, LOCALE_COOKIE } from '@/lib/i18n/config';
 
 interface LanguageSwitcherProps {
   locale: Locale;
@@ -10,14 +11,47 @@ interface LanguageSwitcherProps {
 
 /**
  * Language switcher component
- * Switches between FR and EN while preserving page context
+ * Dropdown menu for switching between all five supported languages
  */
 export function LanguageSwitcher({ locale }: LanguageSwitcherProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const router = useRouter();
 
-  const switchLanguage = () => {
-    const newLocale: Locale = locale === 'fr' ? 'en' : 'fr';
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+    
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [isOpen]);
+
+  // Close dropdown on Escape key
+  useEffect(() => {
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    }
+    
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape);
+      return () => document.removeEventListener('keydown', handleEscape);
+    }
+  }, [isOpen]);
+
+  const switchLanguage = (newLocale: Locale) => {
+    if (newLocale === locale) {
+      setIsOpen(false);
+      return;
+    }
     
     // Remove current locale from pathname
     const pathWithoutLocale = pathname.replace(`/${locale}`, '');
@@ -28,20 +62,73 @@ export function LanguageSwitcher({ locale }: LanguageSwitcherProps) {
     // Set cookie
     document.cookie = `${LOCALE_COOKIE}=${newLocale}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
     
+    // Close dropdown
+    setIsOpen(false);
+    
     // Navigate to new path
     router.push(newPath);
   };
 
-  const alternateLocale: Locale = locale === 'fr' ? 'en' : 'fr';
-
   return (
-    <button
-      onClick={switchLanguage}
-      className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-primary transition-colors hover:bg-light"
-      aria-label={`Switch to ${localeNames[alternateLocale]}`}
-    >
-      <span className="text-lg">{localeFlags[alternateLocale]}</span>
-      <span className="hidden sm:inline">{localeNames[alternateLocale]}</span>
-    </button>
+    <div className="relative" ref={dropdownRef}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-primary transition-colors hover:bg-light dark:text-dark-text-primary dark:hover:bg-dark-bg-secondary"
+        aria-label="Select language"
+        aria-expanded={isOpen}
+        aria-haspopup="true"
+      >
+        <span className="text-lg" aria-hidden="true">{localeFlags[locale]}</span>
+        <span className="hidden sm:inline">{localeNames[locale]}</span>
+        <svg
+          className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      {isOpen && (
+        <div
+          className="absolute right-0 mt-2 w-48 rounded-lg border border-neutral/20 bg-white shadow-lg dark:border-dark-border dark:bg-dark-bg-secondary"
+          role="menu"
+          aria-orientation="vertical"
+        >
+          {locales.map((loc) => (
+            <button
+              key={loc}
+              onClick={() => switchLanguage(loc)}
+              className={`flex w-full items-center gap-3 px-4 py-3 text-left text-sm transition-colors hover:bg-light dark:hover:bg-dark-bg-primary ${
+                loc === locale
+                  ? 'bg-light font-semibold text-primary dark:bg-dark-bg-primary dark:text-dark-primary'
+                  : 'text-neutral dark:text-dark-text-secondary'
+              }`}
+              role="menuitem"
+              aria-current={loc === locale ? 'true' : undefined}
+            >
+              <span className="text-lg" aria-hidden="true">{localeFlags[loc]}</span>
+              <span>{localeNames[loc]}</span>
+              {loc === locale && (
+                <svg
+                  className="ml-auto h-4 w-4"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              )}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }

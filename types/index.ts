@@ -3,17 +3,23 @@
  */
 
 // Locale types
-export type Locale = 'fr' | 'en';
+export type Locale = 'fr' | 'en' | 'es' | 'de' | 'ru';
 
 // Multilingual content
 export interface MultilingualString {
   fr: string;
   en: string;
+  es: string;
+  de: string;
+  ru: string;
 }
 
 export interface MultilingualText {
   fr: string;
   en: string;
+  es: string;
+  de: string;
+  ru: string;
 }
 
 // Common types
@@ -83,12 +89,18 @@ export interface BlogPost {
   slug: {
     fr: { current: string };
     en: { current: string };
+    es: { current: string };
+    de: { current: string };
+    ru: { current: string };
   };
   i18nId: string;
   excerpt: MultilingualText;
   content: {
     fr: any[];
     en: any[];
+    es: any[];
+    de: any[];
+    ru: any[];
   };
   featuredImage: {
     asset: {
@@ -134,6 +146,9 @@ export interface BlogCategory {
   slug: {
     fr: { current: string };
     en: { current: string };
+    es: { current: string };
+    de: { current: string };
+    ru: { current: string };
   };
   description?: MultilingualText;
 }
