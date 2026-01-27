@@ -67,7 +67,7 @@ export function Statistics({ locale }: StatisticsProps) {
   const t = content[locale] || content.en; // Fallback to English if locale not found
 
   return (
-    <section className="py-16 md:py-24 bg-light">
+    <section className="py-16 md:py-24 bg-sand">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <ScrollReveal animation="fade">

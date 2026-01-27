@@ -155,7 +155,7 @@ export default async function TraceabilityPage({
       </section>
 
       {/* Due Diligence Process Section */}
-      <section className="py-20 bg-light">
+      <section className="py-20 bg-sand">
         <div className="container mx-auto px-4">
           <ScrollReveal animation="fade">
             <div className="text-center mb-16">

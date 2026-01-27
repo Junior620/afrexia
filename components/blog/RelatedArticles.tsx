@@ -42,7 +42,7 @@ export async function RelatedArticles({
   const t = translations[locale];
 
   return (
-    <section className="py-12 md:py-16 bg-light">
+    <section className="py-12 md:py-16 bg-sand">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}

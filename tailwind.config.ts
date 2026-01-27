@@ -28,7 +28,7 @@ const config: Config = {
           light: '#8A7F3D',
         },
         sand: {
-          DEFAULT: '#F5E6D3',
+          DEFAULT: '#F4EAD5',
           dark: '#E8D5B7',
           light: '#FAF3E8',
         },

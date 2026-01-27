@@ -109,7 +109,7 @@ export default async function AboutPage({
       </section>
 
       {/* Mission Section */}
-      <section className="py-20 bg-light">
+      <section className="py-20 bg-sand">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <ScrollReveal animation="fade">
@@ -261,7 +261,7 @@ export default async function AboutPage({
       </section>
 
       {/* Partnerships Section */}
-      <section className="py-20 bg-light">
+      <section className="py-20 bg-sand">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <ScrollReveal animation="fade">

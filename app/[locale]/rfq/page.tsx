@@ -50,7 +50,7 @@ export default async function RFQPage({ params, searchParams }: RFQPageProps) {
   const products = await getAllProducts();
 
   return (
-    <div className="min-h-screen bg-light py-12">
+    <div className="min-h-screen bg-sand py-12">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-4xl">
           {/* Page Header */}
