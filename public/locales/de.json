@@ -129,23 +129,260 @@
   },
   "solutions": {
     "title": "Unsere Lösungen & Services",
-    "subtitle": "Umfassende Supply-Chain-Lösungen für afrikanische Agrarprodukte"
+    "subtitle": "Umfassende Supply-Chain-Lösungen für afrikanische Agrarprodukte",
+    "services": {
+      "logistics": {
+        "title": "Logistik & Versand",
+        "description": "End-to-End-Logistikmanagement vom Ursprung bis zum Ziel. Wir kümmern uns um Zollabfertigung, Spedition und Lieferkoordination, um sicherzustellen, dass Ihre Produkte pünktlich und in einwandfreiem Zustand ankommen."
+      },
+      "warehousing": {
+        "title": "Lagerung",
+        "description": "Klimatisierte Lagereinrichtungen an strategischen Standorten. Unsere Lager halten optimale Bedingungen für Agrarprodukte mit Echtzeit-Bestandsverfolgung und Qualitätsüberwachung aufrecht."
+      },
+      "processing": {
+        "title": "Verarbeitung & Verpackung",
+        "description": "Maßgeschneiderte Verarbeitungs- und Verpackungslösungen nach Ihren Spezifikationen. Von Sortierung und Klassifizierung bis hin zu individuellen Verpackungsformaten stellen wir sicher, dass Ihre Produkte exakte Anforderungen erfüllen."
+      },
+      "traceability": {
+        "title": "Rückverfolgbarkeit & Compliance",
+        "description": "Vollständige Rückverfolgbarkeit der Lieferkette mit EUDR-Compliance. Verfolgen Sie Ihre Produkte vom Bauernhof bis zum Hafen mit vollständiger Dokumentation und Drittverifizierung für regulatorische Compliance."
+      },
+      "quality": {
+        "title": "Qualitätssicherung",
+        "description": "Strenge Qualitätskontrolle in jeder Phase. Unser QA-Team führt umfassende Tests und Inspektionen durch, um sicherzustellen, dass Produkte internationale Standards und Ihre Spezifikationen erfüllen."
+      },
+      "consulting": {
+        "title": "Handelsberatung",
+        "description": "Expertenberatung zu internationalem Handel, Vorschriften und Markteintritt. Wir helfen Ihnen, komplexe Import-/Exportanforderungen zu navigieren und Ihre Supply-Chain-Strategie zu optimieren."
+      }
+    },
+    "cta": {
+      "title": "Bereit, Ihre Anforderungen zu besprechen?",
+      "subtitle": "Kontaktieren Sie uns, um zu erfahren, wie unsere Lösungen Ihr Geschäft unterstützen können",
+      "contact": "Kontaktieren Sie uns",
+      "rfq": "Angebot anfordern"
+    }
   },
   "quality": {
     "title": "Qualität & Compliance",
-    "subtitle": "Strenge Standards und Zertifizierungen garantieren Exzellenz bei jeder Lieferung"
+    "subtitle": "Strenge Standards und Zertifizierungen garantieren Exzellenz bei jeder Lieferung",
+    "certifications": {
+      "title": "Unsere Zertifizierungen",
+      "subtitle": "International anerkannte Zertifizierungen, die unser Engagement für Qualität und Compliance demonstrieren"
+    },
+    "standards": {
+      "title": "Qualitätsstandards",
+      "subtitle": "Wir halten uns an die höchsten internationalen Standards für Agrarprodukte",
+      "grading": {
+        "title": "Klassifizierungsstandards",
+        "description": "Alle Produkte werden nach internationalen Standards (ISO, USDA, ICO) klassifiziert mit detaillierten Qualitätsmetriken für Feuchtigkeitsgehalt, Fehlerraten und physikalische Eigenschaften."
+      },
+      "testing": {
+        "title": "Labortests",
+        "description": "Umfassende Laboranalyse einschließlich mikrobiologischer Tests, Pestizid-Rückstandsscreening und Nährstoffanalyse durch akkreditierte Drittlabore."
+      },
+      "inspection": {
+        "title": "Vorversandinspektion",
+        "description": "Unabhängige Vorversandinspektion durch SGS, Bureau Veritas oder andere anerkannte Inspektionsagenturen zur Überprüfung von Qualität, Menge und Compliance vor dem Export."
+      },
+      "documentation": {
+        "title": "Dokumentation & Rückverfolgbarkeit",
+        "description": "Vollständiges Dokumentationspaket einschließlich Ursprungszeugnissen, Pflanzengesundheitszeugnissen, Qualitätszertifikaten und vollständigen Rückverfolgbarkeitsaufzeichnungen vom Bauernhof bis zum Hafen."
+      }
+    },
+    "process": {
+      "title": "Unser QA-Prozess",
+      "steps": {
+        "sourcing": {
+          "title": "Beschaffung & Auswahl",
+          "description": "Partnerschaft mit zertifizierten Farmen und Genossenschaften"
+        },
+        "inspection": {
+          "title": "Erstinspektion",
+          "description": "Qualitätskontrolle an Sammelstellen"
+        },
+        "testing": {
+          "title": "Labortests",
+          "description": "Umfassende Analyse durch akkreditierte Labore"
+        },
+        "storage": {
+          "title": "Kontrollierte Lagerung",
+          "description": "Klimatisierte Lagerung"
+        },
+        "preshipment": {
+          "title": "Vorversandverifizierung",
+          "description": "Abschließende Inspektion vor dem Export"
+        },
+        "documentation": {
+          "title": "Dokumentation",
+          "description": "Vollständiges Zertifizierungspaket"
+        }
+      }
+    },
+    "download": "Zertifikat herunterladen",
+    "validUntil": "Gültig bis",
+    "issuedBy": "Ausgestellt von"
   },
   "traceability": {
     "title": "Rückverfolgbarkeit & EUDR-Compliance",
-    "subtitle": "Vollständige Transparenz der Lieferkette vom Bauernhof zum Hafen"
+    "subtitle": "Vollständige Transparenz der Lieferkette vom Bauernhof zum Hafen, Sicherstellung der Compliance mit der EU-Entwaldungsverordnung",
+    "eudr": {
+      "title": "EUDR-Compliance",
+      "subtitle": "Erfüllung der strengen Anforderungen der Europäischen Union für entwaldungsfreie Lieferketten",
+      "description": "Die EU-Entwaldungsverordnung (EUDR) verlangt von Unternehmen sicherzustellen, dass in der EU verkaufte Produkte nicht mit Entwaldung oder Waldschädigung verbunden sind. Wir bieten vollständige Due-Diligence-Dokumentation und Rückverfolgbarkeit für alle unsere Produkte."
+    },
+    "dueDiligence": {
+      "title": "Unser Due-Diligence-Prozess",
+      "subtitle": "Umfassende Verifizierung in jeder Phase der Lieferkette",
+      "steps": {
+        "farmMapping": {
+          "title": "Farm-Kartierung & Geolokalisierung",
+          "description": "GPS-Koordinaten für alle Produktionsstandorte mit Satellitenbildverifizierung zur Bestätigung, dass keine Entwaldung stattgefunden hat"
+        },
+        "documentation": {
+          "title": "Dokumentensammlung",
+          "description": "Vollständige Aufzeichnungen einschließlich Landbesitz, Erntedaten und Chain-of-Custody-Dokumentation"
+        },
+        "riskAssessment": {
+          "title": "Risikobewertung",
+          "description": "Bewertung des Entwaldungsrisikos basierend auf Standort, Produktionspraktiken und historischen Daten"
+        },
+        "verification": {
+          "title": "Drittverifizierung",
+          "description": "Unabhängige Audits durch zertifizierte Stellen zur Überprüfung der Compliance mit EUDR-Anforderungen"
+        },
+        "monitoring": {
+          "title": "Kontinuierliche Überwachung",
+          "description": "Laufende Satellitenüberwachung und periodische Feldbesuche zur Sicherstellung fortlaufender Compliance"
+        },
+        "reporting": {
+          "title": "Compliance-Berichterstattung",
+          "description": "Detaillierte Due-Diligence-Erklärungen und Begleitdokumentation für die Zollabfertigung"
+        }
+      }
+    },
+    "supplyChain": {
+      "title": "Lieferketten-Reise",
+      "subtitle": "Verfolgen Sie Ihre Produkte vom Ursprung bis zum Ziel",
+      "description": "Unser integriertes Rückverfolgbarkeitssystem bietet vollständige Sichtbarkeit über die gesamte Lieferkette, von Kleinbauern bis zu internationalen Häfen."
+    },
+    "compliance": {
+      "title": "Compliance-Maßnahmen",
+      "subtitle": "Sicherstellung der Einhaltung internationaler Vorschriften",
+      "measures": {
+        "geolocation": {
+          "title": "Geolokalisierungsdaten",
+          "description": "GPS-Koordinaten für alle Produktionsparzellen mit Polygon-Kartierung der Farmgrenzen"
+        },
+        "chainOfCustody": {
+          "title": "Chain of Custody",
+          "description": "Vollständige Verfolgung vom Bauernhof über das Lager bis zum Hafen mit zeitgestempelter Übergabedokumentation"
+        },
+        "satelliteMonitoring": {
+          "title": "Satellitenüberwachung",
+          "description": "Regelmäßige Satellitenbildanalyse zur Erkennung von Entwaldung oder Landnutzungsänderungen"
+        },
+        "certification": {
+          "title": "Zertifizierungsverifizierung",
+          "description": "Validierung aller Nachhaltigkeitszertifizierungen und Compliance-Dokumente"
+        },
+        "auditTrail": {
+          "title": "Digitaler Prüfpfad",
+          "description": "Blockchain-gestützte Aufzeichnungen zur Sicherstellung der Datenintegrität und Unveränderlichkeit"
+        },
+        "reporting": {
+          "title": "Regulatorische Berichterstattung",
+          "description": "Automatisierte Generierung von EUDR-Due-Diligence-Erklärungen und Begleitdokumentation"
+        }
+      }
+    },
+    "documentation": {
+      "title": "Verfügbare Dokumentation",
+      "subtitle": "Compliance-Dokumente und Leitfäden herunterladen",
+      "eudrGuide": "EUDR-Compliance-Leitfaden",
+      "dueDiligenceStatement": "Due-Diligence-Erklärungsvorlage",
+      "traceabilityReport": "Rückverfolgbarkeitsbericht-Beispiel"
+    },
+    "cta": {
+      "title": "Benötigen Sie EUDR-konforme Produkte?",
+      "subtitle": "Kontaktieren Sie uns, um Ihre Rückverfolgbarkeitsanforderungen zu besprechen",
+      "contact": "Kontaktieren Sie uns",
+      "rfq": "Angebot anfordern"
+    }
   },
   "about": {
     "title": "Über Afrexia",
-    "subtitle": "Ihr vertrauenswürdiger Partner für Premium-Agrarprodukte aus Afrika"
+    "subtitle": "Ihr vertrauenswürdiger Partner für Premium-Agrarprodukte aus Afrika",
+    "story": {
+      "title": "Unsere Geschichte",
+      "content": "Gegründet in Kamerun, hat sich Afrexia zu einem führenden Exporteur von Premium-Agrarprodukten aus Afrika entwickelt. Mit tiefen Wurzeln in lokalen Landwirtschaftsgemeinschaften und einem Engagement für nachhaltige Praktiken schlagen wir die Brücke zwischen afrikanischen Produzenten und internationalen Märkten. Unsere Mission ist es, außergewöhnliche Qualität zu liefern und gleichzeitig die Lebensgrundlagen von Kleinbauern zu unterstützen und Umweltverantwortung zu fördern."
+    },
+    "mission": {
+      "title": "Unsere Mission",
+      "content": "Der vertrauenswürdigste Partner für afrikanische Agrarprodukte zu sein, der außergewöhnliche Qualität, vollständige Rückverfolgbarkeit und nachhaltigen Wert für unsere Kunden und Landwirtschaftsgemeinschaften liefert."
+    },
+    "values": {
+      "title": "Unsere Werte",
+      "quality": {
+        "title": "Qualitätsexzellenz",
+        "description": "Kompromisslose Standards bei jeder Lieferung"
+      },
+      "transparency": {
+        "title": "Transparenz",
+        "description": "Vollständige Rückverfolgbarkeit vom Bauernhof bis zum Hafen"
+      },
+      "sustainability": {
+        "title": "Nachhaltigkeit",
+        "description": "Umwelt- und Sozialverantwortung"
+      },
+      "partnership": {
+        "title": "Partnerschaft",
+        "description": "Langfristige Beziehungen auf Vertrauensbasis"
+      }
+    },
+    "team": {
+      "title": "Unser Team",
+      "subtitle": "Lernen Sie die Experten hinter Afrexia kennen"
+    },
+    "governance": {
+      "title": "Governance & Struktur",
+      "subtitle": "Verpflichtet zu Transparenz und Verantwortlichkeit",
+      "content": "Afrexia arbeitet unter einem robusten Governance-Rahmen, der ethische Geschäftspraktiken, regulatorische Compliance und Stakeholder-Verantwortlichkeit gewährleistet. Unser Managementteam bringt Jahrzehnte kombinierter Erfahrung in Agrarprodukten, internationalem Handel und Supply-Chain-Management mit."
+    },
+    "partnerships": {
+      "title": "Partnerschaften & Mitgliedschaften",
+      "subtitle": "Zusammenarbeit mit Branchenführern",
+      "content": "Wir sind stolze Mitglieder führender Branchenverbände und pflegen strategische Partnerschaften mit Zertifizierungsstellen, Logistikanbietern und landwirtschaftlichen Genossenschaften in ganz Afrika."
+    },
+    "cta": {
+      "title": "Bereit, mit uns zu arbeiten?",
+      "subtitle": "Lassen Sie uns besprechen, wie wir Ihre Beschaffungsbedürfnisse unterstützen können",
+      "contact": "Kontaktieren Sie uns",
+      "rfq": "Angebot anfordern"
+    }
   },
   "resources": {
     "title": "Ressourcen & Downloads",
-    "subtitle": "Zugriff auf Produktspezifikationen, Compliance-Dokumente und Branchenleitfäden"
+    "subtitle": "Zugriff auf Produktspezifikationen, Compliance-Dokumente und Branchenleitfäden",
+    "categories": {
+      "all": "Alle Ressourcen",
+      "productSpecs": "Produktspezifikationen",
+      "compliance": "Compliance-Dokumente",
+      "guides": "Branchenleitfäden",
+      "certificates": "Zertifikate",
+      "other": "Sonstiges"
+    },
+    "filters": {
+      "category": "Nach Kategorie filtern",
+      "search": "Ressourcen suchen..."
+    },
+    "metadata": {
+      "size": "Größe",
+      "format": "Format",
+      "updated": "Zuletzt aktualisiert"
+    },
+    "noResults": "Keine Ressourcen gefunden, die Ihren Kriterien entsprechen",
+    "downloadCount": "{{count}} Downloads"
   },
   "productsShowcase": {
     "title": "Unsere Premium-Produkte",

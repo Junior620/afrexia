@@ -30,13 +30,16 @@ export async function generateMetadata({
   const t = await getTranslations(locale);
 
   return {
-    title: t.solutions.title,
-    description: t.solutions.subtitle,
+    title: t.solutions?.title || 'Our Solutions & Services',
+    description: t.solutions?.subtitle || 'Comprehensive supply chain solutions for African agricultural commodities',
     alternates: {
       canonical: `/${locale}/solutions`,
       languages: {
         fr: '/fr/solutions',
         en: '/en/solutions',
+        es: '/es/solutions',
+        de: '/de/solutions',
+        ru: '/ru/solutions',
       },
     },
   };
@@ -51,33 +54,33 @@ export default async function SolutionsPage({
   const services = [
     {
       icon: Truck,
-      title: t.solutions.services.logistics.title,
-      description: t.solutions.services.logistics.description,
+      title: t.solutions?.services?.logistics?.title || 'Logistics & Shipping',
+      description: t.solutions?.services?.logistics?.description || 'End-to-end logistics management',
     },
     {
       icon: Warehouse,
-      title: t.solutions.services.warehousing.title,
-      description: t.solutions.services.warehousing.description,
+      title: t.solutions?.services?.warehousing?.title || 'Warehousing & Storage',
+      description: t.solutions?.services?.warehousing?.description || 'Climate-controlled storage facilities',
     },
     {
       icon: Package,
-      title: t.solutions.services.processing.title,
-      description: t.solutions.services.processing.description,
+      title: t.solutions?.services?.processing?.title || 'Processing & Packaging',
+      description: t.solutions?.services?.processing?.description || 'Custom processing and packaging solutions',
     },
     {
       icon: Shield,
-      title: t.solutions.services.traceability.title,
-      description: t.solutions.services.traceability.description,
+      title: t.solutions?.services?.traceability?.title || 'Traceability & Compliance',
+      description: t.solutions?.services?.traceability?.description || 'Full supply chain traceability',
     },
     {
       icon: CheckCircle,
-      title: t.solutions.services.quality.title,
-      description: t.solutions.services.quality.description,
+      title: t.solutions?.services?.quality?.title || 'Quality Assurance',
+      description: t.solutions?.services?.quality?.description || 'Rigorous quality control',
     },
     {
       icon: TrendingUp,
-      title: t.solutions.services.consulting.title,
-      description: t.solutions.services.consulting.description,
+      title: t.solutions?.services?.consulting?.title || 'Trade Consulting',
+      description: t.solutions?.services?.consulting?.description || 'Expert guidance on international trade',
     },
   ];
 

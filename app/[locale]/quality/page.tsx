@@ -25,13 +25,16 @@ export async function generateMetadata({
   const t = await getTranslations(locale);
 
   return {
-    title: t.quality.title,
-    description: t.quality.subtitle,
+    title: t.quality?.title || 'Quality & Compliance',
+    description: t.quality?.subtitle || 'Rigorous standards and certifications ensuring excellence in every shipment',
     alternates: {
       canonical: `/${locale}/quality`,
       languages: {
         fr: '/fr/quality',
         en: '/en/quality',
+        es: '/es/quality',
+        de: '/de/quality',
+        ru: '/ru/quality',
       },
     },
   };
@@ -47,50 +50,50 @@ export default async function QualityPage({
   const standards = [
     {
       icon: Award,
-      title: t.quality.standards.grading.title,
-      description: t.quality.standards.grading.description,
+      title: t.quality?.standards?.grading?.title || 'Grading Standards',
+      description: t.quality?.standards?.grading?.description || 'All products are graded according to international standards',
     },
     {
       icon: FileCheck,
-      title: t.quality.standards.testing.title,
-      description: t.quality.standards.testing.description,
+      title: t.quality?.standards?.testing?.title || 'Laboratory Testing',
+      description: t.quality?.standards?.testing?.description || 'Comprehensive laboratory analysis',
     },
     {
       icon: ClipboardCheck,
-      title: t.quality.standards.inspection.title,
-      description: t.quality.standards.inspection.description,
+      title: t.quality?.standards?.inspection?.title || 'Pre-Shipment Inspection',
+      description: t.quality?.standards?.inspection?.description || 'Independent pre-shipment inspection',
     },
     {
       icon: CheckCircle2,
-      title: t.quality.standards.documentation.title,
-      description: t.quality.standards.documentation.description,
+      title: t.quality?.standards?.documentation?.title || 'Documentation & Traceability',
+      description: t.quality?.standards?.documentation?.description || 'Complete documentation package',
     },
   ];
 
   const processSteps = [
     {
-      title: t.quality.process.steps.sourcing.title,
-      description: t.quality.process.steps.sourcing.description,
+      title: t.quality?.process?.steps?.sourcing?.title || 'Sourcing & Selection',
+      description: t.quality?.process?.steps?.sourcing?.description || 'Partner with certified farms',
     },
     {
-      title: t.quality.process.steps.inspection.title,
-      description: t.quality.process.steps.inspection.description,
+      title: t.quality?.process?.steps?.inspection?.title || 'Initial Inspection',
+      description: t.quality?.process?.steps?.inspection?.description || 'Quality check at collection points',
     },
     {
-      title: t.quality.process.steps.testing.title,
-      description: t.quality.process.steps.testing.description,
+      title: t.quality?.process?.steps?.testing?.title || 'Laboratory Testing',
+      description: t.quality?.process?.steps?.testing?.description || 'Comprehensive analysis',
     },
     {
-      title: t.quality.process.steps.storage.title,
-      description: t.quality.process.steps.storage.description,
+      title: t.quality?.process?.steps?.storage?.title || 'Controlled Storage',
+      description: t.quality?.process?.steps?.storage?.description || 'Climate-controlled warehousing',
     },
     {
-      title: t.quality.process.steps.preshipment.title,
-      description: t.quality.process.steps.preshipment.description,
+      title: t.quality?.process?.steps?.preshipment?.title || 'Pre-Shipment Verification',
+      description: t.quality?.process?.steps?.preshipment?.description || 'Final inspection before export',
     },
     {
-      title: t.quality.process.steps.documentation.title,
-      description: t.quality.process.steps.documentation.description,
+      title: t.quality?.process?.steps?.documentation?.title || 'Documentation',
+      description: t.quality?.process?.steps?.documentation?.description || 'Complete certification package',
     },
   ];
 

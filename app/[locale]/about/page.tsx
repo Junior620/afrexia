@@ -34,13 +34,16 @@ export async function generateMetadata({
   const t = await getTranslations(locale);
 
   return {
-    title: t.about.title,
-    description: t.about.subtitle,
+    title: t.about?.title || 'About Afrexia',
+    description: t.about?.subtitle || 'Your trusted partner for premium African agricultural commodities',
     alternates: {
       canonical: `/${locale}/about`,
       languages: {
         fr: '/fr/about',
         en: '/en/about',
+        es: '/es/about',
+        de: '/de/about',
+        ru: '/ru/about',
       },
     },
   };
@@ -56,23 +59,23 @@ export default async function AboutPage({
   const values = [
     {
       icon: Award,
-      title: t.about.values.quality.title,
-      description: t.about.values.quality.description,
+      title: t.about?.values?.quality?.title || 'Quality Excellence',
+      description: t.about?.values?.quality?.description || 'Uncompromising standards in every shipment',
     },
     {
       icon: Eye,
-      title: t.about.values.transparency.title,
-      description: t.about.values.transparency.description,
+      title: t.about?.values?.transparency?.title || 'Transparency',
+      description: t.about?.values?.transparency?.description || 'Complete traceability from farm to port',
     },
     {
       icon: Leaf,
-      title: t.about.values.sustainability.title,
-      description: t.about.values.sustainability.description,
+      title: t.about?.values?.sustainability?.title || 'Sustainability',
+      description: t.about?.values?.sustainability?.description || 'Environmental and social responsibility',
     },
     {
       icon: Handshake,
-      title: t.about.values.partnership.title,
-      description: t.about.values.partnership.description,
+      title: t.about?.values?.partnership?.title || 'Partnership',
+      description: t.about?.values?.partnership?.description || 'Long-term relationships built on trust',
     },
   ];
 

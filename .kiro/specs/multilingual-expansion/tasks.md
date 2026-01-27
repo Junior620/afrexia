@@ -163,7 +163,7 @@ This implementation plan breaks down the multilingual expansion feature into dis
     - **Property 10: Accept-Language Parsing Fairness**
     - **Validates: Requirements 4.7**
 
-- [ ] 9. Checkpoint - Verify routing and UI
+- [x] 9. Checkpoint - Verify routing and UI
   - Ensure all tests pass, manually test language switcher and routing, ask the user if questions arise.
 
 
