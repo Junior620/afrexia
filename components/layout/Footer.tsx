@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Locale } from '@/types';
 import { getTranslation } from '@/lib/i18n/translations';
 
@@ -56,7 +57,15 @@ export function Footer({ locale }: FooterProps) {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Company info */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold">Afrexia</h3>
+            <Link href={`/${locale}`} className="inline-block">
+              <Image
+                src="/assets/logo.png"
+                alt="Afrexia"
+                width={180}
+                height={60}
+                className="h-16 w-auto brightness-0 invert"
+              />
+            </Link>
             <p className="text-sm text-white/80">
               {getTranslation(locale, 'footer.tagline')}
             </p>

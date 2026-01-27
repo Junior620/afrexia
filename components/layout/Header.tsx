@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Locale } from '@/types';
 import { getTranslation } from '@/lib/i18n/translations';
 import { LanguageSwitcher } from './LanguageSwitcher';
@@ -59,10 +60,17 @@ export function Header({ locale }: HeaderProps) {
         {/* Logo */}
         <Link
           href={`/${locale}`}
-          className="flex items-center gap-2 text-2xl font-bold text-primary transition-colors hover:text-primary-dark"
+          className="flex items-center gap-2 transition-opacity hover:opacity-80"
           aria-label="Afrexia home"
         >
-          <span>Afrexia</span>
+          <Image
+            src="/assets/logo.png"
+            alt="Afrexia"
+            width={180}
+            height={63}
+            priority
+            className="h-14 w-auto"
+          />
         </Link>
 
         {/* Desktop Navigation */}
