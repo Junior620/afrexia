@@ -1,0 +1,160 @@
+{
+  "navigation": {
+    "home": "Startseite",
+    "products": "Produkte",
+    "solutions": "Lösungen",
+    "quality": "Qualität & Compliance",
+    "traceability": "Rückverfolgbarkeit",
+    "about": "Über uns",
+    "resources": "Ressourcen",
+    "blog": "Blog",
+    "contact": "Kontakt",
+    "rfq": "Angebotsanfrage"
+  },
+  "common": {
+    "learnMore": "Mehr erfahren",
+    "readMore": "Weiterlesen",
+    "viewAll": "Alle anzeigen",
+    "download": "Herunterladen",
+    "submit": "Absenden",
+    "send": "Senden",
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Vorherige",
+    "loading": "Wird geladen...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "required": "Erforderlich",
+    "optional": "Optional",
+    "search": "Suchen",
+    "filter": "Filtern",
+    "sort": "Sortieren",
+    "clear": "Löschen",
+    "save": "Speichern",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "confirm": "Bestätigen",
+    "yes": "Ja",
+    "no": "Nein"
+  },
+  "forms": {
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "company": "Unternehmen",
+    "country": "Land",
+    "message": "Nachricht",
+    "subject": "Betreff",
+    "quantity": "Menge",
+    "product": "Produkt",
+    "selectProduct": "Produkt auswählen",
+    "selectCountry": "Land auswählen",
+    "errors": {
+      "required": "Dieses Feld ist erforderlich",
+      "invalidEmail": "Ungültige E-Mail-Adresse",
+      "invalidPhone": "Ungültige Telefonnummer",
+      "minLength": "Mindestens {{min}} Zeichen",
+      "maxLength": "Maximal {{max}} Zeichen",
+      "minValue": "Mindestwert: {{min}}",
+      "maxValue": "Maximalwert: {{max}}"
+    },
+    "success": {
+      "submitted": "Formular erfolgreich gesendet",
+      "contactSent": "Ihre Nachricht wurde gesendet. Wir werden uns bald bei Ihnen melden.",
+      "rfqSent": "Ihre Angebotsanfrage wurde gesendet. Wir werden uns in Kürze mit Ihnen in Verbindung setzen."
+    }
+  },
+  "rfq": {
+    "title": "Angebotsanfrage",
+    "subtitle": "Teilen Sie uns Ihre Anforderungen mit und wir erstellen Ihnen ein individuelles Angebot",
+    "steps": {
+      "product": "Produkt & Menge",
+      "logistics": "Lieferdetails",
+      "contact": "Ihre Informationen"
+    },
+    "fields": {
+      "productId": "Produkt",
+      "quantity": "Menge",
+      "quantityUnit": "Einheit",
+      "incoterm": "Incoterm",
+      "destinationPort": "Zielhafen",
+      "targetDate": "Gewünschtes Lieferdatum",
+      "message": "Zusätzliche Anforderungen",
+      "gdprConsent": "Ich akzeptiere die Datenschutzrichtlinie und die Nutzungsbedingungen"
+    },
+    "placeholders": {
+      "quantity": "Menge eingeben",
+      "destinationPort": "z.B.: Hafen von Rotterdam",
+      "targetDate": "JJJJ-MM-TT",
+      "message": "Spezifische Anforderungen oder Fragen..."
+    },
+    "units": {
+      "kg": "Kilogramm (kg)",
+      "mt": "Metrische Tonnen (MT)",
+      "container": "Container"
+    },
+    "buttons": {
+      "next": "Nächster Schritt",
+      "back": "Vorheriger Schritt",
+      "submit": "Anfrage absenden",
+      "clearDraft": "Entwurf löschen"
+    },
+    "draft": {
+      "saved": "Entwurf gespeichert",
+      "loaded": "Entwurf geladen",
+      "cleared": "Entwurf gelöscht"
+    },
+    "progress": "Schritt {{current}} von {{total}}"
+  },
+  "footer": {
+    "tagline": "Ihr vertrauenswürdiger Partner für afrikanische Agrarprodukte",
+    "quickLinks": "Schnelllinks",
+    "products": "Produkte",
+    "company": "Unternehmen",
+    "legal": "Rechtliches",
+    "privacyPolicy": "Datenschutzrichtlinie",
+    "termsOfService": "Nutzungsbedingungen",
+    "followUs": "Folgen Sie uns",
+    "newsletter": "Newsletter",
+    "newsletterPlaceholder": "Ihre E-Mail",
+    "subscribe": "Abonnieren",
+    "copyright": "© {{year}} Afrexia. Alle Rechte vorbehalten."
+  },
+  "language": {
+    "switchTo": "Zu Deutsch wechseln",
+    "current": "Deutsch"
+  },
+  "solutions": {
+    "title": "Unsere Lösungen & Services",
+    "subtitle": "Umfassende Supply-Chain-Lösungen für afrikanische Agrarprodukte"
+  },
+  "quality": {
+    "title": "Qualität & Compliance",
+    "subtitle": "Strenge Standards und Zertifizierungen garantieren Exzellenz bei jeder Lieferung"
+  },
+  "traceability": {
+    "title": "Rückverfolgbarkeit & EUDR-Compliance",
+    "subtitle": "Vollständige Transparenz der Lieferkette vom Bauernhof zum Hafen"
+  },
+  "about": {
+    "title": "Über Afrexia",
+    "subtitle": "Ihr vertrauenswürdiger Partner für Premium-Agrarprodukte aus Afrika"
+  },
+  "resources": {
+    "title": "Ressourcen & Downloads",
+    "subtitle": "Zugriff auf Produktspezifikationen, Compliance-Dokumente und Branchenleitfäden"
+  },
+  "productsShowcase": {
+    "title": "Unsere Premium-Produkte",
+    "subtitle": "Entdecken Sie unser Sortiment hochwertiger afrikanischer Agrarprodukte",
+    "viewAll": "Alle Produkte anzeigen"
+  },
+  "certificationsSection": {
+    "title": "Qualitätszertifizierungen",
+    "subtitle": "International anerkannte Standards garantieren Exzellenz bei jeder Lieferung",
+    "viewAll": "Alle Zertifizierungen anzeigen"
+  }
+}
