@@ -1,13 +1,12 @@
 import type { Metadata } from 'next';
-// import { Inter } from 'next/font/google';
+import { Manrope } from 'next/font/google';
 import './globals.css';
 
-// Temporarily disabled Google Fonts due to network issues
-// const inter = Inter({
-//   subsets: ['latin'],
-//   variable: '--font-inter',
-//   display: 'swap',
-// });
+const manrope = Manrope({
+  subsets: ['latin'],
+  variable: '--font-manrope',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Afrexia - Premium African Agricultural Commodities',
@@ -22,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-sans antialiased">{children}</body>
+      <body className={`${manrope.variable} font-sans antialiased`}>{children}</body>
     </html>
   );
 }
