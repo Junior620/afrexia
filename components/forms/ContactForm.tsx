@@ -90,18 +90,18 @@ export function ContactForm({ locale }: ContactFormProps) {
 
   if (submitSuccess) {
     return (
-      <div className="rounded-lg bg-success-light p-6 text-center">
-        <h3 className="mb-2 text-2xl font-bold text-success-dark">
+      <div className="rounded-lg bg-success-light dark:bg-success-dark/20 p-6 text-center">
+        <h3 className="mb-2 text-2xl font-bold text-success-dark dark:text-success-light">
           {locale === 'fr' ? 'Message envoyé !' : 'Message Sent!'}
         </h3>
-        <p className="text-success-dark">
+        <p className="text-success-dark dark:text-success-light">
           {locale === 'fr'
             ? 'Nous vous répondrons dans les plus brefs délais.'
             : "We'll get back to you as soon as possible."}
         </p>
         <button
           onClick={() => setSubmitSuccess(false)}
-          className="mt-4 text-sm text-success-dark underline hover:text-success"
+          className="mt-4 text-sm text-success-dark dark:text-success-light underline hover:text-success"
         >
           {locale === 'fr' ? 'Envoyer un autre message' : 'Send another message'}
         </button>
@@ -112,7 +112,7 @@ export function ContactForm({ locale }: ContactFormProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" aria-label="Contact form">
       <div>
-        <label htmlFor="contact-name" className="mb-1 block text-sm font-medium">
+        <label htmlFor="contact-name" className="mb-1 block text-sm font-medium dark:text-dark-text-primary">
           {locale === 'fr' ? 'Nom' : 'Name'}{' '}
           <span className="text-destructive">*</span>
         </label>
@@ -121,7 +121,7 @@ export function ContactForm({ locale }: ContactFormProps) {
           type="text"
           autoComplete="name"
           {...register('name')}
-          className="w-full rounded-lg border border-border px-4 py-2 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+          className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary focus:border-primary dark:focus:border-dark-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:focus:ring-dark-primary/20"
           placeholder={locale === 'fr' ? 'Votre nom complet' : 'Your full name'}
           aria-required="true"
           aria-invalid={errors.name ? 'true' : 'false'}
@@ -133,7 +133,7 @@ export function ContactForm({ locale }: ContactFormProps) {
       </div>
 
       <div>
-        <label htmlFor="contact-email" className="mb-1 block text-sm font-medium">
+        <label htmlFor="contact-email" className="mb-1 block text-sm font-medium dark:text-dark-text-primary">
           Email <span className="text-destructive">*</span>
         </label>
         <input
@@ -142,7 +142,7 @@ export function ContactForm({ locale }: ContactFormProps) {
           inputMode="email"
           autoComplete="email"
           {...register('email')}
-          className="w-full rounded-lg border border-border px-4 py-2 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+          className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary focus:border-primary dark:focus:border-dark-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:focus:ring-dark-primary/20"
           placeholder={locale === 'fr' ? 'votre@email.com' : 'your@email.com'}
           aria-required="true"
           aria-invalid={errors.email ? 'true' : 'false'}
@@ -154,9 +154,9 @@ export function ContactForm({ locale }: ContactFormProps) {
       </div>
 
       <div>
-        <label htmlFor="contact-phone" className="mb-1 block text-sm font-medium">
+        <label htmlFor="contact-phone" className="mb-1 block text-sm font-medium dark:text-dark-text-primary">
           {locale === 'fr' ? 'Téléphone' : 'Phone'}{' '}
-          <span className="text-muted-foreground text-xs">
+          <span className="text-muted-foreground dark:text-dark-text-muted text-xs">
             ({locale === 'fr' ? 'optionnel' : 'optional'})
           </span>
         </label>
@@ -166,7 +166,7 @@ export function ContactForm({ locale }: ContactFormProps) {
           inputMode="tel"
           autoComplete="tel"
           {...register('phone')}
-          className="w-full rounded-lg border border-border px-4 py-2 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+          className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary focus:border-primary dark:focus:border-dark-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:focus:ring-dark-primary/20"
           placeholder="+1234567890"
           aria-invalid={errors.phone ? 'true' : 'false'}
           aria-describedby={errors.phone ? 'contact-phone-error' : undefined}
@@ -177,9 +177,9 @@ export function ContactForm({ locale }: ContactFormProps) {
       </div>
 
       <div>
-        <label htmlFor="contact-company" className="mb-1 block text-sm font-medium">
+        <label htmlFor="contact-company" className="mb-1 block text-sm font-medium dark:text-dark-text-primary">
           {locale === 'fr' ? 'Entreprise' : 'Company'}{' '}
-          <span className="text-muted-foreground text-xs">
+          <span className="text-muted-foreground dark:text-dark-text-muted text-xs">
             ({locale === 'fr' ? 'optionnel' : 'optional'})
           </span>
         </label>
@@ -188,7 +188,7 @@ export function ContactForm({ locale }: ContactFormProps) {
           type="text"
           autoComplete="organization"
           {...register('company')}
-          className="w-full rounded-lg border border-border px-4 py-2 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+          className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary focus:border-primary dark:focus:border-dark-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:focus:ring-dark-primary/20"
           placeholder={
             locale === 'fr' ? 'Nom de votre entreprise' : 'Your company name'
           }
@@ -201,7 +201,7 @@ export function ContactForm({ locale }: ContactFormProps) {
       </div>
 
       <div>
-        <label htmlFor="contact-subject" className="mb-1 block text-sm font-medium">
+        <label htmlFor="contact-subject" className="mb-1 block text-sm font-medium dark:text-dark-text-primary">
           {locale === 'fr' ? 'Sujet' : 'Subject'}{' '}
           <span className="text-destructive">*</span>
         </label>
@@ -209,7 +209,7 @@ export function ContactForm({ locale }: ContactFormProps) {
           id="contact-subject"
           type="text"
           {...register('subject')}
-          className="w-full rounded-lg border border-border px-4 py-2 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+          className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary focus:border-primary dark:focus:border-dark-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:focus:ring-dark-primary/20"
           placeholder={
             locale === 'fr'
               ? 'Objet de votre message'
@@ -225,14 +225,14 @@ export function ContactForm({ locale }: ContactFormProps) {
       </div>
 
       <div>
-        <label htmlFor="contact-message" className="mb-1 block text-sm font-medium">
+        <label htmlFor="contact-message" className="mb-1 block text-sm font-medium dark:text-dark-text-primary">
           Message <span className="text-destructive">*</span>
         </label>
         <textarea
           id="contact-message"
           {...register('message')}
           rows={6}
-          className="w-full rounded-lg border border-border px-4 py-2 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+          className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary focus:border-primary dark:focus:border-dark-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:focus:ring-dark-primary/20"
           placeholder={
             locale === 'fr'
               ? 'Décrivez votre demande ou question...'
@@ -256,7 +256,7 @@ export function ContactForm({ locale }: ContactFormProps) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-dark dark:bg-dark-primary dark:hover:bg-dark-secondary disabled:opacity-50 disabled:cursor-not-allowed"
         aria-busy={isSubmitting}
       >
         {isSubmitting
@@ -269,7 +269,7 @@ export function ContactForm({ locale }: ContactFormProps) {
       </button>
 
       {/* reCAPTCHA badge notice */}
-      <p className="text-xs text-muted-foreground">
+      <p className="text-xs text-muted-foreground dark:text-dark-text-muted">
         {locale === 'fr'
           ? 'Ce site est protégé par reCAPTCHA et les '
           : 'This site is protected by reCAPTCHA and the '}
@@ -277,7 +277,7 @@ export function ContactForm({ locale }: ContactFormProps) {
           href="https://policies.google.com/privacy"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline"
+          className="underline hover:text-primary dark:hover:text-dark-primary"
         >
           {locale === 'fr' ? 'Règles de confidentialité' : 'Privacy Policy'}
         </a>
@@ -286,7 +286,7 @@ export function ContactForm({ locale }: ContactFormProps) {
           href="https://policies.google.com/terms"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline"
+          className="underline hover:text-primary dark:hover:text-dark-primary"
         >
           {locale === 'fr'
             ? "Conditions d'utilisation"

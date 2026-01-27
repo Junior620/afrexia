@@ -60,10 +60,10 @@ export function OptimizedImage({
     onError?.()
   }
 
-  // Common image props
+  // Common image props with dark mode border support
   const imageProps = {
     alt,
-    className: `${className} ${isLoading ? 'blur-sm' : 'blur-0'} transition-all duration-300`,
+    className: `${className} ${isLoading ? 'blur-sm' : 'blur-0'} transition-all duration-300 dark:border dark:border-dark-border/20`,
     quality,
     onLoad: handleLoad,
     onError: handleError,

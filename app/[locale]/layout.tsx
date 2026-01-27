@@ -44,9 +44,43 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
     notFound();
   }
 
+  // Inline script to prevent FOUC (Flash of Unstyled Content)
+  const themeScript = `
+    (function() {
+      try {
+        var storageKey = 'afrexia-theme';
+        var theme = null;
+        
+        // Check localStorage for saved preference
+        try {
+          theme = localStorage.getItem(storageKey);
+        } catch (e) {
+          // localStorage unavailable (private browsing, etc.)
+        }
+        
+        // Fall back to system preference if no stored preference
+        if (!theme || (theme !== 'light' && theme !== 'dark')) {
+          if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            theme = 'dark';
+          } else {
+            theme = 'light';
+          }
+        }
+        
+        // Apply dark class to html element before first paint
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {
+        // Fail silently to prevent blocking page load
+      }
+    })();
+  `;
+
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {/* Preconnect to critical third-party origins */}
         <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://api.mapbox.com" crossOrigin="anonymous" />

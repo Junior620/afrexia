@@ -25,7 +25,7 @@ export function BlogPostCard({ post, locale }: BlogPostCardProps) {
   );
 
   return (
-    <article className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow overflow-hidden group">
+    <article className="bg-white dark:bg-dark-bg-secondary rounded-xl shadow-md hover:shadow-xl transition-shadow overflow-hidden group">
       <Link href={`/${locale}/blog/${slug}`}>
         {/* Featured Image */}
         <div className="aspect-[16/9] relative overflow-hidden">
@@ -34,7 +34,7 @@ export function BlogPostCard({ post, locale }: BlogPostCardProps) {
             alt={post.featuredImage.alt || title}
             width={800}
             height={450}
-            className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+            className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300 dark:border-b dark:border-dark-border/20"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
@@ -47,7 +47,7 @@ export function BlogPostCard({ post, locale }: BlogPostCardProps) {
               {post.categories.slice(0, 2).map((category) => (
                 <span
                   key={category._id}
-                  className="text-xs font-semibold text-primary bg-light px-3 py-1 rounded-full"
+                  className="text-xs font-semibold text-primary dark:text-dark-primary bg-light dark:bg-dark-bg-tertiary px-3 py-1 rounded-full"
                 >
                   {category.name[locale]}
                 </span>
@@ -56,15 +56,15 @@ export function BlogPostCard({ post, locale }: BlogPostCardProps) {
           )}
 
           {/* Title */}
-          <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
+          <h3 className="text-xl md:text-2xl font-bold text-foreground dark:text-dark-text-primary mb-3 group-hover:text-primary dark:group-hover:text-dark-primary transition-colors line-clamp-2">
             {title}
           </h3>
 
           {/* Excerpt */}
-          <p className="text-support mb-4 line-clamp-3">{excerpt}</p>
+          <p className="text-support dark:text-dark-text-muted mb-4 line-clamp-3">{excerpt}</p>
 
           {/* Meta information */}
-          <div className="flex items-center justify-between text-sm text-support">
+          <div className="flex items-center justify-between text-sm text-support dark:text-dark-text-muted">
             <div className="flex items-center gap-4">
               {/* Author */}
               {post.author && (

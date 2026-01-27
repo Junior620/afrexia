@@ -72,23 +72,23 @@ export function MobileNav({ navItems, rfqItem }: MobileNavProps) {
       {/* Hamburger button - minimum 44x44px touch target */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 lg:hidden focus:outline-none focus:ring-2 focus:ring-primary rounded-lg"
+        className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 lg:hidden focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary rounded-lg"
         aria-label="Toggle menu"
         aria-expanded={isOpen}
         aria-controls="mobile-menu"
       >
         <span
-          className={`h-0.5 w-6 bg-primary transition-all ${
+          className={`h-0.5 w-6 bg-primary dark:bg-dark-primary transition-all ${
             isOpen ? 'translate-y-2 rotate-45' : ''
           }`}
         />
         <span
-          className={`h-0.5 w-6 bg-primary transition-all ${
+          className={`h-0.5 w-6 bg-primary dark:bg-dark-primary transition-all ${
             isOpen ? 'opacity-0' : ''
           }`}
         />
         <span
-          className={`h-0.5 w-6 bg-primary transition-all ${
+          className={`h-0.5 w-6 bg-primary dark:bg-dark-primary transition-all ${
             isOpen ? '-translate-y-2 -rotate-45' : ''
           }`}
         />
@@ -107,7 +107,7 @@ export function MobileNav({ navItems, rfqItem }: MobileNavProps) {
       <div
         id="mobile-menu"
         ref={navRef as React.RefObject<HTMLDivElement>}
-        className={`fixed right-0 top-0 z-50 h-full w-80 max-w-[85vw] bg-white shadow-xl transition-transform duration-300 lg:hidden ${
+        className={`fixed right-0 top-0 z-50 h-full w-80 max-w-[85vw] bg-white dark:bg-dark-bg-secondary shadow-xl transition-transform duration-300 lg:hidden ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         role="dialog"
@@ -118,7 +118,7 @@ export function MobileNav({ navItems, rfqItem }: MobileNavProps) {
           {/* Close button - minimum 44x44px touch target */}
           <button
             onClick={() => setIsOpen(false)}
-            className="mb-8 self-end flex h-11 w-11 items-center justify-center text-2xl text-primary hover:text-primary-dark focus:outline-none focus:ring-2 focus:ring-primary rounded-lg"
+            className="mb-8 self-end flex h-11 w-11 items-center justify-center text-2xl text-primary dark:text-dark-primary hover:text-primary-dark dark:hover:text-dark-secondary focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary rounded-lg"
             aria-label="Close menu"
           >
             ×
@@ -131,10 +131,10 @@ export function MobileNav({ navItems, rfqItem }: MobileNavProps) {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className={`block rounded-lg px-4 py-3 min-h-[44px] text-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary ${
+                    className={`block rounded-lg px-4 py-3 min-h-[44px] text-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary ${
                       isActive(item.href)
-                        ? 'bg-primary text-white'
-                        : 'text-primary hover:bg-light'
+                        ? 'bg-primary text-white dark:bg-dark-primary'
+                        : 'text-primary dark:text-dark-text-primary hover:bg-light dark:hover:bg-dark-bg-tertiary'
                     }`}
                     aria-current={isActive(item.href) ? 'page' : undefined}
                   >
@@ -144,13 +144,13 @@ export function MobileNav({ navItems, rfqItem }: MobileNavProps) {
               ))}
               
               {/* RFQ button - prominent in mobile menu */}
-              <li className="mt-4 pt-4 border-t border-neutral/20">
+              <li className="mt-4 pt-4 border-t border-neutral/20 dark:border-dark-border/30">
                 <Link
                   href={rfqItem.href}
-                  className={`block rounded-lg px-4 py-3 min-h-[44px] text-lg font-semibold text-center transition-colors focus:outline-none focus:ring-2 focus:ring-primary ${
+                  className={`block rounded-lg px-4 py-3 min-h-[44px] text-lg font-semibold text-center transition-colors focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary ${
                     isActive(rfqItem.href)
-                      ? 'bg-primary-dark text-white'
-                      : 'bg-primary text-white hover:bg-primary-dark'
+                      ? 'bg-primary-dark text-white dark:bg-dark-secondary'
+                      : 'bg-primary text-white hover:bg-primary-dark dark:bg-dark-primary dark:hover:bg-dark-secondary'
                   }`}
                   aria-current={isActive(rfqItem.href) ? 'page' : undefined}
                 >

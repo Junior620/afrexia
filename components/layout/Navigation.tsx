@@ -43,8 +43,8 @@ export function Navigation({ locale, navItems, rfqItem }: NavigationProps) {
                 href={item.href}
                 className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                   isActive(item.href)
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-neutral hover:bg-light hover:text-primary'
+                    ? 'bg-primary/10 text-primary dark:bg-dark-primary/20 dark:text-dark-primary'
+                    : 'text-neutral hover:bg-light hover:text-primary dark:text-dark-text-secondary dark:hover:bg-dark-bg-secondary dark:hover:text-dark-primary'
                 }`}
                 aria-current={isActive(item.href) ? 'page' : undefined}
               >

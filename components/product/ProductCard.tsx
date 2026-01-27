@@ -84,16 +84,16 @@ export function ProductCard({ product, locale }: ProductCardProps) {
   return (
     <Link
       href={`/${locale}/products/${slug}`}
-      className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow overflow-hidden block"
+      className="group bg-white dark:bg-dark-bg-secondary rounded-xl shadow-md hover:shadow-xl transition-shadow overflow-hidden block"
     >
       {/* Image */}
-      <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+      <div className="relative aspect-[4/3] overflow-hidden bg-muted dark:bg-dark-bg-tertiary">
         <Image
           src={imageUrl || '/assets/placeholder.svg'}
           alt={imageAlt}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
+          className="object-cover group-hover:scale-105 transition-transform duration-300 dark:border dark:border-dark-border/20"
         />
         
         {/* Availability badge */}
@@ -107,17 +107,17 @@ export function ProductCard({ product, locale }: ProductCardProps) {
       {/* Content */}
       <div className="p-6">
         {/* Category */}
-        <div className="text-sm text-primary font-semibold mb-2">
+        <div className="text-sm text-primary dark:text-dark-primary font-semibold mb-2">
           {categoryLabel}
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+        <h3 className="text-xl font-bold text-foreground dark:text-dark-text-primary mb-2 group-hover:text-primary dark:group-hover:text-dark-primary transition-colors">
           {name}
         </h3>
 
         {/* Description */}
-        <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+        <p className="text-muted-foreground dark:text-dark-text-muted text-sm mb-4 line-clamp-3">
           {description}
         </p>
 
@@ -127,7 +127,7 @@ export function ProductCard({ product, locale }: ProductCardProps) {
             {product.certifications.slice(0, 3).map((cert) => (
               <div
                 key={cert._id}
-                className="inline-flex items-center gap-1 bg-light rounded-full px-3 py-1"
+                className="inline-flex items-center gap-1 bg-light dark:bg-dark-bg-tertiary rounded-full px-3 py-1"
                 title={cert.name}
               >
                 {cert.logo && (
@@ -139,11 +139,11 @@ export function ProductCard({ product, locale }: ProductCardProps) {
                     className="object-contain"
                   />
                 )}
-                <span className="text-xs text-foreground">{cert.name}</span>
+                <span className="text-xs text-foreground dark:text-dark-text-primary">{cert.name}</span>
               </div>
             ))}
             {product.certifications.length > 3 && (
-              <span className="text-xs text-muted-foreground">
+              <span className="text-xs text-muted-foreground dark:text-dark-text-muted">
                 +{product.certifications.length - 3}
               </span>
             )}
@@ -151,7 +151,7 @@ export function ProductCard({ product, locale }: ProductCardProps) {
         )}
 
         {/* CTA */}
-        <div className="flex items-center text-primary font-semibold text-sm group-hover:gap-2 transition-all">
+        <div className="flex items-center text-primary dark:text-dark-primary font-semibold text-sm group-hover:gap-2 transition-all">
           <span>{locale === 'fr' ? 'Voir les détails' : 'View Details'}</span>
           <svg
             className="w-4 h-4 group-hover:translate-x-1 transition-transform"

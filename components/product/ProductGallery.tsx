@@ -136,13 +136,13 @@ export function ProductGallery({ images, productName, locale }: ProductGalleryPr
   return (
     <div className="space-y-4">
       {/* Main Image */}
-      <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-muted group">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-muted dark:bg-dark-bg-tertiary group">
         <Image
           src={mainImageUrl || '/assets/placeholder.svg'}
           alt={mainImageAlt}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover cursor-pointer"
+          className="object-cover cursor-pointer dark:border dark:border-dark-border/20"
           onClick={() => openLightbox(selectedIndex)}
           priority={selectedIndex === 0}
         />
@@ -211,8 +211,8 @@ export function ProductGallery({ images, productName, locale }: ProductGalleryPr
                 onClick={() => setSelectedIndex(index)}
                 className={`relative aspect-[4/3] overflow-hidden rounded-lg border-2 transition-all ${
                   index === selectedIndex
-                    ? 'border-primary ring-2 ring-primary ring-offset-2'
-                    : 'border-border hover:border-border'
+                    ? 'border-primary ring-2 ring-primary ring-offset-2 dark:ring-offset-dark-bg-primary'
+                    : 'border-border dark:border-dark-border hover:border-border dark:hover:border-dark-border'
                 }`}
                 aria-label={`${locale === 'fr' ? 'Voir l\'image' : 'View image'} ${index + 1}`}
               >
@@ -221,7 +221,7 @@ export function ProductGallery({ images, productName, locale }: ProductGalleryPr
                   alt={thumbAlt}
                   fill
                   sizes="(max-width: 768px) 25vw, 150px"
-                  className="object-cover"
+                  className="object-cover dark:opacity-90"
                 />
               </button>
             );

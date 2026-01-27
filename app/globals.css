@@ -140,6 +140,59 @@
     --radius: 0.5rem;
   }
 
+  .dark {
+    /* Dark mode base colors */
+    --background: 142 30% 6%; /* #0A1410 */
+    --foreground: 120 50% 92%; /* #E8F5E9 */
+    
+    /* Dark mode card colors */
+    --card: 142 20% 13%; /* #1A2820 */
+    --card-foreground: 120 50% 92%;
+    
+    /* Dark mode popover colors */
+    --popover: 142 20% 13%;
+    --popover-foreground: 120 50% 92%;
+    
+    /* Dark mode primary (using secondary green #4A9A62 for better contrast) */
+    --primary: 142 35% 45%;
+    --primary-foreground: 0 0% 98%;
+    
+    /* Dark mode secondary (lighter green #5AAA72) */
+    --secondary: 142 35% 52%;
+    --secondary-foreground: 0 0% 98%;
+    
+    /* Dark mode muted */
+    --muted: 142 15% 18%;
+    --muted-foreground: 120 30% 70%;
+    
+    /* Dark mode accent (lighter gold #A89858) */
+    --accent: 45 35% 50%;
+    --accent-foreground: 142 30% 6%;
+    
+    /* Dark mode destructive */
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    
+    /* Dark mode success */
+    --success: 142 35% 45%;
+    --success-foreground: 0 0% 98%;
+    
+    /* Dark mode warning */
+    --warning: 45 35% 50%;
+    --warning-foreground: 142 30% 6%;
+    
+    /* Dark mode info */
+    --info: 100 20% 58%;
+    --info-foreground: 142 30% 6%;
+    
+    /* Dark mode border (further lightened for 3:1 contrast) */
+    --border: 142 15% 47%;
+    --input: 142 15% 47%;
+    
+    /* Dark mode ring */
+    --ring: 142 35% 45%;
+  }
+
   * {
     @apply border-border;
   }
@@ -147,6 +200,24 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+  
+  /* Theme transition styles */
+  *,
+  *::before,
+  *::after {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+  
+  /* Respect reduced motion preference for theme transitions */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0ms !important;
+    }
   }
 }
 
@@ -228,6 +299,18 @@ svg {
   height: auto;
 }
 
+/* Dark mode image styling for better visibility */
+.dark img:not([class*="logo"]) {
+  /* Add subtle border to images in dark mode for definition */
+  border-color: rgba(128, 153, 111, 0.2);
+}
+
+/* Ensure product and content images remain visible on dark backgrounds */
+.dark .aspect-ratio img,
+.dark [class*="aspect-"] img {
+  opacity: 0.95;
+}
+
 /* Responsive container max-widths */
 .container {
   width: 100%;
@@ -305,6 +388,10 @@ html {
 *:focus-visible {
   outline: 2px solid #194424;
   outline-offset: 2px;
+}
+
+.dark *:focus-visible {
+  outline-color: #4A9A62;
 }
 
 /* Skip to content link - screen reader only by default */

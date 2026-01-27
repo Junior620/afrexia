@@ -36,6 +36,26 @@ const config: Config = {
         support: '#80996F',
         neutral: '#B0BCA4',
         
+        // Dark mode specific colors
+        'dark-bg': {
+          primary: '#0A1410',
+          secondary: '#1A2820',
+          tertiary: '#141D18',
+        },
+        'dark-text': {
+          primary: '#E8F5E9',
+          secondary: '#B0D4B8',
+          muted: '#80996F',
+        },
+        'dark-border': '#6B8273', // Further lightened for 3:1 contrast
+        
+        // Dark mode brand color variants
+        'dark-primary': '#4A9A62', // Using secondary green for better contrast
+        'dark-secondary': '#5AAA72',
+        'dark-accent': '#A89858',
+        'dark-sand': '#5A7268', // Further lightened for 3:1 contrast
+        'dark-support': '#9AB08A',
+        
         // Semantic colors mapped to brand palette
         success: {
           DEFAULT: '#337A49', // secondary

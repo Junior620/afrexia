@@ -196,11 +196,11 @@ export function RFQForm({
 
   if (submitSuccess) {
     return (
-      <div className="rounded-lg bg-success-light p-6 text-center">
-        <h3 className="mb-2 text-2xl font-bold text-success-dark">
+      <div className="rounded-lg bg-success-light dark:bg-success-dark/20 p-6 text-center">
+        <h3 className="mb-2 text-2xl font-bold text-success-dark dark:text-success-light">
           {locale === 'fr' ? 'Demande envoyée !' : 'Request Sent!'}
         </h3>
-        <p className="text-success-dark">
+        <p className="text-success-dark dark:text-success-light">
           {locale === 'fr'
             ? 'Nous vous contacterons sous peu avec un devis personnalisé.'
             : "We'll contact you shortly with a customized quote."}
@@ -275,7 +275,7 @@ export function RFQForm({
             <select
               id="rfq-product"
               {...register('productId')}
-              className="w-full rounded-lg border border-border px-4 py-2"
+              className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary"
               aria-required="true"
               aria-invalid={errors.productId ? 'true' : 'false'}
               aria-describedby={errors.productId ? 'rfq-product-error' : undefined}
@@ -310,7 +310,7 @@ export function RFQForm({
                 inputMode="decimal"
                 step="0.01"
                 {...register('quantity', { valueAsNumber: true })}
-                className="w-full rounded-lg border border-border px-4 py-2"
+                className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary"
                 placeholder={locale === 'fr' ? 'Entrez la quantité' : 'Enter quantity'}
                 aria-required="true"
                 aria-invalid={errors.quantity ? 'true' : 'false'}
@@ -331,7 +331,7 @@ export function RFQForm({
               <select
                 id="rfq-quantity-unit"
                 {...register('quantityUnit')}
-                className="w-full rounded-lg border border-border px-4 py-2"
+                className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary"
                 aria-required="true"
                 aria-invalid={errors.quantityUnit ? 'true' : 'false'}
                 aria-describedby={errors.quantityUnit ? 'rfq-quantity-unit-error' : undefined}
@@ -383,7 +383,7 @@ export function RFQForm({
             </label>
             <select
               {...register('incoterm')}
-              className="w-full rounded-lg border border-border px-4 py-2"
+              className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary"
             >
               {incoterms.map((term) => (
                 <option key={term} value={term}>
@@ -406,7 +406,7 @@ export function RFQForm({
             <input
               type="text"
               {...register('destinationPort')}
-              className="w-full rounded-lg border border-border px-4 py-2"
+              className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary"
               placeholder={
                 locale === 'fr'
                   ? 'ex: Port de Rotterdam'
@@ -430,7 +430,7 @@ export function RFQForm({
             <input
               type="date"
               {...register('targetDate')}
-              className="w-full rounded-lg border border-border px-4 py-2"
+              className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary"
             />
             {errors.targetDate && (
               <p className="mt-1 text-sm text-destructive">
@@ -475,7 +475,7 @@ export function RFQForm({
                 type="text"
                 autoComplete="given-name"
                 {...register('firstName')}
-                className="w-full rounded-lg border border-border px-4 py-2"
+                className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary"
               />
               {errors.firstName && (
                 <p className="mt-1 text-sm text-destructive">
@@ -493,7 +493,7 @@ export function RFQForm({
                 type="text"
                 autoComplete="family-name"
                 {...register('lastName')}
-                className="w-full rounded-lg border border-border px-4 py-2"
+                className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary"
               />
               {errors.lastName && (
                 <p className="mt-1 text-sm text-destructive">
@@ -512,7 +512,7 @@ export function RFQForm({
               inputMode="email"
               autoComplete="email"
               {...register('email')}
-              className="w-full rounded-lg border border-border px-4 py-2"
+              className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary"
             />
             {errors.email && (
               <p className="mt-1 text-sm text-destructive">
@@ -531,7 +531,7 @@ export function RFQForm({
               inputMode="tel"
               autoComplete="tel"
               {...register('phone')}
-              className="w-full rounded-lg border border-border px-4 py-2"
+              className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary"
               placeholder="+1234567890"
             />
             {errors.phone && (
@@ -550,7 +550,7 @@ export function RFQForm({
               type="text"
               autoComplete="organization"
               {...register('company')}
-              className="w-full rounded-lg border border-border px-4 py-2"
+              className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary"
             />
             {errors.company && (
               <p className="mt-1 text-sm text-destructive">
@@ -568,7 +568,7 @@ export function RFQForm({
               type="text"
               autoComplete="country-name"
               {...register('country')}
-              className="w-full rounded-lg border border-border px-4 py-2"
+              className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary"
             />
             {errors.country && (
               <p className="mt-1 text-sm text-destructive">
@@ -586,7 +586,7 @@ export function RFQForm({
             <textarea
               {...register('message')}
               rows={4}
-              className="w-full rounded-lg border border-border px-4 py-2"
+              className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary"
               placeholder={
                 locale === 'fr'
                   ? 'Exigences spécifiques ou questions...'
@@ -636,7 +636,7 @@ export function RFQForm({
             <button
               type="submit"
               disabled={isSubmitting}
-              className="flex-1 rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-dark disabled:opacity-50"
+              className="flex-1 rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-dark dark:bg-dark-primary dark:hover:bg-dark-secondary disabled:opacity-50"
             >
               {isSubmitting
                 ? locale === 'fr'
@@ -651,7 +651,7 @@ export function RFQForm({
           <button
             type="button"
             onClick={handleClearDraft}
-            className="w-full text-sm text-muted-foreground hover:text-foreground"
+            className="w-full text-sm text-muted-foreground dark:text-dark-text-muted hover:text-foreground dark:hover:text-dark-text-primary"
           >
             {locale === 'fr' ? 'Effacer le brouillon' : 'Clear draft'}
           </button>
