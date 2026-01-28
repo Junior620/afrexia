@@ -28,6 +28,9 @@ export default defineType({
       fields: [
         { name: 'fr', type: 'string', title: 'French' },
         { name: 'en', type: 'string', title: 'English' },
+        { name: 'es', type: 'string', title: 'Spanish' },
+        { name: 'de', type: 'string', title: 'German' },
+        { name: 'ru', type: 'string', title: 'Russian' },
       ],
       validation: (Rule) => Rule.required(),
     }),
@@ -55,6 +58,9 @@ export default defineType({
       fields: [
         { name: 'fr', type: 'blockContent', title: 'French' },
         { name: 'en', type: 'blockContent', title: 'English' },
+        { name: 'es', type: 'blockContent', title: 'Spanish' },
+        { name: 'de', type: 'blockContent', title: 'German' },
+        { name: 'ru', type: 'blockContent', title: 'Russian' },
       ],
     }),
     defineField({

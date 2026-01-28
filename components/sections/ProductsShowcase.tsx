@@ -57,13 +57,56 @@ export function ProductsShowcase({ products, locale }: ProductsShowcaseProps) {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <ScrollReveal animation="fade">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary dark:text-dark-primary mb-4">
               {t.title}
             </h2>
             <p className="text-lg md:text-xl text-neutral dark:text-dark-text-secondary max-w-2xl mx-auto">
               {t.subtitle}
             </p>
+          </div>
+        </ScrollReveal>
+
+        {/* Trust Bar - B2B Proof */}
+        <ScrollReveal animation="fade">
+          <div className="bg-light dark:bg-dark-bg-secondary rounded-xl p-6 mb-12 border border-neutral/10 dark:border-dark-border/20">
+            <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
+              <div className="flex items-center gap-2 text-neutral dark:text-dark-text-secondary">
+                <svg className="w-5 h-5 text-primary dark:text-dark-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                <span className="font-semibold text-foreground dark:text-dark-text-primary">
+                  {locale === 'fr' ? '8+ Certifications' : locale === 'es' ? '8+ Certificaciones' : locale === 'de' ? '8+ Zertifizierungen' : locale === 'ru' ? '8+ Сертификатов' : '8+ Certifications'}
+                </span>
+              </div>
+              <div className="hidden sm:block w-px h-6 bg-neutral/20 dark:bg-dark-border/20"></div>
+              <div className="flex items-center gap-2 text-neutral dark:text-dark-text-secondary">
+                <svg className="w-5 h-5 text-primary dark:text-dark-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                </svg>
+                <span className="font-semibold text-foreground dark:text-dark-text-primary">
+                  {locale === 'fr' ? '100% Traçabilité' : locale === 'es' ? '100% Trazabilidad' : locale === 'de' ? '100% Rückverfolgbarkeit' : locale === 'ru' ? '100% Отслеживаемость' : '100% Traceability'}
+                </span>
+              </div>
+              <div className="hidden sm:block w-px h-6 bg-neutral/20 dark:bg-dark-border/20"></div>
+              <div className="flex items-center gap-2 text-neutral dark:text-dark-text-secondary">
+                <svg className="w-5 h-5 text-primary dark:text-dark-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span className="font-semibold text-foreground dark:text-dark-text-primary">
+                  {locale === 'fr' ? 'Documentation QA' : locale === 'es' ? 'Documentación QA' : locale === 'de' ? 'QA-Dokumentation' : locale === 'ru' ? 'Документация QA' : 'QA Documentation'}
+                </span>
+              </div>
+              <div className="hidden sm:block w-px h-6 bg-neutral/20 dark:bg-dark-border/20"></div>
+              <div className="flex items-center gap-2 text-neutral dark:text-dark-text-secondary">
+                <svg className="w-5 h-5 text-primary dark:text-dark-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="font-semibold text-foreground dark:text-dark-text-primary">
+                  {locale === 'fr' ? 'EUDR-Ready' : locale === 'es' ? 'EUDR-Ready' : locale === 'de' ? 'EUDR-Ready' : locale === 'ru' ? 'EUDR-Ready' : 'EUDR-Ready'}
+                </span>
+              </div>
+            </div>
           </div>
         </ScrollReveal>
 
