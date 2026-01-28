@@ -77,8 +77,7 @@ export default defineType({
       name: 'i18nId',
       title: 'Translation ID',
       type: 'string',
-      description: 'Unique ID to link FR and EN versions of the same product',
-      validation: (Rule) => Rule.required(),
+      description: 'Unique ID to link translations of the same product across languages (optional)',
     }),
     defineField({
       name: 'category',
