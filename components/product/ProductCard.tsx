@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Locale } from '@/types';
@@ -50,77 +51,57 @@ interface ProductCardProps {
       coordinates?: any;
       description?: any;
     }>;
+    specificationPDF?: {
+      asset?: {
+        url?: string;
+      };
+    };
   };
   locale: Locale;
+  variant?: 'standard' | 'featured';
 }
 
-export function ProductCard({ product, locale }: ProductCardProps) {
+export function ProductCard({ product, locale, variant = 'standard' }: ProductCardProps) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
   const name = product.name[locale] || product.name.en;
   const slug = product.slug[locale]?.current || product.slug.en.current;
   
-  // Extract plain text from block content description
-  const getDescriptionText = (description: any): string => {
-    if (typeof description === 'string') return description;
-    if (Array.isArray(description)) {
-      return description
-        .filter((block: any) => block._type === 'block')
-        .map((block: any) => 
-          block.children
-            ?.filter((child: any) => child._type === 'span')
-            .map((child: any) => child.text)
-            .join('')
-        )
-        .join(' ')
-        .slice(0, 100) + '...';
+  // Get all images from gallery
+  const galleryImages = product.gallery || [];
+  const hasMultipleImages = galleryImages.length > 1;
+
+  // Current image - higher quality
+  const currentImage = galleryImages[currentImageIndex];
+  const imageUrl = currentImage ? urlFor(currentImage)?.width(1200).height(900).quality(90).url() : '/assets/placeholder.svg';
+  const imageAlt = currentImage?.alt || name;
+
+  // Carousel effect on hover
+  useEffect(() => {
+    if (isHovered && hasMultipleImages) {
+      // Start carousel - cycle through images every 1.5 seconds
+      intervalRef.current = setInterval(() => {
+        setCurrentImageIndex((prevIndex) => 
+          prevIndex === galleryImages.length - 1 ? 0 : prevIndex + 1
+        );
+      }, 1500);
+    } else {
+      // Stop carousel and reset to first image
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+      setCurrentImageIndex(0);
     }
-    return '';
-  };
 
-  const description = getDescriptionText(product.description[locale] || product.description.en);
-  
-  // Get first image from gallery
-  const mainImage = product.gallery?.[0];
-  const imageUrl = mainImage ? urlFor(mainImage)?.width(600).height(400).url() : '/assets/placeholder.svg';
-  const imageAlt = mainImage?.alt || name;
-
-  // Availability badge
-  const availabilityLabels: Record<string, { fr: string; en: string; es: string; de: string; ru: string; color: string }> = {
-    in_stock: { 
-      fr: 'En stock', 
-      en: 'In Stock', 
-      es: 'En Stock',
-      de: 'Auf Lager',
-      ru: 'В наличии',
-      color: 'bg-success/10 text-success border border-success/20' 
-    },
-    pre_order: { 
-      fr: 'Pré-commande', 
-      en: 'Pre-Order', 
-      es: 'Pre-Pedido',
-      de: 'Vorbestellung',
-      ru: 'Предзаказ',
-      color: 'bg-info/10 text-info border border-info/20' 
-    },
-    seasonal: { 
-      fr: 'Saisonnier', 
-      en: 'Seasonal', 
-      es: 'Estacional',
-      de: 'Saisonal',
-      ru: 'Сезонный',
-      color: 'bg-warning/10 text-warning border border-warning/20' 
-    },
-    out_of_stock: { 
-      fr: 'Rupture', 
-      en: 'Out of Stock', 
-      es: 'Agotado',
-      de: 'Ausverkauft',
-      ru: 'Нет в наличии',
-      color: 'bg-muted/10 text-muted-foreground border border-muted/20' 
-    },
-  };
-
-  const availabilityInfo = availabilityLabels[product.availability] || availabilityLabels.in_stock;
-  const availabilityLabel = availabilityInfo[locale] || availabilityInfo.en;
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isHovered, hasMultipleImages, galleryImages.length]);
 
   // Category labels
   const categoryLabels: Record<string, { fr: string; en: string; es: string; de: string; ru: string }> = {
@@ -136,172 +117,334 @@ export function ProductCard({ product, locale }: ProductCardProps) {
   // B2B Info labels
   const b2bLabels = {
     fr: {
-      origin: 'Origine',
-      moq: 'MOQ',
-      incoterms: 'Incoterms',
       requestQuote: 'Demander un devis',
       specSheet: 'Fiche technique',
+      viewDetails: 'Voir détails',
+      traceable: 'Traçable',
+      eudrReady: 'EUDR Ready',
+      certified: 'Certifié',
+      availableNow: 'Disponible',
+      seasonal: 'Saisonnier',
+      preOrder: 'Pré-commande',
+      onRequest: 'Sur demande',
+      multiOrigin: 'Multi-origine',
+      flexible: 'Flexible',
+      premiumGrade: 'Qualité Premium',
+      origin: 'Origine',
+      moqLabel: 'MOQ',
+      incotermsLabel: 'Incoterms',
+      responseTime: 'Réponse sous 24h',
     },
     en: {
-      origin: 'Origin',
-      moq: 'MOQ',
-      incoterms: 'Incoterms',
       requestQuote: 'Request Quote',
       specSheet: 'Spec Sheet',
+      viewDetails: 'View Details',
+      traceable: 'Traceable',
+      eudrReady: 'EUDR Ready',
+      certified: 'Certified',
+      availableNow: 'Available',
+      seasonal: 'Seasonal',
+      preOrder: 'Pre-Order',
+      onRequest: 'On Request',
+      multiOrigin: 'Multi-origin',
+      flexible: 'Flexible',
+      premiumGrade: 'Premium Grade',
+      origin: 'Origin',
+      moqLabel: 'MOQ',
+      incotermsLabel: 'Incoterms',
+      responseTime: 'Reply within 24h',
     },
     es: {
-      origin: 'Origen',
-      moq: 'MOQ',
-      incoterms: 'Incoterms',
       requestQuote: 'Solicitar Cotización',
       specSheet: 'Ficha Técnica',
+      viewDetails: 'Ver Detalles',
+      traceable: 'Trazable',
+      eudrReady: 'EUDR Ready',
+      certified: 'Certificado',
+      availableNow: 'Disponible',
+      seasonal: 'Estacional',
+      preOrder: 'Pre-Pedido',
+      onRequest: 'Bajo Pedido',
+      multiOrigin: 'Multi-origen',
+      flexible: 'Flexible',
+      premiumGrade: 'Calidad Premium',
+      origin: 'Origen',
+      moqLabel: 'MOQ',
+      incotermsLabel: 'Incoterms',
+      responseTime: 'Respuesta en 24h',
     },
     de: {
-      origin: 'Herkunft',
-      moq: 'MOQ',
-      incoterms: 'Incoterms',
       requestQuote: 'Angebot Anfordern',
       specSheet: 'Datenblatt',
+      viewDetails: 'Details Ansehen',
+      traceable: 'Rückverfolgbar',
+      eudrReady: 'EUDR Ready',
+      certified: 'Zertifiziert',
+      availableNow: 'Verfügbar',
+      seasonal: 'Saisonal',
+      preOrder: 'Vorbestellung',
+      onRequest: 'Auf Anfrage',
+      multiOrigin: 'Multi-Herkunft',
+      flexible: 'Flexibel',
+      premiumGrade: 'Premium-Qualität',
+      origin: 'Herkunft',
+      moqLabel: 'MOQ',
+      incotermsLabel: 'Incoterms',
+      responseTime: 'Antwort in 24h',
     },
     ru: {
-      origin: 'Происхождение',
-      moq: 'MOQ',
-      incoterms: 'Инкотермс',
       requestQuote: 'Запросить Предложение',
       specSheet: 'Спецификация',
+      viewDetails: 'Подробнее',
+      traceable: 'Отслеживаемый',
+      eudrReady: 'EUDR Ready',
+      certified: 'Сертифицировано',
+      availableNow: 'Доступно',
+      seasonal: 'Сезонный',
+      preOrder: 'Предзаказ',
+      onRequest: 'По запросу',
+      multiOrigin: 'Мульти-происхождение',
+      flexible: 'Гибкий',
+      premiumGrade: 'Премиум Качество',
+      origin: 'Происхождение',
+      moqLabel: 'MOQ',
+      incotermsLabel: 'Incoterms',
+      responseTime: 'Ответ в течение 24ч',
     },
   };
 
   const t = b2bLabels[locale] || b2bLabels.en;
 
-  // Get origin (first region)
-  const origin = product.originRegions?.[0]?.region || null;
+  // SMART FALLBACKS - No "—" allowed!
+  
+  // Origin with fallback
+  const origin = product.originRegions?.[0]?.region || t.multiOrigin;
 
-  // Get incoterms (first 2)
-  const incoterms = product.incoterms?.slice(0, 2).join(', ') || null;
+  // MOQ with fallback
+  const moq = product.moq || t.onRequest;
+
+  // Incoterms with fallback
+  const incoterms = product.incoterms?.slice(0, 2).join('/') || t.flexible;
+
+  // Availability with smart text and styling (more subtle colors)
+  const availabilityConfig = {
+    in_stock: { 
+      text: t.availableNow, 
+      color: 'bg-[#337A49]/80 text-white',
+      icon: '●'
+    },
+    seasonal: { 
+      text: t.seasonal, 
+      color: 'bg-[#655E2C]/80 text-white',
+      icon: '●'
+    },
+    pre_order: { 
+      text: t.preOrder, 
+      color: 'bg-[#80996F]/80 text-white',
+      icon: '●'
+    },
+    out_of_stock: { 
+      text: t.onRequest, 
+      color: 'bg-neutral/60 dark:bg-neutral/50 text-white',
+      icon: '●'
+    },
+  };
+
+  const availability = availabilityConfig[product.availability as keyof typeof availabilityConfig] || availabilityConfig.in_stock;
+
+  // Compliance badges (smaller, more discrete)
+  const complianceBadges = [];
+  
+  // Check if traceable (has origin regions)
+  if (product.originRegions && product.originRegions.length > 0) {
+    complianceBadges.push({
+      label: t.traceable,
+      icon: '✓',
+    });
+  }
+  
+  // Always show EUDR Ready for commodities
+  complianceBadges.push({
+    label: t.eudrReady,
+    icon: '',
+  });
+
+  // Limit to 1 badge for cleaner look
+  const displayBadges = complianceBadges.slice(0, 1);
+
+  // Trust chips (certifications)
+  const trustChips = [];
+  if (product.certifications && product.certifications.length > 0) {
+    product.certifications.slice(0, 3).forEach((cert) => {
+      const certName = typeof cert.name === 'object' 
+        ? (cert.name[locale] || cert.name.en)
+        : cert.name;
+      trustChips.push(certName);
+    });
+  }
+
+  // Subtitle generation (category + grade)
+  const subtitle = `${categoryLabel} • ${t.premiumGrade}`;
+
+  // PDF URL
+  const pdfUrl = product.specificationPDF?.asset?.url;
 
   return (
-    <div className="group bg-white dark:bg-dark-bg-secondary rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full border border-neutral/10 dark:border-dark-border/20">
-      {/* Image */}
-      <div className="relative aspect-[4/3] overflow-hidden bg-muted dark:bg-dark-bg-tertiary">
+    <div 
+      className="group relative bg-white dark:bg-dark-bg-secondary rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2 animate-float"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Image with Enhanced Gradient Overlay - 4:3 ratio */}
+      <div className="relative aspect-[4/3] overflow-hidden">
         <Image
+          key={currentImageIndex} // Force re-render on image change
           src={imageUrl || '/assets/placeholder.svg'}
           alt={imageAlt}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          className="object-cover group-hover:scale-110 transition-all duration-700"
         />
         
-        {/* Availability badge - premium style */}
-        <div className="absolute top-3 right-3">
-          <span className={`px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm ${availabilityInfo.color}`}>
-            {availabilityLabel}
-          </span>
-        </div>
-      </div>
+        {/* Lighter gradient overlay - only at bottom for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
 
-      {/* Content */}
-      <div className="p-5 flex flex-col flex-grow">
-        {/* Category */}
-        <div className="text-xs uppercase tracking-wider text-primary dark:text-dark-primary font-semibold mb-2">
-          {categoryLabel}
-        </div>
-
-        {/* Title */}
-        <h3 className="text-lg font-bold text-foreground dark:text-dark-text-primary mb-2 group-hover:text-primary dark:group-hover:text-dark-primary transition-colors line-clamp-2">
-          {name}
-        </h3>
-
-        {/* Description */}
-        <p className="text-muted-foreground dark:text-dark-text-muted text-sm mb-4 line-clamp-2 flex-grow">
-          {description}
-        </p>
-
-        {/* B2B Specs - 3 key infos */}
-        <div className="mb-4 space-y-2 text-sm">
-          {origin && (
-            <div className="flex items-center gap-2 text-neutral dark:text-dark-text-secondary">
-              <svg className="w-4 h-4 text-primary dark:text-dark-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <span className="font-medium text-xs">{t.origin}:</span>
-              <span className="text-foreground dark:text-dark-text-primary font-semibold">{origin}</span>
-            </div>
-          )}
-          {product.moq && (
-            <div className="flex items-center gap-2 text-neutral dark:text-dark-text-secondary">
-              <svg className="w-4 h-4 text-primary dark:text-dark-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-              </svg>
-              <span className="font-medium text-xs">{t.moq}:</span>
-              <span className="text-foreground dark:text-dark-text-primary font-semibold">{product.moq}</span>
-            </div>
-          )}
-          {incoterms && (
-            <div className="flex items-center gap-2 text-neutral dark:text-dark-text-secondary">
-              <svg className="w-4 h-4 text-primary dark:text-dark-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              <span className="font-medium text-xs">{t.incoterms}:</span>
-              <span className="text-foreground dark:text-dark-text-primary font-semibold">{incoterms}</span>
-            </div>
-          )}
-        </div>
-
-        {/* Certifications badges */}
-        {product.certifications && product.certifications.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            {product.certifications.slice(0, 3).map((cert) => {
-              const certName = typeof cert.name === 'object' ? (cert.name[locale] || cert.name.en) : cert.name;
-              return (
-                <div
-                  key={cert._id}
-                  className="inline-flex items-center gap-1.5 bg-light dark:bg-dark-bg-tertiary rounded-md px-2 py-1 border border-neutral/10 dark:border-dark-border/20"
-                  title={certName}
-                >
-                  {cert.logo && (
-                    <Image
-                      src={urlFor(cert.logo)?.width(24).height(24).url() || ''}
-                      alt={certName}
-                      width={14}
-                      height={14}
-                      className="object-contain"
-                    />
-                  )}
-                  <span className="text-xs font-medium text-foreground dark:text-dark-text-primary">{certName}</span>
-                </div>
-              );
-            })}
-            {product.certifications.length > 3 && (
-              <span className="text-xs text-muted-foreground dark:text-dark-text-muted self-center">
-                +{product.certifications.length - 3}
-              </span>
-            )}
+        {/* Image counter indicator (if multiple images) */}
+        {hasMultipleImages && isHovered && (
+          <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded-md text-[9px] font-semibold z-20">
+            {currentImageIndex + 1} / {galleryImages.length}
           </div>
         )}
 
-        {/* CTAs - B2B style */}
-        <div className="flex flex-col sm:flex-row gap-2 mt-auto pt-4 border-t border-neutral/10 dark:border-dark-border/20">
-          <Link
-            href={`/${locale}/rfq?product=${slug}`}
-            className="flex-1 inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark dark:bg-dark-primary dark:hover:bg-dark-primary/90 text-white px-4 py-2.5 rounded-lg font-semibold text-sm transition-all duration-200 shadow-sm hover:shadow-md"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-            </svg>
-            {t.requestQuote}
-          </Link>
-          <Link
-            href={`/${locale}/products/${slug}`}
-            className="flex-1 inline-flex items-center justify-center gap-2 bg-white dark:bg-dark-bg-tertiary hover:bg-light dark:hover:bg-dark-bg-primary text-primary dark:text-dark-primary border border-primary/20 dark:border-dark-primary/20 px-4 py-2.5 rounded-lg font-semibold text-sm transition-all duration-200"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            {t.specSheet}
-          </Link>
+        {/* Top Row: Compliance Badge (Left) + Availability Status (Right) - Smaller */}
+        <div className="absolute top-3 left-3 right-3 flex justify-between items-start gap-2 z-10">
+          {/* Left: Single compliance badge (smaller) */}
+          {displayBadges.map((badge, index) => (
+            <span
+              key={index}
+              className="bg-[#194424]/80 dark:bg-[#194424]/85 backdrop-blur-sm text-white px-2.5 py-1 rounded-md text-[10px] font-semibold border border-white/10 shadow-sm flex items-center gap-1"
+            >
+              {badge.icon && <span className="text-[8px]">{badge.icon}</span>}
+              <span>{badge.label}</span>
+            </span>
+          ))}
+          
+          {/* Right: Availability status (smaller, more subtle) */}
+          <span className={`${availability.color} backdrop-blur-sm px-2.5 py-1 rounded-md text-[10px] font-semibold shadow-sm whitespace-nowrap flex items-center gap-1`}>
+            <span className="text-[6px]">{availability.icon}</span>
+            <span>{availability.text}</span>
+          </span>
+        </div>
+
+        {/* Content Overlay - Bottom */}
+        <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
+          {/* Title + Subtitle */}
+          <div className="mb-3">
+            <h3 className="text-2xl font-bold text-white mb-0.5 line-clamp-1 tracking-tight">
+              {name}
+            </h3>
+            <p className="text-xs text-white/80 font-medium line-clamp-1">
+              {subtitle}
+            </p>
+          </div>
+
+          {/* Trust Chips (Certifications) - if available */}
+          {trustChips.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mb-3">
+              {trustChips.map((chip, index) => (
+                <span
+                  key={index}
+                  className="bg-white/15 backdrop-blur-sm text-white px-2 py-0.5 rounded text-[9px] font-semibold border border-white/10"
+                >
+                  ✓ {chip}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {/* Decision Data - 3 columns with stronger values */}
+          <div className="bg-black/50 backdrop-blur-md rounded-xl p-3 mb-3 border border-white/10">
+            <div className="grid grid-cols-3 gap-2.5 text-white">
+              {/* Origin */}
+              <div className="flex flex-col">
+                <span className="text-[9px] uppercase tracking-wider text-white/50 font-semibold mb-0.5">
+                  {t.origin}
+                </span>
+                <span className="text-sm font-bold line-clamp-1">
+                  {origin}
+                </span>
+              </div>
+              
+              {/* MOQ */}
+              <div className="flex flex-col border-l border-white/10 pl-2.5">
+                <span className="text-[9px] uppercase tracking-wider text-white/50 font-semibold mb-0.5">
+                  {t.moqLabel}
+                </span>
+                <span className="text-sm font-bold line-clamp-1">
+                  {moq}
+                </span>
+              </div>
+              
+              {/* Incoterms */}
+              <div className="flex flex-col border-l border-white/10 pl-2.5">
+                <span className="text-[9px] uppercase tracking-wider text-white/50 font-semibold mb-0.5">
+                  {t.incotermsLabel}
+                </span>
+                <span className="text-sm font-bold line-clamp-1">
+                  {incoterms}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Actions: Primary + Secondary CTAs */}
+          <div className="space-y-2">
+            {/* Primary CTA */}
+            <Link
+              href={`/${locale}/rfq?product=${slug}`}
+              className="w-full bg-[#194424] hover:bg-[#194424]/90 dark:bg-[#337A49] dark:hover:bg-[#337A49]/90 text-white px-4 py-2.5 rounded-xl font-semibold text-sm inline-flex items-center justify-center gap-2 transition-all duration-200 shadow-lg hover:shadow-xl"
+            >
+              {t.requestQuote}
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+
+            {/* Secondary CTA + Micro-proof */}
+            <div className="flex items-center justify-between gap-2">
+              {/* Secondary CTA - Spec Sheet or View Details */}
+              {pdfUrl ? (
+                <a
+                  href={pdfUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 bg-transparent hover:bg-white/10 border border-white/30 hover:border-white/50 text-white px-3 py-2 rounded-lg font-medium text-xs inline-flex items-center justify-center gap-1.5 transition-all duration-200"
+                  title={t.specSheet}
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>{t.specSheet}</span>
+                </a>
+              ) : (
+                <Link
+                  href={`/${locale}/products/${slug}`}
+                  className="flex-1 bg-transparent hover:bg-white/10 border border-white/30 hover:border-white/50 text-white px-3 py-2 rounded-lg font-medium text-xs inline-flex items-center justify-center gap-1.5 transition-all duration-200"
+                  title={t.viewDetails}
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>{t.viewDetails}</span>
+                </Link>
+              )}
+
+              {/* Micro-proof */}
+              <span className="text-white/70 text-[9px] font-medium whitespace-nowrap">
+                {t.responseTime}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
