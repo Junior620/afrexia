@@ -81,14 +81,12 @@ export function ProductCard({ product, locale, variant = 'standard' }: ProductCa
   // Carousel effect on hover
   useEffect(() => {
     if (isHovered && hasMultipleImages) {
-      // Start carousel - cycle through images every 1.5 seconds
       intervalRef.current = setInterval(() => {
         setCurrentImageIndex((prevIndex) => 
           prevIndex === galleryImages.length - 1 ? 0 : prevIndex + 1
         );
       }, 1500);
     } else {
-      // Stop carousel and reset to first image
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
         intervalRef.current = null;
@@ -119,7 +117,7 @@ export function ProductCard({ product, locale, variant = 'standard' }: ProductCa
     fr: {
       requestQuote: 'Demander un devis',
       specSheet: 'Fiche technique',
-      viewDetails: 'Voir détails',
+      viewSpecs: 'Voir spécifications',
       traceable: 'Traçable',
       eudrReady: 'EUDR Ready',
       certified: 'Certifié',
@@ -138,7 +136,7 @@ export function ProductCard({ product, locale, variant = 'standard' }: ProductCa
     en: {
       requestQuote: 'Request Quote',
       specSheet: 'Spec Sheet',
-      viewDetails: 'View Details',
+      viewSpecs: 'View Specifications',
       traceable: 'Traceable',
       eudrReady: 'EUDR Ready',
       certified: 'Certified',
@@ -157,7 +155,7 @@ export function ProductCard({ product, locale, variant = 'standard' }: ProductCa
     es: {
       requestQuote: 'Solicitar Cotización',
       specSheet: 'Ficha Técnica',
-      viewDetails: 'Ver Detalles',
+      viewSpecs: 'Ver Especificaciones',
       traceable: 'Trazable',
       eudrReady: 'EUDR Ready',
       certified: 'Certificado',
@@ -176,7 +174,7 @@ export function ProductCard({ product, locale, variant = 'standard' }: ProductCa
     de: {
       requestQuote: 'Angebot Anfordern',
       specSheet: 'Datenblatt',
-      viewDetails: 'Details Ansehen',
+      viewSpecs: 'Spezifikationen Ansehen',
       traceable: 'Rückverfolgbar',
       eudrReady: 'EUDR Ready',
       certified: 'Zertifiziert',
@@ -195,7 +193,7 @@ export function ProductCard({ product, locale, variant = 'standard' }: ProductCa
     ru: {
       requestQuote: 'Запросить Предложение',
       specSheet: 'Спецификация',
-      viewDetails: 'Подробнее',
+      viewSpecs: 'Посмотреть Спецификации',
       traceable: 'Отслеживаемый',
       eudrReady: 'EUDR Ready',
       certified: 'Сертифицировано',
@@ -223,36 +221,37 @@ export function ProductCard({ product, locale, variant = 'standard' }: ProductCa
   // MOQ with fallback
   const moq = product.moq || t.onRequest;
 
-  // Incoterms with fallback
-  const incoterms = product.incoterms?.slice(0, 2).join('/') || t.flexible;
+  // Incoterms - show real data or hide chip
+  const hasIncoterms = product.incoterms && product.incoterms.length > 0;
+  const incoterms = hasIncoterms ? product.incoterms.slice(0, 3).join(' / ') : null;
 
-  // Availability with smart text and styling (more subtle colors)
+  // Availability with smart text and styling
   const availabilityConfig = {
     in_stock: { 
       text: t.availableNow, 
-      color: 'bg-[#337A49]/80 text-white',
+      color: 'bg-[#337A49] text-white',
       icon: '●'
     },
     seasonal: { 
       text: t.seasonal, 
-      color: 'bg-[#655E2C]/80 text-white',
+      color: 'bg-[#655E2C] text-white',
       icon: '●'
     },
     pre_order: { 
       text: t.preOrder, 
-      color: 'bg-[#80996F]/80 text-white',
+      color: 'bg-[#80996F] text-white',
       icon: '●'
     },
     out_of_stock: { 
       text: t.onRequest, 
-      color: 'bg-neutral/60 dark:bg-neutral/50 text-white',
+      color: 'bg-neutral/70 dark:bg-neutral/60 text-white',
       icon: '●'
     },
   };
 
   const availability = availabilityConfig[product.availability as keyof typeof availabilityConfig] || availabilityConfig.in_stock;
 
-  // Compliance badges (smaller, more discrete)
+  // Compliance badges
   const complianceBadges = [];
   
   // Check if traceable (has origin regions)
@@ -295,10 +294,10 @@ export function ProductCard({ product, locale, variant = 'standard' }: ProductCa
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Image with Enhanced Gradient Overlay - 4:3 ratio */}
+      {/* Image with Bottom-Only Gradient Overlay - 4:3 ratio */}
       <div className="relative aspect-[4/3] overflow-hidden">
         <Image
-          key={currentImageIndex} // Force re-render on image change
+          key={currentImageIndex}
           src={imageUrl || '/assets/placeholder.svg'}
           alt={imageAlt}
           fill
@@ -306,55 +305,55 @@ export function ProductCard({ product, locale, variant = 'standard' }: ProductCa
           className="object-cover group-hover:scale-110 transition-all duration-700"
         />
         
-        {/* Lighter gradient overlay - only at bottom for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
+        {/* Bottom-only gradient overlay (transparent top → 65% black bottom) */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
 
         {/* Image counter indicator (if multiple images) */}
         {hasMultipleImages && isHovered && (
-          <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded-md text-[9px] font-semibold z-20">
+          <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded-md text-xs font-semibold z-20">
             {currentImageIndex + 1} / {galleryImages.length}
           </div>
         )}
 
-        {/* Top Row: Compliance Badge (Left) + Availability Status (Right) - Smaller */}
+        {/* Top Row: Compliance Badge (Left) + Availability Status (Right) */}
         <div className="absolute top-3 left-3 right-3 flex justify-between items-start gap-2 z-10">
-          {/* Left: Single compliance badge (smaller) */}
+          {/* Left: Single compliance badge */}
           {displayBadges.map((badge, index) => (
             <span
               key={index}
-              className="bg-[#194424]/80 dark:bg-[#194424]/85 backdrop-blur-sm text-white px-2.5 py-1 rounded-md text-[10px] font-semibold border border-white/10 shadow-sm flex items-center gap-1"
+              className="bg-[#194424]/85 dark:bg-[#194424]/90 backdrop-blur-sm text-white px-3 py-1.5 rounded-2xl text-xs font-semibold border border-white/10 shadow-sm flex items-center gap-1"
             >
-              {badge.icon && <span className="text-[8px]">{badge.icon}</span>}
+              {badge.icon && <span className="text-[9px]">{badge.icon}</span>}
               <span>{badge.label}</span>
             </span>
           ))}
           
-          {/* Right: Availability status (smaller, more subtle) */}
-          <span className={`${availability.color} backdrop-blur-sm px-2.5 py-1 rounded-md text-[10px] font-semibold shadow-sm whitespace-nowrap flex items-center gap-1`}>
-            <span className="text-[6px]">{availability.icon}</span>
+          {/* Right: Availability status */}
+          <span className={`${availability.color} backdrop-blur-sm px-3 py-1.5 rounded-2xl text-xs font-semibold shadow-sm whitespace-nowrap flex items-center gap-1.5`}>
+            <span className="text-[7px]">{availability.icon}</span>
             <span>{availability.text}</span>
           </span>
         </div>
 
         {/* Content Overlay - Bottom */}
-        <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
+        <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
           {/* Title + Subtitle */}
-          <div className="mb-3">
-            <h3 className="text-2xl font-bold text-white mb-0.5 line-clamp-1 tracking-tight">
+          <div className="mb-4">
+            <h3 className="text-3xl font-bold text-white mb-1 line-clamp-1 tracking-tight">
               {name}
             </h3>
-            <p className="text-xs text-white/80 font-medium line-clamp-1">
+            <p className="text-sm text-white/90 font-medium line-clamp-1">
               {subtitle}
             </p>
           </div>
 
           {/* Trust Chips (Certifications) - if available */}
           {trustChips.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 mb-3">
+            <div className="flex flex-wrap gap-2 mb-4">
               {trustChips.map((chip, index) => (
                 <span
                   key={index}
-                  className="bg-white/15 backdrop-blur-sm text-white px-2 py-0.5 rounded text-[9px] font-semibold border border-white/10"
+                  className="bg-white/15 backdrop-blur-sm text-white px-2.5 py-1 rounded-full text-xs font-semibold border border-white/10"
                 >
                   ✓ {chip}
                 </span>
@@ -362,39 +361,27 @@ export function ProductCard({ product, locale, variant = 'standard' }: ProductCa
             </div>
           )}
 
-          {/* Decision Data - 3 columns with stronger values */}
-          <div className="bg-black/50 backdrop-blur-md rounded-xl p-3 mb-3 border border-white/10">
-            <div className="grid grid-cols-3 gap-2.5 text-white">
-              {/* Origin */}
-              <div className="flex flex-col">
-                <span className="text-[9px] uppercase tracking-wider text-white/50 font-semibold mb-0.5">
-                  {t.origin}
-                </span>
-                <span className="text-sm font-bold line-clamp-1">
-                  {origin}
-                </span>
-              </div>
-              
-              {/* MOQ */}
-              <div className="flex flex-col border-l border-white/10 pl-2.5">
-                <span className="text-[9px] uppercase tracking-wider text-white/50 font-semibold mb-0.5">
-                  {t.moqLabel}
-                </span>
-                <span className="text-sm font-bold line-clamp-1">
-                  {moq}
-                </span>
-              </div>
-              
-              {/* Incoterms */}
-              <div className="flex flex-col border-l border-white/10 pl-2.5">
-                <span className="text-[9px] uppercase tracking-wider text-white/50 font-semibold mb-0.5">
-                  {t.incotermsLabel}
-                </span>
-                <span className="text-sm font-bold line-clamp-1">
-                  {incoterms}
-                </span>
-              </div>
+          {/* Decision Data - 3 separate pill chips */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {/* Origin Chip */}
+            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-3 py-2 flex items-center gap-2">
+              <span className="text-xs text-white/70 font-medium">{t.origin}:</span>
+              <span className="text-sm text-white font-bold">{origin}</span>
             </div>
+            
+            {/* MOQ Chip */}
+            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-3 py-2 flex items-center gap-2">
+              <span className="text-xs text-white/70 font-medium">{t.moqLabel}:</span>
+              <span className="text-sm text-white font-bold">{moq}</span>
+            </div>
+            
+            {/* Incoterms Chip - only if data available */}
+            {incoterms && (
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-3 py-2 flex items-center gap-2">
+                <span className="text-xs text-white/70 font-medium">{t.incotermsLabel}:</span>
+                <span className="text-sm text-white font-bold">{incoterms}</span>
+              </div>
+            )}
           </div>
 
           {/* Actions: Primary + Secondary CTAs */}
@@ -402,7 +389,7 @@ export function ProductCard({ product, locale, variant = 'standard' }: ProductCa
             {/* Primary CTA */}
             <Link
               href={`/${locale}/rfq?product=${slug}`}
-              className="w-full bg-[#194424] hover:bg-[#194424]/90 dark:bg-[#337A49] dark:hover:bg-[#337A49]/90 text-white px-4 py-2.5 rounded-xl font-semibold text-sm inline-flex items-center justify-center gap-2 transition-all duration-200 shadow-lg hover:shadow-xl"
+              className="w-full bg-[#194424] hover:bg-[#194424]/90 dark:bg-[#337A49] dark:hover:bg-[#337A49]/90 text-white px-5 py-3 rounded-2xl font-semibold text-base inline-flex items-center justify-center gap-2 transition-all duration-200 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#337A49] focus:ring-offset-2"
             >
               {t.requestQuote}
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -410,37 +397,40 @@ export function ProductCard({ product, locale, variant = 'standard' }: ProductCa
               </svg>
             </Link>
 
-            {/* Secondary CTA + Micro-proof */}
-            <div className="flex items-center justify-between gap-2">
-              {/* Secondary CTA - Spec Sheet or View Details */}
-              {pdfUrl ? (
+            {/* Secondary CTAs Row */}
+            <div className="flex items-center gap-2">
+              {/* PDF Download Button (if available) */}
+              {pdfUrl && (
                 <a
                   href={pdfUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 bg-transparent hover:bg-white/10 border border-white/30 hover:border-white/50 text-white px-3 py-2 rounded-lg font-medium text-xs inline-flex items-center justify-center gap-1.5 transition-all duration-200"
+                  className="flex-1 bg-transparent hover:bg-white/10 border-2 border-white/40 hover:border-white/60 text-white px-4 py-2.5 rounded-2xl font-semibold text-sm inline-flex items-center justify-center gap-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2"
                   title={t.specSheet}
                 >
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                   <span>{t.specSheet}</span>
                 </a>
-              ) : (
-                <Link
-                  href={`/${locale}/products/${slug}`}
-                  className="flex-1 bg-transparent hover:bg-white/10 border border-white/30 hover:border-white/50 text-white px-3 py-2 rounded-lg font-medium text-xs inline-flex items-center justify-center gap-1.5 transition-all duration-200"
-                  title={t.viewDetails}
-                >
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>{t.viewDetails}</span>
-                </Link>
               )}
 
-              {/* Micro-proof */}
-              <span className="text-white/70 text-[9px] font-medium whitespace-nowrap">
+              {/* View Specifications Link */}
+              <Link
+                href={`/${locale}/products/${slug}`}
+                className="flex-1 bg-transparent hover:bg-white/10 border-2 border-white/40 hover:border-white/60 text-white px-4 py-2.5 rounded-2xl font-semibold text-sm inline-flex items-center justify-center gap-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2"
+                title={t.viewSpecs}
+              >
+                <span>{t.viewSpecs}</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+
+            {/* Micro-proof */}
+            <div className="text-center">
+              <span className="text-white/70 text-xs font-medium">
                 {t.responseTime}
               </span>
             </div>
