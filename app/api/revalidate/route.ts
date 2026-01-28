@@ -63,78 +63,91 @@ function verifySignature(body: string, signature: string | null): boolean {
 function revalidateContent(payload: SanityWebhookPayload): string[] {
   const revalidatedPaths: string[] = [];
   const { _type, slug } = payload;
+  
+  // All supported locales
+  const locales = ['fr', 'en', 'es', 'de', 'ru'];
 
   try {
     switch (_type) {
       case 'product':
         if (slug?.current) {
-          // Revalidate both language versions of the product page
-          revalidatePath(`/fr/products/${slug.current}`);
-          revalidatePath(`/en/products/${slug.current}`);
-          revalidatedPaths.push(`/fr/products/${slug.current}`, `/en/products/${slug.current}`);
+          // Revalidate all language versions of the product page
+          locales.forEach(locale => {
+            revalidatePath(`/${locale}/products/${slug.current}`);
+            revalidatedPaths.push(`/${locale}/products/${slug.current}`);
+          });
         }
-        // Revalidate product listing pages
-        revalidatePath('/fr/products');
-        revalidatePath('/en/products');
-        revalidatedPaths.push('/fr/products', '/en/products');
+        // Revalidate product listing pages for all locales
+        locales.forEach(locale => {
+          revalidatePath(`/${locale}/products`);
+          revalidatedPaths.push(`/${locale}/products`);
+        });
         break;
 
       case 'blogPost':
         if (slug?.current) {
-          // Revalidate both language versions of the blog post
-          revalidatePath(`/fr/blog/${slug.current}`);
-          revalidatePath(`/en/blog/${slug.current}`);
-          revalidatedPaths.push(`/fr/blog/${slug.current}`, `/en/blog/${slug.current}`);
+          // Revalidate all language versions of the blog post
+          locales.forEach(locale => {
+            revalidatePath(`/${locale}/blog/${slug.current}`);
+            revalidatedPaths.push(`/${locale}/blog/${slug.current}`);
+          });
         }
-        // Revalidate blog listing pages
-        revalidatePath('/fr/blog');
-        revalidatePath('/en/blog');
-        revalidatedPaths.push('/fr/blog', '/en/blog');
+        // Revalidate blog listing pages for all locales
+        locales.forEach(locale => {
+          revalidatePath(`/${locale}/blog`);
+          revalidatedPaths.push(`/${locale}/blog`);
+        });
         break;
 
       case 'certification':
-        // Revalidate quality pages
-        revalidatePath('/fr/quality');
-        revalidatePath('/en/quality');
-        revalidatedPaths.push('/fr/quality', '/en/quality');
+        // Revalidate quality pages for all locales
+        locales.forEach(locale => {
+          revalidatePath(`/${locale}/quality`);
+          revalidatedPaths.push(`/${locale}/quality`);
+        });
         break;
 
       case 'resource':
-        // Revalidate resources pages
-        revalidatePath('/fr/resources');
-        revalidatePath('/en/resources');
-        revalidatedPaths.push('/fr/resources', '/en/resources');
+        // Revalidate resources pages for all locales
+        locales.forEach(locale => {
+          revalidatePath(`/${locale}/resources`);
+          revalidatedPaths.push(`/${locale}/resources`);
+        });
         break;
 
       case 'teamMember':
-        // Revalidate about pages
-        revalidatePath('/fr/about');
-        revalidatePath('/en/about');
-        revalidatedPaths.push('/fr/about', '/en/about');
+        // Revalidate about pages for all locales
+        locales.forEach(locale => {
+          revalidatePath(`/${locale}/about`);
+          revalidatedPaths.push(`/${locale}/about`);
+        });
         break;
 
       case 'page':
         if (slug?.current) {
-          // Revalidate custom pages
-          revalidatePath(`/fr/${slug.current}`);
-          revalidatePath(`/en/${slug.current}`);
-          revalidatedPaths.push(`/fr/${slug.current}`, `/en/${slug.current}`);
+          // Revalidate custom pages for all locales
+          locales.forEach(locale => {
+            revalidatePath(`/${locale}/${slug.current}`);
+            revalidatedPaths.push(`/${locale}/${slug.current}`);
+          });
         }
         break;
 
       default:
-        // For unknown types, revalidate homepage
-        revalidatePath('/fr');
-        revalidatePath('/en');
-        revalidatedPaths.push('/fr', '/en');
+        // For unknown types, revalidate homepage for all locales
+        locales.forEach(locale => {
+          revalidatePath(`/${locale}`);
+          revalidatedPaths.push(`/${locale}`);
+        });
     }
 
-    // Always revalidate homepage for any content change
-    revalidatePath('/fr');
-    revalidatePath('/en');
-    if (!revalidatedPaths.includes('/fr')) {
-      revalidatedPaths.push('/fr', '/en');
-    }
+    // Always revalidate homepage for any content change (all locales)
+    locales.forEach(locale => {
+      if (!revalidatedPaths.includes(`/${locale}`)) {
+        revalidatePath(`/${locale}`);
+        revalidatedPaths.push(`/${locale}`);
+      }
+    });
 
   } catch (error) {
     Sentry.captureException(error);

@@ -1,8 +1,4 @@
-import type { Metadata } from 'next';
-import './globals.css';
-import { ThemeProvider } from '@/components/providers/ThemeProvider';
-
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Afrexia - Premium African Agricultural Commodities',
   description:
     'Leading exporter of premium African agricultural commodities including cocoa, coffee, pepper, wood, and corn to international markets.',
@@ -16,47 +12,32 @@ export const metadata: Metadata = {
 };
 
 // Inline script to prevent FOUC (Flash of Unstyled Content)
-// This runs synchronously before React hydration to apply the correct theme
-const themeScript = `
-  (function() {
-    try {
-      var storageKey = 'afrexia-theme';
-      var theme = null;
-      
-      // Check localStorage for saved preference
-      try {
-        theme = localStorage.getItem(storageKey);
-      } catch (e) {
-        // localStorage unavailable (private browsing, etc.)
-      }
-      
-      // Fall back to system preference if no stored preference
-      if (!theme || (theme !== 'light' && theme !== 'dark')) {
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          theme = 'dark';
-        } else {
-          theme = 'light';
-        }
-      }
-      
-      // Apply dark class to html element before first paint
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark');
-      }
-    } catch (e) {
-      // Fail silently to prevent blocking page load
-    }
-  })();
-`;
+const themeScript = `(function(){try{var storageKey='afrexia-theme';var theme=null;try{theme=localStorage.getItem(storageKey);}catch(e){}if(!theme||(theme!=='light'&&theme!=='dark')){if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){theme='dark';}else{theme='light';}}if(theme==='dark'){document.documentElement.classList.add('dark');}}catch(e){}})();`;
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // This root layout provides HTML structure for all routes
   return (
-    <ThemeProvider>
-      {children}
-    </ThemeProvider>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        {/* Preconnect to critical third-party origins */}
+        <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://api.mapbox.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://events.mapbox.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://plausible.io" crossOrigin="anonymous" />
+        
+        {/* DNS prefetch for additional third-party services */}
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.google.com" />
+      </head>
+      <body className="font-sans antialiased" suppressHydrationWarning>
+        {children}
+      </body>
+    </html>
   );
 }

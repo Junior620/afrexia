@@ -2,6 +2,7 @@ import { Locale } from '@/types';
 import { Metadata } from 'next';
 import { Hero } from '@/components/sections/Hero';
 import { Statistics } from '@/components/sections/Statistics';
+import { TrustBar } from '@/components/sections/TrustBar';
 import { ProductsShowcase } from '@/components/sections/ProductsShowcase';
 import { JourneySection } from '@/components/sections/JourneySection';
 import { CertificationsSection } from '@/components/sections/CertificationsSection';
@@ -94,6 +95,9 @@ export default async function HomePage({ params }: HomePageProps) {
 
       {/* Statistics Section */}
       <Statistics locale={locale} />
+
+      {/* Trust Bar - Proof Section */}
+      <TrustBar locale={locale} />
 
       {/* Products Showcase Section */}
       <ProductsShowcase products={products} locale={locale} />
