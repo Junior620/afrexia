@@ -21,6 +21,12 @@ interface HeaderProps {
 export function Header({ locale }: HeaderProps) {
   const { theme } = useTheme();
   const [logoError, setLogoError] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // Prevent hydration mismatch by only rendering theme-dependent content after mount
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Reset logo error state when theme changes
   useEffect(() => {
@@ -77,12 +83,12 @@ export function Header({ locale }: HeaderProps) {
           aria-label="Afrexia home"
         >
           <Image
-            src={theme === 'dark' && !logoError ? '/assets/logo-dark.png' : '/assets/logo.png'}
+            src={mounted && theme === 'dark' && !logoError ? '/assets/logo-dark.png' : '/assets/logo.png'}
             alt="Afrexia"
             width={180}
             height={63}
             priority
-            className={`h-14 w-auto ${theme === 'dark' && logoError ? 'brightness-[1.2] contrast-[0.9]' : ''}`}
+            className={`h-14 w-auto ${mounted && theme === 'dark' && logoError ? 'brightness-[1.2] contrast-[0.9]' : ''}`}
             onError={() => {
               // Fallback to standard logo if dark logo fails to load
               if (theme === 'dark' && !logoError) {

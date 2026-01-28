@@ -338,3 +338,239 @@ describe('Property 5: Variable Interpolation Preservation', () => {
     );
   });
 });
+
+describe('Property 13: Special Character Handling', () => {
+  /**
+   * Feature: multilingual-expansion
+   * Property 13: Special Character Handling
+   * 
+   * For any translation string containing special characters (ñ, ü, ö, ä, Cyrillic characters),
+   * the Translation_System should store and retrieve the string without corruption or encoding errors.
+   * 
+   * Validates: Requirements 7.4
+   */
+
+  // Test German special characters (ü, ö, ä, ß)
+  it('should handle German special characters without corruption', () => {
+    const germanSpecialChars = ['ü', 'ö', 'ä', 'ß', 'Ü', 'Ö', 'Ä'];
+    
+    fc.assert(
+      fc.property(
+        fc.constantFrom(...getAllKeys(translations.de)),
+        (key) => {
+          const value = getTranslation('de', key);
+          
+          // If the value contains German special characters, verify they are preserved
+          germanSpecialChars.forEach((char) => {
+            if (value.includes(char)) {
+              // Character should be present and not corrupted
+              expect(value).toContain(char);
+              
+              // Should not contain Unicode replacement character
+              expect(value).not.toContain('�');
+              
+              // Should match the original value in translations object
+              const originalValue = getValueByPath(translations.de, key);
+              expect(value).toBe(originalValue);
+            }
+          });
+        }
+      ),
+      { numRuns: 100 }
+    );
+  });
+
+  // Test Spanish special characters (ñ, á, é, í, ó, ú)
+  it('should handle Spanish special characters without corruption', () => {
+    const spanishSpecialChars = ['ñ', 'á', 'é', 'í', 'ó', 'ú', 'Ñ', 'Á', 'É', 'Í', 'Ó', 'Ú', '¿', '¡'];
+    
+    fc.assert(
+      fc.property(
+        fc.constantFrom(...getAllKeys(translations.es)),
+        (key) => {
+          const value = getTranslation('es', key);
+          
+          // If the value contains Spanish special characters, verify they are preserved
+          spanishSpecialChars.forEach((char) => {
+            if (value.includes(char)) {
+              // Character should be present and not corrupted
+              expect(value).toContain(char);
+              
+              // Should not contain Unicode replacement character
+              expect(value).not.toContain('�');
+              
+              // Should match the original value in translations object
+              const originalValue = getValueByPath(translations.es, key);
+              expect(value).toBe(originalValue);
+            }
+          });
+        }
+      ),
+      { numRuns: 100 }
+    );
+  });
+
+  // Test Cyrillic characters (Russian)
+  it('should handle Cyrillic characters without corruption', () => {
+    const cyrillicChars = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я'];
+    
+    fc.assert(
+      fc.property(
+        fc.constantFrom(...getAllKeys(translations.ru)),
+        (key) => {
+          const value = getTranslation('ru', key);
+          
+          // Russian translations should contain Cyrillic characters
+          const containsCyrillic = cyrillicChars.some(char => value.includes(char));
+          
+          if (containsCyrillic) {
+            // Should not contain Unicode replacement character
+            expect(value).not.toContain('�');
+            
+            // Should match the original value in translations object
+            const originalValue = getValueByPath(translations.ru, key);
+            expect(value).toBe(originalValue);
+            
+            // Verify specific Cyrillic characters are preserved
+            cyrillicChars.forEach((char) => {
+              if (value.includes(char)) {
+                expect(value).toContain(char);
+              }
+            });
+          }
+        }
+      ),
+      { numRuns: 100 }
+    );
+  });
+
+  // Test that special characters survive variable interpolation
+  it('should preserve special characters during variable interpolation', () => {
+    fc.assert(
+      fc.property(
+        fc.constantFrom('de', 'es', 'ru'),
+        fc.string({ minLength: 1, maxLength: 10 }).filter((s) => !s.includes('{')),
+        (locale, yearValue) => {
+          const original = getValueByPath(translations[locale], 'footer.copyright');
+          const result = getTranslation(locale, 'footer.copyright', { year: yearValue });
+          
+          // Extract special characters from original
+          const specialCharsInOriginal: string[] = [];
+          
+          if (locale === 'de') {
+            ['ü', 'ö', 'ä', 'ß', 'Ü', 'Ö', 'Ä'].forEach(char => {
+              if (original.includes(char)) specialCharsInOriginal.push(char);
+            });
+          } else if (locale === 'es') {
+            ['ñ', 'á', 'é', 'í', 'ó', 'ú', 'Ñ', 'Á', 'É', 'Í', 'Ó', 'Ú'].forEach(char => {
+              if (original.includes(char)) specialCharsInOriginal.push(char);
+            });
+          } else if (locale === 'ru') {
+            // Check for any Cyrillic character
+            const hasCyrillic = /[А-Яа-яЁё]/.test(original);
+            if (hasCyrillic) {
+              specialCharsInOriginal.push('cyrillic');
+            }
+          }
+          
+          // All special characters should be preserved after interpolation
+          specialCharsInOriginal.forEach(char => {
+            if (char === 'cyrillic') {
+              expect(/[А-Яа-яЁё]/.test(result)).toBe(true);
+            } else {
+              expect(result).toContain(char);
+            }
+          });
+          
+          // Should not contain Unicode replacement character (�)
+          // Note: We don't check for "?" because it could be part of the input value
+          expect(result).not.toContain('�');
+        }
+      ),
+      { numRuns: 100 }
+    );
+  });
+
+  // Test round-trip: store and retrieve special characters
+  it('should maintain character integrity through storage and retrieval', () => {
+    const testCases = [
+      { locale: 'de' as Locale, key: 'navigation.quality', expectedChars: ['ä'] },
+      { locale: 'de' as Locale, key: 'navigation.solutions', expectedChars: ['ö'] },
+      { locale: 'de' as Locale, key: 'navigation.traceability', expectedChars: ['ü'] },
+      { locale: 'es' as Locale, key: 'common.contactUs', expectedChars: ['á'] }, // Contáctenos has 'á'
+      { locale: 'ru' as Locale, key: 'navigation.home', expectedChars: ['Г', 'л', 'а', 'в', 'н', 'я'] },
+    ];
+    
+    fc.assert(
+      fc.property(
+        fc.constantFrom(...testCases),
+        (testCase) => {
+          const value = getTranslation(testCase.locale, testCase.key);
+          const originalValue = getValueByPath(translations[testCase.locale], testCase.key);
+          
+          // Retrieved value should match original exactly
+          expect(value).toBe(originalValue);
+          
+          // All expected characters should be present
+          testCase.expectedChars.forEach(char => {
+            expect(value).toContain(char);
+          });
+          
+          // No corruption indicators (Unicode replacement character)
+          expect(value).not.toContain('�');
+        }
+      ),
+      { numRuns: 100 }
+    );
+  });
+
+  // Test that special characters don't break the translation system
+  it('should handle all special characters across all locales without errors', () => {
+    fc.assert(
+      fc.property(
+        fc.constantFrom(...locales),
+        (locale) => {
+          const allKeys = getAllKeys(translations[locale]);
+          
+          // Should be able to retrieve all translations without errors
+          allKeys.forEach(key => {
+            expect(() => {
+              const value = getTranslation(locale, key);
+              expect(typeof value).toBe('string');
+              expect(value.length).toBeGreaterThan(0);
+            }).not.toThrow();
+          });
+        }
+      ),
+      { numRuns: 100 }
+    );
+  });
+
+  // Test encoding consistency
+  it('should use consistent UTF-8 encoding for all special characters', () => {
+    fc.assert(
+      fc.property(
+        fc.constantFrom('de', 'es', 'ru'),
+        (locale) => {
+          const allKeys = getAllKeys(translations[locale]);
+          
+          allKeys.forEach(key => {
+            const value = getTranslation(locale, key);
+            
+            // Should be valid UTF-8 string
+            expect(typeof value).toBe('string');
+            
+            // Should not contain null bytes or invalid characters
+            expect(value).not.toContain('\0');
+            expect(value).not.toContain('\uFFFD'); // Replacement character
+            
+            // Length should be consistent (no encoding issues)
+            const originalValue = getValueByPath(translations[locale], key);
+            expect(value.length).toBe(originalValue.length);
+          });
+        }
+      ),
+      { numRuns: 100 }
+    );
+  });
+});

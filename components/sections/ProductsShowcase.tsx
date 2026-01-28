@@ -20,6 +20,21 @@ export function ProductsShowcase({ products, locale }: ProductsShowcaseProps) {
       subtitle: 'Discover our selection of high-quality African agricultural commodities',
       viewAll: 'View All Products',
     },
+    es: {
+      title: 'Nuestros Productos Premium',
+      subtitle: 'Descubra nuestra selección de productos agrícolas africanos de alta calidad',
+      viewAll: 'Ver Todos los Productos',
+    },
+    de: {
+      title: 'Unsere Premium-Produkte',
+      subtitle: 'Entdecken Sie unsere Auswahl an hochwertigen afrikanischen Agrarprodukten',
+      viewAll: 'Alle Produkte Ansehen',
+    },
+    ru: {
+      title: 'Наши Премиальные Продукты',
+      subtitle: 'Откройте для себя наш ассортимент высококачественных африканских сельскохозяйственных товаров',
+      viewAll: 'Посмотреть Все Продукты',
+    },
   };
 
   const t = content[locale] || content.en; // Fallback to English if locale not found

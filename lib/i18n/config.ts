@@ -19,6 +19,9 @@ export function getValidLocale(locale: string | undefined): Locale {
   if (locale && isValidLocale(locale)) {
     return locale;
   }
+  if (locale) {
+    console.warn(`Invalid locale "${locale}", falling back to default "${defaultLocale}"`);
+  }
   return defaultLocale;
 }
 

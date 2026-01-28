@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import * as fc from 'fast-check';
 import { generateMetaTags, generateHreflangTags } from '../metadata';
 import { Locale } from '@/types';
+import { locales } from '@/lib/i18n/config';
 
 /**
  * Property 21: Meta tags completeness
@@ -18,7 +19,7 @@ import { Locale } from '@/types';
  */
 describe('Property 21: Meta tags completeness', () => {
   // Arbitraries for generating test data
-  const localeArbitrary = fc.constantFrom<Locale>('fr', 'en');
+  const localeArbitrary = fc.constantFrom<Locale>(...locales);
   
   const pathArbitrary = fc.oneof(
     fc.constant(''),
@@ -73,10 +74,14 @@ describe('Property 21: Meta tags completeness', () => {
           expect(metadata.alternates?.canonical).toContain(locale);
           expect(metadata.alternates?.canonical).toContain(path);
 
-          // Property: Alternate language links must be present
+          // Property: Alternate language links must be present for all five locales
           expect(metadata.alternates?.languages).toBeDefined();
           expect(metadata.alternates?.languages).toHaveProperty('fr');
           expect(metadata.alternates?.languages).toHaveProperty('en');
+          expect(metadata.alternates?.languages).toHaveProperty('es');
+          expect(metadata.alternates?.languages).toHaveProperty('de');
+          expect(metadata.alternates?.languages).toHaveProperty('ru');
+          expect(metadata.alternates?.languages).toHaveProperty('x-default');
 
           // Property: Open Graph tags must be complete
           expect(metadata.openGraph).toBeDefined();
@@ -103,14 +108,14 @@ describe('Property 21: Meta tags completeness', () => {
     );
   });
 
-  it('should generate correct hreflang tags for both locales', () => {
+  it('should generate correct hreflang tags for all five locales', () => {
     fc.assert(
       fc.property(pathArbitrary, (path) => {
         // Generate hreflang tags
         const hreflangTags = generateHreflangTags(path);
 
-        // Property: Must have exactly 3 hreflang tags (fr, en, x-default)
-        expect(hreflangTags).toHaveLength(3);
+        // Property: Must have exactly 6 hreflang tags (fr, en, es, de, ru, x-default)
+        expect(hreflangTags).toHaveLength(6);
 
         // Property: Must include French version
         const frTag = hreflangTags.find((tag) => tag.hreflang === 'fr');
@@ -123,6 +128,24 @@ describe('Property 21: Meta tags completeness', () => {
         expect(enTag).toBeDefined();
         expect(enTag?.href).toContain('/en');
         expect(enTag?.href).toContain(path);
+
+        // Property: Must include Spanish version
+        const esTag = hreflangTags.find((tag) => tag.hreflang === 'es');
+        expect(esTag).toBeDefined();
+        expect(esTag?.href).toContain('/es');
+        expect(esTag?.href).toContain(path);
+
+        // Property: Must include German version
+        const deTag = hreflangTags.find((tag) => tag.hreflang === 'de');
+        expect(deTag).toBeDefined();
+        expect(deTag?.href).toContain('/de');
+        expect(deTag?.href).toContain(path);
+
+        // Property: Must include Russian version
+        const ruTag = hreflangTags.find((tag) => tag.hreflang === 'ru');
+        expect(ruTag).toBeDefined();
+        expect(ruTag?.href).toContain('/ru');
+        expect(ruTag?.href).toContain(path);
 
         // Property: Must include x-default (fallback)
         const defaultTag = hreflangTags.find((tag) => tag.hreflang === 'x-default');
@@ -228,11 +251,126 @@ describe('Property 21: Meta tags completeness', () => {
           });
 
           // Property: OG locale must match page locale
-          const expectedOgLocale = locale === 'fr' ? 'fr_FR' : 'en_US';
-          expect(metadata.openGraph?.locale).toBe(expectedOgLocale);
+          const expectedOgLocaleMap: Record<Locale, string> = {
+            fr: 'fr_FR',
+            en: 'en_US',
+            es: 'es_ES',
+            de: 'de_DE',
+            ru: 'ru_RU',
+          };
+          expect(metadata.openGraph?.locale).toBe(expectedOgLocaleMap[locale]);
         }
       ),
       { numRuns: 100 }
     );
+  });
+});
+
+/**
+ * Unit tests for five-locale SEO metadata
+ * 
+ * **Validates: Requirements 6.1, 6.2, 6.3, 6.5**
+ */
+describe('SEO Metadata for Five Locales', () => {
+  it('should include hreflang tags for all five locales', () => {
+    const path = '/products';
+    const hreflangTags = generateHreflangTags(path);
+
+    // Test that all five locales are present
+    expect(hreflangTags).toHaveLength(6); // 5 locales + x-default
+    
+    const hreflangValues = hreflangTags.map(tag => tag.hreflang);
+    expect(hreflangValues).toContain('fr');
+    expect(hreflangValues).toContain('en');
+    expect(hreflangValues).toContain('es');
+    expect(hreflangValues).toContain('de');
+    expect(hreflangValues).toContain('ru');
+    expect(hreflangValues).toContain('x-default');
+  });
+
+  it('should have x-default pointing to French version', () => {
+    const path = '/about';
+    const hreflangTags = generateHreflangTags(path);
+
+    const xDefaultTag = hreflangTags.find(tag => tag.hreflang === 'x-default');
+    expect(xDefaultTag).toBeDefined();
+    expect(xDefaultTag?.href).toContain('/fr');
+    expect(xDefaultTag?.href).toContain(path);
+  });
+
+  it('should generate absolute URLs for all hreflang tags', () => {
+    const path = '/blog';
+    const hreflangTags = generateHreflangTags(path);
+
+    hreflangTags.forEach(tag => {
+      expect(tag.href).toMatch(/^https?:\/\//);
+    });
+  });
+
+  it('should maintain consistent URL structure across all locales', () => {
+    const path = '/contact';
+    const hreflangTags = generateHreflangTags(path);
+
+    // Filter out x-default
+    const localeTags = hreflangTags.filter(tag => tag.hreflang !== 'x-default');
+
+    localeTags.forEach(tag => {
+      // Each URL should have format: https://domain/{locale}{path}
+      expect(tag.href).toMatch(new RegExp(`/${tag.hreflang}${path}$`));
+    });
+  });
+
+  it('should include all five locales in metadata alternates', () => {
+    const metadata = generateMetaTags({
+      title: 'Test Page',
+      description: 'Test description',
+      locale: 'fr',
+      path: '/test',
+    });
+
+    expect(metadata.alternates?.languages).toBeDefined();
+    expect(metadata.alternates?.languages).toHaveProperty('fr');
+    expect(metadata.alternates?.languages).toHaveProperty('en');
+    expect(metadata.alternates?.languages).toHaveProperty('es');
+    expect(metadata.alternates?.languages).toHaveProperty('de');
+    expect(metadata.alternates?.languages).toHaveProperty('ru');
+    expect(metadata.alternates?.languages).toHaveProperty('x-default');
+  });
+
+  it('should generate correct Open Graph locale for each language', () => {
+    const testCases: Array<{ locale: Locale; expected: string }> = [
+      { locale: 'fr', expected: 'fr_FR' },
+      { locale: 'en', expected: 'en_US' },
+      { locale: 'es', expected: 'es_ES' },
+      { locale: 'de', expected: 'de_DE' },
+      { locale: 'ru', expected: 'ru_RU' },
+    ];
+
+    testCases.forEach(({ locale, expected }) => {
+      const metadata = generateMetaTags({
+        title: 'Test',
+        description: 'Test description',
+        locale,
+        path: '/test',
+      });
+
+      expect(metadata.openGraph?.locale).toBe(expected);
+    });
+  });
+
+  it('should generate absolute URLs with correct locale prefix', () => {
+    const testCases: Locale[] = ['fr', 'en', 'es', 'de', 'ru'];
+
+    testCases.forEach(locale => {
+      const metadata = generateMetaTags({
+        title: 'Test',
+        description: 'Test description',
+        locale,
+        path: '/products',
+      });
+
+      expect(metadata.alternates?.canonical).toContain(`/${locale}/products`);
+      expect(metadata.alternates?.canonical).toMatch(/^https?:\/\//);
+    });
   });
 });

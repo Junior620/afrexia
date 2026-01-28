@@ -13,15 +13,26 @@ export async function navigateAndWait(page: Page, path: string) {
 /**
  * Switch language and verify the page updates
  * @param page - Playwright page object
- * @param targetLocale - Target locale ('en' or 'fr')
+ * @param targetLocale - Target locale ('fr', 'en', 'es', 'de', or 'ru')
  */
-export async function switchLanguage(page: Page, targetLocale: 'en' | 'fr') {
-  // Look for language switcher button
-  const languageSwitcher = page.locator('[data-testid="language-switcher"]').or(
-    page.locator('button:has-text("EN")').or(page.locator('button:has-text("FR")'))
-  );
-
-  await languageSwitcher.click();
+export async function switchLanguage(page: Page, targetLocale: 'fr' | 'en' | 'es' | 'de' | 'ru') {
+  // Click the language switcher button to open dropdown
+  const languageSwitcherButton = page.locator('button[aria-label="Select language"]');
+  await languageSwitcherButton.click();
+  
+  // Wait for dropdown to be visible
+  await page.locator('[role="menu"]').waitFor({ state: 'visible' });
+  
+  // Click the target locale in the dropdown
+  const localeNames: Record<string, string> = {
+    fr: 'Français',
+    en: 'English',
+    es: 'Español',
+    de: 'Deutsch',
+    ru: 'Русский',
+  };
+  
+  await page.locator(`[role="menuitem"]:has-text("${localeNames[targetLocale]}")`).click();
   
   // Wait for navigation
   await page.waitForURL(`**/${targetLocale}/**`);

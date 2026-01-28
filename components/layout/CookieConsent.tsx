@@ -69,9 +69,33 @@ export function CookieConsent({ locale }: CookieConsentProps) {
       reject: 'Reject',
       learnMore: 'Learn more',
     },
+    es: {
+      title: 'Cookies y privacidad',
+      message:
+        'Utilizamos cookies para mejorar su experiencia y analizar el tráfico del sitio. Usamos Plausible Analytics (sin cookies) por defecto. ¿Acepta las cookies de Google Analytics para análisis más detallados?',
+      accept: 'Aceptar',
+      reject: 'Rechazar',
+      learnMore: 'Más información',
+    },
+    de: {
+      title: 'Cookies und Datenschutz',
+      message:
+        'Wir verwenden Cookies, um Ihre Erfahrung zu verbessern und den Website-Traffic zu analysieren. Wir verwenden standardmäßig Plausible Analytics (ohne Cookies). Akzeptieren Sie Google Analytics-Cookies für detailliertere Analysen?',
+      accept: 'Akzeptieren',
+      reject: 'Ablehnen',
+      learnMore: 'Mehr erfahren',
+    },
+    ru: {
+      title: 'Файлы cookie и конфиденциальность',
+      message:
+        'Мы используем файлы cookie для улучшения вашего опыта и анализа трафика сайта. По умолчанию мы используем Plausible Analytics (без файлов cookie). Вы принимаете файлы cookie Google Analytics для более детального анализа?',
+      accept: 'Принять',
+      reject: 'Отклонить',
+      learnMore: 'Узнать больше',
+    },
   };
 
-  const text = content[locale];
+  const text = content[locale] || content.en; // Fallback to English if locale not found
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-neutral/20 bg-white p-4 shadow-lg sm:p-6">

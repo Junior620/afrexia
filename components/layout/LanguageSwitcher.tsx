@@ -53,20 +53,25 @@ export function LanguageSwitcher({ locale }: LanguageSwitcherProps) {
       return;
     }
     
-    // Remove current locale from pathname
-    const pathWithoutLocale = pathname.replace(`/${locale}`, '');
-    
-    // Build new path with new locale
-    const newPath = `/${newLocale}${pathWithoutLocale || ''}`;
-    
-    // Set cookie
-    document.cookie = `${LOCALE_COOKIE}=${newLocale}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
-    
-    // Close dropdown
-    setIsOpen(false);
-    
-    // Navigate to new path
-    router.push(newPath);
+    try {
+      // Remove current locale from pathname
+      const pathWithoutLocale = pathname.replace(`/${locale}`, '');
+      
+      // Build new path with new locale
+      const newPath = `/${newLocale}${pathWithoutLocale || ''}`;
+      
+      // Set cookie
+      document.cookie = `${LOCALE_COOKIE}=${newLocale}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
+      
+      // Close dropdown
+      setIsOpen(false);
+      
+      // Navigate to new path
+      router.push(newPath);
+    } catch (error) {
+      console.error('Error switching language:', error);
+      // Keep dropdown open so user can retry
+    }
   };
 
   return (

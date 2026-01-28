@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useTheme } from '@/hooks/useTheme';
 
 interface ThemeToggleProps {
@@ -12,6 +13,37 @@ interface ThemeToggleProps {
  */
 export function ThemeToggle({ className = '' }: ThemeToggleProps) {
   const { theme, toggleTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Prevent hydration mismatch by only rendering theme-dependent content after mount
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Render a placeholder button during SSR to prevent layout shift
+  if (!mounted) {
+    return (
+      <button
+        className={`relative flex h-11 w-11 items-center justify-center rounded-lg border border-neutral/20 bg-white transition-all hover:bg-neutral/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:border-dark-border dark:bg-dark-bg-secondary dark:hover:bg-dark-bg-tertiary dark:focus-visible:ring-primary-light ${className}`}
+        aria-label="Toggle theme"
+        type="button"
+        disabled
+      >
+        {/* Sun icon placeholder */}
+        <svg
+          className="absolute h-5 w-5 opacity-100"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+        </svg>
+      </button>
+    );
+  }
 
   return (
     <button

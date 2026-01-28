@@ -14,6 +14,9 @@ interface Stat {
   label: {
     fr: string;
     en: string;
+    es: string;
+    de: string;
+    ru: string;
   };
 }
 
@@ -25,6 +28,9 @@ export function Statistics({ locale }: StatisticsProps) {
       label: {
         fr: 'Années d\'Expérience',
         en: 'Years of Experience',
+        es: 'Años de Experiencia',
+        de: 'Jahre Erfahrung',
+        ru: 'Лет Опыта',
       },
     },
     {
@@ -33,6 +39,9 @@ export function Statistics({ locale }: StatisticsProps) {
       label: {
         fr: 'Tonnes Exportées Annuellement',
         en: 'Tons Exported Annually',
+        es: 'Toneladas Exportadas Anualmente',
+        de: 'Jährlich Exportierte Tonnen',
+        ru: 'Тонн Экспортируется Ежегодно',
       },
     },
     {
@@ -41,6 +50,9 @@ export function Statistics({ locale }: StatisticsProps) {
       label: {
         fr: 'Pays Desservis',
         en: 'Countries Served',
+        es: 'Países Atendidos',
+        de: 'Bediente Länder',
+        ru: 'Обслуживаемых Стран',
       },
     },
     {
@@ -49,6 +61,9 @@ export function Statistics({ locale }: StatisticsProps) {
       label: {
         fr: 'Certifications Internationales',
         en: 'International Certifications',
+        es: 'Certificaciones Internacionales',
+        de: 'Internationale Zertifizierungen',
+        ru: 'Международных Сертификатов',
       },
     },
   ];
@@ -61,6 +76,18 @@ export function Statistics({ locale }: StatisticsProps) {
     en: {
       title: 'Our Impact in Numbers',
       subtitle: 'Results that demonstrate our commitment to excellence',
+    },
+    es: {
+      title: 'Nuestro Impacto en Cifras',
+      subtitle: 'Resultados que demuestran nuestro compromiso con la excelencia',
+    },
+    de: {
+      title: 'Unsere Wirkung in Zahlen',
+      subtitle: 'Ergebnisse, die unser Engagement für Exzellenz demonstrieren',
+    },
+    ru: {
+      title: 'Наше Влияние в Цифрах',
+      subtitle: 'Результаты, демонстрирующие нашу приверженность совершенству',
     },
   };
 

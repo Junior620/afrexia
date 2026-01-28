@@ -23,6 +23,24 @@ export function Hero({ locale }: HeroProps) {
       ctaPrimary: 'Request a Quote',
       ctaSecondary: 'Explore Products',
     },
+    es: {
+      headline: 'Productos Agrícolas Africanos Premium',
+      subheadline: 'Su socio de confianza para la exportación de cacao, café, pimienta, madera y maíz desde África a los mercados internacionales',
+      ctaPrimary: 'Solicitar Cotización',
+      ctaSecondary: 'Explorar Productos',
+    },
+    de: {
+      headline: 'Premium Afrikanische Agrarprodukte',
+      subheadline: 'Ihr vertrauenswürdiger Partner für den Export von Kakao, Kaffee, Pfeffer, Holz und Mais aus Afrika auf internationale Märkte',
+      ctaPrimary: 'Angebot Anfordern',
+      ctaSecondary: 'Produkte Entdecken',
+    },
+    ru: {
+      headline: 'Премиальные Африканские Сельскохозяйственные Товары',
+      subheadline: 'Ваш надежный партнер по экспорту какао, кофе, перца, древесины и кукурузы из Африки на международные рынки',
+      ctaPrimary: 'Запросить Предложение',
+      ctaSecondary: 'Изучить Продукты',
+    },
   };
 
   const t = content[locale] || content.en; // Fallback to English if locale not found

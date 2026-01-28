@@ -26,6 +26,24 @@ export function CertificationsSection({
       viewAll: 'View All Certifications',
       learnMore: 'Learn More',
     },
+    es: {
+      title: 'Certificaciones y Cumplimiento',
+      subtitle: 'Nuestras certificaciones internacionales garantizan la calidad y trazabilidad de nuestros productos',
+      viewAll: 'Ver Todas las Certificaciones',
+      learnMore: 'Más Información',
+    },
+    de: {
+      title: 'Zertifizierungen & Compliance',
+      subtitle: 'Unsere internationalen Zertifizierungen garantieren die Qualität und Rückverfolgbarkeit unserer Produkte',
+      viewAll: 'Alle Zertifizierungen Ansehen',
+      learnMore: 'Mehr Erfahren',
+    },
+    ru: {
+      title: 'Сертификаты и Соответствие',
+      subtitle: 'Наши международные сертификаты гарантируют качество и отслеживаемость наших продуктов',
+      viewAll: 'Посмотреть Все Сертификаты',
+      learnMore: 'Узнать Больше',
+    },
   };
 
   const t = content[locale] || content.en; // Fallback to English if locale not found

@@ -13,6 +13,7 @@ import { Navigation } from '@/components/layout/Navigation';
 import { MobileNav } from '@/components/layout/MobileNav';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { RFQForm } from '@/components/forms/RFQForm';
+import { ThemeProvider } from '@/components/providers/ThemeProvider';
 
 // Extend expect with jest-axe matchers
 expect.extend(toHaveNoViolations);
@@ -25,6 +26,11 @@ vi.mock('next/navigation', () => ({
   }),
 }));
 
+// Helper to render components with ThemeProvider
+function renderWithTheme(component: React.ReactElement) {
+  return render(<ThemeProvider>{component}</ThemeProvider>);
+}
+
 describe('Property 35: WCAG AA compliance', () => {
   const mockNavItems = [
     { href: '/en', label: 'Home' },
@@ -36,7 +42,7 @@ describe('Property 35: WCAG AA compliance', () => {
 
   describe('Layout components accessibility', () => {
     it('should have no accessibility violations in Header', async () => {
-      const { container } = render(<Header locale="en" />);
+      const { container } = renderWithTheme(<Header locale="en" />);
       const results = await axe(container);
       expect(results).toHaveNoViolations();
     });
@@ -90,7 +96,7 @@ describe('Property 35: WCAG AA compliance', () => {
 
   describe('WCAG 2.1 Level AA compliance', () => {
     it('should pass WCAG AA color contrast requirements', async () => {
-      const { container } = render(<Header locale="en" />);
+      const { container } = renderWithTheme(<Header locale="en" />);
       
       const results = await axe(container, {
         rules: {
@@ -161,13 +167,13 @@ describe('Property 35: WCAG AA compliance', () => {
 
   describe('Property: Components must maintain accessibility across locales', () => {
     it('should have no violations in French locale', async () => {
-      const { container } = render(<Header locale="fr" />);
+      const { container } = renderWithTheme(<Header locale="fr" />);
       const results = await axe(container);
       expect(results).toHaveNoViolations();
     });
 
     it('should have no violations in English locale', async () => {
-      const { container } = render(<Header locale="en" />);
+      const { container } = renderWithTheme(<Header locale="en" />);
       const results = await axe(container);
       expect(results).toHaveNoViolations();
     });

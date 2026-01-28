@@ -150,6 +150,18 @@ export function JourneySection({ locale }: JourneySectionProps) {
       title: 'Your Journey with Afrexia',
       subtitle: 'We support each client according to their specific needs',
     },
+    es: {
+      title: 'Su Viaje con Afrexia',
+      subtitle: 'Apoyamos a cada cliente según sus necesidades específicas',
+    },
+    de: {
+      title: 'Ihre Reise mit Afrexia',
+      subtitle: 'Wir unterstützen jeden Kunden entsprechend seinen spezifischen Bedürfnissen',
+    },
+    ru: {
+      title: 'Ваш Путь с Afrexia',
+      subtitle: 'Мы поддерживаем каждого клиента в соответствии с его конкретными потребностями',
+    },
   };
 
   const t = content[locale] || content.en; // Fallback to English if locale not found

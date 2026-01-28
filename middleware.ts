@@ -149,8 +149,8 @@ export const config = {
      * - favicon.ico, sitemap.xml, robots.txt (static files)
      * - api routes
      * - studio (Sanity Studio)
-     * - public assets
+     * - public assets (fonts, assets, locales)
      */
-    '/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|api|studio|assets|locales).*)',
+    '/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|api|studio|assets|locales|fonts).*)',
   ],
 };
