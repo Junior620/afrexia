@@ -12,25 +12,40 @@ interface Journey {
   title: {
     fr: string;
     en: string;
+    es: string;
+    de: string;
+    ru: string;
   };
   description: {
     fr: string;
     en: string;
+    es: string;
+    de: string;
+    ru: string;
   };
   steps: {
     title: {
       fr: string;
       en: string;
+      es: string;
+      de: string;
+      ru: string;
     };
     description: {
       fr: string;
       en: string;
+      es: string;
+      de: string;
+      ru: string;
     };
   }[];
   cta: {
     text: {
       fr: string;
       en: string;
+      es: string;
+      de: string;
+      ru: string;
     };
     href: string;
   };
@@ -43,40 +58,64 @@ export function JourneySection({ locale }: JourneySectionProps) {
       title: {
         fr: 'Parcours Acheteur',
         en: 'Buyer Journey',
+        es: 'Recorrido del Comprador',
+        de: 'Käufer-Reise',
+        ru: 'Путь Покупателя',
       },
       description: {
         fr: 'Pour les acheteurs B2B recherchant des commodités agricoles de qualité',
         en: 'For B2B buyers seeking quality agricultural commodities',
+        es: 'Para compradores B2B que buscan productos agrícolas de calidad',
+        de: 'Für B2B-Käufer, die hochwertige Agrarprodukte suchen',
+        ru: 'Для B2B покупателей, ищущих качественные сельскохозяйственные товары',
       },
       steps: [
         {
           title: {
             fr: 'Découvrir',
             en: 'Discover',
+            es: 'Descubrir',
+            de: 'Entdecken',
+            ru: 'Открыть',
           },
           description: {
             fr: 'Explorez notre gamme de produits premium avec spécifications détaillées',
             en: 'Explore our range of premium products with detailed specifications',
+            es: 'Explore nuestra gama de productos premium con especificaciones detalladas',
+            de: 'Entdecken Sie unser Sortiment an Premium-Produkten mit detaillierten Spezifikationen',
+            ru: 'Изучите наш ассортимент премиальных продуктов с подробными спецификациями',
           },
         },
         {
           title: {
             fr: 'Évaluer',
             en: 'Evaluate',
+            es: 'Evaluar',
+            de: 'Bewerten',
+            ru: 'Оценить',
           },
           description: {
             fr: 'Consultez les certifications, origines et options logistiques',
             en: 'Review certifications, origins, and logistics options',
+            es: 'Revise certificaciones, orígenes y opciones logísticas',
+            de: 'Überprüfen Sie Zertifizierungen, Herkunft und Logistikoptionen',
+            ru: 'Ознакомьтесь с сертификатами, происхождением и логистическими опциями',
           },
         },
         {
           title: {
             fr: 'Commander',
             en: 'Order',
+            es: 'Ordenar',
+            de: 'Bestellen',
+            ru: 'Заказать',
           },
           description: {
             fr: 'Demandez un devis personnalisé adapté à vos besoins',
             en: 'Request a customized quote tailored to your needs',
+            es: 'Solicite una cotización personalizada adaptada a sus necesidades',
+            de: 'Fordern Sie ein individuelles Angebot an, das auf Ihre Bedürfnisse zugeschnitten ist',
+            ru: 'Запросите индивидуальное предложение, адаптированное под ваши потребности',
           },
         },
       ],
@@ -84,6 +123,9 @@ export function JourneySection({ locale }: JourneySectionProps) {
         text: {
           fr: 'Demander un Devis',
           en: 'Request a Quote',
+          es: 'Solicitar Cotización',
+          de: 'Angebot Anfordern',
+          ru: 'Запросить Предложение',
         },
         href: '/rfq',
       },
@@ -93,40 +135,64 @@ export function JourneySection({ locale }: JourneySectionProps) {
       title: {
         fr: 'Parcours Institutionnel',
         en: 'Institutional Journey',
+        es: 'Recorrido Institucional',
+        de: 'Institutionelle Reise',
+        ru: 'Институциональный Путь',
       },
       description: {
         fr: 'Pour les partenaires institutionnels et investisseurs',
         en: 'For institutional partners and investors',
+        es: 'Para socios institucionales e inversores',
+        de: 'Für institutionelle Partner und Investoren',
+        ru: 'Для институциональных партнеров и инвесторов',
       },
       steps: [
         {
           title: {
             fr: 'Traçabilité',
             en: 'Traceability',
+            es: 'Trazabilidad',
+            de: 'Rückverfolgbarkeit',
+            ru: 'Отслеживаемость',
           },
           description: {
             fr: 'Vérifiez notre conformité EUDR et notre chaîne d\'approvisionnement',
             en: 'Verify our EUDR compliance and supply chain',
+            es: 'Verifique nuestro cumplimiento EUDR y cadena de suministro',
+            de: 'Überprüfen Sie unsere EUDR-Konformität und Lieferkette',
+            ru: 'Проверьте наше соответствие EUDR и цепочку поставок',
           },
         },
         {
           title: {
             fr: 'Qualité',
             en: 'Quality',
+            es: 'Calidad',
+            de: 'Qualität',
+            ru: 'Качество',
           },
           description: {
             fr: 'Découvrez nos certifications et processus d\'assurance qualité',
             en: 'Discover our certifications and quality assurance processes',
+            es: 'Descubra nuestras certificaciones y procesos de aseguramiento de calidad',
+            de: 'Entdecken Sie unsere Zertifizierungen und Qualitätssicherungsprozesse',
+            ru: 'Откройте для себя наши сертификаты и процессы обеспечения качества',
           },
         },
         {
           title: {
             fr: 'Partenariat',
             en: 'Partnership',
+            es: 'Asociación',
+            de: 'Partnerschaft',
+            ru: 'Партнерство',
           },
           description: {
             fr: 'Établissez une collaboration à long terme avec notre équipe',
             en: 'Establish a long-term collaboration with our team',
+            es: 'Establezca una colaboración a largo plazo con nuestro equipo',
+            de: 'Etablieren Sie eine langfristige Zusammenarbeit mit unserem Team',
+            ru: 'Установите долгосрочное сотрудничество с нашей командой',
           },
         },
       ],
@@ -134,6 +200,9 @@ export function JourneySection({ locale }: JourneySectionProps) {
         text: {
           fr: 'Nous Contacter',
           en: 'Contact Us',
+          es: 'Contáctenos',
+          de: 'Kontaktieren Sie Uns',
+          ru: 'Свяжитесь с Нами',
         },
         href: '/contact',
       },
