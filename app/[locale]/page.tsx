@@ -6,10 +6,12 @@ import { TrustBar } from '@/components/sections/TrustBar';
 import { ProductsShowcase } from '@/components/sections/ProductsShowcase';
 import { JourneySection } from '@/components/sections/JourneySection';
 import { ServicesSection } from '@/components/sections/ServicesSection';
+import { PartnerSection } from '@/components/sections/PartnerSection';
 import { CertificationsSection } from '@/components/sections/CertificationsSection';
 import { getAllProducts, getAllCertifications, getSiteSettings } from '@/lib/sanity/queries';
 import { generateMetaTags } from '@/lib/seo/metadata';
 import { generateOrganizationSchema, generateWebSiteSchema } from '@/lib/seo/schema';
+import { sepacamSectionContent } from '@/lib/content/sepacam-section';
 
 interface HomePageProps {
   params: Promise<{ locale: Locale }>;
@@ -109,6 +111,17 @@ export default async function HomePage({ params }: HomePageProps) {
 
       {/* Services Section */}
       <ServicesSection locale={locale} />
+
+      {/* Partner Section - SCPB SARL */}
+      <PartnerSection locale={locale} />
+
+      {/* Separator */}
+      <div className="max-w-[1200px] mx-auto px-6 md:px-8">
+        <div className="h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+      </div>
+
+      {/* Partner Section - SEPACAM */}
+      <PartnerSection locale={locale} content={sepacamSectionContent[locale]} />
 
       {/* Certifications Section */}
       <CertificationsSection certifications={certifications} locale={locale} />

@@ -56,6 +56,17 @@ const config: Config = {
         'dark-sand': '#5A7268', // Further lightened for 3:1 contrast
         'dark-support': '#9AB08A',
         
+        // Partner section specific colors
+        // These colors are used exclusively in the SCPB Partner Section component
+        // to maintain consistent typography and visual hierarchy.
+        // - primary: Main heading and value text (#EDEDED)
+        // - secondary: Body text, subtitles, and labels (rgba(237, 237, 237, 0.72))
+        // Requirements: 6.1, 6.2 from .kiro/specs/scpb-partner-section/requirements.md
+        'partner-text': {
+          primary: '#EDEDED',
+          secondary: 'rgba(237, 237, 237, 0.72)',
+        },
+        
         // Semantic colors mapped to brand palette
         success: {
           DEFAULT: '#337A49', // secondary
