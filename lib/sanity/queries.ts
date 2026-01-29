@@ -365,6 +365,11 @@ export async function getSiteSettings() {
       alt,
       caption,
       hotspot
+    },
+    complianceBackgroundImage {
+      asset,
+      alt,
+      hotspot
     }
   }`;
 

@@ -154,28 +154,26 @@ export function ProductsShowcase({ products, locale }: ProductsShowcaseProps) {
                 </p>
                 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                  <div className="flex flex-col items-center gap-1">
-                    <Link
-                      href={`/${locale}/products`}
-                      className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark dark:bg-dark-primary dark:hover:bg-dark-primary/90 text-white px-8 py-4 rounded-full font-semibold text-base transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-start">
+                  <Link
+                    href={`/${locale}/products`}
+                    className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark dark:bg-dark-primary dark:hover:bg-dark-primary/90 text-white px-8 py-4 rounded-full font-semibold text-base transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                  >
+                    {t.viewAll}
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
                     >
-                      {t.viewAll}
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </Link>
-                  </div>
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </Link>
                   
                   <div className="flex flex-col items-center gap-1">
                     <Link

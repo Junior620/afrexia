@@ -5,6 +5,7 @@ import { Statistics } from '@/components/sections/Statistics';
 import { TrustBar } from '@/components/sections/TrustBar';
 import { ProductsShowcase } from '@/components/sections/ProductsShowcase';
 import { JourneySection } from '@/components/sections/JourneySection';
+import { ServicesSection } from '@/components/sections/ServicesSection';
 import { CertificationsSection } from '@/components/sections/CertificationsSection';
 import { getAllProducts, getAllCertifications, getSiteSettings } from '@/lib/sanity/queries';
 import { generateMetaTags } from '@/lib/seo/metadata';
@@ -98,13 +99,16 @@ export default async function HomePage({ params }: HomePageProps) {
       <Statistics locale={locale} trackRecordImage={siteSettings?.trackRecordImage} />
 
       {/* Trust Bar - Proof Section */}
-      <TrustBar locale={locale} />
+      <TrustBar locale={locale} complianceBackgroundImage={siteSettings?.complianceBackgroundImage} />
 
       {/* Products Showcase Section */}
       <ProductsShowcase products={products} locale={locale} />
 
       {/* Journey Section */}
       <JourneySection locale={locale} />
+
+      {/* Services Section */}
+      <ServicesSection locale={locale} />
 
       {/* Certifications Section */}
       <CertificationsSection certifications={certifications} locale={locale} />

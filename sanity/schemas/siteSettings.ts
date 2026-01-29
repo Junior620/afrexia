@@ -49,6 +49,30 @@ export default defineType({
       ],
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'complianceBackgroundImage',
+      title: 'Compliance Section Background Image',
+      type: 'image',
+      description: 'Image terrain en fond pour la section "Conformité, Traçabilité & QA" (contrôle qualité, audit, documentation). Recommandé: 1920x1080px minimum, sera désaturée et floutée. Privilégier photos avec contraste moyen.',
+      options: {
+        hotspot: true,
+        metadata: ['blurhash', 'lqip', 'palette'],
+      },
+      fields: [
+        {
+          name: 'alt',
+          type: 'object',
+          title: 'Alt Text (Multilingual)',
+          fields: [
+            { name: 'fr', type: 'string', title: 'Français' },
+            { name: 'en', type: 'string', title: 'English' },
+            { name: 'es', type: 'string', title: 'Español' },
+            { name: 'de', type: 'string', title: 'Deutsch' },
+            { name: 'ru', type: 'string', title: 'Русский' },
+          ],
+        },
+      ],
+    }),
   ],
   preview: {
     prepare() {
