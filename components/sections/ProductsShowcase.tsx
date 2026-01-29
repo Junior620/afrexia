@@ -15,6 +15,10 @@ export function ProductsShowcase({ products, locale }: ProductsShowcaseProps) {
       subtitle: 'Découvrez notre sélection de commodités agricoles africaines de haute qualité',
       viewAll: 'Voir Tous les Produits',
       requestQuote: 'Demander un devis',
+      requestQuoteMicro: 'Réponse sous 24h',
+      downloadCatalogue: 'Télécharger le catalogue',
+      downloadCatalogueMicro: 'PDF – specs & origines',
+      ctaPrompt: 'Besoin d\'un devis rapide ou d\'une fiche produit ?',
       noProducts: 'Aucun produit disponible pour le moment',
     },
     en: {
@@ -22,6 +26,10 @@ export function ProductsShowcase({ products, locale }: ProductsShowcaseProps) {
       subtitle: 'Discover our selection of high-quality African agricultural commodities',
       viewAll: 'View All Products',
       requestQuote: 'Request a Quote',
+      requestQuoteMicro: 'Reply within 24h',
+      downloadCatalogue: 'Download Catalogue',
+      downloadCatalogueMicro: 'PDF – specs & origins',
+      ctaPrompt: 'Need a quick quote or product sheet?',
       noProducts: 'No products available at the moment',
     },
     es: {
@@ -29,6 +37,10 @@ export function ProductsShowcase({ products, locale }: ProductsShowcaseProps) {
       subtitle: 'Descubra nuestra selección de productos agrícolas africanos de alta calidad',
       viewAll: 'Ver Todos los Productos',
       requestQuote: 'Solicitar Cotización',
+      requestQuoteMicro: 'Respuesta en 24h',
+      downloadCatalogue: 'Descargar Catálogo',
+      downloadCatalogueMicro: 'PDF – specs y orígenes',
+      ctaPrompt: '¿Necesita una cotización rápida o ficha de producto?',
       noProducts: 'No hay productos disponibles en este momento',
     },
     de: {
@@ -36,6 +48,10 @@ export function ProductsShowcase({ products, locale }: ProductsShowcaseProps) {
       subtitle: 'Entdecken Sie unsere Auswahl an hochwertigen afrikanischen Agrarprodukten',
       viewAll: 'Alle Produkte Ansehen',
       requestQuote: 'Angebot Anfordern',
+      requestQuoteMicro: 'Antwort in 24h',
+      downloadCatalogue: 'Katalog Herunterladen',
+      downloadCatalogueMicro: 'PDF – Specs & Herkunft',
+      ctaPrompt: 'Benötigen Sie ein schnelles Angebot oder Datenblatt?',
       noProducts: 'Derzeit keine Produkte verfügbar',
     },
     ru: {
@@ -43,6 +59,10 @@ export function ProductsShowcase({ products, locale }: ProductsShowcaseProps) {
       subtitle: 'Откройте для себя наш ассортимент высококачественных африканских сельскохозяйственных товаров',
       viewAll: 'Посмотреть Все Продукты',
       requestQuote: 'Запросить Предложение',
+      requestQuoteMicro: 'Ответ в течение 24ч',
+      downloadCatalogue: 'Скачать Каталог',
+      downloadCatalogueMicro: 'PDF – спецификации и происхождение',
+      ctaPrompt: 'Нужно быстрое предложение или спецификация продукта?',
       noProducts: 'В настоящее время нет доступных продуктов',
     },
   };
@@ -125,47 +145,63 @@ export function ProductsShowcase({ products, locale }: ProductsShowcaseProps) {
               ))}
             </div>
 
-            {/* CTAs Row */}
+            {/* CTAs Row with Prompt */}
             <ScrollReveal animation="fade">
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Link
-                  href={`/${locale}/products`}
-                  className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark dark:bg-dark-primary dark:hover:bg-dark-primary/90 text-white px-8 py-4 rounded-full font-semibold text-base transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-                >
-                  {t.viewAll}
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </Link>
-                <Link
-                  href={`/${locale}/rfq`}
-                  className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark dark:bg-dark-accent dark:hover:bg-dark-accent/90 text-white px-8 py-4 rounded-full font-semibold text-base transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-                >
-                  {t.requestQuote}
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </Link>
+              <div className="text-center space-y-6">
+                {/* Prompt text */}
+                <p className="text-base md:text-lg text-neutral dark:text-dark-text-secondary font-medium">
+                  {t.ctaPrompt}
+                </p>
+                
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <div className="flex flex-col items-center gap-1">
+                    <Link
+                      href={`/${locale}/products`}
+                      className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark dark:bg-dark-primary dark:hover:bg-dark-primary/90 text-white px-8 py-4 rounded-full font-semibold text-base transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                    >
+                      {t.viewAll}
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
+                  
+                  <div className="flex flex-col items-center gap-1">
+                    <Link
+                      href={`/${locale}/rfq`}
+                      className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark dark:bg-dark-accent dark:hover:bg-dark-accent/90 text-white px-8 py-4 rounded-full font-semibold text-base transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                    >
+                      {t.requestQuote}
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </Link>
+                    <span className="text-xs text-neutral/70 dark:text-dark-text-secondary/70">
+                      {t.requestQuoteMicro}
+                    </span>
+                  </div>
+                </div>
               </div>
             </ScrollReveal>
           </>

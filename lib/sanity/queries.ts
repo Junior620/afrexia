@@ -353,3 +353,20 @@ export async function getResourceById(id: string) {
 
   return client.fetch(query, { id });
 }
+
+/**
+ * Get site settings (singleton)
+ */
+export async function getSiteSettings() {
+  const query = groq`*[_type == "siteSettings"][0] {
+    _id,
+    trackRecordImage {
+      asset,
+      alt,
+      caption,
+      hotspot
+    }
+  }`;
+
+  return client.fetch(query, {}, { next: { revalidate: 3600 } });
+}

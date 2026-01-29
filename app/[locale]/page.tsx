@@ -6,7 +6,7 @@ import { TrustBar } from '@/components/sections/TrustBar';
 import { ProductsShowcase } from '@/components/sections/ProductsShowcase';
 import { JourneySection } from '@/components/sections/JourneySection';
 import { CertificationsSection } from '@/components/sections/CertificationsSection';
-import { getAllProducts, getAllCertifications } from '@/lib/sanity/queries';
+import { getAllProducts, getAllCertifications, getSiteSettings } from '@/lib/sanity/queries';
 import { generateMetaTags } from '@/lib/seo/metadata';
 import { generateOrganizationSchema, generateWebSiteSchema } from '@/lib/seo/schema';
 
@@ -83,9 +83,10 @@ export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
 
   // Fetch data for homepage sections
-  const [products, certifications] = await Promise.all([
+  const [products, certifications, siteSettings] = await Promise.all([
     getAllProducts(),
     getAllCertifications(),
+    getSiteSettings(),
   ]);
 
   return (
@@ -94,7 +95,7 @@ export default async function HomePage({ params }: HomePageProps) {
       <Hero locale={locale} />
 
       {/* Statistics Section */}
-      <Statistics locale={locale} />
+      <Statistics locale={locale} trackRecordImage={siteSettings?.trackRecordImage} />
 
       {/* Trust Bar - Proof Section */}
       <TrustBar locale={locale} />
