@@ -10,8 +10,8 @@ export default defineType({
       title: 'Product Name',
       type: 'object',
       fields: [
-        { name: 'fr', type: 'string', title: 'French' },
-        { name: 'en', type: 'string', title: 'English' },
+        { name: 'fr', type: 'string', title: 'French', validation: (Rule) => Rule.required() },
+        { name: 'en', type: 'string', title: 'English', validation: (Rule) => Rule.required() },
         { name: 'es', type: 'string', title: 'Spanish' },
         { name: 'de', type: 'string', title: 'German' },
         { name: 'ru', type: 'string', title: 'Russian' },
@@ -74,25 +74,229 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'i18nId',
-      title: 'Translation ID',
-      type: 'string',
-      description: 'Unique ID to link translations of the same product across languages (optional)',
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'object',
+      description: 'Short descriptive subtitle for the product',
+      fields: [
+        { name: 'fr', type: 'string', title: 'French' },
+        { name: 'en', type: 'string', title: 'English' },
+        { name: 'es', type: 'string', title: 'Spanish' },
+        { name: 'de', type: 'string', title: 'German' },
+        { name: 'ru', type: 'string', title: 'Russian' },
+      ],
     }),
     defineField({
       name: 'category',
       title: 'Category',
+      type: 'reference',
+      to: [{ type: 'category' }],
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'heroImage',
+      title: 'Hero Image',
+      type: 'image',
+      description: 'Main product image for catalog cards',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alt Text',
+          validation: (Rule) => Rule.required(),
+        },
+      ],
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'availability',
+      title: 'Availability Status',
       type: 'string',
       options: {
         list: [
-          { title: 'Cocoa', value: 'cocoa' },
-          { title: 'Coffee', value: 'coffee' },
-          { title: 'Pepper', value: 'pepper' },
-          { title: 'Wood', value: 'wood' },
-          { title: 'Corn', value: 'corn' },
+          { title: 'In Stock', value: 'in-stock' },
+          { title: 'Limited Stock', value: 'limited' },
+          { title: 'Pre-Order', value: 'pre-order' },
+          { title: 'Out of Stock', value: 'out-of-stock' },
         ],
       },
+      initialValue: 'in-stock',
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'origins',
+      title: 'Origin Countries',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'origin' }] }],
+      description: 'Countries where this product originates',
+      validation: (Rule) => Rule.required().min(1),
+    }),
+    defineField({
+      name: 'certifications',
+      title: 'Certifications',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'certification' }] }],
+      description: 'Product certifications (Bio, Fair Trade, etc.)',
+    }),
+    defineField({
+      name: 'eudrReady',
+      title: 'EUDR Ready',
+      type: 'boolean',
+      description: 'EU Deforestation Regulation compliant',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'qaAvailable',
+      title: 'QA Documentation Available',
+      type: 'boolean',
+      description: 'Quality Assurance documentation available',
+      initialValue: true,
+    }),
+    defineField({
+      name: 'documents',
+      title: 'Available Documents',
+      type: 'object',
+      description: 'Document availability indicators',
+      fields: [
+        {
+          name: 'coa',
+          type: 'boolean',
+          title: 'Certificate of Analysis (COA)',
+          initialValue: false,
+        },
+        {
+          name: 'specSheet',
+          type: 'boolean',
+          title: 'Specification Sheet',
+          initialValue: false,
+        },
+        {
+          name: 'chainOfCustody',
+          type: 'boolean',
+          title: 'Chain of Custody',
+          initialValue: false,
+        },
+      ],
+    }),
+    defineField({
+      name: 'moq',
+      title: 'Minimum Order Quantity (MOQ)',
+      type: 'object',
+      description: 'Minimum order quantity with unit',
+      fields: [
+        {
+          name: 'value',
+          type: 'number',
+          title: 'Value',
+          validation: (Rule) => Rule.required().positive(),
+        },
+        {
+          name: 'unit',
+          type: 'string',
+          title: 'Unit',
+          options: {
+            list: [
+              { title: 'kg', value: 'kg' },
+              { title: 'MT (Metric Tons)', value: 'MT' },
+              { title: 'tons', value: 'tons' },
+              { title: 'containers', value: 'containers' },
+              { title: 'bags', value: 'bags' },
+            ],
+          },
+          validation: (Rule) => Rule.required(),
+        },
+      ],
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'incoterms',
+      title: 'Available Incoterms',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: 'FOB - Free On Board', value: 'FOB' },
+          { title: 'CIF - Cost, Insurance and Freight', value: 'CIF' },
+          { title: 'CFR - Cost and Freight', value: 'CFR' },
+          { title: 'EXW - Ex Works', value: 'EXW' },
+          { title: 'FCA - Free Carrier', value: 'FCA' },
+          { title: 'DAP - Delivered At Place', value: 'DAP' },
+          { title: 'DDP - Delivered Duty Paid', value: 'DDP' },
+        ],
+      },
+      validation: (Rule) => Rule.required().min(1),
+    }),
+    defineField({
+      name: 'packaging',
+      title: 'Packaging',
+      type: 'object',
+      description: 'Packaging information (localized)',
+      fields: [
+        { name: 'fr', type: 'string', title: 'French' },
+        { name: 'en', type: 'string', title: 'English' },
+        { name: 'es', type: 'string', title: 'Spanish' },
+        { name: 'de', type: 'string', title: 'German' },
+        { name: 'ru', type: 'string', title: 'Russian' },
+      ],
+    }),
+    defineField({
+      name: 'grade',
+      title: 'Grade',
+      type: 'object',
+      description: 'Product grade or quality level (localized)',
+      fields: [
+        { name: 'fr', type: 'string', title: 'French' },
+        { name: 'en', type: 'string', title: 'English' },
+        { name: 'es', type: 'string', title: 'Spanish' },
+        { name: 'de', type: 'string', title: 'German' },
+        { name: 'ru', type: 'string', title: 'Russian' },
+      ],
+    }),
+    defineField({
+      name: 'leadTime',
+      title: 'Lead Time',
+      type: 'object',
+      description: 'Delivery lead time (localized)',
+      fields: [
+        { name: 'fr', type: 'string', title: 'French' },
+        { name: 'en', type: 'string', title: 'English' },
+        { name: 'es', type: 'string', title: 'Spanish' },
+        { name: 'de', type: 'string', title: 'German' },
+        { name: 'ru', type: 'string', title: 'Russian' },
+      ],
+    }),
+    defineField({
+      name: 'notes',
+      title: 'Additional Notes',
+      type: 'object',
+      description: 'Additional product notes (localized)',
+      fields: [
+        { name: 'fr', type: 'text', title: 'French', rows: 3 },
+        { name: 'en', type: 'text', title: 'English', rows: 3 },
+        { name: 'es', type: 'text', title: 'Spanish', rows: 3 },
+        { name: 'de', type: 'text', title: 'German', rows: 3 },
+        { name: 'ru', type: 'text', title: 'Russian', rows: 3 },
+      ],
+    }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'Searchable tags for filtering',
+      options: {
+        layout: 'tags',
+      },
+    }),
+    defineField({
+      name: 'markets',
+      title: 'Target Markets',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'Countries or regions where this product is marketed',
     }),
     defineField({
       name: 'description',
@@ -105,12 +309,12 @@ export default defineType({
         { name: 'de', type: 'blockContent', title: 'German' },
         { name: 'ru', type: 'blockContent', title: 'Russian' },
       ],
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'gallery',
       title: 'Image Gallery',
       type: 'array',
+      description: 'Additional product images',
       of: [
         {
           type: 'image',
@@ -137,12 +341,12 @@ export default defineType({
           ],
         },
       ],
-      validation: (Rule) => Rule.required().min(1),
     }),
     defineField({
       name: 'originRegions',
       title: 'Origin Regions',
       type: 'array',
+      description: 'Detailed origin regions with coordinates',
       of: [
         {
           type: 'object',
@@ -185,6 +389,7 @@ export default defineType({
       name: 'packagingOptions',
       title: 'Packaging Options',
       type: 'array',
+      description: 'Detailed packaging options',
       of: [
         {
           type: 'object',
@@ -216,35 +421,6 @@ export default defineType({
           ],
         },
       ],
-    }),
-    defineField({
-      name: 'moq',
-      title: 'Minimum Order Quantity (MOQ)',
-      type: 'string',
-      description: 'e.g., "1 container (20 MT)"',
-    }),
-    defineField({
-      name: 'incoterms',
-      title: 'Available Incoterms',
-      type: 'array',
-      of: [{ type: 'string' }],
-      options: {
-        list: [
-          { title: 'FOB - Free On Board', value: 'FOB' },
-          { title: 'CIF - Cost, Insurance and Freight', value: 'CIF' },
-          { title: 'CFR - Cost and Freight', value: 'CFR' },
-          { title: 'EXW - Ex Works', value: 'EXW' },
-          { title: 'FCA - Free Carrier', value: 'FCA' },
-          { title: 'DAP - Delivered At Place', value: 'DAP' },
-          { title: 'DDP - Delivered Duty Paid', value: 'DDP' },
-        ],
-      },
-    }),
-    defineField({
-      name: 'certifications',
-      title: 'Certifications',
-      type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'certification' }] }],
     }),
     defineField({
       name: 'specificationPDF',
@@ -289,27 +465,6 @@ export default defineType({
       title: 'HS Code',
       type: 'string',
       description: 'Harmonized System Code for customs',
-    }),
-    defineField({
-      name: 'availability',
-      title: 'Availability Status',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'In Stock', value: 'in_stock' },
-          { title: 'Pre-Order', value: 'pre_order' },
-          { title: 'Seasonal', value: 'seasonal' },
-          { title: 'Out of Stock', value: 'out_of_stock' },
-        ],
-      },
-      initialValue: 'in_stock',
-    }),
-    defineField({
-      name: 'targetMarkets',
-      title: 'Target Markets',
-      type: 'array',
-      of: [{ type: 'string' }],
-      description: 'Countries or regions where this product is marketed',
     }),
     defineField({
       name: 'seo',
@@ -360,8 +515,16 @@ export default defineType({
   preview: {
     select: {
       title: 'name.en',
-      subtitle: 'category',
-      media: 'gallery.0',
+      subtitle: 'category.name.en',
+      media: 'heroImage',
+      availability: 'availability',
+    },
+    prepare({ title, subtitle, media, availability }) {
+      return {
+        title: title || 'Untitled Product',
+        subtitle: `${subtitle || 'No category'} - ${availability || 'unknown'}`,
+        media,
+      }
     },
   },
 })

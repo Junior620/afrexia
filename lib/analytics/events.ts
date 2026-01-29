@@ -188,3 +188,109 @@ export function trackCTAClick(data: {
 export function isTrackingEnabled(): boolean {
   return !isDNTEnabled();
 }
+
+/**
+ * Track catalog filter usage
+ */
+export function trackCatalogFilter(data: {
+  filterType: string;
+  filterValue: any;
+  resultCount: number;
+}): void {
+  trackEvent('catalog_filter_used' as ConversionEvent, {
+    filter_type: data.filterType,
+    filter_value: typeof data.filterValue === 'object' 
+      ? JSON.stringify(data.filterValue) 
+      : data.filterValue,
+    result_count: data.resultCount,
+  });
+}
+
+/**
+ * Track product card view (when card enters viewport)
+ */
+export function trackProductCardView(data: {
+  productId: string;
+  productName: string;
+  category: string;
+  origin: string;
+  availability: string;
+}): void {
+  trackEvent('product_view', {
+    product_id: data.productId,
+    product_name: data.productName,
+    category: data.category,
+    origin: data.origin,
+    availability: data.availability,
+  });
+}
+
+/**
+ * Track product card CTA (quote button) click
+ */
+export function trackProductCardCTAClick(data: {
+  productId: string;
+  productName: string;
+  category: string;
+  origin: string;
+  availability: string;
+}): void {
+  trackEvent('cta_click', {
+    cta_type: 'product_card_quote',
+    product_id: data.productId,
+    product_name: data.productName,
+    category: data.category,
+    origin: data.origin,
+    availability: data.availability,
+  });
+}
+
+/**
+ * Track product card specifications link click
+ */
+export function trackProductCardSpecClick(data: {
+  productId: string;
+  productName: string;
+  category: string;
+}): void {
+  trackEvent('cta_click', {
+    cta_type: 'product_card_spec',
+    product_id: data.productId,
+    product_name: data.productName,
+    category: data.category,
+  });
+}
+
+/**
+ * Track quick view modal open
+ */
+export function trackQuickViewOpen(data: {
+  productId: string;
+  productName: string;
+  category: string;
+  origin: string;
+}): void {
+  trackEvent('cta_click', {
+    cta_type: 'quick_view_open',
+    product_id: data.productId,
+    product_name: data.productName,
+    category: data.category,
+    origin: data.origin,
+  });
+}
+
+/**
+ * Track catalog download
+ */
+export function trackCatalogDownload(data: {
+  company: string;
+  country: string;
+  email: string;
+}): void {
+  trackEvent('resource_download', {
+    resource_type: 'catalog_pdf',
+    company: data.company,
+    country: data.country,
+    email: data.email,
+  });
+}

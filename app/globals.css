@@ -385,13 +385,37 @@ html {
 }
 
 /* Accessibility: Focus indicators */
+/* Gold color (#D4AF37) for focus as per design spec */
 *:focus-visible {
-  outline: 2px solid #194424;
+  outline: 2px solid #D4AF37;
   outline-offset: 2px;
 }
 
 .dark *:focus-visible {
-  outline-color: #4A9A62;
+  outline-color: #D4AF37;
+}
+
+/* Enhanced focus for interactive elements */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[role="button"]:focus-visible,
+[role="link"]:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+  outline: 2px solid #D4AF37;
+  outline-offset: 2px;
+}
+
+/* Ensure focus is always visible, never hidden */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid #D4AF37 !important;
+  outline-offset: 2px !important;
 }
 
 /* Skip to content link - screen reader only by default */
@@ -448,4 +472,202 @@ a {
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+/* Slide up animation for mobile drawer */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+/* Catalog-specific animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-from-right {
+  from {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-from-left 0.3s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-from-right 0.3s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out;
+}
+
+/* Stagger delays for list animations */
+.stagger-1 {
+  animation-delay: 0.05s;
+}
+
+.stagger-2 {
+  animation-delay: 0.1s;
+}
+
+.stagger-3 {
+  animation-delay: 0.15s;
+}
+
+.stagger-4 {
+  animation-delay: 0.2s;
+}
+
+.stagger-5 {
+  animation-delay: 0.25s;
+}
+
+/* Smooth hover transitions for cards */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Smooth image scale on hover */
+.image-hover {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.image-hover:hover {
+  transform: scale(1.05);
+}
+
+/* Filter chip animations */
+.filter-chip-enter {
+  animation: slide-in-from-left 0.2s ease-out;
+}
+
+.filter-chip-exit {
+  animation: slide-in-from-left 0.15s ease-in reverse;
+}
+
+/* Modal backdrop blur */
+.backdrop-blur-smooth {
+  backdrop-filter: blur(8px);
+  transition: backdrop-filter 0.3s ease-out;
+}
+
+/* Drawer slide animations */
+.drawer-enter {
+  animation: slide-in-from-right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.drawer-exit {
+  animation: slide-in-from-right 0.25s cubic-bezier(0.7, 0, 0.84, 0) reverse;
+}
+
+/* Toast animations */
+.toast-enter {
+  animation: scale-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast-exit {
+  animation: scale-in 0.2s cubic-bezier(0.7, 0, 0.84, 0) reverse;
+}
+
+/* Skeleton pulse animation (enhanced) */
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.skeleton-pulse {
+  animation: skeleton-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Smooth scroll reveal */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respect reduced motion for all catalog animations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-slide-in-left,
+  .animate-slide-in-right,
+  .animate-scale-in,
+  .card-hover,
+  .image-hover,
+  .filter-chip-enter,
+  .filter-chip-exit,
+  .drawer-enter,
+  .drawer-exit,
+  .toast-enter,
+  .toast-exit,
+  .scroll-reveal {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }

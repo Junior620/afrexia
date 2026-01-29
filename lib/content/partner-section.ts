@@ -114,143 +114,142 @@ export const partnerSectionContent: Record<Locale, PartnerContent> = {
     ],
     photoCaption: 'On-site quality control & traceability'
   },
-  // Fallback locales use English content
   es: {
     partnerName: 'SCPB SARL',
-    relationship: 'Strategic partner / Afrexia subsidiary',
+    relationship: 'Socio estratégico / filial de Afrexia',
     partnerUrl: 'https://ste-scpb.com',
-    eyebrow: 'Operational partner',
+    eyebrow: 'Socio operacional',
     title: 'Afexia × SCPB SARL',
-    subtitle: 'Strong local presence, international standards, audit-ready execution.',
+    subtitle: 'Fuerte presencia local, estándares internacionales, ejecución lista para auditoría.',
     bodyText: [
-      'SCPB SARL handles collection, storage, and export preparation of our products directly at source. This local presence ensures rigorous quality control and complete traceability from farm to port. Our on-ground teams supervise every step of the process, from raw material reception through quality inspection to final shipment preparation.',
-      'As a strategic partner of Afrexia, SCPB applies the same quality and compliance standards, with complete documentation including Certificates of Analysis and specification sheets, plus EUDR-ready preparation for all shipments. This operational integration enables optimal responsiveness and full transparency across the entire supply chain.'
+      'SCPB SARL gestiona la recolección, almacenamiento y preparación de exportación de nuestros productos directamente en origen. Esta presencia local garantiza un control de calidad riguroso y una trazabilidad completa desde la granja hasta el puerto. Nuestros equipos sobre el terreno supervisan cada paso del proceso, desde la recepción de materias primas hasta la preparación del envío final.',
+      'Como socio estratégico de Afrexia, SCPB aplica los mismos estándares de calidad y cumplimiento, con documentación completa que incluye Certificados de Análisis y hojas de especificaciones, además de preparación lista para EUDR para todos los envíos. Esta integración operativa permite una capacidad de respuesta óptima y transparencia total en toda la cadena de suministro.'
     ],
     keyFacts: [
-      'Collection, storage & export preparation',
-      'Quality control & documentation (COA / Spec sheets)',
-      'Traceability & EUDR-ready compliance'
+      'Recolección, almacenamiento y preparación de exportación',
+      'Control de calidad y documentación (COA / Hojas de especificaciones)',
+      'Trazabilidad y cumplimiento listo para EUDR'
     ],
     stats: [
-      { label: 'Producer network', value: '+2000', icon: 'users' },
-      { label: 'Annual capacity', value: '20,000 t', icon: 'scale' },
-      { label: 'Infrastructure', value: '5 sites', icon: 'warehouse' }
+      { label: 'Red de productores', value: '+2000', icon: 'users' },
+      { label: 'Capacidad anual', value: '20,000 t', icon: 'scale' },
+      { label: 'Infraestructura', value: '5 sitios', icon: 'warehouse' }
     ],
     primaryCTA: {
-      label: 'Discover SCPB SARL',
+      label: 'Descubrir SCPB SARL',
       href: 'https://ste-scpb.com',
       external: true
     },
     secondaryCTA: {
-      label: 'View our execution capabilities',
-      href: '/en/solutions#impact',
+      label: 'Ver nuestras capacidades de ejecución',
+      href: '/es/solutions#impact',
       external: false
     },
-    trustMicrocopy: '24h response • Standard NDA • QA files on request',
+    trustMicrocopy: 'Respuesta en 24h • NDA estándar • Archivos QA bajo solicitud',
     images: [
       {
         src: '/assets/partners/scpb-quality-control.jpg',
-        alt: 'SCPB quality control - cocoa bean inspection',
+        alt: 'Control de calidad SCPB - inspección de granos de cacao',
         priority: true
       },
       {
         src: '/assets/partners/scpb-warehouse.jpg',
-        alt: 'SCPB storage infrastructure',
+        alt: 'Infraestructura de almacenamiento SCPB',
         priority: false
       }
     ],
-    photoCaption: 'On-site quality control & traceability'
+    photoCaption: 'Control de calidad y trazabilidad en sitio'
   },
   de: {
     partnerName: 'SCPB SARL',
-    relationship: 'Strategic partner / Afrexia subsidiary',
+    relationship: 'Strategischer Partner / Afrexia-Tochtergesellschaft',
     partnerUrl: 'https://ste-scpb.com',
-    eyebrow: 'Operational partner',
+    eyebrow: 'Operativer Partner',
     title: 'Afexia × SCPB SARL',
-    subtitle: 'Strong local presence, international standards, audit-ready execution.',
+    subtitle: 'Starke lokale Präsenz, internationale Standards, prüfungsbereite Ausführung.',
     bodyText: [
-      'SCPB SARL handles collection, storage, and export preparation of our products directly at source. This local presence ensures rigorous quality control and complete traceability from farm to port. Our on-ground teams supervise every step of the process, from raw material reception through quality inspection to final shipment preparation.',
-      'As a strategic partner of Afrexia, SCPB applies the same quality and compliance standards, with complete documentation including Certificates of Analysis and specification sheets, plus EUDR-ready preparation for all shipments. This operational integration enables optimal responsiveness and full transparency across the entire supply chain.'
+      'SCPB SARL übernimmt die Sammlung, Lagerung und Exportvorbereitung unserer Produkte direkt an der Quelle. Diese lokale Präsenz gewährleistet eine strenge Qualitätskontrolle und vollständige Rückverfolgbarkeit vom Bauernhof bis zum Hafen. Unsere Teams vor Ort überwachen jeden Schritt des Prozesses, von der Rohstoffannahme über die Qualitätsprüfung bis zur endgültigen Versandvorbereitung.',
+      'Als strategischer Partner von Afrexia wendet SCPB die gleichen Qualitäts- und Compliance-Standards an, mit vollständiger Dokumentation einschließlich Analysezertifikaten und Spezifikationsblättern sowie EUDR-bereiter Vorbereitung für alle Sendungen. Diese operative Integration ermöglicht optimale Reaktionsfähigkeit und vollständige Transparenz über die gesamte Lieferkette.'
     ],
     keyFacts: [
-      'Collection, storage & export preparation',
-      'Quality control & documentation (COA / Spec sheets)',
-      'Traceability & EUDR-ready compliance'
+      'Sammlung, Lagerung und Exportvorbereitung',
+      'Qualitätskontrolle und Dokumentation (COA / Spezifikationsblätter)',
+      'Rückverfolgbarkeit und EUDR-bereite Compliance'
     ],
     stats: [
-      { label: 'Producer network', value: '+2000', icon: 'users' },
-      { label: 'Annual capacity', value: '20,000 t', icon: 'scale' },
-      { label: 'Infrastructure', value: '5 sites', icon: 'warehouse' }
+      { label: 'Produzentennetzwerk', value: '+2000', icon: 'users' },
+      { label: 'Jahreskapazität', value: '20.000 t', icon: 'scale' },
+      { label: 'Infrastruktur', value: '5 Standorte', icon: 'warehouse' }
     ],
     primaryCTA: {
-      label: 'Discover SCPB SARL',
+      label: 'SCPB SARL entdecken',
       href: 'https://ste-scpb.com',
       external: true
     },
     secondaryCTA: {
-      label: 'View our execution capabilities',
-      href: '/en/solutions#impact',
+      label: 'Unsere Ausführungsfähigkeiten ansehen',
+      href: '/de/solutions#impact',
       external: false
     },
-    trustMicrocopy: '24h response • Standard NDA • QA files on request',
+    trustMicrocopy: '24h Antwort • Standard-NDA • QA-Dateien auf Anfrage',
     images: [
       {
         src: '/assets/partners/scpb-quality-control.jpg',
-        alt: 'SCPB quality control - cocoa bean inspection',
+        alt: 'SCPB Qualitätskontrolle - Kakaobohneninspektion',
         priority: true
       },
       {
         src: '/assets/partners/scpb-warehouse.jpg',
-        alt: 'SCPB storage infrastructure',
+        alt: 'SCPB Lagerinfrastruktur',
         priority: false
       }
     ],
-    photoCaption: 'On-site quality control & traceability'
+    photoCaption: 'Qualitätskontrolle und Rückverfolgbarkeit vor Ort'
   },
   ru: {
     partnerName: 'SCPB SARL',
-    relationship: 'Strategic partner / Afrexia subsidiary',
+    relationship: 'Стратегический партнер / дочерняя компания Afrexia',
     partnerUrl: 'https://ste-scpb.com',
-    eyebrow: 'Operational partner',
+    eyebrow: 'Операционный партнер',
     title: 'Afexia × SCPB SARL',
-    subtitle: 'Strong local presence, international standards, audit-ready execution.',
+    subtitle: 'Сильное местное присутствие, международные стандарты, готовность к аудиту.',
     bodyText: [
-      'SCPB SARL handles collection, storage, and export preparation of our products directly at source. This local presence ensures rigorous quality control and complete traceability from farm to port. Our on-ground teams supervise every step of the process, from raw material reception through quality inspection to final shipment preparation.',
-      'As a strategic partner of Afrexia, SCPB applies the same quality and compliance standards, with complete documentation including Certificates of Analysis and specification sheets, plus EUDR-ready preparation for all shipments. This operational integration enables optimal responsiveness and full transparency across the entire supply chain.'
+      'SCPB SARL занимается сбором, хранением и подготовкой к экспорту наших продуктов непосредственно у источника. Это местное присутствие обеспечивает строгий контроль качества и полную отслеживаемость от фермы до порта. Наши команды на местах контролируют каждый этап процесса, от приема сырья через контроль качества до окончательной подготовки к отправке.',
+      'Как стратегический партнер Afrexia, SCPB применяет те же стандарты качества и соответствия, с полной документацией, включая сертификаты анализа и спецификации, а также подготовку в соответствии с EUDR для всех отправлений. Эта операционная интеграция обеспечивает оптимальную оперативность и полную прозрачность по всей цепочке поставок.'
     ],
     keyFacts: [
-      'Collection, storage & export preparation',
-      'Quality control & documentation (COA / Spec sheets)',
-      'Traceability & EUDR-ready compliance'
+      'Сбор, хранение и подготовка к экспорту',
+      'Контроль качества и документация (COA / Спецификации)',
+      'Отслеживаемость и соответствие EUDR'
     ],
     stats: [
-      { label: 'Producer network', value: '+2000', icon: 'users' },
-      { label: 'Annual capacity', value: '20,000 t', icon: 'scale' },
-      { label: 'Infrastructure', value: '5 sites', icon: 'warehouse' }
+      { label: 'Сеть производителей', value: '+2000', icon: 'users' },
+      { label: 'Годовая мощность', value: '20 000 т', icon: 'scale' },
+      { label: 'Инфраструктура', value: '5 объектов', icon: 'warehouse' }
     ],
     primaryCTA: {
-      label: 'Discover SCPB SARL',
+      label: 'Узнать о SCPB SARL',
       href: 'https://ste-scpb.com',
       external: true
     },
     secondaryCTA: {
-      label: 'View our execution capabilities',
-      href: '/en/solutions#impact',
+      label: 'Посмотреть наши возможности',
+      href: '/ru/solutions#impact',
       external: false
     },
-    trustMicrocopy: '24h response • Standard NDA • QA files on request',
+    trustMicrocopy: 'Ответ в течение 24ч • Стандартное NDA • Файлы QA по запросу',
     images: [
       {
         src: '/assets/partners/scpb-quality-control.jpg',
-        alt: 'SCPB quality control - cocoa bean inspection',
+        alt: 'Контроль качества SCPB - инспекция какао-бобов',
         priority: true
       },
       {
         src: '/assets/partners/scpb-warehouse.jpg',
-        alt: 'SCPB storage infrastructure',
+        alt: 'Складская инфраструктура SCPB',
         priority: false
       }
     ],
-    photoCaption: 'On-site quality control & traceability'
+    photoCaption: 'Контроль качества и отслеживаемость на месте'
   }
 };

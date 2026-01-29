@@ -1,0 +1,201 @@
+{
+  "page": {
+    "title": "Our Product Catalog",
+    "subtitle": "Premium cocoa, coffee, and agricultural products from Africa with full traceability and EUDR compliance",
+    "downloadCatalog": "Download PDF Catalog"
+  },
+  "filters": {
+    "search": "Search",
+    "searchPlaceholder": "Search for a product...",
+    "category": "Category",
+    "categoryPlaceholder": "All categories",
+    "origin": "Origin",
+    "originPlaceholder": "All countries",
+    "availability": "Availability",
+    "availabilityPlaceholder": "All availability",
+    "certifications": "Certifications",
+    "certificationsPlaceholder": "All certifications",
+    "incoterms": "Incoterms",
+    "incotermsPlaceholder": "All incoterms",
+    "moq": "MOQ",
+    "moqPlaceholder": "Minimum quantity",
+    "clearAll": "Clear all filters",
+    "activeFilters": "Active filters",
+    "productCount": "{{count}} product",
+    "productCount_plural": "{{count}} products",
+    "showFilters": "Show filters",
+    "hideFilters": "Hide filters",
+    "filtersCount": "Filters ({{count}})"
+  },
+  "availability": {
+    "inStock": "In Stock",
+    "limited": "Limited Stock",
+    "preOrder": "Pre-order"
+  },
+  "badges": {
+    "eudrReady": "EUDR Ready",
+    "organic": "Organic",
+    "fairTrade": "Fair Trade",
+    "rainforestAlliance": "Rainforest Alliance",
+    "utzCertified": "UTZ Certified",
+    "isoCertified": "ISO Certified",
+    "newProduct": "New",
+    "featured": "Featured"
+  },
+  "productCard": {
+    "origin": "Origin",
+    "moq": "MOQ",
+    "incoterm": "Incoterm",
+    "grade": "Grade",
+    "packaging": "Packaging",
+    "leadTime": "Lead Time",
+    "requestQuote": "Request a Quote",
+    "requestQuoteWithDocs": "Request Quote + Documentation",
+    "viewSpecs": "View Specifications",
+    "quickView": "Quick View",
+    "documentsAvailable": "Documents Available",
+    "qaDocumentation": "QA Documentation",
+    "coa": "COA",
+    "specSheet": "Spec Sheet",
+    "chainOfCustody": "Chain of Custody"
+  },
+  "quickView": {
+    "title": "Quick View",
+    "close": "Close",
+    "specifications": "Specifications",
+    "certifications": "Certifications",
+    "documents": "Available Documents",
+    "requestQuote": "Request a Quote",
+    "viewFullPage": "View Full Product Page",
+    "availability": "Availability",
+    "category": "Category",
+    "origins": "Origins",
+    "moq": "Minimum Order Quantity",
+    "incoterms": "Available Incoterms",
+    "packaging": "Packaging",
+    "grade": "Grade",
+    "leadTime": "Lead Time",
+    "notes": "Additional Notes"
+  },
+  "rfqDrawer": {
+    "title": "Request a Quote",
+    "close": "Close",
+    "selectedProducts": "Selected Products",
+    "addMore": "Add More Products",
+    "removeProduct": "Remove",
+    "contactInfo": "Your Contact Information",
+    "orderDetails": "Order Details",
+    "additionalNotes": "Additional Notes",
+    "fields": {
+      "name": "Full Name",
+      "namePlaceholder": "John Smith",
+      "email": "Business Email",
+      "emailPlaceholder": "john.smith@company.com",
+      "company": "Company",
+      "companyPlaceholder": "Your company name",
+      "phone": "Phone",
+      "phonePlaceholder": "+1 234 567 8900",
+      "quantity": "Quantity",
+      "quantityPlaceholder": "500",
+      "unit": "Unit",
+      "deliveryLocation": "Delivery Location",
+      "deliveryLocationPlaceholder": "Port of Rotterdam, Netherlands",
+      "incoterm": "Preferred Incoterm",
+      "incotermPlaceholder": "Select an incoterm",
+      "notes": "Additional Requirements or Questions",
+      "notesPlaceholder": "Describe your specific needs..."
+    },
+    "trustElements": {
+      "response24h": "24h Response Time",
+      "ndaAvailable": "NDA Available on Request",
+      "secureData": "Your Data is Protected"
+    },
+    "submit": "Submit Request",
+    "submitting": "Submitting...",
+    "success": "Request Sent Successfully",
+    "successMessage": "We'll contact you within 24 hours with a customized quote.",
+    "error": "Error Sending Request",
+    "errorMessage": "An error occurred. Please try again.",
+    "cartCount": "{{count}} product in cart",
+    "cartCount_plural": "{{count}} products in cart",
+    "emptyCart": "No Products Selected",
+    "emptyCartMessage": "Add products to your quote request"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidEmail": "Invalid email address",
+    "invalidPhone": "Invalid phone number",
+    "minQuantity": "Quantity must be at least {{min}} {{unit}}",
+    "minLength": "Minimum {{min}} characters",
+    "maxLength": "Maximum {{max}} characters",
+    "positiveNumber": "Must be a positive number"
+  },
+  "trustStrip": {
+    "response24h": "24h Response",
+    "response24hTooltip": "We respond to all inquiries within 24 business hours",
+    "ndaAvailable": "NDA Available",
+    "ndaAvailableTooltip": "Non-disclosure agreement available upon request",
+    "eudrCompliant": "EUDR Compliant",
+    "eudrCompliantTooltip": "All our products comply with EU Deforestation Regulation",
+    "qaDocumented": "QA Documented",
+    "qaDocumentedTooltip": "Complete quality assurance and testing documentation",
+    "coaAvailable": "COA & Spec Sheets",
+    "coaAvailableTooltip": "Certificates of Analysis and specification sheets available"
+  },
+  "catalogDownload": {
+    "title": "Download Our Catalog",
+    "subtitle": "Receive our complete PDF catalog with all our products and specifications",
+    "close": "Close",
+    "fields": {
+      "name": "Full Name",
+      "namePlaceholder": "John Smith",
+      "email": "Business Email",
+      "emailPlaceholder": "john.smith@company.com",
+      "company": "Company",
+      "companyPlaceholder": "Your company name",
+      "country": "Country",
+      "countryPlaceholder": "Select a country"
+    },
+    "privacyMessage": "Your data is protected and will never be shared with third parties",
+    "download": "Download Catalog",
+    "downloading": "Downloading...",
+    "success": "Catalog Downloaded Successfully",
+    "error": "Error Downloading Catalog"
+  },
+  "processCompliance": {
+    "title": "Process & Compliance",
+    "qualityStandards": {
+      "title": "Quality Standards",
+      "description": "All our products meet the strictest international standards (ISO, USDA, ICO) with rigorous quality controls at every stage."
+    },
+    "traceabilityProcess": {
+      "title": "Traceability Process",
+      "description": "Complete traceability from farm to port with GPS geolocation, satellite monitoring, and chain of custody documentation."
+    },
+    "certificationsOverview": {
+      "title": "Certifications Overview",
+      "description": "Internationally recognized certifications including EUDR, Organic, Fair Trade, Rainforest Alliance, and more."
+    }
+  },
+  "emptyState": {
+    "noProducts": "No Products Found",
+    "noProductsMessage": "No products match your search criteria",
+    "clearFilters": "Clear Filters",
+    "browseAll": "Browse All Products"
+  },
+  "loading": {
+    "products": "Loading products...",
+    "filters": "Loading filters..."
+  },
+  "error": {
+    "loadProducts": "Error Loading Products",
+    "loadProductsMessage": "Unable to load products. Please try again.",
+    "retry": "Retry",
+    "contactSupport": "Contact Support"
+  },
+  "footer": {
+    "multiProductRfq": "Need Multiple Products?",
+    "multiProductRfqSubtitle": "Add multiple products to your quote request for faster processing",
+    "openRfqDrawer": "Open Quote Cart"
+  }
+}

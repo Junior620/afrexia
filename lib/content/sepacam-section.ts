@@ -100,140 +100,140 @@ export const sepacamSectionContent: Record<Locale, PartnerContent> = {
   },
   es: {
     partnerName: 'SEPACAM',
-    relationship: 'Industrial partner / Co-founder Roger GWODOK',
+    relationship: 'Socio industrial / Cofundador Roger GWODOK',
     partnerUrl: '#',
-    eyebrow: 'Processing partner',
+    eyebrow: 'Socio de procesamiento',
     title: 'Afrexia × SEPACAM',
-    subtitle: 'Local processing, modern technologies, industrial value upgrade.',
+    subtitle: 'Procesamiento local, tecnologías modernas, mejora del valor industrial.',
     bodyText: [
-      'AFREXIA has partnered with SEPACAM to jointly operate a cocoa processing unit located in Édéa. This factory, recently built under the direction of Roger GWODOK — co-founder of AFREXIA and General Manager of SEPACAM — represents an investment of over 112 million XAF and is equipped with modern technologies enabling the transformation of raw cocoa into high-value-added products (paste, butter, cake).',
-      'Through this partnership, AFREXIA can direct part of the cocoa volumes collected via its cooperative network to this industrial unit, thus consolidating its value upgrade while creating local value through on-site processing, employment, and sustainable economic impact in Cameroon.'
+      'AFREXIA se ha asociado con SEPACAM para operar conjuntamente una unidad de procesamiento de cacao ubicada en Édéa. Esta fábrica, recientemente construida bajo la dirección de Roger GWODOK — cofundador de AFREXIA y Director General de SEPACAM — representa una inversión de más de 112 millones de XAF y está equipada con tecnologías modernas que permiten la transformación del cacao crudo en productos de alto valor agregado (pasta, manteca, torta).',
+      'A través de esta asociación, AFREXIA puede dirigir parte de los volúmenes de cacao recolectados a través de su red de cooperativas a esta unidad industrial, consolidando así su mejora de valor mientras crea valor local a través del procesamiento in situ, empleo e impacto económico sostenible en Camerún.'
     ],
     keyFacts: [
-      'Raw cocoa transformation into high-value products',
-      '112M+ XAF investment, modern technologies',
-      'Job creation & local economic impact'
+      'Transformación de cacao crudo en productos de alto valor',
+      'Inversión de 112M+ XAF, tecnologías modernas',
+      'Creación de empleo e impacto económico local'
     ],
     stats: [
-      { label: 'Investment', value: '112M+ XAF', icon: 'scale' },
-      { label: 'Location', value: 'Édéa', icon: 'warehouse' },
-      { label: 'Products', value: 'Paste, butter, cake', icon: 'users' }
+      { label: 'Inversión', value: '112M+ XAF', icon: 'scale' },
+      { label: 'Ubicación', value: 'Édéa', icon: 'warehouse' },
+      { label: 'Productos', value: 'Pasta, manteca, torta', icon: 'users' }
     ],
     primaryCTA: {
-      label: 'Discover the factory',
-      href: '/en/solutions#transformation',
+      label: 'Descubrir la fábrica',
+      href: '/es/solutions#transformation',
       external: false
     },
     secondaryCTA: {
-      label: 'View local impact',
-      href: '/en/solutions#impact',
+      label: 'Ver impacto local',
+      href: '/es/solutions#impact',
       external: false
     },
-    trustMicrocopy: 'Local processing • Jobs created • Sustainable impact',
+    trustMicrocopy: 'Procesamiento local • Empleos creados • Impacto sostenible',
     images: [
       {
         src: '/assets/partners/sepacam-factory.jpg',
-        alt: 'SEPACAM factory - cocoa processing equipment',
+        alt: 'Fábrica SEPACAM - equipos de procesamiento de cacao',
         priority: false
       },
       {
         src: '/assets/partners/sepacam-building.jpg',
-        alt: 'SEPACAM infrastructure in Édéa',
+        alt: 'Infraestructura SEPACAM en Édéa',
         priority: false
       }
     ],
-    photoCaption: 'Modern processing unit in Édéa'
+    photoCaption: 'Unidad de procesamiento moderna en Édéa'
   },
   de: {
     partnerName: 'SEPACAM',
-    relationship: 'Industrial partner / Co-founder Roger GWODOK',
+    relationship: 'Industriepartner / Mitbegründer Roger GWODOK',
     partnerUrl: '#',
-    eyebrow: 'Processing partner',
+    eyebrow: 'Verarbeitungspartner',
     title: 'Afrexia × SEPACAM',
-    subtitle: 'Local processing, modern technologies, industrial value upgrade.',
+    subtitle: 'Lokale Verarbeitung, moderne Technologien, industrielle Wertsteigerung.',
     bodyText: [
-      'AFREXIA has partnered with SEPACAM to jointly operate a cocoa processing unit located in Édéa. This factory, recently built under the direction of Roger GWODOK — co-founder of AFREXIA and General Manager of SEPACAM — represents an investment of over 112 million XAF and is equipped with modern technologies enabling the transformation of raw cocoa into high-value-added products (paste, butter, cake).',
-      'Through this partnership, AFREXIA can direct part of the cocoa volumes collected via its cooperative network to this industrial unit, thus consolidating its value upgrade while creating local value through on-site processing, employment, and sustainable economic impact in Cameroon.'
+      'AFREXIA hat sich mit SEPACAM zusammengeschlossen, um gemeinsam eine Kakao-Verarbeitungseinheit in Édéa zu betreiben. Diese Fabrik, die kürzlich unter der Leitung von Roger GWODOK — Mitbegründer von AFREXIA und Geschäftsführer von SEPACAM — gebaut wurde, stellt eine Investition von über 112 Millionen XAF dar und ist mit modernen Technologien ausgestattet, die die Umwandlung von Rohkakao in hochwertige Produkte (Paste, Butter, Kuchen) ermöglichen.',
+      'Durch diese Partnerschaft kann AFREXIA einen Teil der über sein Kooperativennetzwerk gesammelten Kakaovolumen an diese Industrieeinheit leiten und so seine Wertsteigerung konsolidieren, während gleichzeitig lokaler Wert durch Vor-Ort-Verarbeitung, Beschäftigung und nachhaltige wirtschaftliche Auswirkungen in Kamerun geschaffen wird.'
     ],
     keyFacts: [
-      'Raw cocoa transformation into high-value products',
-      '112M+ XAF investment, modern technologies',
-      'Job creation & local economic impact'
+      'Umwandlung von Rohkakao in hochwertige Produkte',
+      'Investition von 112M+ XAF, moderne Technologien',
+      'Schaffung von Arbeitsplätzen und lokale wirtschaftliche Auswirkungen'
     ],
     stats: [
-      { label: 'Investment', value: '112M+ XAF', icon: 'scale' },
-      { label: 'Location', value: 'Édéa', icon: 'warehouse' },
-      { label: 'Products', value: 'Paste, butter, cake', icon: 'users' }
+      { label: 'Investition', value: '112M+ XAF', icon: 'scale' },
+      { label: 'Standort', value: 'Édéa', icon: 'warehouse' },
+      { label: 'Produkte', value: 'Paste, Butter, Kuchen', icon: 'users' }
     ],
     primaryCTA: {
-      label: 'Discover the factory',
-      href: '/en/solutions#transformation',
+      label: 'Fabrik entdecken',
+      href: '/de/solutions#transformation',
       external: false
     },
     secondaryCTA: {
-      label: 'View local impact',
-      href: '/en/solutions#impact',
+      label: 'Lokale Auswirkungen ansehen',
+      href: '/de/solutions#impact',
       external: false
     },
-    trustMicrocopy: 'Local processing • Jobs created • Sustainable impact',
+    trustMicrocopy: 'Lokale Verarbeitung • Geschaffene Arbeitsplätze • Nachhaltige Auswirkungen',
     images: [
       {
         src: '/assets/partners/sepacam-factory.jpg',
-        alt: 'SEPACAM factory - cocoa processing equipment',
+        alt: 'SEPACAM-Fabrik - Kakao-Verarbeitungsausrüstung',
         priority: false
       },
       {
         src: '/assets/partners/sepacam-building.jpg',
-        alt: 'SEPACAM infrastructure in Édéa',
+        alt: 'SEPACAM-Infrastruktur in Édéa',
         priority: false
       }
     ],
-    photoCaption: 'Modern processing unit in Édéa'
+    photoCaption: 'Moderne Verarbeitungseinheit in Édéa'
   },
   ru: {
     partnerName: 'SEPACAM',
-    relationship: 'Industrial partner / Co-founder Roger GWODOK',
+    relationship: 'Промышленный партнер / Соучредитель Roger GWODOK',
     partnerUrl: '#',
-    eyebrow: 'Processing partner',
+    eyebrow: 'Партнер по переработке',
     title: 'Afrexia × SEPACAM',
-    subtitle: 'Local processing, modern technologies, industrial value upgrade.',
+    subtitle: 'Местная переработка, современные технологии, промышленное повышение ценности.',
     bodyText: [
-      'AFREXIA has partnered with SEPACAM to jointly operate a cocoa processing unit located in Édéa. This factory, recently built under the direction of Roger GWODOK — co-founder of AFREXIA and General Manager of SEPACAM — represents an investment of over 112 million XAF and is equipped with modern technologies enabling the transformation of raw cocoa into high-value-added products (paste, butter, cake).',
-      'Through this partnership, AFREXIA can direct part of the cocoa volumes collected via its cooperative network to this industrial unit, thus consolidating its value upgrade while creating local value through on-site processing, employment, and sustainable economic impact in Cameroon.'
+      'AFREXIA заключила партнерство с SEPACAM для совместной эксплуатации предприятия по переработке какао, расположенного в Эдеа. Этот завод, недавно построенный под руководством Роже ГВОДОКА — соучредителя AFREXIA и генерального директора SEPACAM — представляет собой инвестицию более 112 миллионов франков КФА и оснащен современными технологиями, позволяющими перерабатывать сырое какао в продукты с высокой добавленной стоимостью (паста, масло, жмых).',
+      'Благодаря этому партнерству AFREXIA может направлять часть объемов какао, собранных через свою сеть кооперативов, на это промышленное предприятие, тем самым укрепляя свое повышение ценности, создавая при этом местную ценность через переработку на месте, занятость и устойчивое экономическое воздействие в Камеруне.'
     ],
     keyFacts: [
-      'Raw cocoa transformation into high-value products',
-      '112M+ XAF investment, modern technologies',
-      'Job creation & local economic impact'
+      'Переработка сырого какао в продукты высокой ценности',
+      'Инвестиции 112M+ XAF, современные технологии',
+      'Создание рабочих мест и местное экономическое воздействие'
     ],
     stats: [
-      { label: 'Investment', value: '112M+ XAF', icon: 'scale' },
-      { label: 'Location', value: 'Édéa', icon: 'warehouse' },
-      { label: 'Products', value: 'Paste, butter, cake', icon: 'users' }
+      { label: 'Инвестиции', value: '112M+ XAF', icon: 'scale' },
+      { label: 'Местоположение', value: 'Эдеа', icon: 'warehouse' },
+      { label: 'Продукты', value: 'Паста, масло, жмых', icon: 'users' }
     ],
     primaryCTA: {
-      label: 'Discover the factory',
-      href: '/en/solutions#transformation',
+      label: 'Узнать о заводе',
+      href: '/ru/solutions#transformation',
       external: false
     },
     secondaryCTA: {
-      label: 'View local impact',
-      href: '/en/solutions#impact',
+      label: 'Посмотреть местное воздействие',
+      href: '/ru/solutions#impact',
       external: false
     },
-    trustMicrocopy: 'Local processing • Jobs created • Sustainable impact',
+    trustMicrocopy: 'Местная переработка • Созданные рабочие места • Устойчивое воздействие',
     images: [
       {
         src: '/assets/partners/sepacam-factory.jpg',
-        alt: 'SEPACAM factory - cocoa processing equipment',
+        alt: 'Завод SEPACAM - оборудование для переработки какао',
         priority: false
       },
       {
         src: '/assets/partners/sepacam-building.jpg',
-        alt: 'SEPACAM infrastructure in Édéa',
+        alt: 'Инфраструктура SEPACAM в Эдеа',
         priority: false
       }
     ],
-    photoCaption: 'Modern processing unit in Édéa'
+    photoCaption: 'Современное предприятие по переработке в Эдеа'
   }
 };

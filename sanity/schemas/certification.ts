@@ -10,13 +10,19 @@ export default defineType({
       title: 'Certification Name',
       type: 'object',
       fields: [
-        { name: 'fr', type: 'string', title: 'French' },
-        { name: 'en', type: 'string', title: 'English' },
+        { name: 'fr', type: 'string', title: 'French', validation: (Rule) => Rule.required() },
+        { name: 'en', type: 'string', title: 'English', validation: (Rule) => Rule.required() },
         { name: 'es', type: 'string', title: 'Spanish' },
         { name: 'de', type: 'string', title: 'German' },
         { name: 'ru', type: 'string', title: 'Russian' },
       ],
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'icon',
+      title: 'Icon',
+      type: 'string',
+      description: 'Icon name or identifier for the certification badge',
     }),
     defineField({
       name: 'logo',
@@ -73,6 +79,13 @@ export default defineType({
       title: 'Certificate URL',
       type: 'url',
       description: 'External link to verify the certification',
+    }),
+    defineField({
+      name: 'sortOrder',
+      title: 'Sort Order',
+      type: 'number',
+      description: 'Order in which certifications appear',
+      initialValue: 0,
     }),
     defineField({
       name: 'workflowStatus',

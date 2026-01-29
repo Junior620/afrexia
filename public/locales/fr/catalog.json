@@ -1,0 +1,201 @@
+{
+  "page": {
+    "title": "Notre Catalogue de Produits",
+    "subtitle": "Cacao, café et produits agricoles premium d'Afrique avec traçabilité complète et conformité RDUE",
+    "downloadCatalog": "Télécharger le catalogue PDF"
+  },
+  "filters": {
+    "search": "Rechercher",
+    "searchPlaceholder": "Rechercher un produit...",
+    "category": "Catégorie",
+    "categoryPlaceholder": "Toutes les catégories",
+    "origin": "Origine",
+    "originPlaceholder": "Tous les pays",
+    "availability": "Disponibilité",
+    "availabilityPlaceholder": "Toutes disponibilités",
+    "certifications": "Certifications",
+    "certificationsPlaceholder": "Toutes certifications",
+    "incoterms": "Incoterms",
+    "incotermsPlaceholder": "Tous incoterms",
+    "moq": "MOQ",
+    "moqPlaceholder": "Quantité minimale",
+    "clearAll": "Effacer tous les filtres",
+    "activeFilters": "Filtres actifs",
+    "productCount": "{{count}} produit",
+    "productCount_plural": "{{count}} produits",
+    "showFilters": "Afficher les filtres",
+    "hideFilters": "Masquer les filtres",
+    "filtersCount": "Filtres ({{count}})"
+  },
+  "availability": {
+    "inStock": "En stock",
+    "limited": "Stock limité",
+    "preOrder": "Précommande"
+  },
+  "badges": {
+    "eudrReady": "RDUE Ready",
+    "organic": "Bio",
+    "fairTrade": "Fair Trade",
+    "rainforestAlliance": "Rainforest Alliance",
+    "utzCertified": "UTZ Certified",
+    "isoCertified": "ISO Certifié",
+    "newProduct": "Nouveau",
+    "featured": "Vedette"
+  },
+  "productCard": {
+    "origin": "Origine",
+    "moq": "MOQ",
+    "incoterm": "Incoterm",
+    "grade": "Grade",
+    "packaging": "Conditionnement",
+    "leadTime": "Délai",
+    "requestQuote": "Demander un devis",
+    "requestQuoteWithDocs": "Demander un devis + documentation",
+    "viewSpecs": "Voir spécifications",
+    "quickView": "Aperçu rapide",
+    "documentsAvailable": "Documents disponibles",
+    "qaDocumentation": "Documentation QA",
+    "coa": "COA",
+    "specSheet": "Fiche technique",
+    "chainOfCustody": "Chaîne de traçabilité"
+  },
+  "quickView": {
+    "title": "Aperçu rapide",
+    "close": "Fermer",
+    "specifications": "Spécifications",
+    "certifications": "Certifications",
+    "documents": "Documents disponibles",
+    "requestQuote": "Demander un devis",
+    "viewFullPage": "Voir la page produit complète",
+    "availability": "Disponibilité",
+    "category": "Catégorie",
+    "origins": "Origines",
+    "moq": "Quantité minimale de commande",
+    "incoterms": "Incoterms disponibles",
+    "packaging": "Conditionnement",
+    "grade": "Grade",
+    "leadTime": "Délai de livraison",
+    "notes": "Notes additionnelles"
+  },
+  "rfqDrawer": {
+    "title": "Demander un devis",
+    "close": "Fermer",
+    "selectedProducts": "Produits sélectionnés",
+    "addMore": "Ajouter d'autres produits",
+    "removeProduct": "Retirer",
+    "contactInfo": "Vos coordonnées",
+    "orderDetails": "Détails de la commande",
+    "additionalNotes": "Notes additionnelles",
+    "fields": {
+      "name": "Nom complet",
+      "namePlaceholder": "Jean Dupont",
+      "email": "Email professionnel",
+      "emailPlaceholder": "jean.dupont@entreprise.com",
+      "company": "Entreprise",
+      "companyPlaceholder": "Nom de votre entreprise",
+      "phone": "Téléphone",
+      "phonePlaceholder": "+33 1 23 45 67 89",
+      "quantity": "Quantité",
+      "quantityPlaceholder": "500",
+      "unit": "Unité",
+      "deliveryLocation": "Lieu de livraison",
+      "deliveryLocationPlaceholder": "Port de Rotterdam, Pays-Bas",
+      "incoterm": "Incoterm préféré",
+      "incotermPlaceholder": "Sélectionner un incoterm",
+      "notes": "Exigences ou questions supplémentaires",
+      "notesPlaceholder": "Décrivez vos besoins spécifiques..."
+    },
+    "trustElements": {
+      "response24h": "Réponse sous 24h",
+      "ndaAvailable": "NDA disponible sur demande",
+      "secureData": "Vos données sont protégées"
+    },
+    "submit": "Envoyer la demande",
+    "submitting": "Envoi en cours...",
+    "success": "Demande envoyée avec succès",
+    "successMessage": "Nous vous contacterons sous 24 heures avec un devis personnalisé.",
+    "error": "Erreur lors de l'envoi",
+    "errorMessage": "Une erreur s'est produite. Veuillez réessayer.",
+    "cartCount": "{{count}} produit dans le panier",
+    "cartCount_plural": "{{count}} produits dans le panier",
+    "emptyCart": "Aucun produit sélectionné",
+    "emptyCartMessage": "Ajoutez des produits à votre demande de devis"
+  },
+  "validation": {
+    "required": "Ce champ est requis",
+    "invalidEmail": "Adresse email invalide",
+    "invalidPhone": "Numéro de téléphone invalide",
+    "minQuantity": "La quantité doit être au moins {{min}} {{unit}}",
+    "minLength": "Minimum {{min}} caractères",
+    "maxLength": "Maximum {{max}} caractères",
+    "positiveNumber": "Doit être un nombre positif"
+  },
+  "trustStrip": {
+    "response24h": "Réponse sous 24h",
+    "response24hTooltip": "Nous répondons à toutes les demandes dans les 24 heures ouvrables",
+    "ndaAvailable": "NDA disponible",
+    "ndaAvailableTooltip": "Accord de confidentialité disponible sur demande",
+    "eudrCompliant": "Conforme RDUE",
+    "eudrCompliantTooltip": "Tous nos produits respectent le Règlement de l'UE sur la Déforestation",
+    "qaDocumented": "Documentation QA",
+    "qaDocumentedTooltip": "Assurance qualité complète et documentation de test",
+    "coaAvailable": "COA & fiches techniques",
+    "coaAvailableTooltip": "Certificats d'analyse et fiches techniques disponibles"
+  },
+  "catalogDownload": {
+    "title": "Télécharger notre catalogue",
+    "subtitle": "Recevez notre catalogue PDF complet avec tous nos produits et spécifications",
+    "close": "Fermer",
+    "fields": {
+      "name": "Nom complet",
+      "namePlaceholder": "Jean Dupont",
+      "email": "Email professionnel",
+      "emailPlaceholder": "jean.dupont@entreprise.com",
+      "company": "Entreprise",
+      "companyPlaceholder": "Nom de votre entreprise",
+      "country": "Pays",
+      "countryPlaceholder": "Sélectionner un pays"
+    },
+    "privacyMessage": "Vos données sont protégées et ne seront jamais partagées avec des tiers",
+    "download": "Télécharger le catalogue",
+    "downloading": "Téléchargement...",
+    "success": "Catalogue téléchargé avec succès",
+    "error": "Erreur lors du téléchargement"
+  },
+  "processCompliance": {
+    "title": "Processus & Conformité",
+    "qualityStandards": {
+      "title": "Normes de Qualité",
+      "description": "Tous nos produits respectent les normes internationales les plus strictes (ISO, USDA, ICO) avec des contrôles qualité rigoureux à chaque étape."
+    },
+    "traceabilityProcess": {
+      "title": "Processus de Traçabilité",
+      "description": "Traçabilité complète de la ferme au port avec géolocalisation GPS, surveillance satellite et documentation de la chaîne de traçabilité."
+    },
+    "certificationsOverview": {
+      "title": "Aperçu des Certifications",
+      "description": "Certifications internationalement reconnues incluant RDUE, Bio, Fair Trade, Rainforest Alliance et plus encore."
+    }
+  },
+  "emptyState": {
+    "noProducts": "Aucun produit trouvé",
+    "noProductsMessage": "Aucun produit ne correspond à vos critères de recherche",
+    "clearFilters": "Effacer les filtres",
+    "browseAll": "Parcourir tous les produits"
+  },
+  "loading": {
+    "products": "Chargement des produits...",
+    "filters": "Chargement des filtres..."
+  },
+  "error": {
+    "loadProducts": "Erreur lors du chargement des produits",
+    "loadProductsMessage": "Impossible de charger les produits. Veuillez réessayer.",
+    "retry": "Réessayer",
+    "contactSupport": "Contacter le support"
+  },
+  "footer": {
+    "multiProductRfq": "Besoin de plusieurs produits?",
+    "multiProductRfqSubtitle": "Ajoutez plusieurs produits à votre demande de devis pour un traitement plus rapide",
+    "openRfqDrawer": "Ouvrir le panier de devis"
+  }
+}

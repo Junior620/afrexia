@@ -1,0 +1,201 @@
+{
+  "page": {
+    "title": "Unser Produktkatalog",
+    "subtitle": "Premium-Kakao, Kaffee und landwirtschaftliche Produkte aus Afrika mit vollständiger Rückverfolgbarkeit und EUDR-Konformität",
+    "downloadCatalog": "PDF-Katalog Herunterladen"
+  },
+  "filters": {
+    "search": "Suchen",
+    "searchPlaceholder": "Produkt suchen...",
+    "category": "Kategorie",
+    "categoryPlaceholder": "Alle Kategorien",
+    "origin": "Herkunft",
+    "originPlaceholder": "Alle Länder",
+    "availability": "Verfügbarkeit",
+    "availabilityPlaceholder": "Alle Verfügbarkeiten",
+    "certifications": "Zertifizierungen",
+    "certificationsPlaceholder": "Alle Zertifizierungen",
+    "incoterms": "Incoterms",
+    "incotermsPlaceholder": "Alle Incoterms",
+    "moq": "MOQ",
+    "moqPlaceholder": "Mindestmenge",
+    "clearAll": "Alle Filter Löschen",
+    "activeFilters": "Aktive Filter",
+    "productCount": "{{count}} Produkt",
+    "productCount_plural": "{{count}} Produkte",
+    "showFilters": "Filter Anzeigen",
+    "hideFilters": "Filter Ausblenden",
+    "filtersCount": "Filter ({{count}})"
+  },
+  "availability": {
+    "inStock": "Auf Lager",
+    "limited": "Begrenzter Vorrat",
+    "preOrder": "Vorbestellung"
+  },
+  "badges": {
+    "eudrReady": "EUDR Ready",
+    "organic": "Bio",
+    "fairTrade": "Fair Trade",
+    "rainforestAlliance": "Rainforest Alliance",
+    "utzCertified": "UTZ Certified",
+    "isoCertified": "ISO Zertifiziert",
+    "newProduct": "Neu",
+    "featured": "Empfohlen"
+  },
+  "productCard": {
+    "origin": "Herkunft",
+    "moq": "MOQ",
+    "incoterm": "Incoterm",
+    "grade": "Qualität",
+    "packaging": "Verpackung",
+    "leadTime": "Lieferzeit",
+    "requestQuote": "Angebot Anfordern",
+    "requestQuoteWithDocs": "Angebot + Dokumentation Anfordern",
+    "viewSpecs": "Spezifikationen Ansehen",
+    "quickView": "Schnellansicht",
+    "documentsAvailable": "Dokumente Verfügbar",
+    "qaDocumentation": "QA-Dokumentation",
+    "coa": "COA",
+    "specSheet": "Datenblatt",
+    "chainOfCustody": "Lieferkette"
+  },
+  "quickView": {
+    "title": "Schnellansicht",
+    "close": "Schließen",
+    "specifications": "Spezifikationen",
+    "certifications": "Zertifizierungen",
+    "documents": "Verfügbare Dokumente",
+    "requestQuote": "Angebot Anfordern",
+    "viewFullPage": "Vollständige Produktseite Ansehen",
+    "availability": "Verfügbarkeit",
+    "category": "Kategorie",
+    "origins": "Herkunft",
+    "moq": "Mindestbestellmenge",
+    "incoterms": "Verfügbare Incoterms",
+    "packaging": "Verpackung",
+    "grade": "Qualität",
+    "leadTime": "Lieferzeit",
+    "notes": "Zusätzliche Hinweise"
+  },
+  "rfqDrawer": {
+    "title": "Angebot Anfordern",
+    "close": "Schließen",
+    "selectedProducts": "Ausgewählte Produkte",
+    "addMore": "Weitere Produkte Hinzufügen",
+    "removeProduct": "Entfernen",
+    "contactInfo": "Ihre Kontaktinformationen",
+    "orderDetails": "Bestelldetails",
+    "additionalNotes": "Zusätzliche Hinweise",
+    "fields": {
+      "name": "Vollständiger Name",
+      "namePlaceholder": "Max Mustermann",
+      "email": "Geschäftliche E-Mail",
+      "emailPlaceholder": "max.mustermann@firma.de",
+      "company": "Unternehmen",
+      "companyPlaceholder": "Ihr Firmenname",
+      "phone": "Telefon",
+      "phonePlaceholder": "+49 30 12345678",
+      "quantity": "Menge",
+      "quantityPlaceholder": "500",
+      "unit": "Einheit",
+      "deliveryLocation": "Lieferort",
+      "deliveryLocationPlaceholder": "Hafen von Rotterdam, Niederlande",
+      "incoterm": "Bevorzugter Incoterm",
+      "incotermPlaceholder": "Incoterm auswählen",
+      "notes": "Zusätzliche Anforderungen oder Fragen",
+      "notesPlaceholder": "Beschreiben Sie Ihre spezifischen Bedürfnisse..."
+    },
+    "trustElements": {
+      "response24h": "Antwort in 24h",
+      "ndaAvailable": "NDA auf Anfrage Verfügbar",
+      "secureData": "Ihre Daten Sind Geschützt"
+    },
+    "submit": "Anfrage Senden",
+    "submitting": "Wird Gesendet...",
+    "success": "Anfrage Erfolgreich Gesendet",
+    "successMessage": "Wir werden uns innerhalb von 24 Stunden mit einem individuellen Angebot bei Ihnen melden.",
+    "error": "Fehler beim Senden der Anfrage",
+    "errorMessage": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+    "cartCount": "{{count}} Produkt im Warenkorb",
+    "cartCount_plural": "{{count}} Produkte im Warenkorb",
+    "emptyCart": "Keine Produkte Ausgewählt",
+    "emptyCartMessage": "Fügen Sie Produkte zu Ihrer Angebotsanfrage hinzu"
+  },
+  "validation": {
+    "required": "Dieses Feld ist erforderlich",
+    "invalidEmail": "Ungültige E-Mail-Adresse",
+    "invalidPhone": "Ungültige Telefonnummer",
+    "minQuantity": "Die Menge muss mindestens {{min}} {{unit}} betragen",
+    "minLength": "Mindestens {{min}} Zeichen",
+    "maxLength": "Maximal {{max}} Zeichen",
+    "positiveNumber": "Muss eine positive Zahl sein"
+  },
+  "trustStrip": {
+    "response24h": "Antwort in 24h",
+    "response24hTooltip": "Wir antworten auf alle Anfragen innerhalb von 24 Geschäftsstunden",
+    "ndaAvailable": "NDA Verfügbar",
+    "ndaAvailableTooltip": "Vertraulichkeitsvereinbarung auf Anfrage verfügbar",
+    "eudrCompliant": "EUDR-Konform",
+    "eudrCompliantTooltip": "Alle unsere Produkte entsprechen der EU-Entwaldungsverordnung",
+    "qaDocumented": "QA Dokumentiert",
+    "qaDocumentedTooltip": "Vollständige Qualitätssicherungs- und Testdokumentation",
+    "coaAvailable": "COA & Datenblätter",
+    "coaAvailableTooltip": "Analysezertifikate und Spezifikationsblätter verfügbar"
+  },
+  "catalogDownload": {
+    "title": "Unseren Katalog Herunterladen",
+    "subtitle": "Erhalten Sie unseren vollständigen PDF-Katalog mit allen unseren Produkten und Spezifikationen",
+    "close": "Schließen",
+    "fields": {
+      "name": "Vollständiger Name",
+      "namePlaceholder": "Max Mustermann",
+      "email": "Geschäftliche E-Mail",
+      "emailPlaceholder": "max.mustermann@firma.de",
+      "company": "Unternehmen",
+      "companyPlaceholder": "Ihr Firmenname",
+      "country": "Land",
+      "countryPlaceholder": "Land auswählen"
+    },
+    "privacyMessage": "Ihre Daten sind geschützt und werden niemals an Dritte weitergegeben",
+    "download": "Katalog Herunterladen",
+    "downloading": "Wird Heruntergeladen...",
+    "success": "Katalog Erfolgreich Heruntergeladen",
+    "error": "Fehler beim Herunterladen des Katalogs"
+  },
+  "processCompliance": {
+    "title": "Prozess & Konformität",
+    "qualityStandards": {
+      "title": "Qualitätsstandards",
+      "description": "Alle unsere Produkte erfüllen die strengsten internationalen Standards (ISO, USDA, ICO) mit rigorosen Qualitätskontrollen in jeder Phase."
+    },
+    "traceabilityProcess": {
+      "title": "Rückverfolgbarkeitsprozess",
+      "description": "Vollständige Rückverfolgbarkeit vom Bauernhof bis zum Hafen mit GPS-Geolokalisierung, Satellitenüberwachung und Lieferkettendokumentation."
+    },
+    "certificationsOverview": {
+      "title": "Zertifizierungsübersicht",
+      "description": "International anerkannte Zertifizierungen einschließlich EUDR, Bio, Fair Trade, Rainforest Alliance und mehr."
+    }
+  },
+  "emptyState": {
+    "noProducts": "Keine Produkte Gefunden",
+    "noProductsMessage": "Keine Produkte entsprechen Ihren Suchkriterien",
+    "clearFilters": "Filter Löschen",
+    "browseAll": "Alle Produkte Durchsuchen"
+  },
+  "loading": {
+    "products": "Produkte werden geladen...",
+    "filters": "Filter werden geladen..."
+  },
+  "error": {
+    "loadProducts": "Fehler beim Laden der Produkte",
+    "loadProductsMessage": "Produkte können nicht geladen werden. Bitte versuchen Sie es erneut.",
+    "retry": "Erneut Versuchen",
+    "contactSupport": "Support Kontaktieren"
+  },
+  "footer": {
+    "multiProductRfq": "Mehrere Produkte Benötigt?",
+    "multiProductRfqSubtitle": "Fügen Sie mehrere Produkte zu Ihrer Angebotsanfrage hinzu für eine schnellere Bearbeitung",
+    "openRfqDrawer": "Angebotskorb Öffnen"
+  }
+}

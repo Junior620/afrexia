@@ -10,6 +10,12 @@ export {
   trackProductView,
   trackCTAClick,
   isTrackingEnabled,
+  trackCatalogFilter,
+  trackProductCardView,
+  trackProductCardCTAClick,
+  trackProductCardSpecClick,
+  trackQuickViewOpen,
+  trackCatalogDownload,
   type ConversionEvent,
   type EventProperties,
 } from './events';

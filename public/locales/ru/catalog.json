@@ -1,0 +1,201 @@
+{
+  "page": {
+    "title": "Наш Каталог Продукции",
+    "subtitle": "Премиальное какао, кофе и сельскохозяйственная продукция из Африки с полной прослеживаемостью и соответствием EUDR",
+    "downloadCatalog": "Скачать PDF Каталог"
+  },
+  "filters": {
+    "search": "Поиск",
+    "searchPlaceholder": "Искать продукт...",
+    "category": "Категория",
+    "categoryPlaceholder": "Все категории",
+    "origin": "Происхождение",
+    "originPlaceholder": "Все страны",
+    "availability": "Наличие",
+    "availabilityPlaceholder": "Все варианты наличия",
+    "certifications": "Сертификаты",
+    "certificationsPlaceholder": "Все сертификаты",
+    "incoterms": "Инкотермс",
+    "incotermsPlaceholder": "Все инкотермс",
+    "moq": "MOQ",
+    "moqPlaceholder": "Минимальное количество",
+    "clearAll": "Очистить все фильтры",
+    "activeFilters": "Активные фильтры",
+    "productCount": "{{count}} продукт",
+    "productCount_plural": "{{count}} продуктов",
+    "showFilters": "Показать фильтры",
+    "hideFilters": "Скрыть фильтры",
+    "filtersCount": "Фильтры ({{count}})"
+  },
+  "availability": {
+    "inStock": "В Наличии",
+    "limited": "Ограниченный Запас",
+    "preOrder": "Предзаказ"
+  },
+  "badges": {
+    "eudrReady": "EUDR Ready",
+    "organic": "Органический",
+    "fairTrade": "Fair Trade",
+    "rainforestAlliance": "Rainforest Alliance",
+    "utzCertified": "UTZ Certified",
+    "isoCertified": "ISO Сертифицирован",
+    "newProduct": "Новинка",
+    "featured": "Рекомендуемый"
+  },
+  "productCard": {
+    "origin": "Происхождение",
+    "moq": "MOQ",
+    "incoterm": "Инкотермс",
+    "grade": "Сорт",
+    "packaging": "Упаковка",
+    "leadTime": "Срок Поставки",
+    "requestQuote": "Запросить Предложение",
+    "requestQuoteWithDocs": "Запросить Предложение + Документацию",
+    "viewSpecs": "Посмотреть Спецификации",
+    "quickView": "Быстрый Просмотр",
+    "documentsAvailable": "Документы Доступны",
+    "qaDocumentation": "QA Документация",
+    "coa": "COA",
+    "specSheet": "Спецификация",
+    "chainOfCustody": "Цепочка Поставок"
+  },
+  "quickView": {
+    "title": "Быстрый Просмотр",
+    "close": "Закрыть",
+    "specifications": "Спецификации",
+    "certifications": "Сертификаты",
+    "documents": "Доступные Документы",
+    "requestQuote": "Запросить Предложение",
+    "viewFullPage": "Посмотреть Полную Страницу Продукта",
+    "availability": "Наличие",
+    "category": "Категория",
+    "origins": "Происхождение",
+    "moq": "Минимальный Объем Заказа",
+    "incoterms": "Доступные Инкотермс",
+    "packaging": "Упаковка",
+    "grade": "Сорт",
+    "leadTime": "Срок Поставки",
+    "notes": "Дополнительные Примечания"
+  },
+  "rfqDrawer": {
+    "title": "Запросить Предложение",
+    "close": "Закрыть",
+    "selectedProducts": "Выбранные Продукты",
+    "addMore": "Добавить Больше Продуктов",
+    "removeProduct": "Удалить",
+    "contactInfo": "Ваша Контактная Информация",
+    "orderDetails": "Детали Заказа",
+    "additionalNotes": "Дополнительные Примечания",
+    "fields": {
+      "name": "Полное Имя",
+      "namePlaceholder": "Иван Иванов",
+      "email": "Рабочий Email",
+      "emailPlaceholder": "ivan.ivanov@kompaniya.ru",
+      "company": "Компания",
+      "companyPlaceholder": "Название вашей компании",
+      "phone": "Телефон",
+      "phonePlaceholder": "+7 495 123 4567",
+      "quantity": "Количество",
+      "quantityPlaceholder": "500",
+      "unit": "Единица",
+      "deliveryLocation": "Место Доставки",
+      "deliveryLocationPlaceholder": "Порт Роттердам, Нидерланды",
+      "incoterm": "Предпочтительный Инкотермс",
+      "incotermPlaceholder": "Выберите инкотермс",
+      "notes": "Дополнительные Требования или Вопросы",
+      "notesPlaceholder": "Опишите ваши конкретные потребности..."
+    },
+    "trustElements": {
+      "response24h": "Ответ в Течение 24ч",
+      "ndaAvailable": "NDA Доступно по Запросу",
+      "secureData": "Ваши Данные Защищены"
+    },
+    "submit": "Отправить Запрос",
+    "submitting": "Отправка...",
+    "success": "Запрос Успешно Отправлен",
+    "successMessage": "Мы свяжемся с вами в течение 24 часов с индивидуальным предложением.",
+    "error": "Ошибка Отправки Запроса",
+    "errorMessage": "Произошла ошибка. Пожалуйста, попробуйте снова.",
+    "cartCount": "{{count}} продукт в корзине",
+    "cartCount_plural": "{{count}} продуктов в корзине",
+    "emptyCart": "Продукты Не Выбраны",
+    "emptyCartMessage": "Добавьте продукты в ваш запрос предложения"
+  },
+  "validation": {
+    "required": "Это поле обязательно",
+    "invalidEmail": "Неверный адрес электронной почты",
+    "invalidPhone": "Неверный номер телефона",
+    "minQuantity": "Количество должно быть не менее {{min}} {{unit}}",
+    "minLength": "Минимум {{min}} символов",
+    "maxLength": "Максимум {{max}} символов",
+    "positiveNumber": "Должно быть положительным числом"
+  },
+  "trustStrip": {
+    "response24h": "Ответ в Течение 24ч",
+    "response24hTooltip": "Мы отвечаем на все запросы в течение 24 рабочих часов",
+    "ndaAvailable": "NDA Доступно",
+    "ndaAvailableTooltip": "Соглашение о неразглашении доступно по запросу",
+    "eudrCompliant": "Соответствует EUDR",
+    "eudrCompliantTooltip": "Вся наша продукция соответствует Регламенту ЕС о вырубке лесов",
+    "qaDocumented": "QA Документировано",
+    "qaDocumentedTooltip": "Полная документация по обеспечению качества и тестированию",
+    "coaAvailable": "COA и Спецификации",
+    "coaAvailableTooltip": "Сертификаты анализа и спецификации доступны"
+  },
+  "catalogDownload": {
+    "title": "Скачать Наш Каталог",
+    "subtitle": "Получите наш полный PDF-каталог со всеми нашими продуктами и спецификациями",
+    "close": "Закрыть",
+    "fields": {
+      "name": "Полное Имя",
+      "namePlaceholder": "Иван Иванов",
+      "email": "Рабочий Email",
+      "emailPlaceholder": "ivan.ivanov@kompaniya.ru",
+      "company": "Компания",
+      "companyPlaceholder": "Название вашей компании",
+      "country": "Страна",
+      "countryPlaceholder": "Выберите страну"
+    },
+    "privacyMessage": "Ваши данные защищены и никогда не будут переданы третьим лицам",
+    "download": "Скачать Каталог",
+    "downloading": "Загрузка...",
+    "success": "Каталог Успешно Загружен",
+    "error": "Ошибка Загрузки Каталога"
+  },
+  "processCompliance": {
+    "title": "Процесс и Соответствие",
+    "qualityStandards": {
+      "title": "Стандарты Качества",
+      "description": "Вся наша продукция соответствует самым строгим международным стандартам (ISO, USDA, ICO) с тщательным контролем качества на каждом этапе."
+    },
+    "traceabilityProcess": {
+      "title": "Процесс Прослеживаемости",
+      "description": "Полная прослеживаемость от фермы до порта с GPS-геолокацией, спутниковым мониторингом и документацией цепочки поставок."
+    },
+    "certificationsOverview": {
+      "title": "Обзор Сертификатов",
+      "description": "Международно признанные сертификаты, включая EUDR, Органический, Fair Trade, Rainforest Alliance и другие."
+    }
+  },
+  "emptyState": {
+    "noProducts": "Продукты Не Найдены",
+    "noProductsMessage": "Ни один продукт не соответствует вашим критериям поиска",
+    "clearFilters": "Очистить Фильтры",
+    "browseAll": "Просмотреть Все Продукты"
+  },
+  "loading": {
+    "products": "Загрузка продуктов...",
+    "filters": "Загрузка фильтров..."
+  },
+  "error": {
+    "loadProducts": "Ошибка Загрузки Продуктов",
+    "loadProductsMessage": "Не удалось загрузить продукты. Пожалуйста, попробуйте снова.",
+    "retry": "Повторить",
+    "contactSupport": "Связаться с Поддержкой"
+  },
+  "footer": {
+    "multiProductRfq": "Нужно Несколько Продуктов?",
+    "multiProductRfqSubtitle": "Добавьте несколько продуктов в ваш запрос предложения для более быстрой обработки",
+    "openRfqDrawer": "Открыть Корзину Предложений"
+  }
+}

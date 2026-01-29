@@ -190,3 +190,79 @@ export function generateWebSiteSchema(locale: Locale): Record<string, any> {
     },
   };
 }
+
+export interface ItemListProduct {
+  id: string;
+  slug: string;
+  name: string;
+  description?: string;
+  image?: string;
+  category: string;
+  availability: 'in-stock' | 'limited' | 'pre-order';
+}
+
+/**
+ * ItemList Schema.org structured data for product catalog
+ */
+export function generateItemListSchema(
+  products: ItemListProduct[],
+  locale: Locale
+): Record<string, any> {
+  const availabilityMap = {
+    'in-stock': 'InStock',
+    'limited': 'LimitedAvailability',
+    'pre-order': 'PreOrder',
+  };
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name:
+      locale === 'fr'
+        ? 'Catalogue de Produits Afrexia'
+        : locale === 'es'
+        ? 'Catálogo de Productos Afrexia'
+        : locale === 'de'
+        ? 'Afrexia Produktkatalog'
+        : locale === 'ru'
+        ? 'Каталог продукции Afrexia'
+        : 'Afrexia Product Catalog',
+    description:
+      locale === 'fr'
+        ? 'Cacao, café et produits agricoles premium d\'Afrique avec traçabilité complète et certifications internationales'
+        : locale === 'es'
+        ? 'Cacao, café y productos agrícolas premium de África con trazabilidad completa y certificaciones internacionales'
+        : locale === 'de'
+        ? 'Premium Kakao, Kaffee und landwirtschaftliche Produkte aus Afrika mit vollständiger Rückverfolgbarkeit und internationalen Zertifizierungen'
+        : locale === 'ru'
+        ? 'Премиальное какао, кофе и сельскохозяйственные продукты из Африки с полной отслеживаемостью и международными сертификатами'
+        : 'Premium cocoa, coffee and agricultural products from Africa with full traceability and international certifications',
+    url: `${SITE_URL}/${locale}/products`,
+    numberOfItems: products.length,
+    itemListElement: products.map((product, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Product',
+        '@id': `${SITE_URL}/${locale}/products/${product.slug}`,
+        name: product.name,
+        description: product.description || '',
+        image: product.image || `${SITE_URL}/assets/placeholder.svg`,
+        category: product.category,
+        url: `${SITE_URL}/${locale}/products/${product.slug}`,
+        brand: {
+          '@type': 'Brand',
+          name: SITE_NAME,
+        },
+        offers: {
+          '@type': 'Offer',
+          availability: `https://schema.org/${availabilityMap[product.availability]}`,
+          seller: {
+            '@type': 'Organization',
+            name: SITE_NAME,
+          },
+        },
+      },
+    })),
+  };
+}

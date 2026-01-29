@@ -56,12 +56,13 @@ describe('PartnerSection', () => {
     expect(screen.getByText(/Strong local presence/)).toBeDefined();
   });
 
-  it('falls back to English when locale content is unavailable', () => {
-    // Test with a locale that should fallback to English (es, de, ru use English content)
+  it('renders Spanish content correctly', () => {
     render(<PartnerSection locale="es" />);
     
-    // Should display English content
-    expect(screen.getByText('Operational partner')).toBeDefined();
+    // Should display Spanish content
+    expect(screen.getByText('Socio operacional')).toBeDefined();
+    expect(screen.getAllByText('Afexia × SCPB SARL')).toHaveLength(2);
+    expect(screen.getByText(/Fuerte presencia local/)).toBeDefined();
   });
 
   it('accepts custom content override', () => {
