@@ -2,117 +2,100 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { ButtonDark } from '@/components/ui/ButtonDark';
+import { trackQuoteClick } from '@/lib/analytics/events';
+import { Product } from '@/types/product';
 
 export interface MobileRFQButtonProps {
-  cartCount: number;
-  onClick: () => void;
+  product?: Product;
+  locale: 'fr' | 'en';
   translations: {
     requestQuote: string;
-    itemsInCart: string;
   };
+  onClick: () => void;
+  className?: string;
 }
 
 /**
- * MobileRFQButton Component
- * Sticky bottom bar for mobile devices that shows RFQ cart count and opens drawer
+ * MobileRFQButtonDark Component
+ * Sticky bottom CTA button for mobile devices
  * 
- * Features:
- * - Displays only on mobile (< 768px)
- * - Sticky positioning at bottom of viewport
- * - Shows cart count badge when items are added
- * - Opens RFQ drawer on click
- * - Smooth slide-up animation
+ * Visual Specifications:
+ * - Position: fixed bottom, z-50
+ * - Background: green avec glass effect
+ * - Full width, 48px height
+ * - Shadow top
+ * - Safe area insets
  * 
- * Requirements: 4.12, 13.5
+ * Requirements: 5.8, 9.6
  */
 export const MobileRFQButton: React.FC<MobileRFQButtonProps> = ({
-  cartCount,
-  onClick,
+  product,
+  locale,
   translations,
+  onClick,
+  className,
 }) => {
+  const handleClick = () => {
+    // Track analytics - Requirements: 8.2
+    if (product) {
+      trackQuoteClick({
+        productId: product.id,
+        productName: product.name,
+        category: product.category,
+        origin: product.origins?.[0] || 'Unknown',
+        availability: product.availability,
+        source: 'mobile_cta',
+      });
+    }
+
+    onClick();
+  };
+
+  const containerClasses = cn(
+    // Position and layout
+    'fixed bottom-0 left-0 right-0',
+    'z-50',
+    'w-full',
+    // Background with glass effect
+    'bg-[rgba(74,154,98,0.95)]',
+    'backdrop-blur-[12px]',
+    // Shadow
+    'shadow-[0_-4px_16px_rgba(0,0,0,0.3)]',
+    // Padding with safe area insets
+    'px-4 py-3',
+    'pb-[calc(0.75rem+env(safe-area-inset-bottom))]',
+    // Border
+    'border-t border-[rgba(255,255,255,0.1)]',
+    // Animation
+    'transition-transform duration-300 ease-out',
+    // Only show on mobile
+    'md:hidden',
+    className
+  );
+
   return (
-    <div
-      className={cn(
-        'fixed bottom-0 left-0 right-0 z-50',
-        'md:hidden', // Only show on mobile
-        'bg-white border-t-2 border-gray-200 shadow-2xl',
-        'px-4 py-3',
-        'transform transition-transform duration-300 ease-in-out',
-        'safe-area-inset-bottom' // Handle iOS safe area
-      )}
-    >
-      <button
-        onClick={onClick}
+    <div className={containerClasses}>
+      <ButtonDark
+        variant="primary"
+        size="lg"
+        onClick={handleClick}
         className={cn(
-          'w-full flex items-center justify-center gap-3',
-          'bg-primary hover:bg-primary-dark',
-          'text-white font-semibold',
-          'px-6 py-4 rounded-lg',
-          'transition-all duration-200',
-          'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
-          'active:scale-95',
-          'min-h-[44px]' // Ensure minimum touch target size
+          'w-full',
+          'h-12', // 48px height
+          'bg-[#4A9A62]',
+          'hover:bg-[#5AAA72]',
+          'active:bg-[#3A8A52]',
+          'shadow-lg',
+          'font-bold',
+          'text-white'
         )}
-        aria-label={`${translations.requestQuote}${cartCount > 0 ? ` - ${cartCount} ${translations.itemsInCart}` : ''}`}
+        aria-label={translations.requestQuote}
       >
-        {/* Cart Icon */}
-        <div className="relative">
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-            />
-          </svg>
-          
-          {/* Count Badge */}
-          {cartCount > 0 && (
-            <span
-              className={cn(
-                'absolute -top-2 -right-2',
-                'flex items-center justify-center',
-                'min-w-[20px] h-5 px-1.5',
-                'bg-red-500 text-white',
-                'text-xs font-bold',
-                'rounded-full',
-                'border-2 border-white',
-                'animate-in zoom-in duration-200'
-              )}
-              aria-label={`${cartCount} items`}
-            >
-              {cartCount > 99 ? '99+' : cartCount}
-            </span>
-          )}
-        </div>
-
-        {/* Button Text */}
-        <span className="text-base">
-          {translations.requestQuote}
-        </span>
-
-        {/* Arrow Icon */}
-        <svg
-          className="w-5 h-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
-      </button>
+        {translations.requestQuote}
+      </ButtonDark>
     </div>
   );
 };
+
+MobileRFQButton.displayName = 'MobileRFQButton';

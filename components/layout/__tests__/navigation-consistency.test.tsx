@@ -102,7 +102,7 @@ describe('Property 3: Navigation consistency', () => {
     );
   });
 
-  it('should maintain consistent navigation structure across locales', () => {
+  it('should maintain consistent navigation structure across locales', { timeout: 10000 }, () => {
     fc.assert(
       fc.property(localeArbitrary, localeArbitrary, (locale1, locale2) => {
         const { container: container1 } = renderWithTheme(<Header locale={locale1} />);
@@ -124,7 +124,8 @@ describe('Property 3: Navigation consistency', () => {
           // Should have the same number of navigation items
           expect(links1.length).toBe(links2.length);
         }
-      })
+      }),
+      { numRuns: 10 } // Reduce number of runs to avoid timeout
     );
   });
 

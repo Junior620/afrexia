@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import { Locale } from '@/types';
 import { getAllProducts, getAllCertifications } from '@/lib/sanity/queries';
 import { Product, Category, Origin, Certification, AvailabilityStatus } from '@/types/product';
-import { ProductCatalogClient } from './ProductCatalogClient';
+import { ProductCatalogPageDark } from './ProductCatalogPageDark';
 import { StructuredData } from '@/components/seo/StructuredData';
 import { generateItemListSchema, ItemListProduct } from '@/lib/seo/schema';
 import { buildSanityImageUrl } from '@/lib/sanity/image-url';
@@ -196,20 +196,19 @@ export default async function ProductsPage({ params }: PageProps) {
     <>
       <StructuredData data={structuredData} />
       <Suspense fallback={<CatalogLoadingFallback locale={locale} />}>
-        <ProductCatalogClient
+        <ProductCatalogPageDark
           locale={locale}
           products={products}
           categories={categories}
           origins={origins}
           certifications={certifications}
-          translations={translations}
         />
       </Suspense>
     </>
   );
 }
 
-// Loading fallback component
+// Loading fallback component - Dark Theme
 function CatalogLoadingFallback({ locale }: { locale: Locale }) {
   const headings: Record<Locale, string> = {
     fr: 'Chargement du catalogue...',
@@ -220,35 +219,60 @@ function CatalogLoadingFallback({ locale }: { locale: Locale }) {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header Skeleton */}
-      <div className="w-full max-h-[20vh] bg-gradient-to-b from-light/30 to-transparent py-8 md:py-12 px-4 md:px-6">
-        <div className="max-w-7xl mx-auto flex flex-col items-center text-center space-y-4">
-          <div className="h-12 w-96 bg-gray-200 animate-pulse rounded" />
-          <div className="h-6 w-full max-w-3xl bg-gray-200 animate-pulse rounded" />
-          <div className="flex gap-4 mt-4">
+    <div className="min-h-screen bg-[#0A1410]">
+      {/* Header Skeleton - Dark */}
+      <div className="w-full max-h-[30vh] bg-gradient-to-b from-[#0A1410] to-[#1A2820] py-12 md:py-16 px-4 md:px-6">
+        <div className="max-w-7xl mx-auto flex flex-col items-center text-center space-y-4 md:space-y-6">
+          <div className="h-14 w-96 bg-[rgba(255,255,255,0.1)] animate-pulse rounded" />
+          <div className="h-6 w-full max-w-3xl bg-[rgba(255,255,255,0.1)] animate-pulse rounded" />
+          <div className="flex gap-4 md:gap-8 mt-4">
             {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="h-8 w-24 bg-gray-200 animate-pulse rounded" />
+              <div key={i} className="h-8 w-24 bg-[rgba(255,255,255,0.1)] animate-pulse rounded" />
+            ))}
+          </div>
+          <div className="flex gap-4 mt-4">
+            <div className="h-12 w-48 bg-[rgba(74,154,98,0.3)] animate-pulse rounded-xl" />
+            <div className="h-12 w-48 bg-[rgba(255,255,255,0.1)] animate-pulse rounded-xl" />
+          </div>
+        </div>
+      </div>
+
+      {/* Filter Bar Skeleton - Dark */}
+      <div className="sticky top-0 z-40 bg-[rgba(26,40,32,0.8)] backdrop-blur-[12px] border-b border-[rgba(255,255,255,0.1)] py-4">
+        <div className="container mx-auto px-4 lg:px-6 max-w-7xl">
+          <div className="flex flex-wrap gap-3">
+            <div className="h-12 w-64 bg-[rgba(255,255,255,0.1)] animate-pulse rounded-xl" />
+            <div className="h-12 w-32 bg-[rgba(255,255,255,0.1)] animate-pulse rounded-xl" />
+            <div className="h-12 w-32 bg-[rgba(255,255,255,0.1)] animate-pulse rounded-xl" />
+            <div className="h-12 w-32 bg-[rgba(255,255,255,0.1)] animate-pulse rounded-xl" />
+          </div>
+        </div>
+      </div>
+
+      {/* Product Grid Skeleton - Dark */}
+      <div className="py-8 md:py-12">
+        <div className="container mx-auto px-4 lg:px-6 max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+              <div
+                key={i}
+                className="bg-[rgba(26,40,32,0.6)] backdrop-blur-[12px] border border-[rgba(255,255,255,0.1)] rounded-[28px] overflow-hidden animate-pulse"
+                style={{ minHeight: '520px' }}
+              >
+                <div className="aspect-[4/3] bg-[rgba(255,255,255,0.05)]" />
+                <div className="p-6 space-y-4">
+                  <div className="h-6 bg-[rgba(255,255,255,0.1)] rounded" />
+                  <div className="h-4 bg-[rgba(255,255,255,0.1)] rounded w-3/4" />
+                  <div className="space-y-2">
+                    <div className="h-4 bg-[rgba(255,255,255,0.1)] rounded" />
+                    <div className="h-4 bg-[rgba(255,255,255,0.1)] rounded" />
+                  </div>
+                  <div className="h-12 bg-[rgba(74,154,98,0.3)] rounded-xl mt-6" />
+                </div>
+              </div>
             ))}
           </div>
         </div>
-      </div>
-
-      {/* Filter Bar Skeleton */}
-      <div className="sticky top-0 z-40 bg-white border-b border-gray-200 py-4">
-        <div className="container mx-auto px-4 lg:px-6 max-w-7xl">
-          <div className="flex flex-wrap gap-3">
-            <div className="h-12 w-64 bg-gray-200 animate-pulse rounded" />
-            <div className="h-12 w-32 bg-gray-200 animate-pulse rounded" />
-            <div className="h-12 w-32 bg-gray-200 animate-pulse rounded" />
-            <div className="h-12 w-32 bg-gray-200 animate-pulse rounded" />
-          </div>
-        </div>
-      </div>
-
-      {/* Product Grid Skeleton */}
-      <div className="py-8 md:py-12">
-        <ProductGridSkeleton count={8} />
       </div>
 
       {/* Loading Message */}

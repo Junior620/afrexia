@@ -1,6 +1,7 @@
 import { afterEach, beforeAll, vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import React, { forwardRef } from 'react';
+import '@testing-library/jest-dom/vitest';
 import 'jest-axe/extend-expect';
 
 // Set up test environment variables

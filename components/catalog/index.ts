@@ -37,3 +37,22 @@ export type { SkipLinksProps } from './SkipLinks';
 export { CatalogErrorBoundary } from './CatalogErrorBoundary';
 
 export { ProductCardSkeleton, ProductGridSkeleton } from './ProductCardSkeleton';
+
+export { TrustStripDark } from './TrustStripDark';
+export type { TrustStripDarkProps, TrustItem } from './TrustStripDark';
+
+export { TrustIconsDark } from './TrustIconsDark';
+
+export { getDefaultTrustItemsDark } from './TrustStripDarkHelpers';
+
+export { CatalogHeaderDark } from './CatalogHeaderDark';
+export type { CatalogHeaderDarkProps } from './CatalogHeaderDark';
+
+export { CatalogFiltersDark } from './CatalogFiltersDark';
+export type { CatalogFiltersDarkProps } from './CatalogFiltersDark';
+
+export { ProductCardDark } from './ProductCardDark';
+export type { ProductCardDarkProps, ProductCardDarkTranslations } from './ProductCardDark';
+
+export { ProductCardV4 } from './ProductCardV4';
+export type { ProductCardV4Props, ProductCardV4Translations } from './ProductCardV4';

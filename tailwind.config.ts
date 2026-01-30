@@ -36,25 +36,28 @@ const config: Config = {
         support: '#80996F',
         neutral: '#B0BCA4',
         
-        // Dark mode specific colors
+        // Dark mode specific colors - Catalog Dark Premium Redesign
         'dark-bg': {
-          primary: '#0A1410',
-          secondary: '#1A2820',
-          tertiary: '#141D18',
+          primary: '#0A1410',      // Charcoal très foncé
+          secondary: '#1A2820',    // Dark green charcoal
+          tertiary: '#141D18',     // Variation pour cards
         },
         'dark-text': {
-          primary: '#E8F5E9',
-          secondary: '#B0D4B8',
-          muted: '#80996F',
+          primary: '#E8F5E9',      // Ivory/light green
+          secondary: '#B0D4B8',    // Muted light green
+          muted: '#80996F',        // Support green
         },
-        'dark-border': '#6B8273', // Further lightened for 3:1 contrast
+        'dark-border': {
+          DEFAULT: 'rgba(255, 255, 255, 0.1)',  // Subtle border
+          hover: 'rgba(255, 255, 255, 0.2)',    // Hover state
+        },
         
         // Dark mode brand color variants
-        'dark-primary': '#4A9A62', // Using secondary green for better contrast
-        'dark-secondary': '#5AAA72',
-        'dark-accent': '#A89858',
-        'dark-sand': '#5A7268', // Further lightened for 3:1 contrast
-        'dark-support': '#9AB08A',
+        'dark-primary': '#4A9A62',   // Dark green (CTAs)
+        'dark-secondary': '#4A9A62', // Using same as primary for better contrast
+        'dark-accent': '#A89858',    // Gold (hover, links)
+        'dark-sand': '#5A7268',      // Further lightened for 3:1 contrast
+        'dark-support': '#9AB08A',   // Support color
         
         // Partner section specific colors
         // These colors are used exclusively in the SCPB Partner Section component

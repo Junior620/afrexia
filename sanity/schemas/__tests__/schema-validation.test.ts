@@ -204,7 +204,7 @@ describe('Schema Validation - Data Format Tests', () => {
   describe('Required field enforcement', () => {
     it('should enforce required fields in product schema', () => {
       const productType = compiledSchema.get('product')
-      const requiredFields = ['name', 'slug', 'i18nId', 'category', 'description', 'gallery']
+      const requiredFields = ['name', 'slug', 'category', 'heroImage', 'availability', 'origins', 'moq', 'incoterms']
 
       requiredFields.forEach((fieldName) => {
         const field = productType.fields.find((f: any) => f.name === fieldName)

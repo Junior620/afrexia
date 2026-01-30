@@ -20,6 +20,24 @@ export {
 } from './Badge';
 export type { BadgeProps, BadgeVariant } from './Badge';
 
+// Dark theme components
+export { ButtonDark } from './ButtonDark';
+export type { ButtonDarkProps } from './ButtonDark';
+
+export { InputDark } from './InputDark';
+export type { InputDarkProps } from './InputDark';
+
+export { SelectDark } from './SelectDark';
+export type { SelectDarkProps, SelectDarkOption } from './SelectDark';
+
+export {
+  BadgeDark,
+  AvailabilityBadgeDark,
+  EUDRBadgeDark,
+  CertificationBadgeDark,
+} from './BadgeDark';
+export type { BadgeDarkProps, BadgeDarkVariant, BadgeDarkSize } from './BadgeDark';
+
 export { LoadingSpinner, ButtonLoading } from './LoadingSpinner';
 
 export { EmptyState, NoProductsFound, EmptyRFQCart, NoSearchResults } from './EmptyState';

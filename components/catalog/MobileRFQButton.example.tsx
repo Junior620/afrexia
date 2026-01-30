@@ -1,207 +1,403 @@
-'use client';
+/**
+ * MobileRFQButton Component Examples
+ * 
+ * This file demonstrates various usage patterns for the MobileRFQButton component.
+ */
 
 import React, { useState } from 'react';
 import { MobileRFQButton } from './MobileRFQButton';
-import { RFQDrawer } from './RFQDrawer';
+import { RFQDrawerDark } from './RFQDrawerDark';
 import { Product } from '@/types/product';
 
-/**
- * Example usage of MobileRFQButton with RFQDrawer
- * 
- * This example demonstrates:
- * 1. Managing RFQ cart state
- * 2. Opening/closing the RFQ drawer from mobile button
- * 3. Displaying cart count badge
- * 4. Handling product selection and removal
- */
-export default function MobileRFQButtonExample() {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
+// Mock product data
+const mockProduct: Product = {
+  id: 'cacao-premium-ci',
+  slug: 'cacao-premium-cote-ivoire',
+  name: 'Cacao Premium Côte d\'Ivoire',
+  subtitle: 'Fèves fermentées grade A',
+  category: 'Cacao',
+  heroImage: null,
+  availability: 'available',
+  origins: ['Côte d\'Ivoire'],
+  certifications: ['Organic', 'Fair Trade'],
+  eudrReady: true,
+  qaAvailable: true,
+  documents: {
+    coa: true,
+    specSheet: true,
+    chainOfCustody: true,
+  },
+  moq: {
+    value: 500,
+    unit: 'kg',
+  },
+  incoterms: ['FOB', 'CIF', 'DAP'],
+  tags: ['premium', 'fermented'],
+  updatedAt: new Date().toISOString(),
+};
 
-  // Example product data
-  const exampleProduct: Product = {
-    id: '1',
-    slug: 'premium-cocoa',
-    name: 'Premium Cocoa Beans',
-    subtitle: 'Single Origin - Côte d\'Ivoire',
-    category: 'cocoa',
-    heroImage: {
-      asset: {
-        _ref: 'image-abc123',
-        _type: 'reference',
-      },
-    },
-    availability: 'in-stock',
-    origins: ['Côte d\'Ivoire'],
-    certifications: ['EUDR', 'Organic', 'Fair Trade'],
-    eudrReady: true,
-    qaAvailable: true,
-    documents: {
-      coa: true,
-      specSheet: true,
-      chainOfCustody: true,
-    },
-    moq: {
-      value: 500,
-      unit: 'kg',
-    },
-    incoterms: ['FOB', 'CIF', 'DAP'],
-    packaging: 'Jute bags 60kg',
-    grade: 'Grade I',
-    leadTime: '4-6 weeks',
-    tags: ['premium', 'single-origin', 'sustainable'],
-    markets: ['Europe', 'North America'],
-    updatedAt: '2024-01-15',
-  };
-
-  // Translations
-  const mobileButtonTranslations = {
-    requestQuote: 'Request Quote',
-    itemsInCart: 'items in cart',
-  };
-
-  const drawerTranslations = {
-    title: 'Request a Quote',
-    close: 'Close',
-    selectedProducts: 'Selected Products',
-    addMore: 'Add More Products',
-    removeProduct: 'Remove',
-    contactInfo: 'Contact Information',
-    orderDetails: 'Order Details',
-    additionalNotes: 'Additional Notes',
+// French translations
+const frTranslations = {
+  button: {
+    requestQuote: 'Demander un devis',
+  },
+  drawer: {
+    title: 'Demander un devis',
+    close: 'Fermer',
+    productLabel: 'Produit sélectionné',
     fields: {
-      name: 'Full Name',
-      namePlaceholder: 'John Doe',
-      email: 'Email',
-      emailPlaceholder: 'john@company.com',
-      company: 'Company',
-      companyPlaceholder: 'Your Company Ltd',
-      phone: 'Phone',
-      phonePlaceholder: '+1 234 567 8900',
-      quantity: 'Quantity',
-      quantityPlaceholder: '500',
-      unit: 'kg',
-      deliveryLocation: 'Delivery Location',
-      deliveryLocationPlaceholder: 'Port of Rotterdam, Netherlands',
+      quantity: 'Quantité',
+      quantityPlaceholder: 'Entrez la quantité',
       incoterm: 'Incoterm',
-      incotermPlaceholder: 'Select incoterm',
-      notes: 'Notes',
-      notesPlaceholder: 'Any specific requirements or questions...',
+      incotermPlaceholder: 'Sélectionner un incoterm',
+      destination: 'Destination/Port',
+      destinationPlaceholder: 'Ville, Pays',
+      email: 'Email',
+      emailPlaceholder: 'votre@email.com',
+      company: 'Société',
+      companyPlaceholder: 'Nom de votre société',
+      notes: 'Notes additionnelles',
+      notesPlaceholder: 'Informations complémentaires',
     },
     trustElements: {
-      response24h: '24h response time',
-      ndaAvailable: 'NDA available on request',
-      secureData: 'Your data is secure',
+      response24h: 'Réponse sous 24h',
+      ndaAvailable: 'NDA disponible sur demande',
+    },
+    submit: 'Envoyer la demande',
+    submitting: 'Envoi en cours...',
+    success: 'Demande envoyée !',
+    successMessage: 'Nous vous répondrons dans les 24 heures.',
+    error: 'Erreur',
+    errorMessage: 'Une erreur est survenue. Veuillez réessayer.',
+  },
+};
+
+// English translations
+const enTranslations = {
+  button: {
+    requestQuote: 'Request a Quote',
+  },
+  drawer: {
+    title: 'Request a Quote',
+    close: 'Close',
+    productLabel: 'Selected Product',
+    fields: {
+      quantity: 'Quantity',
+      quantityPlaceholder: 'Enter quantity',
+      incoterm: 'Incoterm',
+      incotermPlaceholder: 'Select an incoterm',
+      destination: 'Destination/Port',
+      destinationPlaceholder: 'City, Country',
+      email: 'Email',
+      emailPlaceholder: 'your@email.com',
+      company: 'Company',
+      companyPlaceholder: 'Your company name',
+      notes: 'Additional Notes',
+      notesPlaceholder: 'Additional information',
+    },
+    trustElements: {
+      response24h: '24h response',
+      ndaAvailable: 'NDA available upon request',
     },
     submit: 'Send Request',
     submitting: 'Sending...',
-    success: 'Success!',
-    successMessage: 'Your quote request has been sent. We\'ll respond within 24 hours.',
+    success: 'Request sent!',
+    successMessage: 'We will respond within 24 hours.',
     error: 'Error',
-    errorMessage: 'Failed to send request. Please try again.',
-    emptyCart: 'No products selected',
-    emptyCartMessage: 'Add products to your cart to request a quote.',
-  };
+    errorMessage: 'An error occurred. Please try again.',
+  },
+};
 
-  // Add product to cart
-  const handleAddProduct = () => {
-    if (!selectedProducts.find(p => p.id === exampleProduct.id)) {
-      setSelectedProducts([...selectedProducts, exampleProduct]);
-    }
-  };
+/**
+ * Example 1: Basic Usage (French)
+ * Simple mobile button that opens RFQ drawer
+ */
+export function BasicUsageFrench() {
+  const [isRFQOpen, setIsRFQOpen] = useState(false);
 
-  // Remove product from cart
-  const handleRemoveProduct = (productId: string) => {
-    setSelectedProducts(selectedProducts.filter(p => p.id !== productId));
-  };
-
-  // Handle RFQ submission
-  const handleSubmit = async (data: any) => {
+  const handleRFQSubmit = async (data: any) => {
     console.log('RFQ submitted:', data);
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    // Clear cart after successful submission
-    setSelectedProducts([]);
+    await new Promise(resolve => setTimeout(resolve, 1000));
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-8">Mobile RFQ Button Example</h1>
-        
-        <div className="bg-white rounded-lg shadow p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-4">Product Catalog</h2>
-          <p className="text-gray-600 mb-4">
-            Click the button below to add a product to your RFQ cart. 
-            The mobile sticky button will appear at the bottom of the screen on mobile devices.
-          </p>
-          
-          <button
-            onClick={handleAddProduct}
-            className="bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition-colors"
-          >
-            Add Product to Cart
-          </button>
+    <div className="min-h-screen bg-[#0A1410] p-4">
+      <h1 className="text-2xl text-[#E8F5E9] mb-4">Catalogue Produits</h1>
+      <p className="text-[#B0D4B8] mb-8">
+        Faites défiler vers le bas pour voir le bouton mobile sticky.
+      </p>
 
-          {selectedProducts.length > 0 && (
-            <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
-              <p className="text-green-800 font-semibold">
-                {selectedProducts.length} product(s) in cart
-              </p>
-            </div>
-          )}
-        </div>
+      {/* Spacer to demonstrate scroll */}
+      <div className="h-[150vh]" />
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h2 className="text-xl font-semibold mb-4">Features</h2>
-          <ul className="space-y-2 text-gray-700">
-            <li className="flex items-start gap-2">
-              <span className="text-green-600 mt-1">✓</span>
-              <span>Sticky bottom bar visible only on mobile (< 768px)</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-green-600 mt-1">✓</span>
-              <span>Cart count badge shows number of selected products</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-green-600 mt-1">✓</span>
-              <span>Opens RFQ drawer when clicked</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-green-600 mt-1">✓</span>
-              <span>Minimum 44x44px touch target for accessibility</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-green-600 mt-1">✓</span>
-              <span>Smooth animations and transitions</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-green-600 mt-1">✓</span>
-              <span>iOS safe area support</span>
-            </li>
-          </ul>
-        </div>
-
-        {/* Add some spacing at bottom for mobile button */}
-        <div className="h-24 md:h-0" />
-      </div>
-
-      {/* Mobile RFQ Button - Only visible on mobile */}
       <MobileRFQButton
-        cartCount={selectedProducts.length}
-        onClick={() => setIsDrawerOpen(true)}
-        translations={mobileButtonTranslations}
+        product={mockProduct}
+        locale="fr"
+        translations={frTranslations.button}
+        onClick={() => setIsRFQOpen(true)}
+      />
+
+      <RFQDrawerDark
+        product={mockProduct}
+        locale="fr"
+        translations={frTranslations.drawer}
+        isOpen={isRFQOpen}
+        onClose={() => setIsRFQOpen(false)}
+        onSubmit={handleRFQSubmit}
+      />
+    </div>
+  );
+}
+
+/**
+ * Example 2: Basic Usage (English)
+ * Simple mobile button that opens RFQ drawer
+ */
+export function BasicUsageEnglish() {
+  const [isRFQOpen, setIsRFQOpen] = useState(false);
+
+  const handleRFQSubmit = async (data: any) => {
+    console.log('RFQ submitted:', data);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+  };
+
+  return (
+    <div className="min-h-screen bg-[#0A1410] p-4">
+      <h1 className="text-2xl text-[#E8F5E9] mb-4">Product Catalog</h1>
+      <p className="text-[#B0D4B8] mb-8">
+        Scroll down to see the sticky mobile button.
+      </p>
+
+      <div className="h-[150vh]" />
+
+      <MobileRFQButton
+        product={mockProduct}
+        locale="en"
+        translations={enTranslations.button}
+        onClick={() => setIsRFQOpen(true)}
+      />
+
+      <RFQDrawerDark
+        product={mockProduct}
+        locale="en"
+        translations={enTranslations.drawer}
+        isOpen={isRFQOpen}
+        onClose={() => setIsRFQOpen(false)}
+        onSubmit={handleRFQSubmit}
+      />
+    </div>
+  );
+}
+
+/**
+ * Example 3: Without Product Context
+ * Button without pre-selected product (general RFQ)
+ */
+export function WithoutProductContext() {
+  const [isRFQOpen, setIsRFQOpen] = useState(false);
+
+  return (
+    <div className="min-h-screen bg-[#0A1410] p-4">
+      <h1 className="text-2xl text-[#E8F5E9] mb-4">General Inquiry</h1>
+      
+      <div className="h-[150vh]" />
+
+      <MobileRFQButton
+        locale="fr"
+        translations={frTranslations.button}
+        onClick={() => setIsRFQOpen(true)}
+      />
+
+      {/* Note: RFQDrawerDark requires a product, so you'd need a product selection step */}
+    </div>
+  );
+}
+
+/**
+ * Example 4: With Custom Styling
+ * Button with additional custom classes
+ */
+export function WithCustomStyling() {
+  const [isRFQOpen, setIsRFQOpen] = useState(false);
+
+  const handleRFQSubmit = async (data: any) => {
+    console.log('RFQ submitted:', data);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+  };
+
+  return (
+    <div className="min-h-screen bg-[#0A1410] p-4">
+      <h1 className="text-2xl text-[#E8F5E9] mb-4">Custom Styled Button</h1>
+      
+      <div className="h-[150vh]" />
+
+      <MobileRFQButton
+        product={mockProduct}
+        locale="fr"
+        translations={frTranslations.button}
+        onClick={() => setIsRFQOpen(true)}
+        className="animate-pulse"
+      />
+
+      <RFQDrawerDark
+        product={mockProduct}
+        locale="fr"
+        translations={frTranslations.drawer}
+        isOpen={isRFQOpen}
+        onClose={() => setIsRFQOpen(false)}
+        onSubmit={handleRFQSubmit}
+      />
+    </div>
+  );
+}
+
+/**
+ * Example 5: In Product Catalog Context
+ * Realistic usage within a product catalog page
+ */
+export function InCatalogContext() {
+  const [isRFQOpen, setIsRFQOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product>(mockProduct);
+
+  const handleProductSelect = (product: Product) => {
+    setSelectedProduct(product);
+    setIsRFQOpen(true);
+  };
+
+  const handleRFQSubmit = async (data: any) => {
+    console.log('RFQ submitted:', data);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+  };
+
+  return (
+    <div className="min-h-screen bg-[#0A1410]">
+      {/* Header */}
+      <header className="bg-gradient-to-b from-[#0A1410] to-[#1A2820] p-6">
+        <h1 className="text-4xl font-bold text-[#4A9A62] text-center">
+          Catalogue Produits
+        </h1>
+      </header>
+
+      {/* Product Grid */}
+      <main className="p-4">
+        <div className="grid grid-cols-1 gap-4">
+          {[mockProduct, mockProduct, mockProduct].map((product, index) => (
+            <div
+              key={index}
+              className="bg-[rgba(26,40,32,0.8)] rounded-2xl p-4 border border-[rgba(255,255,255,0.1)]"
+            >
+              <h3 className="text-lg font-semibold text-[#E8F5E9] mb-2">
+                {product.name}
+              </h3>
+              <p className="text-sm text-[#B0D4B8] mb-4">
+                {product.subtitle}
+              </p>
+              <button
+                onClick={() => handleProductSelect(product)}
+                className="w-full px-4 py-2 bg-[#4A9A62] text-white rounded-lg hover:bg-[#5AAA72]"
+              >
+                Demander un devis
+              </button>
+            </div>
+          ))}
+        </div>
+      </main>
+
+      {/* Mobile Sticky Button */}
+      <MobileRFQButton
+        product={selectedProduct}
+        locale="fr"
+        translations={frTranslations.button}
+        onClick={() => setIsRFQOpen(true)}
       />
 
       {/* RFQ Drawer */}
-      <RFQDrawer
-        selectedProducts={selectedProducts}
+      <RFQDrawerDark
+        product={selectedProduct}
+        locale="fr"
+        translations={frTranslations.drawer}
+        isOpen={isRFQOpen}
+        onClose={() => setIsRFQOpen(false)}
+        onSubmit={handleRFQSubmit}
+      />
+    </div>
+  );
+}
+
+/**
+ * Example 6: Testing Safe Area Insets
+ * Demonstrates safe area behavior on devices with notches
+ */
+export function SafeAreaDemo() {
+  const [isRFQOpen, setIsRFQOpen] = useState(false);
+
+  return (
+    <div className="min-h-screen bg-[#0A1410] p-4">
+      <h1 className="text-2xl text-[#E8F5E9] mb-4">Safe Area Test</h1>
+      <p className="text-[#B0D4B8] mb-4">
+        Test on iPhone with notch or Android with gesture navigation.
+      </p>
+      <p className="text-[#80996F] text-sm mb-8">
+        The button should respect the safe area insets and not be obscured by
+        the home indicator or navigation bar.
+      </p>
+
+      <div className="h-[150vh]" />
+
+      <MobileRFQButton
+        product={mockProduct}
         locale="en"
-        translations={drawerTranslations}
-        isOpen={isDrawerOpen}
-        onClose={() => setIsDrawerOpen(false)}
-        onSubmit={handleSubmit}
-        onRemoveProduct={handleRemoveProduct}
+        translations={enTranslations.button}
+        onClick={() => setIsRFQOpen(true)}
+      />
+
+      <RFQDrawerDark
+        product={mockProduct}
+        locale="en"
+        translations={enTranslations.drawer}
+        isOpen={isRFQOpen}
+        onClose={() => setIsRFQOpen(false)}
+        onSubmit={async () => {}}
+      />
+    </div>
+  );
+}
+
+/**
+ * Example 7: Responsive Behavior Test
+ * Shows/hides button based on viewport size
+ */
+export function ResponsiveDemo() {
+  const [isRFQOpen, setIsRFQOpen] = useState(false);
+
+  return (
+    <div className="min-h-screen bg-[#0A1410] p-4">
+      <h1 className="text-2xl text-[#E8F5E9] mb-4">Responsive Test</h1>
+      <p className="text-[#B0D4B8] mb-4">
+        Resize your browser window to see the button appear/disappear.
+      </p>
+      <ul className="text-[#80996F] text-sm space-y-2 mb-8">
+        <li>• Mobile (&lt; 768px): Button visible</li>
+        <li>• Tablet/Desktop (≥ 768px): Button hidden</li>
+      </ul>
+
+      <div className="h-[150vh]" />
+
+      <MobileRFQButton
+        product={mockProduct}
+        locale="en"
+        translations={enTranslations.button}
+        onClick={() => setIsRFQOpen(true)}
+      />
+
+      <RFQDrawerDark
+        product={mockProduct}
+        locale="en"
+        translations={enTranslations.drawer}
+        isOpen={isRFQOpen}
+        onClose={() => setIsRFQOpen(false)}
+        onSubmit={async () => {}}
       />
     </div>
   );

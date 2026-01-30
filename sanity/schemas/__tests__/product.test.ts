@@ -2,11 +2,14 @@ import { describe, it, expect } from 'vitest'
 import { Schema } from '@sanity/schema'
 import product from '../product'
 import blockContent from '../blockContent'
+import category from '../category'
+import origin from '../origin'
+import certification from '../certification'
 
 describe('Product Schema Validation', () => {
   const schema = Schema.compile({
     name: 'test',
-    types: [product, blockContent],
+    types: [product, blockContent, category, origin, certification],
   })
 
   const productType = schema.get('product')
@@ -23,10 +26,10 @@ describe('Product Schema Validation', () => {
     expect(slugField.type.validation).toBeDefined()
   })
 
-  it('should require i18nId field', () => {
-    const i18nIdField = productType.fields.find((f: any) => f.name === 'i18nId')
-    expect(i18nIdField).toBeDefined()
-    expect(i18nIdField.type.validation).toBeDefined()
+  it('should require heroImage field', () => {
+    const heroImageField = productType.fields.find((f: any) => f.name === 'heroImage')
+    expect(heroImageField).toBeDefined()
+    expect(heroImageField.type.validation).toBeDefined()
   })
 
   it('should require category field', () => {
@@ -35,20 +38,17 @@ describe('Product Schema Validation', () => {
     expect(categoryField.type.validation).toBeDefined()
   })
 
-  it('should have valid category options', () => {
+  it('should have valid category reference', () => {
     const categoryField = productType.fields.find((f: any) => f.name === 'category')
-    const options = categoryField.type.options.list
-    expect(options).toContainEqual({ title: 'Cocoa', value: 'cocoa' })
-    expect(options).toContainEqual({ title: 'Coffee', value: 'coffee' })
-    expect(options).toContainEqual({ title: 'Pepper', value: 'pepper' })
-    expect(options).toContainEqual({ title: 'Wood', value: 'wood' })
-    expect(options).toContainEqual({ title: 'Corn', value: 'corn' })
+    expect(categoryField).toBeDefined()
+    expect(categoryField.type.name).toBe('reference')
+    expect(categoryField.type.to).toContainEqual({ type: 'category' })
   })
 
-  it('should require description field', () => {
+  it('should have description field', () => {
     const descriptionField = productType.fields.find((f: any) => f.name === 'description')
     expect(descriptionField).toBeDefined()
-    expect(descriptionField.type.validation).toBeDefined()
+    // Description is optional, so no validation required
   })
 
   it('should require gallery field with minimum 1 image', () => {
@@ -84,10 +84,10 @@ describe('Product Schema Validation', () => {
     const availabilityField = productType.fields.find((f: any) => f.name === 'availability')
     expect(availabilityField).toBeDefined()
     const options = availabilityField.type.options.list
-    expect(options).toContainEqual({ title: 'In Stock', value: 'in_stock' })
-    expect(options).toContainEqual({ title: 'Pre-Order', value: 'pre_order' })
-    expect(options).toContainEqual({ title: 'Seasonal', value: 'seasonal' })
-    expect(options).toContainEqual({ title: 'Out of Stock', value: 'out_of_stock' })
+    expect(options).toContainEqual({ title: 'In Stock', value: 'in-stock' })
+    expect(options).toContainEqual({ title: 'Pre-Order', value: 'pre-order' })
+    expect(options).toContainEqual({ title: 'Limited Stock', value: 'limited' })
+    expect(options).toContainEqual({ title: 'Out of Stock', value: 'out-of-stock' })
   })
 
   it('should have incoterms field with valid options', () => {
@@ -102,10 +102,12 @@ describe('Product Schema Validation', () => {
     const requiredFields = [
       'name',
       'slug',
-      'i18nId',
       'category',
-      'description',
-      'gallery',
+      'heroImage',
+      'availability',
+      'origins',
+      'moq',
+      'incoterms',
       'workflowStatus',
     ]
 
@@ -117,17 +119,25 @@ describe('Product Schema Validation', () => {
 
   it('should have optional fields defined', () => {
     const optionalFields = [
+      'subtitle',
+      'eudrReady',
+      'qaAvailable',
+      'documents',
+      'packaging',
+      'grade',
+      'leadTime',
+      'notes',
+      'tags',
+      'markets',
+      'description',
+      'gallery',
       'originRegions',
       'harvestSeason',
       'packagingOptions',
-      'moq',
-      'incoterms',
       'certifications',
       'specificationPDF',
       'qaMetrics',
       'hsCode',
-      'availability',
-      'targetMarkets',
       'seo',
     ]
 

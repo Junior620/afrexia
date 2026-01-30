@@ -2,285 +2,277 @@
 
 ## Overview
 
-The `MobileRFQButton` component provides a sticky bottom bar for mobile devices that displays the RFQ cart count and opens the RFQ drawer when clicked. This component is part of the product catalog redesign and implements Requirements 4.12 and 13.5.
+The `MobileRFQButton` component is a sticky bottom CTA button designed specifically for mobile devices. It provides a persistent call-to-action for requesting quotes, ensuring users can easily initiate an RFQ from anywhere on the catalog page.
 
 ## Features
 
-- **Mobile-Only Display**: Automatically hidden on desktop (≥ 768px)
-- **Sticky Positioning**: Fixed at bottom of viewport for easy access
-- **Cart Count Badge**: Shows number of products in RFQ cart
-- **Touch-Optimized**: Minimum 44x44px touch target
-- **iOS Safe Area**: Respects iOS safe area insets
-- **Smooth Animations**: Slide-up animation and badge zoom-in
-- **Accessibility**: Proper ARIA labels and keyboard support
+- **Sticky Bottom Position**: Fixed at the bottom of the viewport with z-index 50
+- **Glass Effect**: Semi-transparent background with backdrop blur for premium feel
+- **Safe Area Support**: Respects device safe area insets (notches, home indicators)
+- **Analytics Tracking**: Automatically tracks quote clicks with source attribution
+- **Mobile-Only**: Hidden on desktop viewports (≥768px)
+- **Accessibility**: Proper ARIA labels and touch target sizing (48px height)
 
-## Usage
+## Visual Specifications
 
-### Basic Example
+### Layout
+- Position: `fixed bottom-0 left-0 right-0`
+- Z-index: `50`
+- Width: `100%`
+- Height: `48px` (button) + padding
 
-```tsx
-import { MobileRFQButton } from '@/components/catalog';
+### Styling
+- Background: `rgba(74,154,98,0.95)` with `backdrop-blur(12px)`
+- Shadow: `0 -4px 16px rgba(0,0,0,0.3)` (top shadow)
+- Border: `1px solid rgba(255,255,255,0.1)` (top border)
+- Padding: `12px 16px` + safe area insets
 
-function ProductCatalogPage() {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
-
-  return (
-    <>
-      {/* Your page content */}
-      
-      <MobileRFQButton
-        cartCount={cartCount}
-        onClick={() => setIsDrawerOpen(true)}
-        translations={{
-          requestQuote: 'Request Quote',
-          itemsInCart: 'items in cart',
-        }}
-      />
-    </>
-  );
-}
-```
-
-### With RFQDrawer Integration
-
-```tsx
-import { MobileRFQButton, RFQDrawer } from '@/components/catalog';
-
-function ProductCatalogPage() {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
-
-  return (
-    <>
-      {/* Product grid and other content */}
-      
-      {/* Mobile sticky button */}
-      <MobileRFQButton
-        cartCount={selectedProducts.length}
-        onClick={() => setIsDrawerOpen(true)}
-        translations={{
-          requestQuote: 'Request Quote',
-          itemsInCart: 'items in cart',
-        }}
-      />
-
-      {/* RFQ Drawer */}
-      <RFQDrawer
-        selectedProducts={selectedProducts}
-        isOpen={isDrawerOpen}
-        onClose={() => setIsDrawerOpen(false)}
-        onSubmit={handleSubmit}
-        onRemoveProduct={handleRemoveProduct}
-        // ... other props
-      />
-    </>
-  );
-}
-```
+### Button
+- Variant: Primary (green)
+- Size: Large
+- Background: `#4A9A62`
+- Hover: `#5AAA72`
+- Active: `#3A8A52`
 
 ## Props
 
-### MobileRFQButtonProps
+```typescript
+interface MobileRFQButtonProps {
+  product?: Product;           // Optional product for analytics tracking
+  locale: 'fr' | 'en';        // Current locale
+  translations: {
+    requestQuote: string;      // Button text
+  };
+  onClick: () => void;         // Click handler (opens RFQ drawer)
+  className?: string;          // Optional additional classes
+}
+```
 
-| Prop | Type | Required | Description |
-|------|------|----------|-------------|
-| `cartCount` | `number` | Yes | Number of products in RFQ cart |
-| `onClick` | `() => void` | Yes | Callback when button is clicked |
-| `translations` | `object` | Yes | Translation strings |
-| `translations.requestQuote` | `string` | Yes | Button text (e.g., "Request Quote") |
-| `translations.itemsInCart` | `string` | Yes | Accessibility label suffix (e.g., "items in cart") |
+## Usage
+
+### Basic Usage
+
+```tsx
+import { MobileRFQButton } from '@/components/catalog/MobileRFQButton';
+
+function CatalogPage() {
+  const [isRFQOpen, setIsRFQOpen] = useState(false);
+
+  return (
+    <>
+      {/* Page content */}
+      
+      <MobileRFQButton
+        locale="fr"
+        translations={{
+          requestQuote: 'Demander un devis'
+        }}
+        onClick={() => setIsRFQOpen(true)}
+      />
+    </>
+  );
+}
+```
+
+### With Product Context
+
+```tsx
+import { MobileRFQButton } from '@/components/catalog/MobileRFQButton';
+
+function ProductCatalog({ products }: { products: Product[] }) {
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isRFQOpen, setIsRFQOpen] = useState(false);
+
+  const handleRFQClick = () => {
+    // If no product selected, open drawer without pre-selection
+    setIsRFQOpen(true);
+  };
+
+  return (
+    <>
+      {/* Product grid */}
+      
+      <MobileRFQButton
+        product={selectedProduct || undefined}
+        locale="en"
+        translations={{
+          requestQuote: 'Request a Quote'
+        }}
+        onClick={handleRFQClick}
+      />
+    </>
+  );
+}
+```
 
 ## Translations
 
-The component requires translation strings for internationalization:
-
-### English
+### French (FR)
 ```typescript
 {
-  requestQuote: 'Request Quote',
-  itemsInCart: 'items in cart',
+  requestQuote: 'Demander un devis'
 }
 ```
 
-### French
+### English (EN)
 ```typescript
 {
-  requestQuote: 'Demander un devis',
-  itemsInCart: 'articles dans le panier',
+  requestQuote: 'Request a Quote'
 }
 ```
 
-### Spanish
+## Analytics Tracking
+
+The component automatically tracks quote clicks when a product is provided:
+
 ```typescript
-{
-  requestQuote: 'Solicitar cotización',
-  itemsInCart: 'artículos en el carrito',
-}
+trackQuoteClick({
+  productId: product.id,
+  productName: product.name,
+  category: product.category,
+  origin: product.origins?.[0] || 'Unknown',
+  availability: product.availability,
+  source: 'mobile_cta', // Identifies clicks from mobile button
+});
 ```
 
-### German
-```typescript
-{
-  requestQuote: 'Angebot anfordern',
-  itemsInCart: 'Artikel im Warenkorb',
-}
-```
+**Event Name**: `cta_click`
 
-### Russian
-```typescript
-{
-  requestQuote: 'Запросить предложение',
-  itemsInCart: 'товаров в корзине',
-}
-```
-
-## Styling
-
-The component uses Tailwind CSS classes and follows the design system:
-
-- **Background**: White with top border
-- **Button**: Primary color with hover state
-- **Badge**: Red background with white text
-- **Shadow**: Elevated shadow for prominence
-- **Transitions**: Smooth animations for all interactions
-
-### Customization
-
-You can customize the appearance by modifying the component or using CSS classes:
-
-```tsx
-// The component already includes all necessary styling
-// No additional customization needed for standard use cases
-```
-
-## Responsive Behavior
-
-- **Mobile (< 768px)**: Visible as sticky bottom bar
-- **Tablet/Desktop (≥ 768px)**: Hidden (uses `md:hidden` class)
+**Event Properties**:
+- `cta_type`: `'quote_click'`
+- `product_id`: Product ID
+- `product_name`: Product name
+- `category`: Product category
+- `origin`: Product origin
+- `availability`: Product availability status
+- `source`: `'mobile_cta'` (distinguishes from card clicks)
 
 ## Accessibility
 
-The component follows WCAG 2.1 AA guidelines:
+- **Touch Target**: 48px height meets minimum touch target size
+- **ARIA Label**: Descriptive label for screen readers
+- **Keyboard Navigation**: Fully keyboard accessible
+- **Focus Indicators**: Visible focus ring (gold color)
 
-- **Touch Targets**: Minimum 44x44px for mobile
-- **ARIA Labels**: Descriptive labels including cart count
-- **Keyboard Support**: Fully keyboard accessible
-- **Focus Indicators**: Visible focus ring
-- **Screen Readers**: Announces cart count changes
+## Responsive Behavior
 
-### ARIA Label Example
+- **Mobile (< 768px)**: Visible and sticky at bottom
+- **Tablet/Desktop (≥ 768px)**: Hidden via `md:hidden` class
 
-When cart has 3 items:
+## Safe Area Insets
+
+The component respects device safe areas using CSS environment variables:
+
+```css
+padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
 ```
-"Request Quote - 3 items in cart"
+
+This ensures the button is not obscured by:
+- iPhone home indicators
+- Android navigation bars
+- Device notches or rounded corners
+
+## Integration with RFQDrawerDark
+
+The button is designed to work seamlessly with the `RFQDrawerDark` component:
+
+```tsx
+function CatalogPage() {
+  const [isRFQOpen, setIsRFQOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
+  return (
+    <>
+      {/* Catalog content */}
+      
+      <MobileRFQButton
+        product={selectedProduct || undefined}
+        locale="fr"
+        translations={{ requestQuote: 'Demander un devis' }}
+        onClick={() => setIsRFQOpen(true)}
+      />
+
+      <RFQDrawerDark
+        product={selectedProduct!}
+        locale="fr"
+        translations={rfqTranslations}
+        isOpen={isRFQOpen}
+        onClose={() => setIsRFQOpen(false)}
+        onSubmit={handleRFQSubmit}
+      />
+    </>
+  );
+}
 ```
 
-## Performance
+## Requirements
 
-- **Lightweight**: Minimal JavaScript and CSS
-- **No Re-renders**: Only updates when props change
-- **Optimized Animations**: Uses CSS transforms for smooth performance
+- **Requirement 5.8**: Sticky bottom CTA on mobile
+- **Requirement 9.6**: Mobile-specific UI elements
+- **Requirement 8.2**: Analytics tracking with source attribution
 
 ## Browser Support
 
-- Chrome/Edge (latest)
-- Firefox (latest)
-- Safari (latest)
-- iOS Safari (latest)
-- Android Chrome (latest)
+- Modern browsers with CSS backdrop-filter support
+- Graceful fallback for browsers without backdrop-filter (solid background)
+- Safe area insets supported in iOS 11+ and modern Android browsers
 
-## iOS Safe Area
+## Performance
 
-The component automatically handles iOS safe area insets using the `safe-area-inset-bottom` class. This ensures the button doesn't overlap with the home indicator on newer iPhones.
+- Minimal re-renders (memoized click handler)
+- No layout shift (fixed positioning)
+- Lightweight component (~2KB gzipped)
 
 ## Testing
 
-### Manual Testing Checklist
-
-- [ ] Button appears only on mobile viewports (< 768px)
-- [ ] Button is hidden on desktop viewports (≥ 768px)
-- [ ] Cart count badge displays correctly
-- [ ] Badge shows "99+" for counts > 99
-- [ ] Badge animates in when count changes from 0 to 1
-- [ ] Button opens RFQ drawer when clicked
-- [ ] Touch target is at least 44x44px
-- [ ] Button respects iOS safe area
-- [ ] Keyboard navigation works
-- [ ] Screen reader announces cart count
-- [ ] Focus indicator is visible
-
-### Unit Testing
-
+### Unit Tests
 ```typescript
-import { render, screen, fireEvent } from '@testing-library/react';
-import { MobileRFQButton } from './MobileRFQButton';
-
 describe('MobileRFQButton', () => {
-  const mockOnClick = jest.fn();
-  const translations = {
-    requestQuote: 'Request Quote',
-    itemsInCart: 'items in cart',
-  };
-
-  it('renders with cart count', () => {
-    render(
-      <MobileRFQButton
-        cartCount={3}
-        onClick={mockOnClick}
-        translations={translations}
-      />
-    );
-    
-    expect(screen.getByText('3')).toBeInTheDocument();
+  it('renders with correct text', () => {
+    // Test rendering
   });
 
   it('calls onClick when clicked', () => {
-    render(
-      <MobileRFQButton
-        cartCount={0}
-        onClick={mockOnClick}
-        translations={translations}
-      />
-    );
-    
-    fireEvent.click(screen.getByRole('button'));
-    expect(mockOnClick).toHaveBeenCalledTimes(1);
+    // Test click handler
   });
 
-  it('shows 99+ for counts over 99', () => {
-    render(
-      <MobileRFQButton
-        cartCount={150}
-        onClick={mockOnClick}
-        translations={translations}
-      />
-    );
-    
-    expect(screen.getByText('99+')).toBeInTheDocument();
+  it('tracks analytics with mobile_cta source', () => {
+    // Test analytics tracking
   });
+
+  it('is hidden on desktop', () => {
+    // Test responsive behavior
+  });
+});
+```
+
+### E2E Tests
+```typescript
+test('mobile RFQ button opens drawer', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 667 }); // Mobile
+  await page.goto('/products');
+  
+  await page.click('[aria-label="Request a Quote"]');
+  await expect(page.locator('[role="dialog"]')).toBeVisible();
 });
 ```
 
 ## Related Components
 
-- **RFQDrawer**: The drawer that opens when button is clicked
-- **ProductCard**: Cards that add products to RFQ cart
-- **CatalogFilters**: Filter bar that works with mobile layout
+- `RFQDrawerDark`: The drawer opened by this button
+- `ProductCardDark`: Desktop quote button alternative
+- `ButtonDark`: Base button component used internally
+- `CatalogHeaderDark`: Header with desktop quote CTA
 
-## Requirements
+## Design Tokens
 
-This component implements the following requirements:
-
-- **Requirement 4.12**: Mobile sticky CTA button for accessing RFQ drawer
-- **Requirement 13.5**: Sticky bottom bar on mobile viewport
-- **Requirement 13.7**: Minimum 44x44px touch targets on mobile
-
-## Changelog
-
-### Version 1.0.0 (2024-01-29)
-- Initial implementation
-- Mobile-only sticky bottom bar
-- Cart count badge
-- iOS safe area support
-- Full accessibility support
+```typescript
+const MOBILE_RFQ_BUTTON_TOKENS = {
+  background: 'rgba(74,154,98,0.95)',
+  backdropBlur: '12px',
+  shadow: '0 -4px 16px rgba(0,0,0,0.3)',
+  border: 'rgba(255,255,255,0.1)',
+  buttonHeight: '48px',
+  zIndex: 50,
+};
+```

@@ -45,5 +45,25 @@ export function getTranslationsFr() {
       privacyPolicy: 'Politique de Confidentialité',
       termsOfService: 'Conditions d\'Utilisation',
     },
+    catalog: {
+      header: {
+        heading: 'Catalogue Produits',
+        subtitle: 'Cacao, café & commodités africaines — QA documentée, traçabilité prête pour audit.',
+        ctaPrimary: 'Demander un devis',
+        ctaSecondary: 'Télécharger le catalogue (PDF)',
+      },
+      trust: {
+        response24h: '24h',
+        response24hTooltip: 'Réponse sous 24 heures',
+        ndaAvailable: 'NDA',
+        ndaAvailableTooltip: 'NDA disponible sur demande',
+        eudrCompliant: 'EUDR',
+        eudrCompliantTooltip: 'Conforme EUDR',
+        qaDocumented: 'QA',
+        qaDocumentedTooltip: 'Documentation QA complète',
+        coaAvailable: 'COA',
+        coaAvailableTooltip: 'COA & fiches techniques disponibles',
+      },
+    },
   };
 }

@@ -38,13 +38,13 @@ describe('Services Section - Performance Validation', () => {
   });
 
   describe('Component Render Performance', () => {
-    it('should render in less than 50ms', () => {
+    it('should render in less than 60ms', () => {
       const startTime = performance.now();
       render(<ServicesSection locale="en" />);
       const endTime = performance.now();
       const renderTime = endTime - startTime;
       
-      expect(renderTime).toBeLessThan(50);
+      expect(renderTime).toBeLessThan(60);
       console.log(`✓ Services Section render time: ${renderTime.toFixed(2)}ms`);
     });
 

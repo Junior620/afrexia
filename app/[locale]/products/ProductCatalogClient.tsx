@@ -11,22 +11,35 @@ import { ProcessComplianceSection } from '@/components/sections/ProcessComplianc
 import { SkipLinks } from '@/components/catalog/SkipLinks';
 import { applyFilters, resetFilters } from '@/lib/catalog/filters';
 import { RFQFormData } from '@/types/rfq';
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 
 // Code-split modals using dynamic imports to reduce initial bundle size
 // These components are only loaded when needed (when user opens them)
 const RFQDrawer = dynamic(() => import('@/components/catalog/RFQDrawer').then(mod => ({ default: mod.RFQDrawer })), {
   ssr: false,
-  loading: () => <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div></div>
+  loading: () => (
+    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+      <LoadingSpinner size="lg" className="text-white" />
+    </div>
+  )
 });
 
 const QuickViewModal = dynamic(() => import('@/components/catalog/QuickViewModal').then(mod => ({ default: mod.QuickViewModal })), {
   ssr: false,
-  loading: () => <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div></div>
+  loading: () => (
+    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+      <LoadingSpinner size="lg" className="text-white" />
+    </div>
+  )
 });
 
 const CatalogDownloadModal = dynamic(() => import('@/components/catalog/CatalogDownloadModal').then(mod => ({ default: mod.CatalogDownloadModal })), {
   ssr: false,
-  loading: () => <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div></div>
+  loading: () => (
+    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+      <LoadingSpinner size="lg" className="text-white" />
+    </div>
+  )
 });
 
 export interface ProductCatalogClientProps {

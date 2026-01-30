@@ -217,6 +217,8 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
                 fill
                 sizes="(max-width: 768px) 100vw, 256px"
                 className="object-cover"
+                loading="lazy"
+                quality={80}
               />
             </div>
 

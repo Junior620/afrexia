@@ -406,7 +406,7 @@ describe('Catalog Integration Tests - Checkpoint 10', () => {
       );
 
       expect(screen.getByText('No products found')).toBeInTheDocument();
-      expect(screen.getByText('Try adjusting your filters or search query')).toBeInTheDocument();
+      expect(screen.getByText('No products available at the moment.')).toBeInTheDocument();
     });
   });
 

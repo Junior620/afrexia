@@ -294,3 +294,46 @@ export function trackCatalogDownload(data: {
     email: data.email,
   });
 }
+
+/**
+ * Track quote click from ProductCardDark
+ * Requirements: 8.2, 8.5
+ */
+export function trackQuoteClick(data: {
+  productId: string;
+  productName: string;
+  category: string;
+  origin: string;
+  availability: string;
+  source?: 'card' | 'mobile_cta';
+}): void {
+  trackEvent('cta_click', {
+    cta_type: 'quote_click',
+    product_id: data.productId,
+    product_name: data.productName,
+    category: data.category,
+    origin: data.origin,
+    availability: data.availability,
+    source: data.source || 'card',
+  });
+}
+
+/**
+ * Track spec click from ProductCardDark
+ * Requirements: 8.2, 8.5
+ */
+export function trackSpecClick(data: {
+  productId: string;
+  productName: string;
+  category: string;
+  origin: string;
+}): void {
+  trackEvent('cta_click', {
+    cta_type: 'spec_click',
+    product_id: data.productId,
+    product_name: data.productName,
+    category: data.category,
+    origin: data.origin,
+  });
+}
+

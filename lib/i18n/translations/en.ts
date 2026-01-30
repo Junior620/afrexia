@@ -45,5 +45,25 @@ export function getTranslationsEn() {
       privacyPolicy: 'Privacy Policy',
       termsOfService: 'Terms of Service',
     },
+    catalog: {
+      header: {
+        heading: 'Product Catalog',
+        subtitle: 'Cocoa, coffee & African commodities — Documented QA, audit-ready traceability.',
+        ctaPrimary: 'Request a Quote',
+        ctaSecondary: 'Download Catalog (PDF)',
+      },
+      trust: {
+        response24h: '24h',
+        response24hTooltip: '24h response time',
+        ndaAvailable: 'NDA',
+        ndaAvailableTooltip: 'NDA available upon request',
+        eudrCompliant: 'EUDR',
+        eudrCompliantTooltip: 'EUDR compliant',
+        qaDocumented: 'QA',
+        qaDocumentedTooltip: 'Comprehensive QA documentation',
+        coaAvailable: 'COA',
+        coaAvailableTooltip: 'COA & spec sheets available',
+      },
+    },
   };
 }
