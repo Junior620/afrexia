@@ -89,8 +89,17 @@ export default defineType({
     defineField({
       name: 'category',
       title: 'Category',
-      type: 'reference',
-      to: [{ type: 'category' }],
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Cocoa', value: 'cocoa' },
+          { title: 'Coffee', value: 'coffee' },
+          { title: 'Corn', value: 'corn' },
+          { title: 'Pepper', value: 'pepper' },
+          { title: 'Wood', value: 'wood' },
+        ],
+        layout: 'dropdown',
+      },
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -515,14 +524,14 @@ export default defineType({
   preview: {
     select: {
       title: 'name.en',
-      subtitle: 'category.name.en',
+      category: 'category',
       media: 'heroImage',
       availability: 'availability',
     },
-    prepare({ title, subtitle, media, availability }) {
+    prepare({ title, category, media, availability }) {
       return {
         title: title || 'Untitled Product',
-        subtitle: `${subtitle || 'No category'} - ${availability || 'unknown'}`,
+        subtitle: `${category || 'No category'} - ${availability || 'unknown'}`,
         media,
       }
     },
