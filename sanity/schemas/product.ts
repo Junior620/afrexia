@@ -141,7 +141,6 @@ export default defineType({
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'origin' }] }],
       description: 'Countries where this product originates',
-      validation: (Rule) => Rule.required().min(1),
     }),
     defineField({
       name: 'certifications',
@@ -200,7 +199,7 @@ export default defineType({
           name: 'value',
           type: 'number',
           title: 'Value',
-          validation: (Rule) => Rule.required().positive(),
+          validation: (Rule) => Rule.positive(),
         },
         {
           name: 'unit',
@@ -215,10 +214,8 @@ export default defineType({
               { title: 'bags', value: 'bags' },
             ],
           },
-          validation: (Rule) => Rule.required(),
         },
       ],
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'incoterms',
@@ -236,7 +233,6 @@ export default defineType({
           { title: 'DDP - Delivered Duty Paid', value: 'DDP' },
         ],
       },
-      validation: (Rule) => Rule.required().min(1),
     }),
     defineField({
       name: 'packaging',
