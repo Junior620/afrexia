@@ -285,7 +285,8 @@ export async function getAllTeamMembers() {
   const query = groq`*[_type == "teamMember" && workflowStatus == "published"] | order(order asc) {
     _id,
     name,
-    role,
+    slug,
+    position,
     bio,
     photo {
       asset,
@@ -293,6 +294,7 @@ export async function getAllTeamMembers() {
       hotspot
     },
     email,
+    phone,
     linkedin,
     order
   }`;

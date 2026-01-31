@@ -4,11 +4,57 @@ export default defineType({
   name: 'product',
   title: 'Product',
   type: 'document',
+  fieldsets: [
+    {
+      name: 'basic',
+      title: 'Basic Information',
+      options: { collapsible: false },
+    },
+    {
+      name: 'status',
+      title: 'Availability & Status',
+      options: { collapsible: true, collapsed: false },
+    },
+    {
+      name: 'logistics',
+      title: 'Logistics & Trade Terms',
+      options: { collapsible: true, collapsed: true },
+    },
+    {
+      name: 'quality',
+      title: 'Quality & Compliance',
+      options: { collapsible: true, collapsed: true },
+    },
+    {
+      name: 'origin',
+      title: 'Origin & Traceability',
+      options: { collapsible: true, collapsed: true },
+    },
+    {
+      name: 'content',
+      title: 'Content & Media',
+      options: { collapsible: true, collapsed: true },
+    },
+    {
+      name: 'advanced',
+      title: 'Advanced Options',
+      options: { collapsible: true, collapsed: true },
+    },
+    {
+      name: 'seo',
+      title: 'SEO & Metadata',
+      options: { collapsible: true, collapsed: true },
+    },
+  ],
   fields: [
+    // ========================================
+    // BASIC INFORMATION
+    // ========================================
     defineField({
       name: 'name',
       title: 'Product Name',
       type: 'object',
+      fieldset: 'basic',
       fields: [
         { name: 'fr', type: 'string', title: 'French', validation: (Rule) => Rule.required() },
         { name: 'en', type: 'string', title: 'English', validation: (Rule) => Rule.required() },
@@ -22,6 +68,7 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'object',
+      fieldset: 'basic',
       fields: [
         {
           name: 'fr',
@@ -77,6 +124,7 @@ export default defineType({
       name: 'subtitle',
       title: 'Subtitle',
       type: 'object',
+      fieldset: 'basic',
       description: 'Short descriptive subtitle for the product',
       fields: [
         { name: 'fr', type: 'string', title: 'French' },
@@ -90,6 +138,7 @@ export default defineType({
       name: 'category',
       title: 'Category',
       type: 'string',
+      fieldset: 'basic',
       options: {
         list: [
           { title: 'Cocoa', value: 'cocoa' },
@@ -106,6 +155,7 @@ export default defineType({
       name: 'heroImage',
       title: 'Hero Image',
       type: 'image',
+      fieldset: 'basic',
       description: 'Main product image for catalog cards',
       options: {
         hotspot: true,
@@ -120,10 +170,15 @@ export default defineType({
       ],
       validation: (Rule) => Rule.required(),
     }),
+
+    // ========================================
+    // AVAILABILITY & STATUS
+    // ========================================
     defineField({
       name: 'availability',
       title: 'Availability Status',
       type: 'string',
+      fieldset: 'status',
       options: {
         list: [
           { title: 'In Stock', value: 'in-stock' },
@@ -136,23 +191,25 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'origins',
-      title: 'Origin Countries',
-      type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'origin' }] }],
-      description: 'Countries where this product originates',
-    }),
-    defineField({
-      name: 'certifications',
-      title: 'Certifications',
-      type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'certification' }] }],
-      description: 'Product certifications (Bio, Fair Trade, etc.)',
+      name: 'workflowStatus',
+      title: 'Workflow Status',
+      type: 'string',
+      fieldset: 'status',
+      options: {
+        list: [
+          { title: 'Draft', value: 'draft' },
+          { title: 'In Review', value: 'in_review' },
+          { title: 'Published', value: 'published' },
+        ],
+      },
+      initialValue: 'draft',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'eudrReady',
       title: 'EUDR Ready',
       type: 'boolean',
+      fieldset: 'status',
       description: 'EU Deforestation Regulation compliant',
       initialValue: false,
     }),
@@ -160,39 +217,19 @@ export default defineType({
       name: 'qaAvailable',
       title: 'QA Documentation Available',
       type: 'boolean',
+      fieldset: 'status',
       description: 'Quality Assurance documentation available',
       initialValue: true,
     }),
-    defineField({
-      name: 'documents',
-      title: 'Available Documents',
-      type: 'object',
-      description: 'Document availability indicators',
-      fields: [
-        {
-          name: 'coa',
-          type: 'boolean',
-          title: 'Certificate of Analysis (COA)',
-          initialValue: false,
-        },
-        {
-          name: 'specSheet',
-          type: 'boolean',
-          title: 'Specification Sheet',
-          initialValue: false,
-        },
-        {
-          name: 'chainOfCustody',
-          type: 'boolean',
-          title: 'Chain of Custody',
-          initialValue: false,
-        },
-      ],
-    }),
+
+    // ========================================
+    // LOGISTICS & TRADE TERMS
+    // ========================================
     defineField({
       name: 'moq',
       title: 'Minimum Order Quantity (MOQ)',
       type: 'object',
+      fieldset: 'logistics',
       description: 'Minimum order quantity with unit',
       fields: [
         {
@@ -221,6 +258,7 @@ export default defineType({
       name: 'incoterms',
       title: 'Available Incoterms',
       type: 'array',
+      fieldset: 'logistics',
       of: [{ type: 'string' }],
       options: {
         list: [
@@ -238,6 +276,7 @@ export default defineType({
       name: 'packaging',
       title: 'Packaging',
       type: 'object',
+      fieldset: 'logistics',
       description: 'Packaging information (localized)',
       fields: [
         { name: 'fr', type: 'string', title: 'French' },
@@ -251,6 +290,7 @@ export default defineType({
       name: 'grade',
       title: 'Grade',
       type: 'object',
+      fieldset: 'logistics',
       description: 'Product grade or quality level (localized)',
       fields: [
         { name: 'fr', type: 'string', title: 'French' },
@@ -264,6 +304,7 @@ export default defineType({
       name: 'leadTime',
       title: 'Lead Time',
       type: 'object',
+      fieldset: 'logistics',
       description: 'Delivery lead time (localized)',
       fields: [
         { name: 'fr', type: 'string', title: 'French' },
@@ -274,83 +315,115 @@ export default defineType({
       ],
     }),
     defineField({
-      name: 'notes',
-      title: 'Additional Notes',
+      name: 'harvestSeason',
+      title: 'Harvest Season',
+      type: 'string',
+      fieldset: 'logistics',
+      description: 'e.g., "October - March"',
+    }),
+
+    // ========================================
+    // QUALITY & COMPLIANCE
+    // ========================================
+    defineField({
+      name: 'certifications',
+      title: 'Certifications',
+      type: 'array',
+      fieldset: 'quality',
+      of: [{ type: 'reference', to: [{ type: 'certification' }] }],
+      description: 'Product certifications (Bio, Fair Trade, etc.)',
+    }),
+    defineField({
+      name: 'documents',
+      title: 'Available Documents',
       type: 'object',
-      description: 'Additional product notes (localized)',
+      fieldset: 'quality',
+      description: 'Document availability indicators',
       fields: [
-        { name: 'fr', type: 'text', title: 'French', rows: 3 },
-        { name: 'en', type: 'text', title: 'English', rows: 3 },
-        { name: 'es', type: 'text', title: 'Spanish', rows: 3 },
-        { name: 'de', type: 'text', title: 'German', rows: 3 },
-        { name: 'ru', type: 'text', title: 'Russian', rows: 3 },
+        {
+          name: 'coa',
+          type: 'boolean',
+          title: 'Certificate of Analysis (COA)',
+          initialValue: false,
+        },
+        {
+          name: 'specSheet',
+          type: 'boolean',
+          title: 'Specification Sheet',
+          initialValue: false,
+        },
+        {
+          name: 'chainOfCustody',
+          type: 'boolean',
+          title: 'Chain of Custody',
+          initialValue: false,
+        },
       ],
     }),
     defineField({
-      name: 'tags',
-      title: 'Tags',
+      name: 'qaMetrics',
+      title: 'Quality Assurance Metrics',
       type: 'array',
-      of: [{ type: 'string' }],
-      description: 'Searchable tags for filtering',
-      options: {
-        layout: 'tags',
-      },
-    }),
-    defineField({
-      name: 'markets',
-      title: 'Target Markets',
-      type: 'array',
-      of: [{ type: 'string' }],
-      description: 'Countries or regions where this product is marketed',
-    }),
-    defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'object',
-      fields: [
-        { name: 'fr', type: 'blockContent', title: 'French' },
-        { name: 'en', type: 'blockContent', title: 'English' },
-        { name: 'es', type: 'blockContent', title: 'Spanish' },
-        { name: 'de', type: 'blockContent', title: 'German' },
-        { name: 'ru', type: 'blockContent', title: 'Russian' },
-      ],
-    }),
-    defineField({
-      name: 'gallery',
-      title: 'Image Gallery',
-      type: 'array',
-      description: 'Additional product images',
+      fieldset: 'quality',
       of: [
         {
-          type: 'image',
-          options: { hotspot: true },
+          type: 'object',
           fields: [
             {
-              name: 'alt',
+              name: 'metric',
               type: 'string',
-              title: 'Alt Text',
+              title: 'Metric Name',
               validation: (Rule) => Rule.required(),
             },
             {
-              name: 'caption',
-              type: 'object',
-              title: 'Caption',
-              fields: [
-                { name: 'fr', type: 'string', title: 'French' },
-                { name: 'en', type: 'string', title: 'English' },
-                { name: 'es', type: 'string', title: 'Spanish' },
-                { name: 'de', type: 'string', title: 'German' },
-                { name: 'ru', type: 'string', title: 'Russian' },
-              ],
+              name: 'value',
+              type: 'string',
+              title: 'Value/Range',
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: 'standard',
+              type: 'string',
+              title: 'Standard Reference',
+              description: 'e.g., "ISO 2451", "AFNOR"',
             },
           ],
         },
       ],
     }),
     defineField({
+      name: 'hsCode',
+      title: 'HS Code',
+      type: 'string',
+      fieldset: 'quality',
+      description: 'Harmonized System Code for customs',
+    }),
+    defineField({
+      name: 'specificationPDF',
+      title: 'Specification Sheet PDF',
+      type: 'file',
+      fieldset: 'quality',
+      options: {
+        accept: 'application/pdf',
+      },
+    }),
+
+    // ========================================
+    // ORIGIN & TRACEABILITY
+    // ========================================
+    defineField({
+      name: 'origins',
+      title: 'Origin Countries',
+      type: 'array',
+      fieldset: 'origin',
+      of: [{ type: 'reference', to: [{ type: 'origin' }] }],
+      description: 'Countries where this product originates',
+    }),
+    defineField({
       name: 'originRegions',
       title: 'Origin Regions',
       type: 'array',
+      fieldset: 'origin',
       description: 'Detailed origin regions with coordinates',
       of: [
         {
@@ -384,16 +457,98 @@ export default defineType({
         },
       ],
     }),
+
+    // ========================================
+    // CONTENT & MEDIA
+    // ========================================
     defineField({
-      name: 'harvestSeason',
-      title: 'Harvest Season',
-      type: 'string',
-      description: 'e.g., "October - March"',
+      name: 'description',
+      title: 'Description',
+      type: 'object',
+      fieldset: 'content',
+      fields: [
+        { name: 'fr', type: 'blockContent', title: 'French' },
+        { name: 'en', type: 'blockContent', title: 'English' },
+        { name: 'es', type: 'blockContent', title: 'Spanish' },
+        { name: 'de', type: 'blockContent', title: 'German' },
+        { name: 'ru', type: 'blockContent', title: 'Russian' },
+      ],
+    }),
+    defineField({
+      name: 'gallery',
+      title: 'Image Gallery',
+      type: 'array',
+      fieldset: 'content',
+      description: 'Additional product images',
+      of: [
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alt Text',
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: 'caption',
+              type: 'object',
+              title: 'Caption',
+              fields: [
+                { name: 'fr', type: 'string', title: 'French' },
+                { name: 'en', type: 'string', title: 'English' },
+                { name: 'es', type: 'string', title: 'Spanish' },
+                { name: 'de', type: 'string', title: 'German' },
+                { name: 'ru', type: 'string', title: 'Russian' },
+              ],
+            },
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'notes',
+      title: 'Additional Notes',
+      type: 'object',
+      fieldset: 'content',
+      description: 'Additional product notes (localized)',
+      fields: [
+        { name: 'fr', type: 'text', title: 'French', rows: 3 },
+        { name: 'en', type: 'text', title: 'English', rows: 3 },
+        { name: 'es', type: 'text', title: 'Spanish', rows: 3 },
+        { name: 'de', type: 'text', title: 'German', rows: 3 },
+        { name: 'ru', type: 'text', title: 'Russian', rows: 3 },
+      ],
+    }),
+
+    // ========================================
+    // ADVANCED OPTIONS
+    // ========================================
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      fieldset: 'advanced',
+      of: [{ type: 'string' }],
+      description: 'Searchable tags for filtering',
+      options: {
+        layout: 'tags',
+      },
+    }),
+    defineField({
+      name: 'markets',
+      title: 'Target Markets',
+      type: 'array',
+      fieldset: 'advanced',
+      of: [{ type: 'string' }],
+      description: 'Countries or regions where this product is marketed',
     }),
     defineField({
       name: 'packagingOptions',
       title: 'Packaging Options',
       type: 'array',
+      fieldset: 'advanced',
       description: 'Detailed packaging options',
       of: [
         {
@@ -427,54 +582,18 @@ export default defineType({
         },
       ],
     }),
-    defineField({
-      name: 'specificationPDF',
-      title: 'Specification Sheet PDF',
-      type: 'file',
-      options: {
-        accept: 'application/pdf',
-      },
-    }),
-    defineField({
-      name: 'qaMetrics',
-      title: 'Quality Assurance Metrics',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            {
-              name: 'metric',
-              type: 'string',
-              title: 'Metric Name',
-              validation: (Rule) => Rule.required(),
-            },
-            {
-              name: 'value',
-              type: 'string',
-              title: 'Value/Range',
-              validation: (Rule) => Rule.required(),
-            },
-            {
-              name: 'standard',
-              type: 'string',
-              title: 'Standard Reference',
-              description: 'e.g., "ISO 2451", "AFNOR"',
-            },
-          ],
-        },
-      ],
-    }),
-    defineField({
-      name: 'hsCode',
-      title: 'HS Code',
-      type: 'string',
-      description: 'Harmonized System Code for customs',
-    }),
+
+    // ========================================
+    // SEO & METADATA
+    // ========================================
+    // ========================================
+    // SEO & METADATA
+    // ========================================
     defineField({
       name: 'seo',
       title: 'SEO',
       type: 'object',
+      fieldset: 'seo',
       fields: [
         {
           name: 'metaTitle',
@@ -501,20 +620,6 @@ export default defineType({
           ],
         },
       ],
-    }),
-    defineField({
-      name: 'workflowStatus',
-      title: 'Workflow Status',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'Draft', value: 'draft' },
-          { title: 'In Review', value: 'in_review' },
-          { title: 'Published', value: 'published' },
-        ],
-      },
-      initialValue: 'draft',
-      validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {
