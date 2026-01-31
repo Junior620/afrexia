@@ -7,6 +7,7 @@ export function getTranslationsEn() {
       quality: 'Quality & Compliance',
       traceability: 'Traceability',
       about: 'About',
+      team: 'Team',
       resources: 'Resources',
       blog: 'Blog',
       contact: 'Contact',

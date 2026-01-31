@@ -7,6 +7,7 @@ export function getTranslationsRu() {
       quality: 'Качество и соответствие',
       traceability: 'Отслеживаемость',
       about: 'О нас',
+      team: 'Команда',
       resources: 'Ресурсы',
       blog: 'Блог',
       contact: 'Контакты',
