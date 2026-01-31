@@ -74,30 +74,34 @@ export const CatalogHeaderDark: React.FC<CatalogHeaderDarkProps> = ({
   }, [translations.trust]);
 
   const containerClasses = cn(
-    'w-full',
-    'bg-gradient-to-b from-[#0A1410] to-[#1A2820]',
-    'py-8 md:py-10 px-4 md:px-6', // Réduit de 12/16 à 8/10
+    'relative w-full overflow-hidden',
+    'min-h-[45vh] md:min-h-[50vh]', // Hauteur réduite
+    'flex items-center justify-center',
+    'py-12 md:py-16 px-4 md:px-6',
     className
   );
 
   const contentClasses = cn(
+    'relative z-10', // Au-dessus de l'image de fond
     'max-w-7xl mx-auto',
     'flex flex-col items-center text-center',
-    'space-y-3 md:space-y-4' // Réduit de 4/6 à 3/4
+    'space-y-6 md:space-y-8'
   );
 
   const headingClasses = cn(
-    'text-[2.25rem] md:text-[2.75rem]', // Réduit: 36px mobile, 44px desktop (vs 44/56)
+    'text-4xl md:text-5xl lg:text-6xl', // Tailles augmentées
     'font-bold',
     'text-[#4A9A62]',
-    'leading-tight'
+    'leading-tight',
+    'drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]' // Ombre pour lisibilité
   );
 
   const subtitleClasses = cn(
-    'text-base md:text-lg', // 16px mobile, 18px desktop
+    'text-lg md:text-xl', // Tailles augmentées
     'text-[#B0D4B8]',
-    'max-w-[700px]', // Réduit de 800 à 700
-    'leading-snug' // Plus compact
+    'max-w-[800px]',
+    'leading-relaxed',
+    'drop-shadow-[0_1px_6px_rgba(0,0,0,0.7)]' // Ombre pour lisibilité
   );
 
   const ctaContainerClasses = cn(
@@ -127,6 +131,26 @@ export const CatalogHeaderDark: React.FC<CatalogHeaderDarkProps> = ({
 
   return (
     <header className={containerClasses} role="banner">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/assets/terrain-cocoa-cameroon.jpg"
+          alt=""
+          className="w-full h-full object-cover"
+        />
+        {/* Dark overlay gradient pour lisibilité */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A1410]/85 via-[#0A1410]/90 to-[#0A1410]/95" />
+        {/* Vignette pour profondeur */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,transparent_40%,rgba(0,0,0,0.4)_100%)]" />
+        {/* Film grain subtil */}
+        <div 
+          className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        />
+      </div>
+
       <div className={contentClasses}>
         {/* Heading */}
         <h1 className={headingClasses}>

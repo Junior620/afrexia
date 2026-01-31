@@ -147,6 +147,35 @@ export function ProductGallery({ images, productName, locale }: ProductGalleryPr
           priority={selectedIndex === 0}
         />
         
+        {/* Editorial Overlay - Luxury Premium */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Premium gradient scrim */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+          
+          {/* Subtle vignette for depth */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,transparent_60%,rgba(0,0,0,0.15)_100%)]" />
+          
+          {/* Film grain texture */}
+          <div 
+            className="absolute inset-0 opacity-[0.02] mix-blend-overlay"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            }}
+          />
+          
+          {/* Quality control label - Bottom left */}
+          <div className="absolute bottom-4 left-4 pointer-events-auto">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[rgba(10,20,16,0.85)] backdrop-blur-sm border border-[rgba(255,255,255,0.1)]">
+              <svg className="w-3.5 h-3.5 text-[#4A9A62]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="text-xs font-medium text-[#E8F5E9]">
+                {locale === 'fr' ? 'Contrôle qualité sur site' : 'On-site quality control'}
+              </span>
+            </div>
+          </div>
+        </div>
+        
         {/* Zoom icon overlay */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
           <button

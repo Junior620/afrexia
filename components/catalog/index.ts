@@ -56,3 +56,6 @@ export type { ProductCardDarkProps, ProductCardDarkTranslations } from './Produc
 
 export { ProductCardV4 } from './ProductCardV4';
 export type { ProductCardV4Props, ProductCardV4Translations } from './ProductCardV4';
+
+export { ProductCardV5 } from './ProductCardV5';
+export type { ProductCardV5Props, ProductCardV5Translations } from './ProductCardV5';

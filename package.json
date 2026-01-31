@@ -22,7 +22,10 @@
     "test:kv": "node scripts/test-kv-connection.js",
     "lighthouse": "lhci autorun",
     "analyze": "ANALYZE=true npm run build",
-    "verify:monitoring": "node scripts/verify-monitoring-analytics.js"
+    "verify:monitoring": "node scripts/verify-monitoring-analytics.js",
+    "sanity:import-origins": "npx tsx scripts/import-origins.ts",
+    "sanity:import-categories": "npx tsx scripts/import-categories.ts",
+    "sanity:import-all": "npx tsx scripts/import-all-data.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

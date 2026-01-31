@@ -53,6 +53,7 @@ export interface CatalogDarkTranslations {
     packaging: string;
     microproof: string;
     terrainLabel: string;
+    onRequest: string;
   };
   categoryLabels: {
     cocoa: string;
@@ -71,6 +72,7 @@ export interface CatalogDarkTranslations {
     coa: string;
     chainOfCustody: string;
     qaDocumented: string;
+    certificationsAvailable: string;
   };
   fallback: {
     comingSoon: string;
@@ -187,6 +189,7 @@ const FR_TRANSLATIONS: CatalogDarkTranslations = {
     packaging: 'Conditionnement',
     microproof: 'Réponse sous 24h • NDA possible',
     terrainLabel: 'Terrain',
+    onRequest: 'Sur demande',
   },
   categoryLabels: {
     cocoa: 'Cacao',
@@ -205,6 +208,7 @@ const FR_TRANSLATIONS: CatalogDarkTranslations = {
     coa: 'COA',
     chainOfCustody: 'Chain of Custody',
     qaDocumented: 'QA documentée',
+    certificationsAvailable: 'Certifications disponibles',
   },
   fallback: {
     comingSoon: 'Photo à venir',
@@ -321,6 +325,7 @@ const EN_TRANSLATIONS: CatalogDarkTranslations = {
     packaging: 'Packaging',
     microproof: '24h response • NDA available',
     terrainLabel: 'Field',
+    onRequest: 'On request',
   },
   categoryLabels: {
     cocoa: 'Cocoa',
@@ -339,6 +344,7 @@ const EN_TRANSLATIONS: CatalogDarkTranslations = {
     coa: 'COA',
     chainOfCustody: 'Chain of Custody',
     qaDocumented: 'QA Documented',
+    certificationsAvailable: 'Certifications available',
   },
   fallback: {
     comingSoon: 'Photo coming soon',

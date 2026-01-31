@@ -81,9 +81,9 @@ export function ProductSpecifications({ specifications, locale }: ProductSpecifi
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
+    <div className="bg-[rgba(26,40,32,0.6)] border border-[rgba(255,255,255,0.08)] rounded-lg shadow-[0_4px_24px_rgba(0,0,0,0.2)] overflow-hidden backdrop-blur-[12px]">
       {/* Tabs */}
-      <div className="border-b border-border">
+      <div className="border-b border-[rgba(255,255,255,0.08)]">
         <nav className="flex -mb-px overflow-x-auto" aria-label="Tabs">
           {(Object.keys(tabs) as Tab[]).map((tab) => (
             <button
@@ -93,8 +93,8 @@ export function ProductSpecifications({ specifications, locale }: ProductSpecifi
                 whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm transition-colors
                 ${
                   activeTab === tab
-                    ? 'border-primary text-primary'
-                    : 'border-transparent text-muted-foreground hover:text-foreground hover:border-border'
+                    ? 'border-[#A89858] text-[#A89858]'
+                    : 'border-transparent text-[#80996F] hover:text-[#E8F5E9] hover:border-[rgba(255,255,255,0.1)]'
                 }
               `}
               aria-current={activeTab === tab ? 'page' : undefined}
@@ -111,36 +111,36 @@ export function ProductSpecifications({ specifications, locale }: ProductSpecifi
         {activeTab === 'grading' && (
           <div className="space-y-6">
             <div>
-              <h3 className="text-xl font-bold text-foreground mb-4">
+              <h3 className="text-xl font-bold text-[#E8F5E9] mb-4">
                 {locale === 'fr' ? 'Métriques de Qualité' : 'Quality Metrics'}
               </h3>
               
               {specifications.qaMetrics && specifications.qaMetrics.length > 0 ? (
                 <div className="overflow-x-auto">
-                  <table className="min-w-full divide-y divide-border">
-                    <thead className="bg-muted">
+                  <table className="min-w-full divide-y divide-[rgba(255,255,255,0.08)]">
+                    <thead className="bg-[rgba(10,20,16,0.5)]">
                       <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-[#80996F] uppercase tracking-wider">
                           {locale === 'fr' ? 'Métrique' : 'Metric'}
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-[#80996F] uppercase tracking-wider">
                           {locale === 'fr' ? 'Valeur/Plage' : 'Value/Range'}
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-[#80996F] uppercase tracking-wider">
                           {locale === 'fr' ? 'Norme' : 'Standard'}
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="bg-white divide-y divide-border">
+                    <tbody className="bg-[rgba(26,40,32,0.3)] divide-y divide-[rgba(255,255,255,0.08)]">
                       {specifications.qaMetrics.map((metric, index) => (
-                        <tr key={index} className="hover:bg-muted">
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-foreground">
+                        <tr key={index} className="hover:bg-[rgba(26,40,32,0.5)] transition-colors">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-[#E8F5E9]">
                             {metric.metric}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-foreground">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-[#C5D9C0]">
                             {metric.value}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-[#80996F]">
                             {metric.standard || '-'}
                           </td>
                         </tr>
@@ -149,20 +149,34 @@ export function ProductSpecifications({ specifications, locale }: ProductSpecifi
                   </table>
                 </div>
               ) : (
-                <p className="text-muted-foreground">
-                  {locale === 'fr'
-                    ? 'Aucune métrique de qualité disponible'
-                    : 'No quality metrics available'}
-                </p>
+                <div className="text-center py-8 px-4 bg-[rgba(10,20,16,0.3)] rounded-lg border border-[rgba(255,255,255,0.08)]">
+                  <svg className="w-12 h-12 mx-auto mb-3 text-[#80996F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <p className="text-[#C5D9C0] mb-4">
+                    {locale === 'fr'
+                      ? 'Données disponibles sur demande (PDF/COA)'
+                      : 'Data available on request (PDF/COA)'}
+                  </p>
+                  <a
+                    href={`/${locale}/contact?subject=quality-metrics`}
+                    className="inline-flex items-center gap-2 text-sm text-[#A89858] hover:text-[#B8A868] font-medium transition-colors"
+                  >
+                    {locale === 'fr' ? 'Recevoir la fiche complète' : 'Get complete spec sheet'}
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </div>
               )}
             </div>
 
             {specifications.harvestSeason && (
               <div>
-                <h4 className="font-semibold text-foreground mb-2">
+                <h4 className="font-semibold text-[#E8F5E9] mb-2">
                   {locale === 'fr' ? 'Saison de Récolte' : 'Harvest Season'}
                 </h4>
-                <p className="text-foreground">{specifications.harvestSeason}</p>
+                <p className="text-[#C5D9C0]">{specifications.harvestSeason}</p>
               </div>
             )}
           </div>
@@ -172,7 +186,7 @@ export function ProductSpecifications({ specifications, locale }: ProductSpecifi
         {activeTab === 'packaging' && (
           <div className="space-y-6">
             <div>
-              <h3 className="text-xl font-bold text-foreground mb-4">
+              <h3 className="text-xl font-bold text-[#E8F5E9] mb-4">
                 {locale === 'fr' ? 'Options de Conditionnement' : 'Packaging Options'}
               </h3>
               
@@ -181,26 +195,40 @@ export function ProductSpecifications({ specifications, locale }: ProductSpecifi
                   {specifications.packagingOptions.map((option, index) => (
                     <div
                       key={index}
-                      className="border border-border rounded-lg p-4 hover:border-primary transition-colors"
+                      className="border border-[rgba(255,255,255,0.08)] rounded-lg p-4 hover:border-[#A89858] transition-colors bg-[rgba(10,20,16,0.3)]"
                     >
                       <div className="flex items-start justify-between mb-2">
-                        <h4 className="font-semibold text-foreground">{option.type}</h4>
-                        <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
+                        <h4 className="font-semibold text-[#E8F5E9]">{option.type}</h4>
+                        <span className="bg-[rgba(74,154,98,0.2)] text-[#4A9A62] px-3 py-1 rounded-full text-sm font-medium border border-[rgba(74,154,98,0.3)]">
                           {option.weight}
                         </span>
                       </div>
                       {option.description?.[locale] && (
-                        <p className="text-muted-foreground text-sm">{option.description[locale]}</p>
+                        <p className="text-[#80996F] text-sm">{option.description[locale]}</p>
                       )}
                     </div>
                   ))}
                 </div>
               ) : (
-                <p className="text-muted-foreground">
-                  {locale === 'fr'
-                    ? 'Aucune option de conditionnement disponible'
-                    : 'No packaging options available'}
-                </p>
+                <div className="text-center py-8 px-4 bg-[rgba(10,20,16,0.3)] rounded-lg border border-[rgba(255,255,255,0.08)]">
+                  <svg className="w-12 h-12 mx-auto mb-3 text-[#80996F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                  </svg>
+                  <p className="text-[#C5D9C0] mb-4">
+                    {locale === 'fr'
+                      ? 'Options de conditionnement sur demande'
+                      : 'Packaging options available on request'}
+                  </p>
+                  <a
+                    href={`/${locale}/contact?subject=packaging`}
+                    className="inline-flex items-center gap-2 text-sm text-[#A89858] hover:text-[#B8A868] font-medium transition-colors"
+                  >
+                    {locale === 'fr' ? 'Discuter des options' : 'Discuss options'}
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </div>
               )}
             </div>
           </div>
@@ -211,28 +239,28 @@ export function ProductSpecifications({ specifications, locale }: ProductSpecifi
           <div className="space-y-6">
             {specifications.moq && (
               <div>
-                <h4 className="font-semibold text-foreground mb-2">
+                <h4 className="font-semibold text-[#E8F5E9] mb-2">
                   {locale === 'fr' ? 'Quantité Minimum de Commande (MOQ)' : 'Minimum Order Quantity (MOQ)'}
                 </h4>
-                <p className="text-foreground text-lg">{specifications.moq}</p>
+                <p className="text-[#C5D9C0] text-lg">{specifications.moq}</p>
               </div>
             )}
 
             {specifications.incoterms && specifications.incoterms.length > 0 && (
               <div>
-                <h4 className="font-semibold text-foreground mb-3">
+                <h4 className="font-semibold text-[#E8F5E9] mb-3">
                   {locale === 'fr' ? 'Incoterms Disponibles' : 'Available Incoterms'}
                 </h4>
                 <div className="grid gap-3">
                   {specifications.incoterms.map((incoterm) => (
                     <div
                       key={incoterm}
-                      className="border border-border rounded-lg p-4 hover:border-primary transition-colors"
+                      className="border border-[rgba(255,255,255,0.08)] rounded-lg p-4 hover:border-[#A89858] transition-colors bg-[rgba(10,20,16,0.3)]"
                     >
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="font-bold text-primary">{incoterm}</span>
+                        <span className="font-bold text-[#A89858]">{incoterm}</span>
                       </div>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-[#80996F]">
                         {incotermsDescriptions[incoterm]?.[locale] || ''}
                       </p>
                     </div>
@@ -243,10 +271,10 @@ export function ProductSpecifications({ specifications, locale }: ProductSpecifi
 
             {specifications.availability && (
               <div>
-                <h4 className="font-semibold text-foreground mb-2">
+                <h4 className="font-semibold text-[#E8F5E9] mb-2">
                   {locale === 'fr' ? 'Disponibilité' : 'Availability'}
                 </h4>
-                <p className="text-foreground">
+                <p className="text-[#C5D9C0]">
                   {availabilityLabels[specifications.availability]?.[locale] || specifications.availability}
                 </p>
               </div>
@@ -259,11 +287,11 @@ export function ProductSpecifications({ specifications, locale }: ProductSpecifi
           <div className="space-y-6">
             {specifications.hsCode && (
               <div>
-                <h4 className="font-semibold text-foreground mb-2">
+                <h4 className="font-semibold text-[#E8F5E9] mb-2">
                   {locale === 'fr' ? 'Code SH (Système Harmonisé)' : 'HS Code (Harmonized System)'}
                 </h4>
-                <p className="text-foreground font-mono text-lg">{specifications.hsCode}</p>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-[#C5D9C0] font-mono text-lg">{specifications.hsCode}</p>
+                <p className="text-sm text-[#80996F] mt-1">
                   {locale === 'fr'
                     ? 'Code de classification douanière internationale'
                     : 'International customs classification code'}
@@ -272,19 +300,19 @@ export function ProductSpecifications({ specifications, locale }: ProductSpecifi
             )}
 
             <div>
-              <h4 className="font-semibold text-foreground mb-3">
+              <h4 className="font-semibold text-[#E8F5E9] mb-3">
                 {locale === 'fr' ? 'Conformité Réglementaire' : 'Regulatory Compliance'}
               </h4>
               <div className="space-y-3">
-                <div className="flex items-start gap-3 p-3 bg-success-light rounded-lg">
-                  <svg className="w-6 h-6 text-success flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-start gap-3 p-3 bg-[rgba(74,154,98,0.15)] border border-[rgba(74,154,98,0.3)] rounded-lg">
+                  <svg className="w-6 h-6 text-[#4A9A62] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <div>
-                    <p className="font-medium text-foreground">
+                    <p className="font-medium text-[#E8F5E9]">
                       {locale === 'fr' ? 'Conformité EUDR' : 'EUDR Compliance'}
                     </p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-[#C5D9C0]">
                       {locale === 'fr'
                         ? 'Traçabilité complète et documentation de diligence raisonnable disponible'
                         : 'Full traceability and due diligence documentation available'}
@@ -292,15 +320,15 @@ export function ProductSpecifications({ specifications, locale }: ProductSpecifi
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 p-3 bg-info-light rounded-lg">
-                  <svg className="w-6 h-6 text-info flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-start gap-3 p-3 bg-[rgba(168,152,88,0.15)] border border-[rgba(168,152,88,0.3)] rounded-lg">
+                  <svg className="w-6 h-6 text-[#A89858] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                   <div>
-                    <p className="font-medium text-foreground">
+                    <p className="font-medium text-[#E8F5E9]">
                       {locale === 'fr' ? 'Normes Internationales' : 'International Standards'}
                     </p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-[#C5D9C0]">
                       {locale === 'fr'
                         ? 'Conforme aux normes ISO et réglementations d\'importation'
                         : 'Compliant with ISO standards and import regulations'}
@@ -308,15 +336,15 @@ export function ProductSpecifications({ specifications, locale }: ProductSpecifi
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 p-3 bg-warning-light rounded-lg">
-                  <svg className="w-6 h-6 text-warning flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-start gap-3 p-3 bg-[rgba(128,153,111,0.15)] border border-[rgba(128,153,111,0.3)] rounded-lg">
+                  <svg className="w-6 h-6 text-[#80996F] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                   <div>
-                    <p className="font-medium text-foreground">
+                    <p className="font-medium text-[#E8F5E9]">
                       {locale === 'fr' ? 'Documentation Complète' : 'Complete Documentation'}
                     </p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-[#C5D9C0]">
                       {locale === 'fr'
                         ? 'Certificats d\'origine, analyses de laboratoire et documents d\'exportation'
                         : 'Certificates of origin, lab analyses and export documentation'}

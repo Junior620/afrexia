@@ -342,10 +342,10 @@ export function ServicesSection({ locale }: ServicesSectionProps) {
         {/* Section Header */}
         <ScrollReveal animation="fade">
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#F4EBDD] mb-4 leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#E8F5E9] mb-4 leading-tight">
               {t.title}
             </h2>
-            <p className="text-base md:text-lg text-[#F4EBDD]/75 max-w-3xl mx-auto mb-6">
+            <p className="text-base md:text-lg text-[#C5D9C0] max-w-3xl mx-auto mb-6">
               {t.subtitle}
             </p>
             
@@ -354,7 +354,7 @@ export function ServicesSection({ locale }: ServicesSectionProps) {
               {t.proofBadges.map((badge, index) => (
                 <span
                   key={index}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#C8A24A]/10 backdrop-blur-sm border border-[#C8A24A]/30 rounded-full text-[#C8A24A] text-xs font-semibold"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 bg-[rgba(74,154,98,0.15)] backdrop-blur-sm border border-[rgba(74,154,98,0.3)] rounded-full text-[#4A9A62] text-xs font-semibold"
                 >
                   <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -366,84 +366,75 @@ export function ServicesSection({ locale }: ServicesSectionProps) {
           </div>
         </ScrollReveal>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        {/* Services Grid - 4 colonnes desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {t.services.map((service, index) => (
             <ScrollReveal key={service.id} animation="fade" delay={index * 0.1}>
               <Link
                 href={`/${locale}${service.link}`}
-                className="group relative block h-[420px] md:h-[480px] rounded-3xl overflow-hidden border border-white/[0.08] hover:border-[#C8A24A]/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#C8A24A]/20"
+                className="group relative block h-[420px] rounded-2xl overflow-hidden border border-white/[0.08] hover:border-[#4A9A62]/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#4A9A62]/20"
               >
-                {/* Background Image */}
-                <div className="absolute inset-0">
+                {/* Background Image with zoom effect */}
+                <div className="absolute inset-0 overflow-hidden">
                   <Image
                     src={service.image}
                     alt={service.title}
                     fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     priority={index < 2}
                     loading={index < 2 ? 'eager' : 'lazy'}
                   />
                 </div>
 
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10 group-hover:from-black/80 group-hover:via-black/40 transition-colors duration-200" />
+                {/* Gradient Overlay - plus fort */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20 group-hover:from-black/90 group-hover:via-black/50 transition-colors duration-300" />
 
-                {/* Icon (top left) */}
-                <div className="absolute top-6 left-6 w-12 h-12 rounded-xl bg-[#C8A24A]/20 backdrop-blur-sm border border-[#C8A24A]/30 flex items-center justify-center text-[#C8A24A] transition-all duration-300 group-hover:bg-[#C8A24A]/30 group-hover:scale-110">
-                  <div className="w-6 h-6">
-                    {getServiceIcon(service.icon)}
-                  </div>
+                {/* Labels/Badges - Top */}
+                <div className="absolute top-4 left-4 right-4 flex flex-wrap gap-2 z-10">
+                  {service.tags.slice(0, 2).map((tag, tagIndex) => (
+                    <span
+                      key={tagIndex}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 bg-[rgba(74,154,98,0.15)] backdrop-blur-sm border border-[rgba(74,154,98,0.3)] rounded-full text-[#4A9A62] text-xs font-semibold"
+                    >
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      {tag}
+                    </span>
+                  ))}
                 </div>
 
                 {/* Content (bottom) */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                <div className="absolute bottom-0 left-0 right-0 p-5">
                   {/* Subtitle */}
-                  <p className="text-[#C8A24A] text-xs md:text-sm font-semibold uppercase tracking-wider mb-2">
+                  <p className="text-[#A89858] text-xs font-semibold uppercase tracking-wider mb-2">
                     {service.subtitle}
                   </p>
 
                   {/* Title */}
-                  <h3 className="text-[#F4EBDD] text-xl md:text-2xl font-bold mb-2 leading-tight">
+                  <h3 className="text-[#E8F5E9] text-lg font-bold mb-2 leading-tight">
                     {service.title}
                   </h3>
 
                   {/* Microcopy */}
-                  <p className="text-[#F4EBDD]/80 text-sm md:text-base mb-4">
+                  <p className="text-[#C5D9C0] text-sm mb-4 line-clamp-1">
                     {service.microcopy}
                   </p>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {service.tags.map((tag, tagIndex) => (
-                      <span
-                        key={tagIndex}
-                        className="px-2.5 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-[#F4EBDD] text-xs font-medium"
+                  {/* CTA Ghost - visible on hover */}
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-transparent border border-[#4A9A62] rounded-lg text-[#4A9A62] font-semibold text-sm hover:bg-[rgba(74,154,98,0.1)] transition-colors">
+                      {service.cta}
+                      <svg
+                        className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
                       >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Description (hover reveal) */}
-                  <div className="max-h-0 opacity-0 overflow-hidden group-hover:max-h-24 group-hover:opacity-100 transition-all duration-300 ease-out mb-4">
-                    <p className="text-[#F4EBDD]/90 text-sm leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  {/* CTA Link */}
-                  <div className="inline-flex items-center gap-2 text-[#C8A24A] font-semibold text-sm group-hover:text-[#D4B05E] transition-colors duration-200">
-                    <span>{service.cta}</span>
-                    <svg
-                      className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
                   </div>
                 </div>
               </Link>
@@ -453,35 +444,38 @@ export function ServicesSection({ locale }: ServicesSectionProps) {
 
         {/* CTA Section */}
         <ScrollReveal animation="fade">
-          <div className="bg-white/[0.03] backdrop-blur-sm border border-[#C8A24A]/20 rounded-2xl p-8 md:p-10">
+          <div className="bg-white/[0.03] backdrop-blur-sm border border-[rgba(74,154,98,0.2)] rounded-2xl p-8 md:p-10">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+              {/* Text */}
+              <div className="text-center lg:text-left">
+                <h3 className="text-xl md:text-2xl font-bold text-[#E8F5E9] mb-2">
+                  {locale === 'fr' ? 'Besoin d\'un devis rapide ?' : 'Need a quick quote?'}
+                </h3>
+                <p className="text-sm text-[#C5D9C0]">
+                  {t.ctaMicro}
+                </p>
+              </div>
+
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
                 <Link
-                  href={`/${locale}/contact`}
-                  className="inline-flex items-center justify-center bg-[#C8A24A] hover:bg-[#D4B05E] text-[#070B0A] px-8 py-4 rounded-full font-bold text-base transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 whitespace-nowrap"
-                >
-                  {t.ctaPrimary}
-                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                </Link>
-                <Link
                   href={`/${locale}/rfq`}
-                  className="inline-flex items-center justify-center bg-transparent hover:bg-[#C8A24A]/10 text-[#C8A24A] border-2 border-[#C8A24A] px-8 py-4 rounded-full font-semibold text-base transition-all duration-300 whitespace-nowrap"
+                  className="inline-flex items-center justify-center bg-[#4A9A62] hover:bg-[#5AAA72] text-white px-8 py-4 rounded-xl font-bold text-base transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 whitespace-nowrap"
                 >
                   {t.ctaSecondary}
                   <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </Link>
-              </div>
-
-              {/* Micro-copy */}
-              <div className="text-center lg:text-right">
-                <p className="text-sm text-[#F4EBDD]/70 leading-relaxed">
-                  {t.ctaMicro}
-                </p>
+                <Link
+                  href={`/${locale}/contact`}
+                  className="inline-flex items-center justify-center bg-transparent hover:bg-[rgba(74,154,98,0.1)] text-[#4A9A62] border-2 border-[#4A9A62] px-8 py-4 rounded-xl font-semibold text-base transition-all duration-300 whitespace-nowrap"
+                >
+                  {t.ctaPrimary}
+                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </Link>
               </div>
             </div>
           </div>

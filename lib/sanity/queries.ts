@@ -15,6 +15,12 @@ const productFields = groq`
   i18nId,
   category,
   description,
+  heroImage {
+    asset,
+    alt,
+    hotspot,
+    crop
+  },
   gallery[] {
     asset,
     alt,
@@ -57,6 +63,7 @@ const productFields = groq`
   },
   hsCode,
   availability,
+  eudrReady,
   targetMarkets,
   seo,
   workflowStatus

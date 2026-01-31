@@ -128,7 +128,7 @@ export default async function ProductsPage({ params }: PageProps) {
       name: p.name?.[locale] || p.name?.en || p.name || '',
       subtitle: extractText(p.description?.[locale] || p.description?.en || p.description),
       category: p.category || 'other',
-      heroImage: p.gallery?.[0] || { asset: { _ref: '', _type: 'reference' } },
+      heroImage: p.heroImage || p.gallery?.[0] || undefined,
       availability: normalizeAvailability(p.availability),
       origins: p.originRegions?.map((r: any) => r.region) || [],
       certifications: p.certifications?.map((c: any) => c._id) || [],

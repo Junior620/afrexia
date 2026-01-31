@@ -6,9 +6,10 @@ import dynamic from 'next/dynamic';
 import { Product, FilterState, Category, Origin, Certification } from '@/types/product';
 import { CatalogHeaderDark } from '@/components/catalog/CatalogHeaderDark';
 import { CatalogFiltersV2 } from '@/components/catalog/CatalogFiltersV2';
-import { ProductCardV4 } from '@/components/catalog/ProductCardV4';
+import { ProductCardV5 } from '@/components/catalog/ProductCardV5';
 import { MobileRFQButton } from '@/components/catalog/MobileRFQButton';
 import { SkipLinks } from '@/components/catalog/SkipLinks';
+import { PartnerSection } from '@/components/sections/PartnerSection';
 import { applyFilters, resetFilters } from '@/lib/catalog/filters';
 import { RFQFormData } from '@/types/rfq';
 import { trackProductCardView } from '@/lib/analytics/events';
@@ -328,7 +329,7 @@ export function ProductCatalogPageDark({
                     data-product-id={product.id}
                     onMouseEnter={handleProductView}
                   >
-                    <ProductCardV4
+                    <ProductCardV5
                       product={product}
                       locale={locale}
                       translations={{
@@ -340,6 +341,7 @@ export function ProductCatalogPageDark({
                         packaging: translations.product.packaging,
                         microproof: translations.product.microproof,
                         terrainLabel: translations.product.terrainLabel,
+                        onRequest: translations.product.onRequest,
                         categoryLabels: translations.categoryLabels,
                         badges: translations.badges,
                         proofs: translations.proofs,
@@ -347,7 +349,6 @@ export function ProductCatalogPageDark({
                       }}
                       onQuoteClick={() => handleQuoteClick(product)}
                       onDownloadSpec={() => {
-                        // Navigate to product detail page or trigger PDF download
                         router.push(`/${locale}/products/${product.slug}`);
                       }}
                     />
@@ -372,6 +373,9 @@ export function ProductCatalogPageDark({
             )}
           </div>
         </section>
+
+        {/* Partner Section - SCPB */}
+        <PartnerSection locale={locale} />
       </main>
 
       {/* Mobile RFQ Button - Requirements: 5.8, 9.6 */}
