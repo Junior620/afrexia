@@ -87,6 +87,21 @@ export default defineType({
       validation: (Rule) => Rule.integer().min(0),
     }),
     defineField({
+      name: 'level',
+      title: 'Level',
+      type: 'string',
+      description: 'Team member level (Leadership or Team)',
+      options: {
+        list: [
+          { title: 'Leadership (CEO, Co-Founder)', value: 'leadership' },
+          { title: 'Team (Employee)', value: 'team' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'team',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'workflowStatus',
       title: 'Workflow Status',
       type: 'string',

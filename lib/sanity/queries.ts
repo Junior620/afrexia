@@ -296,7 +296,8 @@ export async function getAllTeamMembers() {
     email,
     phone,
     linkedin,
-    order
+    order,
+    level
   }`;
 
   return client.fetch(query, {}, { next: { revalidate: 3600 } });

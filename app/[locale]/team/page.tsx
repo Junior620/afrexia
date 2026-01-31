@@ -21,12 +21,18 @@ export default async function TeamPage({ params }: TeamPageProps) {
   const { locale } = params;
   const teamMembers = await getAllTeamMembers();
 
+  // Separate leadership from team
+  const leadership = teamMembers.filter((m: any) => m.level === 'leadership');
+  const team = teamMembers.filter((m: any) => m.level === 'team' || !m.level);
+
   // Content translations
   const content = {
     fr: {
       title: 'Notre Équipe',
       subtitle: 'Équipe terrain + export : sourcing, QA, conformité RDUE et logistique, de la ferme au port.',
       badges: ['Basés à Douala', 'Réseau producteurs/coops', 'Documentation audit-ready'],
+      leadershipTitle: 'Direction',
+      teamTitle: 'Notre Équipe',
       noMembers: 'Aucun membre d\'équipe disponible pour le moment.',
       emailTooltip: 'Envoyer un email',
       phoneTooltip: 'Appeler',
@@ -66,6 +72,8 @@ export default async function TeamPage({ params }: TeamPageProps) {
       title: 'Our Team',
       subtitle: 'Field + export team: sourcing, QA, EUDR compliance and logistics, from farm to port.',
       badges: ['Based in Douala', 'Producer/coop network', 'Audit-ready documentation'],
+      leadershipTitle: 'Leadership',
+      teamTitle: 'Our Team',
       noMembers: 'No team members available at the moment.',
       emailTooltip: 'Send email',
       phoneTooltip: 'Call',
@@ -144,25 +152,25 @@ export default async function TeamPage({ params }: TeamPageProps) {
         </div>
       </section>
 
-      {/* Team Grid */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          {teamMembers.length === 0 ? (
-            <div className="text-center py-20">
-              <p className="text-[#C5D9C0] text-lg">{t.noMembers}</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {teamMembers.map((member: any) => (
+      {/* Leadership Section */}
+      {leadership.length > 0 && (
+        <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-3xl font-bold text-[#E8F5E9] text-center mb-12">
+              {t.leadershipTitle}
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {leadership.map((member: any) => (
                 <article
                   key={member._id}
                   className="group bg-[#0F1814] border border-[rgba(255,255,255,0.08)] rounded-lg overflow-hidden hover:border-[rgba(74,154,98,0.4)] hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(74,154,98,0.2)]"
                 >
-                  {/* Photo */}
-                  <div className="relative aspect-[4/5] overflow-hidden bg-[#0A1410]">
+                  {/* Photo - Smaller aspect ratio */}
+                  <div className="relative aspect-[3/4] overflow-hidden bg-[#0A1410]">
                     {member.photo?.asset ? (
                       <Image
-                        src={urlFor(member.photo).width(600).height(750).url()}
+                        src={urlFor(member.photo).width(500).height(667).url()}
                         alt={member.photo.alt || `Photo de ${member.name}`}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -194,11 +202,11 @@ export default async function TeamPage({ params }: TeamPageProps) {
                     )}
 
                     {/* Contact Links with tooltips */}
-                    <div className="flex items-center gap-2 mb-4">
+                    <div className="flex items-center gap-2">
                       {member.email && (
                         <a
                           href={`mailto:${member.email}`}
-                          className="group/icon relative p-2 rounded-full bg-[#0A1410] border border-[rgba(255,255,255,0.08)] hover:border-[#4A9A62] hover:bg-[#4A9A62]/10 transition-colors"
+                          className="p-2 rounded-full bg-[#0A1410] border border-[rgba(255,255,255,0.08)] hover:border-[#4A9A62] hover:bg-[#4A9A62]/10 transition-colors"
                           aria-label={t.emailTooltip}
                           title={t.emailTooltip}
                         >
@@ -209,7 +217,7 @@ export default async function TeamPage({ params }: TeamPageProps) {
                         <>
                           <a
                             href={`tel:${member.phone}`}
-                            className="group/icon relative p-2 rounded-full bg-[#0A1410] border border-[rgba(255,255,255,0.08)] hover:border-[#4A9A62] hover:bg-[#4A9A62]/10 transition-colors"
+                            className="p-2 rounded-full bg-[#0A1410] border border-[rgba(255,255,255,0.08)] hover:border-[#4A9A62] hover:bg-[#4A9A62]/10 transition-colors"
                             aria-label={t.phoneTooltip}
                             title={t.phoneTooltip}
                           >
@@ -219,7 +227,7 @@ export default async function TeamPage({ params }: TeamPageProps) {
                             href={`https://wa.me/${member.phone.replace(/[^0-9]/g, '')}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group/icon relative p-2 rounded-full bg-[#0A1410] border border-[rgba(255,255,255,0.08)] hover:border-[#4A9A62] hover:bg-[#4A9A62]/10 transition-colors"
+                            className="p-2 rounded-full bg-[#0A1410] border border-[rgba(255,255,255,0.08)] hover:border-[#4A9A62] hover:bg-[#4A9A62]/10 transition-colors"
                             aria-label={t.whatsappTooltip}
                             title={t.whatsappTooltip}
                           >
@@ -232,7 +240,7 @@ export default async function TeamPage({ params }: TeamPageProps) {
                           href={member.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group/icon relative p-2 rounded-full bg-[#0A1410] border border-[rgba(255,255,255,0.08)] hover:border-[#4A9A62] hover:bg-[#4A9A62]/10 transition-colors"
+                          className="p-2 rounded-full bg-[#0A1410] border border-[rgba(255,255,255,0.08)] hover:border-[#4A9A62] hover:bg-[#4A9A62]/10 transition-colors"
                           aria-label={t.linkedinTooltip}
                           title={t.linkedinTooltip}
                         >
@@ -244,9 +252,106 @@ export default async function TeamPage({ params }: TeamPageProps) {
                 </article>
               ))}
             </div>
-          )}
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
+
+      {/* Team Section */}
+      {team.length > 0 && (
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#0F1814]/30">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-3xl font-bold text-[#E8F5E9] text-center mb-12">
+              {t.teamTitle}
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {team.map((member: any) => (
+                <article
+                  key={member._id}
+                  className="group bg-[#0F1814] border border-[rgba(255,255,255,0.08)] rounded-lg overflow-hidden hover:border-[rgba(74,154,98,0.4)] hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(74,154,98,0.2)]"
+                >
+                  {/* Photo - Smaller */}
+                  <div className="relative aspect-square overflow-hidden bg-[#0A1410]">
+                    {member.photo?.asset ? (
+                      <Image
+                        src={urlFor(member.photo).width(400).height(400).url()}
+                        alt={member.photo.alt || `Photo de ${member.name}`}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <span className="text-4xl text-[#80996F]">
+                          {member.name.charAt(0)}
+                        </span>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0F1814] via-transparent to-transparent opacity-60" />
+                  </div>
+
+                  {/* Info - Compact */}
+                  <div className="p-4">
+                    <h3 className="text-base font-semibold text-[#E8F5E9] mb-1">
+                      {member.name}
+                    </h3>
+                    <p className="text-[#A89858] text-xs font-medium mb-3">
+                      {member.position?.[locale] || member.position?.en || member.position?.fr}
+                    </p>
+
+                    {/* Contact Links - Compact */}
+                    <div className="flex items-center gap-1.5">
+                      {member.email && (
+                        <a
+                          href={`mailto:${member.email}`}
+                          className="p-1.5 rounded-full bg-[#0A1410] border border-[rgba(255,255,255,0.08)] hover:border-[#4A9A62] hover:bg-[#4A9A62]/10 transition-colors"
+                          aria-label={t.emailTooltip}
+                          title={t.emailTooltip}
+                        >
+                          <Mail className="w-3.5 h-3.5 text-[#C5D9C0]" />
+                        </a>
+                      )}
+                      {member.phone && (
+                        <>
+                          <a
+                            href={`tel:${member.phone}`}
+                            className="p-1.5 rounded-full bg-[#0A1410] border border-[rgba(255,255,255,0.08)] hover:border-[#4A9A62] hover:bg-[#4A9A62]/10 transition-colors"
+                            aria-label={t.phoneTooltip}
+                            title={t.phoneTooltip}
+                          >
+                            <Phone className="w-3.5 h-3.5 text-[#C5D9C0]" />
+                          </a>
+                          <a
+                            href={`https://wa.me/${member.phone.replace(/[^0-9]/g, '')}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-1.5 rounded-full bg-[#0A1410] border border-[rgba(255,255,255,0.08)] hover:border-[#4A9A62] hover:bg-[#4A9A62]/10 transition-colors"
+                            aria-label={t.whatsappTooltip}
+                            title={t.whatsappTooltip}
+                          >
+                            <MessageCircle className="w-3.5 h-3.5 text-[#C5D9C0]" />
+                          </a>
+                        </>
+                      )}
+                      {member.linkedin && (
+                        <a
+                          href={member.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-1.5 rounded-full bg-[#0A1410] border border-[rgba(255,255,255,0.08)] hover:border-[#4A9A62] hover:bg-[#4A9A62]/10 transition-colors"
+                          aria-label={t.linkedinTooltip}
+                          title={t.linkedinTooltip}
+                        >
+                          <Linkedin className="w-3.5 h-3.5 text-[#C5D9C0]" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Organization Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#0F1814]/50">
