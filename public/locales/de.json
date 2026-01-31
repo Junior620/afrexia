@@ -121,7 +121,8 @@
     "newsletter": "Newsletter",
     "newsletterPlaceholder": "Ihre E-Mail",
     "subscribe": "Abonnieren",
-    "copyright": "© {{year}} Afrexia. Alle Rechte vorbehalten."
+    "copyright": "© {{year}} Afrexia. Alle Rechte vorbehalten.",
+    "compliance": "Compliance"
   },
   "language": {
     "switchTo": "Zu Deutsch wechseln",
@@ -393,5 +394,41 @@
     "title": "Qualitätszertifizierungen",
     "subtitle": "International anerkannte Standards garantieren Exzellenz bei jeder Lieferung",
     "viewAll": "Alle Zertifizierungen anzeigen"
+  },
+  "product": {
+    "gallery": {
+      "qualityControl": "Qualitätskontrolle vor Ort",
+      "enlarge": "Bild vergrößern",
+      "previous": "Vorheriges Bild",
+      "next": "Nächstes Bild",
+      "view": "Bild ansehen",
+      "close": "Schließen",
+      "zoomIn": "Vergrößern",
+      "zoomOut": "Verkleinern",
+      "navigate": "Navigieren"
+    },
+    "origin": {
+      "noLocation": "Keine Standortinformationen verfügbar",
+      "mapMissing": "Kartenkonfiguration fehlt",
+      "viewDetails": "Details anzeigen für",
+      "coordinates": "Koordinaten",
+      "originRegions": "Herkunftsregionen"
+    }
+  },
+  "office": {
+    "name": "Afrexia Büro",
+    "address": "Douala, Kamerun"
+  },
+  "home": {
+    "tagline": "Kakao/Kaffee-Export & Sourcing — EUDR-Konformität, QA, internationale Logistik",
+    "quickQuote": "Benötigen Sie ein schnelles Angebot?",
+    "badges": {
+      "certifications": "8+ Zertifizierungen",
+      "traceability": "100% Rückverfolgbarkeit",
+      "qaDocumentation": "QA-Dokumentation",
+      "eudrReady": "EUDR-Ready",
+      "qaDocumented": "QA dokumentiert",
+      "chainOfCustody": "Custody-Kette"
+    }
   }
 }

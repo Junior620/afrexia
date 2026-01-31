@@ -1,0 +1,1 @@
+export { TraceabilityHeroBadges } from './TraceabilityHeroBadges';

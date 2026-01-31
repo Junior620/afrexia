@@ -121,7 +121,8 @@
     "newsletter": "Newsletter",
     "newsletterPlaceholder": "Your email",
     "subscribe": "Subscribe",
-    "copyright": "© {{year}} Afrexia. All rights reserved."
+    "copyright": "© {{year}} Afrexia. All rights reserved.",
+    "compliance": "Compliance"
   },
   "language": {
     "switchTo": "Passer au français",
@@ -393,5 +394,41 @@
     "title": "Quality Certifications",
     "subtitle": "Internationally recognized standards ensuring excellence in every shipment",
     "viewAll": "View All Certifications"
+  },
+  "product": {
+    "gallery": {
+      "qualityControl": "On-site quality control",
+      "enlarge": "Enlarge image",
+      "previous": "Previous image",
+      "next": "Next image",
+      "view": "View image",
+      "close": "Close",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out",
+      "navigate": "Navigate"
+    },
+    "origin": {
+      "noLocation": "No location information available",
+      "mapMissing": "Map configuration missing",
+      "viewDetails": "View details for",
+      "coordinates": "Coordinates",
+      "originRegions": "Origin Regions"
+    }
+  },
+  "office": {
+    "name": "Afrexia Office",
+    "address": "Douala, Cameroon"
+  },
+  "home": {
+    "tagline": "Cocoa/coffee export & sourcing — EUDR compliance, QA, international logistics",
+    "quickQuote": "Need a quick quote?",
+    "badges": {
+      "certifications": "8+ Certifications",
+      "traceability": "100% Traceability",
+      "qaDocumentation": "QA Documentation",
+      "eudrReady": "EUDR-Ready",
+      "qaDocumented": "QA documented",
+      "chainOfCustody": "Chain of custody"
+    }
   }
 }

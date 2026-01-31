@@ -121,7 +121,8 @@
     "newsletter": "Рассылка",
     "newsletterPlaceholder": "Ваш email",
     "subscribe": "Подписаться",
-    "copyright": "© {{year}} Afrexia. Все права защищены."
+    "copyright": "© {{year}} Afrexia. Все права защищены.",
+    "compliance": "Соответствие"
   },
   "language": {
     "switchTo": "Переключить на русский",
@@ -393,5 +394,41 @@
     "title": "Сертификаты качества",
     "subtitle": "Международно признанные стандарты, гарантирующие превосходство в каждой поставке",
     "viewAll": "Посмотреть все сертификаты"
+  },
+  "product": {
+    "gallery": {
+      "qualityControl": "Контроль качества на месте",
+      "enlarge": "Увеличить изображение",
+      "previous": "Предыдущее изображение",
+      "next": "Следующее изображение",
+      "view": "Просмотреть изображение",
+      "close": "Закрыть",
+      "zoomIn": "Увеличить",
+      "zoomOut": "Уменьшить",
+      "navigate": "Навигация"
+    },
+    "origin": {
+      "noLocation": "Информация о местоположении недоступна",
+      "mapMissing": "Отсутствует конфигурация карты",
+      "viewDetails": "Просмотреть детали для",
+      "coordinates": "Координаты",
+      "originRegions": "Регионы происхождения"
+    }
+  },
+  "office": {
+    "name": "Офис Afrexia",
+    "address": "Дуала, Камерун"
+  },
+  "home": {
+    "tagline": "Экспорт и sourcing какао/кофе — соответствие EUDR, QA, международная логистика",
+    "quickQuote": "Нужно быстрое предложение?",
+    "badges": {
+      "certifications": "8+ Сертификатов",
+      "traceability": "100% Отслеживаемость",
+      "qaDocumentation": "Документация QA",
+      "eudrReady": "EUDR-Ready",
+      "qaDocumented": "QA документирован",
+      "chainOfCustody": "Цепочка поставок"
+    }
   }
 }

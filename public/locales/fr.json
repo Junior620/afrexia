@@ -121,7 +121,8 @@
     "newsletter": "Newsletter",
     "newsletterPlaceholder": "Votre email",
     "subscribe": "S'abonner",
-    "copyright": "© {{year}} Afrexia. Tous droits réservés."
+    "copyright": "© {{year}} Afrexia. Tous droits réservés.",
+    "compliance": "Conformité"
   },
   "language": {
     "switchTo": "Switch to English",
@@ -393,5 +394,41 @@
     "title": "Certifications Qualité",
     "subtitle": "Normes internationalement reconnues garantissant l'excellence dans chaque expédition",
     "viewAll": "Voir Toutes les Certifications"
+  },
+  "product": {
+    "gallery": {
+      "qualityControl": "Contrôle qualité sur site",
+      "enlarge": "Agrandir l'image",
+      "previous": "Image précédente",
+      "next": "Image suivante",
+      "view": "Voir l'image",
+      "close": "Fermer",
+      "zoomIn": "Zoomer",
+      "zoomOut": "Dézoomer",
+      "navigate": "Navigation"
+    },
+    "origin": {
+      "noLocation": "Aucune information de localisation disponible",
+      "mapMissing": "Configuration de la carte manquante",
+      "viewDetails": "Voir les détails de",
+      "coordinates": "Coordonnées",
+      "originRegions": "Régions d'origine"
+    }
+  },
+  "office": {
+    "name": "Bureau Afrexia",
+    "address": "Douala, Cameroun"
+  },
+  "home": {
+    "tagline": "Export & sourcing de cacao/café — conformité EUDR, QA, logistique internationale",
+    "quickQuote": "Besoin d'un devis rapide ?",
+    "badges": {
+      "certifications": "8+ Certifications",
+      "traceability": "100% Traçabilité",
+      "qaDocumentation": "Documentation QA",
+      "eudrReady": "EUDR-Ready",
+      "qaDocumented": "QA documentée",
+      "chainOfCustody": "Chaîne de custody"
+    }
   }
 }
