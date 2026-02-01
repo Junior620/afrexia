@@ -18,7 +18,7 @@ interface TeamPageProps {
 }
 
 export default async function TeamPage({ params }: TeamPageProps) {
-  const { locale } = params;
+  const { locale } = await params;
   const teamMembers = await getAllTeamMembers();
 
   // Separate leadership from team
@@ -166,14 +166,14 @@ export default async function TeamPage({ params }: TeamPageProps) {
                   key={member._id}
                   className="group bg-[#0F1814] border border-[rgba(255,255,255,0.08)] rounded-lg overflow-hidden hover:border-[rgba(74,154,98,0.4)] hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(74,154,98,0.2)]"
                 >
-                  {/* Photo - Smaller aspect ratio */}
+                  {/* Photo - Medium aspect ratio */}
                   <div className="relative aspect-[3/4] overflow-hidden bg-[#0A1410]">
                     {member.photo?.asset ? (
                       <Image
                         src={urlFor(member.photo).width(500).height(667).url()}
                         alt={member.photo.alt || `Photo de ${member.name}`}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="object-contain object-top group-hover:scale-105 transition-transform duration-500"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
@@ -277,7 +277,7 @@ export default async function TeamPage({ params }: TeamPageProps) {
                         src={urlFor(member.photo).width(400).height(400).url()}
                         alt={member.photo.alt || `Photo de ${member.name}`}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="object-contain object-top group-hover:scale-105 transition-transform duration-500"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
@@ -387,30 +387,6 @@ export default async function TeamPage({ params }: TeamPageProps) {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Metrics Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <h3 className="text-2xl font-bold text-[#E8F5E9] text-center mb-8">
-            {t.trustTitle}
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {t.trustMetrics.map((metric, index) => (
-              <div
-                key={index}
-                className="bg-[#0F1814] border border-[rgba(255,255,255,0.08)] rounded-lg p-6 text-center"
-              >
-                <div className="text-2xl md:text-3xl font-bold text-[#4A9A62] mb-2">
-                  {metric.value}
-                </div>
-                <div className="text-sm text-[#C5D9C0]">
-                  {metric.label}
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
