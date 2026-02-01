@@ -15,7 +15,7 @@ export function Hero({ locale }: HeroProps) {
   
   // Array of hero images - add more images as needed
   const heroImages = [
-    '/assets/hero-1.jpg',
+    '/assets/hero.jpg',
     '/assets/hero-2.jpg',
     '/assets/hero-3.jpg',
     '/assets/hero-4.jpg',
@@ -73,7 +73,7 @@ export function Hero({ locale }: HeroProps) {
           {/* Left Content */}
           <div className="relative z-10">
             <ScrollReveal animation="fade" delay={0.1}>
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-primary dark:text-dark-primary mb-6 leading-[1.1]">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary dark:text-dark-primary mb-6 leading-[1.1]">
                 {t.headline}
               </h1>
             </ScrollReveal>

@@ -7,8 +7,7 @@ import { ProductsShowcase } from '@/components/sections/ProductsShowcase';
 import { JourneySection } from '@/components/sections/JourneySection';
 import { ServicesSection } from '@/components/sections/ServicesSection';
 import { PartnerSection } from '@/components/sections/PartnerSection';
-import { CertificationsSection } from '@/components/sections/CertificationsSection';
-import { getAllProducts, getAllCertifications, getSiteSettings } from '@/lib/sanity/queries';
+import { getAllProducts, getSiteSettings } from '@/lib/sanity/queries';
 import { generateMetaTags } from '@/lib/seo/metadata';
 import { generateOrganizationSchema, generateWebSiteSchema } from '@/lib/seo/schema';
 import { sepacamSectionContent } from '@/lib/content/sepacam-section';
@@ -86,9 +85,8 @@ export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
 
   // Fetch data for homepage sections
-  const [products, certifications, siteSettings] = await Promise.all([
+  const [products, siteSettings] = await Promise.all([
     getAllProducts(),
-    getAllCertifications(),
     getSiteSettings(),
   ]);
 
@@ -122,9 +120,6 @@ export default async function HomePage({ params }: HomePageProps) {
 
       {/* Partner Section - SEPACAM */}
       <PartnerSection locale={locale} content={sepacamSectionContent[locale]} />
-
-      {/* Certifications Section */}
-      <CertificationsSection certifications={certifications} locale={locale} />
     </main>
   );
 }

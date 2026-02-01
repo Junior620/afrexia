@@ -5,10 +5,11 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Locale } from '@/types';
 import {
-  contactFormSchema,
+  createContactFormSchema,
   ContactFormData,
 } from '@/lib/forms/contact-schema';
 import { trackContactSubmission } from '@/lib/analytics';
+import { CheckCircle2 } from 'lucide-react';
 
 interface ContactFormProps {
   locale: Locale;
@@ -20,15 +21,94 @@ export function ContactForm({ locale }: ContactFormProps) {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [recaptchaToken, setRecaptchaToken] = useState<string>('');
 
+  const schema = createContactFormSchema(locale);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
   } = useForm<ContactFormData>({
-    resolver: zodResolver(contactFormSchema),
+    resolver: zodResolver(schema),
     mode: 'onBlur',
+    defaultValues: {
+      subjectType: 'quote',
+      ndaRequested: false,
+    },
   });
+
+  const subjectType = watch('subjectType');
+
+  // Content translations
+  const content = {
+    fr: {
+      name: 'Nom',
+      email: 'Email',
+      phone: 'Téléphone',
+      company: 'Entreprise',
+      subjectType: 'Type de demande',
+      subjectTypes: {
+        quote: 'Demande de devis',
+        documentation: 'Documentation / Conformité (RDUE)',
+        logistics: 'Logistique / Disponibilité',
+        partnership: 'Partenariat',
+        other: 'Autre',
+      },
+      subject: 'Sujet',
+      message: 'Message',
+      messagePlaceholder: 'Ex: Besoin de 20 tonnes de cacao bio, destination Europe, livraison Q2 2026, COA + traçabilité RDUE requis',
+      product: 'Produit',
+      productPlaceholder: 'Ex: Cacao, Café, Maïs...',
+      volume: 'Volume estimé',
+      volumePlaceholder: 'Ex: 20 tonnes, 1 conteneur...',
+      destination: 'Destination',
+      destinationPlaceholder: 'Ex: Europe, MENA, Asie...',
+      ndaRequested: 'Je souhaite un NDA avant partage des documents',
+      optional: 'optionnel',
+      required: '*',
+      submit: 'Recevoir une réponse sous 24h',
+      submitting: 'Envoi...',
+      successTitle: 'Message envoyé !',
+      successMessage: 'Notre équipe revient vers vous sous 24h ouvrées.',
+      sendAnother: 'Envoyer un autre message',
+      responsePromise: 'Réponse sous 24h ouvrées (lun–ven)',
+    },
+    en: {
+      name: 'Name',
+      email: 'Email',
+      phone: 'Phone',
+      company: 'Company',
+      subjectType: 'Request type',
+      subjectTypes: {
+        quote: 'Quote request',
+        documentation: 'Documentation / Compliance (EUDR)',
+        logistics: 'Logistics / Availability',
+        partnership: 'Partnership',
+        other: 'Other',
+      },
+      subject: 'Subject',
+      message: 'Message',
+      messagePlaceholder: 'E.g.: Need 20 tons organic cocoa, destination Europe, delivery Q2 2026, COA + EUDR traceability required',
+      product: 'Product',
+      productPlaceholder: 'E.g.: Cocoa, Coffee, Corn...',
+      volume: 'Estimated volume',
+      volumePlaceholder: 'E.g.: 20 tons, 1 container...',
+      destination: 'Destination',
+      destinationPlaceholder: 'E.g.: Europe, MENA, Asia...',
+      ndaRequested: 'I request an NDA before sharing documents',
+      optional: 'optional',
+      required: '*',
+      submit: 'Get a response within 24h',
+      submitting: 'Sending...',
+      successTitle: 'Message sent!',
+      successMessage: 'Our team will get back to you within 24 business hours.',
+      sendAnother: 'Send another message',
+      responsePromise: 'Response within 24 business hours (Mon–Fri)',
+    },
+  };
+
+  const t = content[locale] || content.en;
 
   // Load reCAPTCHA
   useEffect(() => {
@@ -90,20 +170,21 @@ export function ContactForm({ locale }: ContactFormProps) {
 
   if (submitSuccess) {
     return (
-      <div className="rounded-lg bg-success-light dark:bg-success-dark/20 p-6 text-center">
-        <h3 className="mb-2 text-2xl font-bold text-success-dark dark:text-success-light">
-          {locale === 'fr' ? 'Message envoyé !' : 'Message Sent!'}
+      <div className="rounded-lg bg-[#4A9A62]/10 border border-[#4A9A62]/20 p-8 text-center">
+        <div className="flex justify-center mb-4">
+          <CheckCircle2 className="w-16 h-16 text-[#4A9A62]" />
+        </div>
+        <h3 className="mb-2 text-2xl font-bold text-[#E8F5E9]">
+          {t.successTitle}
         </h3>
-        <p className="text-success-dark dark:text-success-light">
-          {locale === 'fr'
-            ? 'Nous vous répondrons dans les plus brefs délais.'
-            : "We'll get back to you as soon as possible."}
+        <p className="text-[#C5D9C0] mb-6">
+          {t.successMessage}
         </p>
         <button
           onClick={() => setSubmitSuccess(false)}
-          className="mt-4 text-sm text-success-dark dark:text-success-light underline hover:text-success"
+          className="text-sm text-[#4A9A62] hover:text-[#3d8251] underline"
         >
-          {locale === 'fr' ? 'Envoyer un autre message' : 'Send another message'}
+          {t.sendAnother}
         </button>
       </div>
     );
@@ -111,30 +192,30 @@ export function ContactForm({ locale }: ContactFormProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" aria-label="Contact form">
+      {/* Name */}
       <div>
-        <label htmlFor="contact-name" className="mb-1 block text-sm font-medium dark:text-dark-text-primary">
-          {locale === 'fr' ? 'Nom' : 'Name'}{' '}
-          <span className="text-destructive">*</span>
+        <label htmlFor="contact-name" className="mb-1 block text-sm font-medium text-[#E8F5E9]">
+          {t.name} <span className="text-[#A89858]">{t.required}</span>
         </label>
         <input
           id="contact-name"
           type="text"
           autoComplete="name"
           {...register('name')}
-          className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary focus:border-primary dark:focus:border-dark-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:focus:ring-dark-primary/20"
+          className="w-full rounded-lg border border-[rgba(255,255,255,0.08)] px-4 py-3 bg-[#0A1410] text-[#E8F5E9] placeholder:text-[#80996F] focus:border-[#4A9A62] focus:outline-none focus:ring-2 focus:ring-[#4A9A62]/20"
           placeholder={locale === 'fr' ? 'Votre nom complet' : 'Your full name'}
           aria-required="true"
           aria-invalid={errors.name ? 'true' : 'false'}
-          aria-describedby={errors.name ? 'contact-name-error' : undefined}
         />
         {errors.name && (
-          <p id="contact-name-error" className="mt-1 text-sm text-destructive" role="alert">{errors.name.message}</p>
+          <p className="mt-1 text-sm text-[#A89858]" role="alert">{errors.name.message}</p>
         )}
       </div>
 
+      {/* Email */}
       <div>
-        <label htmlFor="contact-email" className="mb-1 block text-sm font-medium dark:text-dark-text-primary">
-          Email <span className="text-destructive">*</span>
+        <label htmlFor="contact-email" className="mb-1 block text-sm font-medium text-[#E8F5E9]">
+          {t.email} <span className="text-[#A89858]">{t.required}</span>
         </label>
         <input
           id="contact-email"
@@ -142,113 +223,172 @@ export function ContactForm({ locale }: ContactFormProps) {
           inputMode="email"
           autoComplete="email"
           {...register('email')}
-          className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary focus:border-primary dark:focus:border-dark-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:focus:ring-dark-primary/20"
+          className="w-full rounded-lg border border-[rgba(255,255,255,0.08)] px-4 py-3 bg-[#0A1410] text-[#E8F5E9] placeholder:text-[#80996F] focus:border-[#4A9A62] focus:outline-none focus:ring-2 focus:ring-[#4A9A62]/20"
           placeholder={locale === 'fr' ? 'votre@email.com' : 'your@email.com'}
           aria-required="true"
           aria-invalid={errors.email ? 'true' : 'false'}
-          aria-describedby={errors.email ? 'contact-email-error' : undefined}
         />
         {errors.email && (
-          <p id="contact-email-error" className="mt-1 text-sm text-destructive" role="alert">{errors.email.message}</p>
+          <p className="mt-1 text-sm text-[#A89858]" role="alert">{errors.email.message}</p>
         )}
       </div>
 
+      {/* Phone & Company - Side by side */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="contact-phone" className="mb-1 block text-sm font-medium text-[#E8F5E9]">
+            {t.phone}{' '}
+            <span className="text-[#80996F] text-xs">({t.optional})</span>
+          </label>
+          <input
+            id="contact-phone"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            {...register('phone')}
+            className="w-full rounded-lg border border-[rgba(255,255,255,0.08)] px-4 py-3 bg-[#0A1410] text-[#E8F5E9] placeholder:text-[#80996F] focus:border-[#4A9A62] focus:outline-none focus:ring-2 focus:ring-[#4A9A62]/20"
+            placeholder="+237XXXXXXXXX"
+          />
+          {errors.phone && (
+            <p className="mt-1 text-sm text-[#A89858]" role="alert">{errors.phone.message}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="contact-company" className="mb-1 block text-sm font-medium text-[#E8F5E9]">
+            {t.company}{' '}
+            <span className="text-[#80996F] text-xs">({t.optional})</span>
+          </label>
+          <input
+            id="contact-company"
+            type="text"
+            autoComplete="organization"
+            {...register('company')}
+            className="w-full rounded-lg border border-[rgba(255,255,255,0.08)] px-4 py-3 bg-[#0A1410] text-[#E8F5E9] placeholder:text-[#80996F] focus:border-[#4A9A62] focus:outline-none focus:ring-2 focus:ring-[#4A9A62]/20"
+            placeholder={locale === 'fr' ? 'Nom de votre entreprise' : 'Your company name'}
+          />
+          {errors.company && (
+            <p className="mt-1 text-sm text-[#A89858]" role="alert">{errors.company.message}</p>
+          )}
+        </div>
+      </div>
+
+      {/* Subject Type */}
       <div>
-        <label htmlFor="contact-phone" className="mb-1 block text-sm font-medium dark:text-dark-text-primary">
-          {locale === 'fr' ? 'Téléphone' : 'Phone'}{' '}
-          <span className="text-muted-foreground dark:text-dark-text-muted text-xs">
-            ({locale === 'fr' ? 'optionnel' : 'optional'})
-          </span>
+        <label htmlFor="contact-subject-type" className="mb-1 block text-sm font-medium text-[#E8F5E9]">
+          {t.subjectType} <span className="text-[#A89858]">{t.required}</span>
         </label>
-        <input
-          id="contact-phone"
-          type="tel"
-          inputMode="tel"
-          autoComplete="tel"
-          {...register('phone')}
-          className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary focus:border-primary dark:focus:border-dark-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:focus:ring-dark-primary/20"
-          placeholder="+1234567890"
-          aria-invalid={errors.phone ? 'true' : 'false'}
-          aria-describedby={errors.phone ? 'contact-phone-error' : undefined}
-        />
-        {errors.phone && (
-          <p id="contact-phone-error" className="mt-1 text-sm text-destructive" role="alert">{errors.phone.message}</p>
-        )}
+        <select
+          id="contact-subject-type"
+          {...register('subjectType')}
+          className="w-full rounded-lg border border-[rgba(255,255,255,0.08)] px-4 py-3 bg-[#0A1410] text-[#E8F5E9] focus:border-[#4A9A62] focus:outline-none focus:ring-2 focus:ring-[#4A9A62]/20"
+        >
+          <option value="quote">{t.subjectTypes.quote}</option>
+          <option value="documentation">{t.subjectTypes.documentation}</option>
+          <option value="logistics">{t.subjectTypes.logistics}</option>
+          <option value="partnership">{t.subjectTypes.partnership}</option>
+          <option value="other">{t.subjectTypes.other}</option>
+        </select>
       </div>
 
-      <div>
-        <label htmlFor="contact-company" className="mb-1 block text-sm font-medium dark:text-dark-text-primary">
-          {locale === 'fr' ? 'Entreprise' : 'Company'}{' '}
-          <span className="text-muted-foreground dark:text-dark-text-muted text-xs">
-            ({locale === 'fr' ? 'optionnel' : 'optional'})
-          </span>
-        </label>
-        <input
-          id="contact-company"
-          type="text"
-          autoComplete="organization"
-          {...register('company')}
-          className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary focus:border-primary dark:focus:border-dark-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:focus:ring-dark-primary/20"
-          placeholder={
-            locale === 'fr' ? 'Nom de votre entreprise' : 'Your company name'
-          }
-          aria-invalid={errors.company ? 'true' : 'false'}
-          aria-describedby={errors.company ? 'contact-company-error' : undefined}
-        />
-        {errors.company && (
-          <p id="contact-company-error" className="mt-1 text-sm text-destructive" role="alert">{errors.company.message}</p>
-        )}
-      </div>
+      {/* B2B Fields - Show for quote requests */}
+      {subjectType === 'quote' && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-[#0F1814]/50 border border-[rgba(74,154,98,0.2)] rounded-lg">
+          <div>
+            <label htmlFor="contact-product" className="mb-1 block text-sm font-medium text-[#E8F5E9]">
+              {t.product}{' '}
+              <span className="text-[#80996F] text-xs">({t.optional})</span>
+            </label>
+            <input
+              id="contact-product"
+              type="text"
+              {...register('product')}
+              className="w-full rounded-lg border border-[rgba(255,255,255,0.08)] px-4 py-3 bg-[#0A1410] text-[#E8F5E9] placeholder:text-[#80996F] focus:border-[#4A9A62] focus:outline-none focus:ring-2 focus:ring-[#4A9A62]/20"
+              placeholder={t.productPlaceholder}
+            />
+          </div>
 
+          <div>
+            <label htmlFor="contact-volume" className="mb-1 block text-sm font-medium text-[#E8F5E9]">
+              {t.volume}{' '}
+              <span className="text-[#80996F] text-xs">({t.optional})</span>
+            </label>
+            <input
+              id="contact-volume"
+              type="text"
+              {...register('volume')}
+              className="w-full rounded-lg border border-[rgba(255,255,255,0.08)] px-4 py-3 bg-[#0A1410] text-[#E8F5E9] placeholder:text-[#80996F] focus:border-[#4A9A62] focus:outline-none focus:ring-2 focus:ring-[#4A9A62]/20"
+              placeholder={t.volumePlaceholder}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="contact-destination" className="mb-1 block text-sm font-medium text-[#E8F5E9]">
+              {t.destination}{' '}
+              <span className="text-[#80996F] text-xs">({t.optional})</span>
+            </label>
+            <input
+              id="contact-destination"
+              type="text"
+              {...register('destination')}
+              className="w-full rounded-lg border border-[rgba(255,255,255,0.08)] px-4 py-3 bg-[#0A1410] text-[#E8F5E9] placeholder:text-[#80996F] focus:border-[#4A9A62] focus:outline-none focus:ring-2 focus:ring-[#4A9A62]/20"
+              placeholder={t.destinationPlaceholder}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Subject */}
       <div>
-        <label htmlFor="contact-subject" className="mb-1 block text-sm font-medium dark:text-dark-text-primary">
-          {locale === 'fr' ? 'Sujet' : 'Subject'}{' '}
-          <span className="text-destructive">*</span>
+        <label htmlFor="contact-subject" className="mb-1 block text-sm font-medium text-[#E8F5E9]">
+          {t.subject} <span className="text-[#A89858]">{t.required}</span>
         </label>
         <input
           id="contact-subject"
           type="text"
           {...register('subject')}
-          className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary focus:border-primary dark:focus:border-dark-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:focus:ring-dark-primary/20"
-          placeholder={
-            locale === 'fr'
-              ? 'Objet de votre message'
-              : 'Subject of your message'
-          }
+          className="w-full rounded-lg border border-[rgba(255,255,255,0.08)] px-4 py-3 bg-[#0A1410] text-[#E8F5E9] placeholder:text-[#80996F] focus:border-[#4A9A62] focus:outline-none focus:ring-2 focus:ring-[#4A9A62]/20"
+          placeholder={locale === 'fr' ? 'Objet de votre message' : 'Subject of your message'}
           aria-required="true"
-          aria-invalid={errors.subject ? 'true' : 'false'}
-          aria-describedby={errors.subject ? 'contact-subject-error' : undefined}
         />
         {errors.subject && (
-          <p id="contact-subject-error" className="mt-1 text-sm text-destructive" role="alert">{errors.subject.message}</p>
+          <p className="mt-1 text-sm text-[#A89858]" role="alert">{errors.subject.message}</p>
         )}
       </div>
 
+      {/* Message */}
       <div>
-        <label htmlFor="contact-message" className="mb-1 block text-sm font-medium dark:text-dark-text-primary">
-          Message <span className="text-destructive">*</span>
+        <label htmlFor="contact-message" className="mb-1 block text-sm font-medium text-[#E8F5E9]">
+          {t.message} <span className="text-[#A89858]">{t.required}</span>
         </label>
         <textarea
           id="contact-message"
           {...register('message')}
           rows={6}
-          className="w-full rounded-lg border border-border dark:border-dark-border px-4 py-2 bg-white dark:bg-dark-bg-tertiary dark:text-dark-text-primary focus:border-primary dark:focus:border-dark-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:focus:ring-dark-primary/20"
-          placeholder={
-            locale === 'fr'
-              ? 'Décrivez votre demande ou question...'
-              : 'Describe your inquiry or question...'
-          }
+          className="w-full rounded-lg border border-[rgba(255,255,255,0.08)] px-4 py-3 bg-[#0A1410] text-[#E8F5E9] placeholder:text-[#80996F] focus:border-[#4A9A62] focus:outline-none focus:ring-2 focus:ring-[#4A9A62]/20"
+          placeholder={t.messagePlaceholder}
           aria-required="true"
-          aria-invalid={errors.message ? 'true' : 'false'}
-          aria-describedby={errors.message ? 'contact-message-error' : undefined}
         />
         {errors.message && (
-          <p id="contact-message-error" className="mt-1 text-sm text-destructive" role="alert">{errors.message.message}</p>
+          <p className="mt-1 text-sm text-[#A89858]" role="alert">{errors.message.message}</p>
         )}
       </div>
 
+      {/* NDA Checkbox */}
+      <div className="flex items-start gap-3">
+        <input
+          id="contact-nda"
+          type="checkbox"
+          {...register('ndaRequested')}
+          className="mt-1 w-4 h-4 rounded border-[rgba(255,255,255,0.08)] bg-[#0A1410] text-[#4A9A62] focus:ring-2 focus:ring-[#4A9A62]/20"
+        />
+        <label htmlFor="contact-nda" className="text-sm text-[#C5D9C0] cursor-pointer">
+          {t.ndaRequested}
+        </label>
+      </div>
+
       {submitError && (
-        <div className="rounded-lg bg-destructive/10 p-4 text-destructive" role="alert">
+        <div className="rounded-lg bg-[#A89858]/10 border border-[#A89858]/20 p-4 text-[#A89858]" role="alert">
           {submitError}
         </div>
       )}
@@ -256,20 +396,19 @@ export function ContactForm({ locale }: ContactFormProps) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-dark dark:bg-dark-primary dark:hover:bg-dark-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full rounded-lg bg-[#4A9A62] px-6 py-4 font-semibold text-white transition-all hover:bg-[#3d8251] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
         aria-busy={isSubmitting}
       >
-        {isSubmitting
-          ? locale === 'fr'
-            ? 'Envoi...'
-            : 'Sending...'
-          : locale === 'fr'
-            ? 'Envoyer le message'
-            : 'Send Message'}
+        {isSubmitting ? t.submitting : t.submit}
       </button>
 
+      {/* Response promise */}
+      <p className="text-center text-sm text-[#4A9A62] font-medium">
+        {t.responsePromise}
+      </p>
+
       {/* reCAPTCHA badge notice */}
-      <p className="text-xs text-muted-foreground dark:text-dark-text-muted">
+      <p className="text-xs text-[#80996F] text-center">
         {locale === 'fr'
           ? 'Ce site est protégé par reCAPTCHA et les '
           : 'This site is protected by reCAPTCHA and the '}
@@ -277,7 +416,7 @@ export function ContactForm({ locale }: ContactFormProps) {
           href="https://policies.google.com/privacy"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline hover:text-primary dark:hover:text-dark-primary"
+          className="underline hover:text-[#4A9A62]"
         >
           {locale === 'fr' ? 'Règles de confidentialité' : 'Privacy Policy'}
         </a>
@@ -286,11 +425,9 @@ export function ContactForm({ locale }: ContactFormProps) {
           href="https://policies.google.com/terms"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline hover:text-primary dark:hover:text-dark-primary"
+          className="underline hover:text-[#4A9A62]"
         >
-          {locale === 'fr'
-            ? "Conditions d'utilisation"
-            : 'Terms of Service'}
+          {locale === 'fr' ? "Conditions d'utilisation" : 'Terms of Service'}
         </a>
         {locale === 'fr' ? " de Google s'appliquent." : ' apply.'}
       </p>

@@ -1,8 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
 import { Locale } from '@/types';
 
 interface OfficeLocationMapProps {
@@ -16,7 +14,6 @@ interface OfficeLocationMapProps {
  */
 export function OfficeLocationMap({ locale }: OfficeLocationMapProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
-  const map = useRef<mapboxgl.Map | null>(null);
   const [mapError, setMapError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -30,88 +27,90 @@ export function OfficeLocationMap({ locale }: OfficeLocationMapProps) {
   };
 
   useEffect(() => {
-    // Check if Mapbox token is available
-    const token = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
-    
-    if (!token) {
-      console.warn('Mapbox token not found, falling back to Google Maps');
-      setMapError(true);
-      setIsLoading(false);
-      return;
-    }
-
-    // Check for WebGL support
-    if (!mapboxgl.supported()) {
-      console.warn('Mapbox GL not supported by this browser, falling back to Google Maps');
-      setMapError(true);
-      setIsLoading(false);
-      return;
-    }
-
-    if (!mapContainer.current || map.current) return;
-
-    try {
-      mapboxgl.accessToken = token;
-
-      // Initialize map
-      map.current = new mapboxgl.Map({
-        container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/dark-v11', // Dark theme to match design
-        center: [officeLocation.longitude, officeLocation.latitude],
-        zoom: 14,
-        attributionControl: false,
-      });
-
-      // Add navigation controls
-      map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
-
-      // Add custom marker with green color
-      const el = document.createElement('div');
-      el.className = 'custom-marker';
-      el.style.width = '32px';
-      el.style.height = '32px';
-      el.style.backgroundImage = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='%234A9A62'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E")`;
-      el.style.backgroundSize = 'contain';
-      el.style.cursor = 'pointer';
-
-      // Add marker to map
-      new mapboxgl.Marker(el)
-        .setLngLat([officeLocation.longitude, officeLocation.latitude])
-        .setPopup(
-          new mapboxgl.Popup({ offset: 25 }).setHTML(
-            `<div style="padding: 8px; color: #0A1410;">
-              <h3 style="font-weight: 600; margin-bottom: 4px;">${officeLocation.name}</h3>
-              <p style="font-size: 14px; color: #666;">${officeLocation.address}</p>
-            </div>`
-          )
-        )
-        .addTo(map.current);
-
-      // Handle load event
-      map.current.on('load', () => {
-        setIsLoading(false);
-      });
-
-      // Handle error event
-      map.current.on('error', (e) => {
-        console.error('Mapbox error:', e);
+    const initMap = async () => {
+      // Check if Mapbox token is available
+      const token = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
+      
+      if (!token || token.includes('XXXXXXXXXX')) {
+        console.warn('Mapbox token not configured, falling back to Google Maps');
         setMapError(true);
         setIsLoading(false);
-      });
+        return;
+      }
 
-    } catch (error) {
-      console.error('Error initializing Mapbox:', error);
-      setMapError(true);
-      setIsLoading(false);
-    }
+      if (!mapContainer.current) return;
 
-    // Cleanup
-    return () => {
-      if (map.current) {
-        map.current.remove();
-        map.current = null;
+      try {
+        // Dynamic import to avoid SSR issues
+        const mapboxgl = (await import('mapbox-gl')).default;
+        await import('mapbox-gl/dist/mapbox-gl.css');
+
+        // Check for WebGL support
+        if (!mapboxgl.supported()) {
+          console.warn('Mapbox GL not supported by this browser, falling back to Google Maps');
+          setMapError(true);
+          setIsLoading(false);
+          return;
+        }
+
+        mapboxgl.accessToken = token;
+
+        // Initialize map
+        const map = new mapboxgl.Map({
+          container: mapContainer.current,
+          style: 'mapbox://styles/mapbox/dark-v11',
+          center: [officeLocation.longitude, officeLocation.latitude],
+          zoom: 14,
+          attributionControl: false,
+        });
+
+        // Add navigation controls
+        map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+
+        // Create custom green marker
+        const markerEl = document.createElement('div');
+        markerEl.style.width = '32px';
+        markerEl.style.height = '32px';
+        markerEl.style.backgroundImage = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='%234A9A62'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E")`;
+        markerEl.style.backgroundSize = 'contain';
+        markerEl.style.cursor = 'pointer';
+
+        // Add marker with popup
+        new mapboxgl.Marker(markerEl)
+          .setLngLat([officeLocation.longitude, officeLocation.latitude])
+          .setPopup(
+            new mapboxgl.Popup({ offset: 25 }).setHTML(
+              `<div style="padding: 8px; color: #0A1410;">
+                <h3 style="font-weight: 600; margin-bottom: 4px;">${officeLocation.name}</h3>
+                <p style="font-size: 14px; color: #666;">${officeLocation.address}</p>
+              </div>`
+            )
+          )
+          .addTo(map);
+
+        map.on('load', () => {
+          setIsLoading(false);
+        });
+
+        map.on('error', (e) => {
+          console.error('Mapbox error:', e);
+          setMapError(true);
+          setIsLoading(false);
+        });
+
+        // Cleanup
+        return () => {
+          map.remove();
+        };
+
+      } catch (error) {
+        console.error('Error initializing Mapbox:', error);
+        setMapError(true);
+        setIsLoading(false);
       }
     };
+
+    initMap();
   }, [locale, officeLocation.latitude, officeLocation.longitude, officeLocation.name, officeLocation.address]);
 
   // Fallback to Google Maps if Mapbox fails

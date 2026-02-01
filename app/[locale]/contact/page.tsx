@@ -53,7 +53,8 @@ export default async function ContactPage({ params }: ContactPageProps) {
       },
       form: {
         title: 'Envoyez-nous un Message',
-        subtitle: 'Réponse sous 24h • Documentation disponible • NDA sur demande',
+        subtitle: 'NDA possible • Documentation disponible • Réponse sous 24h',
+        privacy: 'Vos informations restent confidentielles. Pas de spam.',
       },
       info: {
         title: 'Informations de Contact',
@@ -62,6 +63,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
         address: 'Adresse',
         hours: 'Heures d\'Ouverture',
         hoursValue: 'Lun - Ven: 8h00 - 17h00 WAT',
+        hoursNote: 'Email & WhatsApp: 7j/7',
         location: 'Douala, Cameroun',
       },
       quickLinks: {
@@ -74,6 +76,14 @@ export default async function ContactPage({ params }: ContactPageProps) {
       office: {
         title: 'Notre Bureau',
         subtitle: 'Visitez-nous à Douala',
+      },
+      whyContact: {
+        title: 'Pourquoi nous contacter',
+        reasons: [
+          'Devis export personnalisé',
+          'Dossier conformité RDUE',
+          'Disponibilités & délais',
+        ],
       },
       faq: {
         title: 'Questions Fréquentes',
@@ -94,7 +104,8 @@ export default async function ContactPage({ params }: ContactPageProps) {
       },
       form: {
         title: 'Send Us a Message',
-        subtitle: '24h response • Documentation available • NDA upon request',
+        subtitle: 'NDA available • Documentation ready • 24h response',
+        privacy: 'Your information remains confidential. No spam.',
       },
       info: {
         title: 'Contact Information',
@@ -103,6 +114,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
         address: 'Address',
         hours: 'Business Hours',
         hoursValue: 'Mon - Fri: 8:00 AM - 5:00 PM WAT',
+        hoursNote: 'Email & WhatsApp: 7 days/week',
         location: 'Douala, Cameroon',
       },
       quickLinks: {
@@ -115,6 +127,14 @@ export default async function ContactPage({ params }: ContactPageProps) {
       office: {
         title: 'Our Office',
         subtitle: 'Visit us in Douala',
+      },
+      whyContact: {
+        title: 'Why contact us',
+        reasons: [
+          'Custom export quote',
+          'EUDR compliance documentation',
+          'Availability & lead times',
+        ],
       },
       faq: {
         title: 'Frequently Asked Questions',
@@ -141,7 +161,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
           <div className="text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#4A9A62]/10 border border-[#4A9A62]/20 rounded-full text-[#4A9A62] text-sm font-medium mb-6">
               <MessageSquare className="w-4 h-4" />
-              <span>{locale === 'fr' ? 'Disponible 24/7' : 'Available 24/7'}</span>
+              <span>{locale === 'fr' ? 'Réponse sous 24h (jours ouvrés)' : 'Response within 24h (business days)'}</span>
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#E8F5E9] mb-6">
@@ -172,6 +192,9 @@ export default async function ContactPage({ params }: ContactPageProps) {
               </div>
               <p className="text-sm text-[#80996F] mb-6">
                 {t.form.subtitle}
+              </p>
+              <p className="text-sm text-[#80996F] text-xs">
+                {t.form.privacy}
               </p>
               <ContactForm locale={locale} />
             </div>
@@ -216,9 +239,18 @@ export default async function ContactPage({ params }: ContactPageProps) {
                       </p>
                       <a
                         href="tel:+237XXXXXXXXX"
-                        className="text-[#4A9A62] hover:text-[#3d8251] transition-colors text-sm"
+                        className="text-[#4A9A62] hover:text-[#3d8251] transition-colors text-sm block"
                       >
                         +237 XXX XXX XXX
+                      </a>
+                      <a
+                        href="https://wa.me/237XXXXXXXXX"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#4A9A62] hover:text-[#3d8251] transition-colors text-xs flex items-center gap-1 mt-1"
+                      >
+                        <MessageSquare className="w-3 h-3" />
+                        WhatsApp
                       </a>
                     </div>
                   </div>
@@ -250,21 +282,42 @@ export default async function ContactPage({ params }: ContactPageProps) {
                       <p className="text-sm text-[#80996F]">
                         {t.info.hoursValue}
                       </p>
+                      <p className="text-xs text-[#4A9A62] mt-1 font-medium">
+                        {t.info.hoursNote}
+                      </p>
+                      <p className="text-xs text-[#80996F] mt-1">
+                        UTC+1 ({locale === 'fr' ? 'Heure du Cameroun' : 'Cameroon Time'})
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
 
+              {/* Why Contact Us Card */}
+              <div className="bg-[#0F1814] border border-[rgba(255,255,255,0.08)] rounded-lg p-6">
+                <h3 className="text-lg font-bold text-[#E8F5E9] mb-4">
+                  {t.whyContact.title}
+                </h3>
+                <ul className="space-y-3">
+                  {t.whyContact.reasons.map((reason, index) => (
+                    <li key={index} className="flex items-center gap-3 text-sm text-[#C5D9C0]">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#4A9A62] flex-shrink-0" />
+                      {reason}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
               {/* Quick Links Card */}
-              <div className="bg-gradient-to-br from-[#4A9A62] to-[#3d8251] p-6 rounded-lg border border-[#4A9A62]/20">
-                <h3 className="text-lg font-bold text-white mb-4">
+              <div className="bg-gradient-to-br from-[#4A9A62]/20 to-[#3d8251]/20 border border-[#4A9A62]/30 p-6 rounded-lg">
+                <h3 className="text-lg font-bold text-[#E8F5E9] mb-4">
                   {t.quickLinks.title}
                 </h3>
                 <ul className="space-y-2 text-sm">
                   <li>
                     <Link
                       href={`/${locale}/rfq`}
-                      className="text-white/90 hover:text-white transition-colors flex items-center gap-2"
+                      className="text-[#E8F5E9] hover:text-[#4A9A62] transition-colors flex items-center gap-2"
                     >
                       <span className="text-[#A89858]">→</span>
                       {t.quickLinks.rfq}
@@ -273,7 +326,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                   <li>
                     <Link
                       href={`/${locale}/products`}
-                      className="text-white/90 hover:text-white transition-colors flex items-center gap-2"
+                      className="text-[#E8F5E9] hover:text-[#4A9A62] transition-colors flex items-center gap-2"
                     >
                       <span className="text-[#A89858]">→</span>
                       {t.quickLinks.products}
@@ -282,7 +335,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                   <li>
                     <Link
                       href={`/${locale}/quality`}
-                      className="text-white/90 hover:text-white transition-colors flex items-center gap-2"
+                      className="text-[#E8F5E9] hover:text-[#4A9A62] transition-colors flex items-center gap-2"
                     >
                       <span className="text-[#A89858]">→</span>
                       {t.quickLinks.quality}
@@ -291,7 +344,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                   <li>
                     <Link
                       href={`/${locale}/traceability`}
-                      className="text-white/90 hover:text-white transition-colors flex items-center gap-2"
+                      className="text-[#E8F5E9] hover:text-[#4A9A62] transition-colors flex items-center gap-2"
                     >
                       <span className="text-[#A89858]">→</span>
                       {t.quickLinks.traceability}

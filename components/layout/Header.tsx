@@ -79,19 +79,12 @@ export function Header({ locale }: HeaderProps) {
           aria-label="Afrexia home"
         >
           <Image
-            src={mounted && theme === 'dark' && !logoError ? '/assets/logo-dark.png' : '/assets/logo.png'}
+            src="/assets/logo-dark.png"
             alt="Afrexia"
             width={180}
             height={63}
             priority
-            className={`h-14 w-auto ${mounted && theme === 'dark' && logoError ? 'brightness-[1.2] contrast-[0.9]' : ''}`}
-            onError={() => {
-              // Fallback to standard logo if dark logo fails to load
-              if (theme === 'dark' && !logoError) {
-                console.warn('Dark mode logo failed to load, falling back to standard logo with CSS filter');
-                setLogoError(true);
-              }
-            }}
+            className="h-14 w-auto"
           />
         </Link>
 

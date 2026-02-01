@@ -182,7 +182,7 @@ export default async function TeamPage({ params }: TeamPageProps) {
                         </span>
                       </div>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0F1814] via-transparent to-transparent opacity-60" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0F1814] via-transparent to-transparent opacity-40" />
                   </div>
 
                   {/* Info */}
@@ -286,7 +286,7 @@ export default async function TeamPage({ params }: TeamPageProps) {
                         </span>
                       </div>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0F1814] via-transparent to-transparent opacity-60" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0F1814] via-transparent to-transparent opacity-40" />
                   </div>
 
                   {/* Info - Compact */}
