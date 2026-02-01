@@ -301,7 +301,8 @@ export function ProductCard({ product, locale, variant = 'standard' }: ProductCa
           src={imageUrl || '/assets/placeholder.svg'}
           alt={imageAlt}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          loading="lazy" // Lazy loading for non-critical images
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="object-cover group-hover:scale-110 transition-all duration-700"
         />
         

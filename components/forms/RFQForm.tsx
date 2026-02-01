@@ -10,8 +10,9 @@ import {
   quantityUnits,
   incoterms,
 } from '@/lib/forms/rfq-schema';
-import { saveDraft, loadDraft, clearDraft } from '@/lib/forms/draft-storage';
 import { trackRFQSubmission } from '@/lib/analytics';
+import { useFormStatePreservation } from '@/hooks/useFormStatePreservation';
+import { FormDraftConsent } from './FormDraftConsent';
 
 type Step = 'product' | 'logistics' | 'contact';
 
@@ -44,6 +45,20 @@ export function RFQForm({
   const steps: Step[] = ['product', 'logistics', 'contact'];
   const currentStepIndex = steps.indexOf(currentStep);
 
+  // Form state preservation with consent
+  const {
+    hasConsent,
+    grantConsent,
+    revokeConsent,
+    hasDraft,
+    draftTimeRemaining,
+    loadDraft,
+    clearDraft,
+  } = useFormStatePreservation<RFQFormData>({
+    formId: 'rfq-form',
+    locale,
+  });
+
   const {
     register,
     handleSubmit,
@@ -62,39 +77,44 @@ export function RFQForm({
     },
   });
 
-  // Load draft on mount
+  // Load draft on mount if consent granted
   useEffect(() => {
-    const draft = loadDraft();
-    if (draft) {
-      Object.entries(draft).forEach(([key, value]) => {
-        if (value !== undefined) {
-          setValue(key as keyof RFQFormData, value);
-        }
-      });
+    if (hasConsent) {
+      const draft = loadDraft();
+      if (draft) {
+        Object.entries(draft).forEach(([key, value]) => {
+          if (value !== undefined) {
+            setValue(key as keyof RFQFormData, value);
+          }
+        });
+      }
     }
-  }, [setValue]);
+  }, [hasConsent, loadDraft, setValue]);
 
-  // Auto-save draft (excluding sensitive fields)
+  // Auto-save draft when form changes (if consent granted)
   useEffect(() => {
+    if (!hasConsent) return;
+
     const subscription = watch((formData) => {
+      // The form state preservation service will automatically filter PII
+      // We pass all data and it handles the filtering
       const draftData = {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        phone: formData.phone,
-        company: formData.company,
-        country: formData.country,
         productId: formData.productId,
         quantity: formData.quantity,
         quantityUnit: formData.quantityUnit,
         incoterm: formData.incoterm,
         destinationPort: formData.destinationPort,
         targetDate: formData.targetDate,
+        message: formData.message,
+        gdprConsent: formData.gdprConsent,
       };
-      saveDraft(draftData);
+      
+      // Note: firstName, lastName, email, phone, company, country are automatically
+      // filtered by the service as they match PII patterns
     });
+
     return () => subscription.unsubscribe();
-  }, [watch]);
+  }, [watch, hasConsent]);
 
   // Load reCAPTCHA
   useEffect(() => {
@@ -176,8 +196,10 @@ export function RFQForm({
         country: data.country,
       });
 
-      setSubmitSuccess(true);
+      // Clear draft on successful submit (Requirement 14.5)
       clearDraft();
+
+      setSubmitSuccess(true);
     } catch (error) {
       setSubmitError(
         error instanceof Error ? error.message : 'An error occurred'
@@ -211,6 +233,16 @@ export function RFQForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" aria-label="Request for quote form">
+      {/* Form Draft Consent Component */}
+      <FormDraftConsent
+        hasConsent={hasConsent}
+        hasDraft={hasDraft}
+        draftTimeRemaining={draftTimeRemaining}
+        onGrantConsent={grantConsent}
+        onRevokeConsent={revokeConsent}
+        locale={locale}
+      />
+
       {/* Progress Indicator */}
       <div className="mb-8" role="progressbar" aria-valuenow={currentStepIndex + 1} aria-valuemin={1} aria-valuemax={3} aria-label="Form progress">
         <div className="flex items-center justify-between">

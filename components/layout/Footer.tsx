@@ -52,9 +52,9 @@ export function Footer({ locale }: FooterProps) {
 
   return (
     <footer className="border-t border-[rgba(255,255,255,0.08)] bg-[#0A1410]">
-      <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
-        {/* Main footer content */}
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+      <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8 max-w-[100%] sm:max-w-[720px] md:max-w-[960px] lg:max-w-[1200px]">
+        {/* Main footer content - Vertical stack on mobile, horizontal on tablet+ */}
+        <div className="grid gap-8 sm:gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {/* Company info */}
           <div className="space-y-6">
             <Link href={`/${locale}`} className="inline-block">

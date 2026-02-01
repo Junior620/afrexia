@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import '../globals.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { AnalyticsProvider } from '@/components/providers/AnalyticsProvider';
+import { NavigationProvider } from '@/components/providers/NavigationProvider';
 import { ErrorBoundary } from '@/components/providers/ErrorBoundary';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -48,17 +49,19 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   return (
     <ErrorBoundary>
       <ThemeProvider>
-        <AnalyticsProvider>
-          <SkipToContent />
-          <div className="flex min-h-screen flex-col">
-            <Header locale={locale} />
-            <main id="main-content" className="flex-1" tabIndex={-1}>
-              {children}
-            </main>
-            <Footer locale={locale} />
-            <CookieConsent locale={locale} />
-          </div>
-        </AnalyticsProvider>
+        <NavigationProvider>
+          <AnalyticsProvider>
+            <SkipToContent />
+            <div className="flex min-h-screen flex-col">
+              <Header locale={locale} />
+              <main id="main-content" className="flex-1" tabIndex={-1}>
+                {children}
+              </main>
+              <Footer locale={locale} />
+              <CookieConsent locale={locale} />
+            </div>
+          </AnalyticsProvider>
+        </NavigationProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );

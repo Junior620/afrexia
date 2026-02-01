@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Locale } from '@/types';
+import { getTranslation } from '@/lib/i18n/translations';
 import { MobileNav } from './MobileNav';
 
 interface NavItem {
@@ -18,7 +19,14 @@ interface NavigationProps {
 
 /**
  * Navigation component with desktop and mobile views
- * Highlights active page
+ * Highlights active page with proper hover states
+ * 
+ * Requirements:
+ * - 3.1: Desktop navigation bar with hover states
+ * - 6.2: Minimum touch target sizes (44x44px)
+ * - 6.3: Visible focus indicators
+ * - 6.4: ARIA labels for navigation elements
+ * - 20.2: Localized ARIA labels
  */
 export function Navigation({ locale, navItems, rfqItem }: NavigationProps) {
   const pathname = usePathname();
@@ -34,14 +42,14 @@ export function Navigation({ locale, navItems, rfqItem }: NavigationProps) {
 
   return (
     <>
-      {/* Desktop Navigation */}
-      <nav className="hidden lg:block" aria-label="Main navigation">
+      {/* Desktop Navigation - hidden below lg breakpoint (1024px) */}
+      <nav className="hidden lg:block" aria-label={getTranslation(locale, 'accessibility.mainNavigation')}>
         <ul className="flex items-center gap-1">
           {navItems.map((item) => (
             <li key={item.href}>
               <Link
                 href={item.href}
-                className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                className={`rounded-lg px-3 py-2 min-h-[44px] flex items-center text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary ${
                   isActive(item.href)
                     ? 'bg-primary/10 text-primary dark:bg-dark-primary/20 dark:text-dark-primary'
                     : 'text-neutral hover:bg-light hover:text-primary dark:text-dark-text-secondary dark:hover:bg-dark-bg-secondary dark:hover:text-dark-primary'
@@ -55,7 +63,7 @@ export function Navigation({ locale, navItems, rfqItem }: NavigationProps) {
         </ul>
       </nav>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - shown below lg breakpoint (1024px) */}
       <MobileNav locale={locale} navItems={navItems} rfqItem={rfqItem} />
     </>
   );

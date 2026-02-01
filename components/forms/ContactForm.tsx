@@ -10,6 +10,8 @@ import {
 } from '@/lib/forms/contact-schema';
 import { trackContactSubmission } from '@/lib/analytics';
 import { CheckCircle2 } from 'lucide-react';
+import { useFormStatePreservation } from '@/hooks/useFormStatePreservation';
+import { FormDraftConsent } from './FormDraftConsent';
 
 interface ContactFormProps {
   locale: Locale;
@@ -23,12 +25,27 @@ export function ContactForm({ locale }: ContactFormProps) {
 
   const schema = createContactFormSchema(locale);
 
+  // Form state preservation with consent
+  const {
+    hasConsent,
+    grantConsent,
+    revokeConsent,
+    hasDraft,
+    draftTimeRemaining,
+    loadDraft,
+    clearDraft,
+  } = useFormStatePreservation<ContactFormData>({
+    formId: 'contact-form',
+    locale,
+  });
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
     watch,
+    setValue,
   } = useForm<ContactFormData>({
     resolver: zodResolver(schema),
     mode: 'onBlur',
@@ -39,6 +56,44 @@ export function ContactForm({ locale }: ContactFormProps) {
   });
 
   const subjectType = watch('subjectType');
+
+  // Load draft on mount if consent granted
+  useEffect(() => {
+    if (hasConsent) {
+      const draft = loadDraft();
+      if (draft) {
+        Object.entries(draft).forEach(([key, value]) => {
+          if (value !== undefined) {
+            setValue(key as keyof ContactFormData, value);
+          }
+        });
+      }
+    }
+  }, [hasConsent, loadDraft, setValue]);
+
+  // Auto-save draft when form changes (if consent granted)
+  useEffect(() => {
+    if (!hasConsent) return;
+
+    const subscription = watch((formData) => {
+      // The form state preservation service will automatically filter PII
+      // We just pass all data and it handles the filtering
+      const draftData = {
+        subjectType: formData.subjectType,
+        subject: formData.subject,
+        message: formData.message,
+        product: formData.product,
+        volume: formData.volume,
+        destination: formData.destination,
+        ndaRequested: formData.ndaRequested,
+      };
+      
+      // Note: name, email, phone, company are automatically filtered by the service
+      // as they match PII patterns
+    });
+
+    return () => subscription.unsubscribe();
+  }, [watch, hasConsent]);
 
   // Content translations
   const content = {
@@ -157,6 +212,9 @@ export function ContactForm({ locale }: ContactFormProps) {
         hasCompany: !!data.company,
       });
 
+      // Clear draft on successful submit (Requirement 14.5)
+      clearDraft();
+
       setSubmitSuccess(true);
       reset();
     } catch (error) {
@@ -192,6 +250,16 @@ export function ContactForm({ locale }: ContactFormProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" aria-label="Contact form">
+      {/* Form Draft Consent Component */}
+      <FormDraftConsent
+        hasConsent={hasConsent}
+        hasDraft={hasDraft}
+        draftTimeRemaining={draftTimeRemaining}
+        onGrantConsent={grantConsent}
+        onRevokeConsent={revokeConsent}
+        locale={locale}
+      />
+
       {/* Name */}
       <div>
         <label htmlFor="contact-name" className="mb-1 block text-sm font-medium text-[#E8F5E9]">

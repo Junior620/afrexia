@@ -1,0 +1,236 @@
+/**
+ * Responsive Grid System Utilities
+ * 
+ * Provides utility classes for responsive grid layouts with 4, 8, and 12 column configurations.
+ * Implements Requirements: 17.1, 17.2, 17.3, 17.4, 17.5 from responsive-intelligent-navigation/requirements.md
+ * 
+ * Usage:
+ * - Apply .grid-responsive for automatic responsive grid
+ * - Use .grid-cols-mobile, .grid-cols-tablet, .grid-cols-desktop for explicit control
+ * - Column gaps automatically adjust: 16px (mobile), 24px (tablet), 32px (desktop)
+ */
+
+/* Base responsive grid with automatic column and gap adjustments */
+.grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem; /* 16px mobile */
+}
+
+@media (min-width: 640px) {
+  .grid-responsive {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 1.5rem; /* 24px tablet */
+  }
+}
+
+@media (min-width: 768px) {
+  .grid-responsive {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 2rem; /* 32px desktop */
+  }
+}
+
+/* Explicit grid column classes for each breakpoint */
+.grid-cols-mobile {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.grid-cols-tablet {
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+
+.grid-cols-desktop {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+/* Responsive gap utilities */
+.gap-mobile {
+  gap: 1rem; /* 16px */
+}
+
+.gap-tablet {
+  gap: 1.5rem; /* 24px */
+}
+
+.gap-desktop {
+  gap: 2rem; /* 32px */
+}
+
+/* Responsive gap classes that adjust automatically */
+.gap-responsive {
+  gap: 1rem; /* 16px mobile */
+}
+
+@media (min-width: 640px) {
+  .gap-responsive {
+    gap: 1.5rem; /* 24px tablet */
+  }
+}
+
+@media (min-width: 768px) {
+  .gap-responsive {
+    gap: 2rem; /* 32px desktop */
+  }
+}
+
+/* Column spanning utilities for mobile (4 columns) */
+.col-span-1-mobile {
+  grid-column: span 1 / span 1;
+}
+
+.col-span-2-mobile {
+  grid-column: span 2 / span 2;
+}
+
+.col-span-3-mobile {
+  grid-column: span 3 / span 3;
+}
+
+.col-span-4-mobile {
+  grid-column: span 4 / span 4;
+}
+
+/* Column spanning utilities for tablet (8 columns) */
+@media (min-width: 640px) {
+  .sm\:col-span-1-tablet {
+    grid-column: span 1 / span 1;
+  }
+
+  .sm\:col-span-2-tablet {
+    grid-column: span 2 / span 2;
+  }
+
+  .sm\:col-span-3-tablet {
+    grid-column: span 3 / span 3;
+  }
+
+  .sm\:col-span-4-tablet {
+    grid-column: span 4 / span 4;
+  }
+
+  .sm\:col-span-5-tablet {
+    grid-column: span 5 / span 5;
+  }
+
+  .sm\:col-span-6-tablet {
+    grid-column: span 6 / span 6;
+  }
+
+  .sm\:col-span-7-tablet {
+    grid-column: span 7 / span 7;
+  }
+
+  .sm\:col-span-8-tablet {
+    grid-column: span 8 / span 8;
+  }
+}
+
+/* Column spanning utilities for desktop (12 columns) */
+@media (min-width: 768px) {
+  .md\:col-span-1-desktop {
+    grid-column: span 1 / span 1;
+  }
+
+  .md\:col-span-2-desktop {
+    grid-column: span 2 / span 2;
+  }
+
+  .md\:col-span-3-desktop {
+    grid-column: span 3 / span 3;
+  }
+
+  .md\:col-span-4-desktop {
+    grid-column: span 4 / span 4;
+  }
+
+  .md\:col-span-5-desktop {
+    grid-column: span 5 / span 5;
+  }
+
+  .md\:col-span-6-desktop {
+    grid-column: span 6 / span 6;
+  }
+
+  .md\:col-span-7-desktop {
+    grid-column: span 7 / span 7;
+  }
+
+  .md\:col-span-8-desktop {
+    grid-column: span 8 / span 8;
+  }
+
+  .md\:col-span-9-desktop {
+    grid-column: span 9 / span 9;
+  }
+
+  .md\:col-span-10-desktop {
+    grid-column: span 10 / span 10;
+  }
+
+  .md\:col-span-11-desktop {
+    grid-column: span 11 / span 11;
+  }
+
+  .md\:col-span-12-desktop {
+    grid-column: span 12 / span 12;
+  }
+}
+
+/* Common layout patterns */
+
+/* Full width at all breakpoints */
+.col-full {
+  grid-column: 1 / -1;
+}
+
+/* Half width responsive pattern */
+.col-half-responsive {
+  grid-column: span 4 / span 4; /* Full width on mobile */
+}
+
+@media (min-width: 640px) {
+  .col-half-responsive {
+    grid-column: span 4 / span 4; /* Half width on tablet (4 of 8) */
+  }
+}
+
+@media (min-width: 768px) {
+  .col-half-responsive {
+    grid-column: span 6 / span 6; /* Half width on desktop (6 of 12) */
+  }
+}
+
+/* Third width responsive pattern */
+.col-third-responsive {
+  grid-column: span 4 / span 4; /* Full width on mobile */
+}
+
+@media (min-width: 640px) {
+  .col-third-responsive {
+    grid-column: span 4 / span 4; /* Half width on tablet */
+  }
+}
+
+@media (min-width: 768px) {
+  .col-third-responsive {
+    grid-column: span 4 / span 4; /* Third width on desktop (4 of 12) */
+  }
+}
+
+/* Quarter width responsive pattern */
+.col-quarter-responsive {
+  grid-column: span 4 / span 4; /* Full width on mobile */
+}
+
+@media (min-width: 640px) {
+  .col-quarter-responsive {
+    grid-column: span 4 / span 4; /* Half width on tablet */
+  }
+}
+
+@media (min-width: 768px) {
+  .col-quarter-responsive {
+    grid-column: span 3 / span 3; /* Quarter width on desktop (3 of 12) */
+  }
+}

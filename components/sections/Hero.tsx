@@ -68,8 +68,10 @@ export function Hero({ locale }: HeroProps) {
 
   return (
     <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-sand dark:bg-dark-bg-primary">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      {/* Responsive container with proper padding at each breakpoint */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[100%] sm:max-w-[720px] md:max-w-[960px] lg:max-w-[1200px]">
+        {/* Vertical stack on mobile, horizontal on desktop */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Left Content */}
           <div className="relative z-10">
             <ScrollReveal animation="fade" delay={0.1}>
@@ -101,7 +103,7 @@ export function Hero({ locale }: HeroProps) {
             </div>
           </div>
 
-          {/* Right Image with Organic Blob Shape */}
+          {/* Right Image with Organic Blob Shape - 16:9 aspect ratio */}
           <div className="relative lg:block">
             <div className="relative">
               {/* Animated gradient background */}
@@ -109,15 +111,15 @@ export function Hero({ locale }: HeroProps) {
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-secondary/15 to-primary/20 blur-3xl animate-pulse" />
               </div>
 
-              {/* Main product image with organic blob shape */}
-              <div className="relative aspect-square overflow-hidden shadow-2xl"
+              {/* Main product image with organic blob shape - 16:9 aspect ratio */}
+              <div className="relative aspect-video overflow-hidden shadow-2xl"
                    style={{
                      borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
                    }}>
                 {/* Gradient overlay for depth */}
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-secondary/10 z-10 pointer-events-none" />
                 
-                {/* Carousel Images */}
+                {/* Carousel Images with priority loading */}
                 <div className="relative w-full h-full">
                   {heroImages.map((image, index) => (
                     <div
@@ -130,9 +132,9 @@ export function Hero({ locale }: HeroProps) {
                         src={image}
                         alt={`African agricultural products ${index + 1}`}
                         fill
-                        priority={index === 0}
+                        priority={index === 0} // Priority loading for first hero image
                         className="object-cover"
-                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
                         quality={90}
                       />
                     </div>

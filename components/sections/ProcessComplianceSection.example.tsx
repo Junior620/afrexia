@@ -5,18 +5,7 @@
  * in a 3-column grid layout (responsive to 1-column on mobile).
  * 
  * Usage:
- * ```tsx
- * import { ProcessComplianceSection } from '@/components/sections/ProcessComplianceSection';
- * 
- * export default function ProductCatalogPage({ params }: { params: { locale: string } }) {
- *   return (
- *     <main>
- *       {/* Other catalog components */}
- *       <ProcessComplianceSection locale={params.locale as Locale} />
- *     </main>
- *   );
- * }
- * ```
+ * Import the component and pass the locale prop.
  * 
  * Features:
  * - Supports 5 locales: fr, en, es, de, ru

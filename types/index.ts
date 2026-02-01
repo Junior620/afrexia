@@ -2,6 +2,9 @@
  * Core type definitions for the Afrexia website
  */
 
+// Re-export navigation types
+export * from './navigation';
+
 // Locale types
 export type Locale = 'fr' | 'en' | 'es' | 'de' | 'ru';
 

@@ -1,3 +1,12 @@
+/**
+ * Legacy RFQ Draft Storage
+ * 
+ * This file is maintained for backward compatibility.
+ * New implementations should use lib/forms/form-state-preservation.ts
+ * 
+ * @deprecated Use form-state-preservation.ts instead
+ */
+
 import { RFQDraftData } from './rfq-schema';
 
 const DRAFT_KEY = 'rfq_draft';
@@ -11,6 +20,7 @@ interface DraftStorage {
 /**
  * Save RFQ form draft to localStorage
  * Requirements: 3.6, 3.8
+ * @deprecated Use form-state-preservation.ts with consent
  */
 export function saveDraft(data: Partial<RFQDraftData>): void {
   if (typeof window === 'undefined') return;
@@ -29,6 +39,7 @@ export function saveDraft(data: Partial<RFQDraftData>): void {
 /**
  * Load RFQ form draft from localStorage
  * Returns null if draft doesn't exist or has expired
+ * @deprecated Use form-state-preservation.ts with consent
  */
 export function loadDraft(): Partial<RFQDraftData> | null {
   if (typeof window === 'undefined') return null;
@@ -55,6 +66,7 @@ export function loadDraft(): Partial<RFQDraftData> | null {
 
 /**
  * Clear RFQ form draft from localStorage
+ * @deprecated Use form-state-preservation.ts with consent
  */
 export function clearDraft(): void {
   if (typeof window === 'undefined') return;
@@ -68,6 +80,7 @@ export function clearDraft(): void {
 
 /**
  * Check if a draft exists and is valid
+ * @deprecated Use form-state-preservation.ts with consent
  */
 export function hasDraft(): boolean {
   return loadDraft() !== null;

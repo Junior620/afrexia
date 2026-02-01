@@ -121,7 +121,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           src={imageUrl}
           alt={imageAlt}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+          loading="lazy" // Lazy loading for non-critical images
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           priority={false}
         />
