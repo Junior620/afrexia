@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Locale } from '@/types';
 import { Award, Eye, Leaf, Handshake, Building2, Users, Target, TrendingUp } from 'lucide-react';
-import { ScrollRevealWrapper } from './ScrollRevealWrapper';
+import { ScrollRevealWrapper } from '@/app/[locale]/about/ScrollRevealWrapper';
 
 interface AboutPageProps {
   params: Promise<{

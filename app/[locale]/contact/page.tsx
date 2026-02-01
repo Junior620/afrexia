@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import { Locale } from '@/types';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { OfficeLocationMap } from '@/components/maps/OfficeLocationMap';
+import { Mail, Phone, MapPin, Clock, Send, MessageSquare } from 'lucide-react';
+import Link from 'next/link';
 
 interface ContactPageProps {
   params: Promise<{
@@ -36,324 +38,346 @@ export async function generateMetadata({
 }
 
 /**
- * Contact Page
+ * Contact Page - Dark Green Premium Design
  * Requirements: 14.1, 14.6
  */
 export default async function ContactPage({ params }: ContactPageProps) {
   const { locale } = await params;
 
+  const content = {
+    fr: {
+      hero: {
+        title: 'Contactez-Nous',
+        subtitle: 'Parlons de votre projet d\'approvisionnement',
+        description: 'Notre équipe est disponible pour répondre à vos questions sur nos produits, nos services et nos capacités d\'export.',
+      },
+      form: {
+        title: 'Envoyez-nous un Message',
+        subtitle: 'Réponse sous 24h • Documentation disponible • NDA sur demande',
+      },
+      info: {
+        title: 'Informations de Contact',
+        email: 'Email',
+        phone: 'Téléphone',
+        address: 'Adresse',
+        hours: 'Heures d\'Ouverture',
+        hoursValue: 'Lun - Ven: 8h00 - 17h00 WAT',
+        location: 'Douala, Cameroun',
+      },
+      quickLinks: {
+        title: 'Liens Rapides',
+        rfq: 'Demander un Devis',
+        products: 'Voir nos Produits',
+        quality: 'Qualité & Conformité',
+        traceability: 'Traçabilité EUDR',
+      },
+      office: {
+        title: 'Notre Bureau',
+        subtitle: 'Visitez-nous à Douala',
+      },
+      faq: {
+        title: 'Questions Fréquentes',
+        q1: 'Quel est le délai de réponse moyen?',
+        a1: 'Nous nous efforçons de répondre à toutes les demandes dans les 24 heures ouvrables. Pour les demandes urgentes, contactez-nous par téléphone.',
+        q2: 'Puis-je visiter vos installations?',
+        a2: 'Oui, nous accueillons les visites sur rendez-vous. Contactez-nous pour planifier une visite de nos installations et rencontrer notre équipe.',
+        q3: 'Offrez-vous un support dans d\'autres langues?',
+        a3: 'Nous offrons un support en français, anglais, espagnol, allemand et russe pour répondre aux besoins de nos clients internationaux.',
+      },
+      social: 'Suivez-Nous',
+    },
+    en: {
+      hero: {
+        title: 'Contact Us',
+        subtitle: 'Let\'s discuss your sourcing project',
+        description: 'Our team is available to answer your questions about our products, services and export capabilities.',
+      },
+      form: {
+        title: 'Send Us a Message',
+        subtitle: '24h response • Documentation available • NDA upon request',
+      },
+      info: {
+        title: 'Contact Information',
+        email: 'Email',
+        phone: 'Phone',
+        address: 'Address',
+        hours: 'Business Hours',
+        hoursValue: 'Mon - Fri: 8:00 AM - 5:00 PM WAT',
+        location: 'Douala, Cameroon',
+      },
+      quickLinks: {
+        title: 'Quick Links',
+        rfq: 'Request a Quote',
+        products: 'View Our Products',
+        quality: 'Quality & Compliance',
+        traceability: 'EUDR Traceability',
+      },
+      office: {
+        title: 'Our Office',
+        subtitle: 'Visit us in Douala',
+      },
+      faq: {
+        title: 'Frequently Asked Questions',
+        q1: 'What is the average response time?',
+        a1: 'We strive to respond to all inquiries within 24 business hours. For urgent requests, please contact us by phone.',
+        q2: 'Can I visit your facilities?',
+        a2: 'Yes, we welcome visits by appointment. Contact us to schedule a tour of our facilities and meet our team.',
+        q3: 'Do you offer support in other languages?',
+        a3: 'We offer support in French, English, Spanish, German and Russian to meet the needs of our international clients.',
+      },
+      social: 'Follow Us',
+    },
+  };
+
+  const t = content[locale] || content.en;
+
   return (
-    <div className="min-h-screen bg-light py-12">
-      <div className="container mx-auto px-4">
-        <div className="mx-auto max-w-6xl">
-          {/* Page Header */}
-          <div className="mb-12 text-center">
-            <h1 className="mb-4 text-4xl font-bold text-primary md:text-5xl">
-              {locale === 'fr' ? 'Contactez-Nous' : 'Contact Us'}
+    <div className="min-h-screen bg-[#0A1410]">
+      {/* Hero Section */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0F1814] to-[#0A1410]" />
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#4A9A62]/10 border border-[#4A9A62]/20 rounded-full text-[#4A9A62] text-sm font-medium mb-6">
+              <MessageSquare className="w-4 h-4" />
+              <span>{locale === 'fr' ? 'Disponible 24/7' : 'Available 24/7'}</span>
+            </div>
+            
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#E8F5E9] mb-6">
+              {t.hero.title}
             </h1>
-            <p className="text-lg text-foreground">
-              {locale === 'fr'
-                ? 'Nous sommes là pour répondre à toutes vos questions. Envoyez-nous un message et nous vous répondrons dans les plus brefs délais.'
-                : "We're here to answer all your questions. Send us a message and we'll get back to you as soon as possible."}
+            <p className="text-xl text-[#4A9A62] mb-4 font-semibold">
+              {t.hero.subtitle}
+            </p>
+            <p className="text-base text-[#C5D9C0]">
+              {t.hero.description}
             </p>
           </div>
+        </div>
+      </section>
 
-          <div className="grid gap-8 lg:grid-cols-3">
-            {/* Form Section */}
-            <div className="lg:col-span-2">
-              <div className="rounded-xl bg-white p-6 shadow-md md:p-8">
-                <h2 className="mb-6 text-2xl font-bold text-primary">
-                  {locale === 'fr' ? 'Envoyez-nous un Message' : 'Send Us a Message'}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <div className="grid gap-8 lg:grid-cols-3">
+          {/* Form Section */}
+          <div className="lg:col-span-2">
+            <div className="bg-[#0F1814] border border-[rgba(255,255,255,0.08)] rounded-lg p-6 md:p-8">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-lg bg-[#4A9A62]/10 border border-[#4A9A62]/20 flex items-center justify-center">
+                  <Send className="w-5 h-5 text-[#4A9A62]" />
+                </div>
+                <h2 className="text-2xl font-bold text-[#E8F5E9]">
+                  {t.form.title}
                 </h2>
-                <ContactForm locale={locale} />
               </div>
-            </div>
-
-            {/* Contact Information Sidebar */}
-            <div className="lg:col-span-1">
-              <div className="space-y-6">
-                {/* Contact Details Card */}
-                <div className="rounded-xl bg-white p-6 shadow-md">
-                  <h3 className="mb-4 text-xl font-bold text-primary">
-                    {locale === 'fr'
-                      ? 'Informations de Contact'
-                      : 'Contact Information'}
-                  </h3>
-
-                  <div className="space-y-4">
-                    {/* Email */}
-                    <div className="flex items-start">
-                      <div className="mr-3 mt-1 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                        <svg
-                          className="h-5 w-5 text-primary"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-foreground">
-                          Email
-                        </p>
-                        <a
-                          href="mailto:contact@afrexia.com"
-                          className="text-primary hover:underline"
-                        >
-                          contact@afrexia.com
-                        </a>
-                      </div>
-                    </div>
-
-                    {/* Phone */}
-                    <div className="flex items-start">
-                      <div className="mr-3 mt-1 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                        <svg
-                          className="h-5 w-5 text-primary"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-foreground">
-                          {locale === 'fr' ? 'Téléphone' : 'Phone'}
-                        </p>
-                        <a
-                          href="tel:+237XXXXXXXXX"
-                          className="text-primary hover:underline"
-                        >
-                          +237 XXX XXX XXX
-                        </a>
-                      </div>
-                    </div>
-
-                    {/* Address */}
-                    <div className="flex items-start">
-                      <div className="mr-3 mt-1 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                        <svg
-                          className="h-5 w-5 text-primary"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                          />
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-foreground">
-                          {locale === 'fr' ? 'Adresse' : 'Address'}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          {locale === 'fr'
-                            ? 'Douala, Cameroun'
-                            : 'Douala, Cameroon'}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Business Hours */}
-                    <div className="flex items-start">
-                      <div className="mr-3 mt-1 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                        <svg
-                          className="h-5 w-5 text-primary"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-foreground">
-                          {locale === 'fr'
-                            ? "Heures d'Ouverture"
-                            : 'Business Hours'}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          {locale === 'fr'
-                            ? 'Lun - Ven: 8h00 - 17h00 WAT'
-                            : 'Mon - Fri: 8:00 AM - 5:00 PM WAT'}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Quick Links Card */}
-                <div className="rounded-xl bg-primary p-6 text-white shadow-md">
-                  <h3 className="mb-4 text-xl font-bold">
-                    {locale === 'fr' ? 'Liens Rapides' : 'Quick Links'}
-                  </h3>
-                  <ul className="space-y-2 text-sm">
-                    <li>
-                      <a
-                        href={`/${locale}/rfq`}
-                        className="hover:underline"
-                      >
-                        {locale === 'fr'
-                          ? '→ Demander un Devis'
-                          : '→ Request a Quote'}
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href={`/${locale}/products`}
-                        className="hover:underline"
-                      >
-                        {locale === 'fr'
-                          ? '→ Voir nos Produits'
-                          : '→ View Our Products'}
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href={`/${locale}/quality`}
-                        className="hover:underline"
-                      >
-                        {locale === 'fr'
-                          ? '→ Qualité & Conformité'
-                          : '→ Quality & Compliance'}
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href={`/${locale}/traceability`}
-                        className="hover:underline"
-                      >
-                        {locale === 'fr'
-                          ? '→ Traçabilité EUDR'
-                          : '→ EUDR Traceability'}
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Social Media Card */}
-                <div className="rounded-xl bg-white p-6 shadow-md">
-                  <h3 className="mb-4 text-xl font-bold text-primary">
-                    {locale === 'fr' ? 'Suivez-Nous' : 'Follow Us'}
-                  </h3>
-                  <div className="flex gap-3">
-                    <a
-                      href="https://linkedin.com/company/afrexia"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white transition-colors hover:bg-primary-dark"
-                      aria-label="LinkedIn"
-                    >
-                      <svg
-                        className="h-5 w-5"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                      </svg>
-                    </a>
-                    <a
-                      href="https://twitter.com/afrexia"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white transition-colors hover:bg-primary-dark"
-                      aria-label="Twitter"
-                    >
-                      <svg
-                        className="h-5 w-5"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
+              <p className="text-sm text-[#80996F] mb-6">
+                {t.form.subtitle}
+              </p>
+              <ContactForm locale={locale} />
             </div>
           </div>
 
-          {/* Office Location Map */}
-          <div className="mt-12">
-            <div className="rounded-xl bg-white p-6 shadow-md">
-              <h2 className="mb-6 text-2xl font-bold text-primary">
-                {locale === 'fr' ? 'Notre Bureau' : 'Our Office'}
-              </h2>
-              <OfficeLocationMap locale={locale} />
-            </div>
-          </div>
-
-          {/* FAQ Section */}
-          <div className="mt-12 rounded-xl bg-white p-6 shadow-md md:p-8">
-            <h2 className="mb-6 text-2xl font-bold text-primary">
-              {locale === 'fr'
-                ? 'Questions Fréquentes'
-                : 'Frequently Asked Questions'}
-            </h2>
+          {/* Sidebar */}
+          <div className="lg:col-span-1">
             <div className="space-y-6">
-              <div>
-                <h3 className="mb-2 font-semibold text-foreground">
-                  {locale === 'fr'
-                    ? 'Quel est le délai de réponse moyen?'
-                    : 'What is the average response time?'}
+              {/* Contact Details Card */}
+              <div className="bg-[#0F1814] border border-[rgba(255,255,255,0.08)] rounded-lg p-6">
+                <h3 className="text-lg font-bold text-[#E8F5E9] mb-6">
+                  {t.info.title}
                 </h3>
-                <p className="text-muted-foreground">
-                  {locale === 'fr'
-                    ? 'Nous nous efforçons de répondre à toutes les demandes dans les 24 à 48 heures ouvrables.'
-                    : 'We strive to respond to all inquiries within 24-48 business hours.'}
-                </p>
+
+                <div className="space-y-4">
+                  {/* Email */}
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-[#4A9A62]/10 border border-[#4A9A62]/20 flex items-center justify-center flex-shrink-0">
+                      <Mail className="w-5 h-5 text-[#4A9A62]" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-[#C5D9C0] mb-1">
+                        {t.info.email}
+                      </p>
+                      <a
+                        href="mailto:contact@afrexia.com"
+                        className="text-[#4A9A62] hover:text-[#3d8251] transition-colors text-sm"
+                      >
+                        contact@afrexia.com
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Phone */}
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-[#4A9A62]/10 border border-[#4A9A62]/20 flex items-center justify-center flex-shrink-0">
+                      <Phone className="w-5 h-5 text-[#4A9A62]" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-[#C5D9C0] mb-1">
+                        {t.info.phone}
+                      </p>
+                      <a
+                        href="tel:+237XXXXXXXXX"
+                        className="text-[#4A9A62] hover:text-[#3d8251] transition-colors text-sm"
+                      >
+                        +237 XXX XXX XXX
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Address */}
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-[#4A9A62]/10 border border-[#4A9A62]/20 flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-5 h-5 text-[#4A9A62]" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-[#C5D9C0] mb-1">
+                        {t.info.address}
+                      </p>
+                      <p className="text-sm text-[#80996F]">
+                        {t.info.location}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Business Hours */}
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-[#4A9A62]/10 border border-[#4A9A62]/20 flex items-center justify-center flex-shrink-0">
+                      <Clock className="w-5 h-5 text-[#4A9A62]" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-[#C5D9C0] mb-1">
+                        {t.info.hours}
+                      </p>
+                      <p className="text-sm text-[#80996F]">
+                        {t.info.hoursValue}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div>
-                <h3 className="mb-2 font-semibold text-foreground">
-                  {locale === 'fr'
-                    ? 'Puis-je visiter vos installations?'
-                    : 'Can I visit your facilities?'}
+
+              {/* Quick Links Card */}
+              <div className="bg-gradient-to-br from-[#4A9A62] to-[#3d8251] p-6 rounded-lg border border-[#4A9A62]/20">
+                <h3 className="text-lg font-bold text-white mb-4">
+                  {t.quickLinks.title}
                 </h3>
-                <p className="text-muted-foreground">
-                  {locale === 'fr'
-                    ? 'Oui, nous accueillons les visites sur rendez-vous. Veuillez nous contacter pour planifier votre visite.'
-                    : 'Yes, we welcome visits by appointment. Please contact us to schedule your visit.'}
-                </p>
+                <ul className="space-y-2 text-sm">
+                  <li>
+                    <Link
+                      href={`/${locale}/rfq`}
+                      className="text-white/90 hover:text-white transition-colors flex items-center gap-2"
+                    >
+                      <span className="text-[#A89858]">→</span>
+                      {t.quickLinks.rfq}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={`/${locale}/products`}
+                      className="text-white/90 hover:text-white transition-colors flex items-center gap-2"
+                    >
+                      <span className="text-[#A89858]">→</span>
+                      {t.quickLinks.products}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={`/${locale}/quality`}
+                      className="text-white/90 hover:text-white transition-colors flex items-center gap-2"
+                    >
+                      <span className="text-[#A89858]">→</span>
+                      {t.quickLinks.quality}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={`/${locale}/traceability`}
+                      className="text-white/90 hover:text-white transition-colors flex items-center gap-2"
+                    >
+                      <span className="text-[#A89858]">→</span>
+                      {t.quickLinks.traceability}
+                    </Link>
+                  </li>
+                </ul>
               </div>
-              <div>
-                <h3 className="mb-2 font-semibold text-foreground">
-                  {locale === 'fr'
-                    ? 'Offrez-vous un support dans d\'autres langues?'
-                    : 'Do you offer support in other languages?'}
+
+              {/* Social Media Card */}
+              <div className="bg-[#0F1814] border border-[rgba(255,255,255,0.08)] rounded-lg p-6">
+                <h3 className="text-lg font-bold text-[#E8F5E9] mb-4">
+                  {t.social}
                 </h3>
-                <p className="text-muted-foreground">
-                  {locale === 'fr'
-                    ? 'Nous offrons un support en français et en anglais. Pour d\'autres langues, veuillez nous contacter.'
-                    : 'We offer support in French and English. For other languages, please contact us.'}
-                </p>
+                <div className="flex gap-3">
+                  <a
+                    href="https://linkedin.com/company/afrexia"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-lg bg-[#4A9A62]/10 border border-[#4A9A62]/20 flex items-center justify-center text-[#4A9A62] hover:bg-[#4A9A62] hover:text-white transition-all duration-300"
+                    aria-label="LinkedIn"
+                  >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://twitter.com/afrexia"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-lg bg-[#4A9A62]/10 border border-[#4A9A62]/20 flex items-center justify-center text-[#4A9A62] hover:bg-[#4A9A62] hover:text-white transition-all duration-300"
+                    aria-label="Twitter"
+                  >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                    </svg>
+                  </a>
+                </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Office Location Map */}
+        <div className="mt-12">
+          <div className="bg-[#0F1814] border border-[rgba(255,255,255,0.08)] rounded-lg p-6 md:p-8">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-[#E8F5E9] mb-2">
+                {t.office.title}
+              </h2>
+              <p className="text-[#C5D9C0]">
+                {t.office.subtitle}
+              </p>
+            </div>
+            <OfficeLocationMap locale={locale} />
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="mt-12 bg-[#0F1814] border border-[rgba(255,255,255,0.08)] rounded-lg p-6 md:p-8">
+          <h2 className="text-2xl font-bold text-[#E8F5E9] mb-8">
+            {t.faq.title}
+          </h2>
+          <div className="space-y-6">
+            <div className="border-l-2 border-[#4A9A62] pl-4">
+              <h3 className="font-semibold text-[#E8F5E9] mb-2">
+                {t.faq.q1}
+              </h3>
+              <p className="text-[#C5D9C0] text-sm leading-relaxed">
+                {t.faq.a1}
+              </p>
+            </div>
+            <div className="border-l-2 border-[#4A9A62] pl-4">
+              <h3 className="font-semibold text-[#E8F5E9] mb-2">
+                {t.faq.q2}
+              </h3>
+              <p className="text-[#C5D9C0] text-sm leading-relaxed">
+                {t.faq.a2}
+              </p>
+            </div>
+            <div className="border-l-2 border-[#4A9A62] pl-4">
+              <h3 className="font-semibold text-[#E8F5E9] mb-2">
+                {t.faq.q3}
+              </h3>
+              <p className="text-[#C5D9C0] text-sm leading-relaxed">
+                {t.faq.a3}
+              </p>
             </div>
           </div>
         </div>
