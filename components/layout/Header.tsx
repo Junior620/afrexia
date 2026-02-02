@@ -105,10 +105,10 @@ export function Header({ locale }: HeaderProps) {
           <LanguageSwitcher locale={locale} />
           <ThemeToggle />
           
-          {/* RFQ button - hidden on mobile, shown on tablet+ - Minimum 44x44px touch target */}
+          {/* RFQ button - hidden on mobile/tablet, shown on xl+ - Minimum 44x44px touch target */}
           <Link
             href={`/${locale}/rfq`}
-            className="hidden rounded-lg bg-primary px-4 py-2 min-h-[44px] min-w-[44px] text-sm font-semibold text-white transition-colors hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary dark:bg-dark-primary dark:hover:bg-dark-secondary dark:focus:ring-dark-primary sm:flex sm:items-center"
+            className="hidden rounded-lg bg-primary px-4 py-2 min-h-[44px] min-w-[44px] text-sm font-semibold text-white transition-colors hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary dark:bg-dark-primary dark:hover:bg-dark-secondary dark:focus:ring-dark-primary xl:flex xl:items-center"
             aria-label={rfqLabel}
           >
             {rfqLabel}

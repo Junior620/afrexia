@@ -151,34 +151,63 @@ export const CatalogHeaderDark: React.FC<CatalogHeaderDarkProps> = ({
         />
       </div>
 
+      {/* Animated Background Particles */}
+      <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
+        {/* Pulse particles */}
+        <div className="absolute top-[15%] left-[10%] w-32 h-32 bg-[#4A9A62]/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-[25%] right-[15%] w-40 h-40 bg-[#4A9A62]/8 rounded-full blur-3xl animate-pulse-delayed-1" />
+        <div className="absolute bottom-[20%] left-[20%] w-36 h-36 bg-[#4A9A62]/12 rounded-full blur-3xl animate-pulse-delayed-2" />
+        <div className="absolute bottom-[30%] right-[10%] w-28 h-28 bg-[#4A9A62]/10 rounded-full blur-3xl animate-pulse" />
+      </div>
+
+      {/* Floating Decorative Circles */}
+      <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
+        <div className="absolute top-[20%] left-[5%] w-3 h-3 border-2 border-[#4A9A62]/30 rounded-full animate-bounce" />
+        <div className="absolute top-[40%] right-[8%] w-2 h-2 border-2 border-[#4A9A62]/40 rounded-full animate-bounce-delayed-1" />
+        <div className="absolute bottom-[25%] left-[12%] w-2.5 h-2.5 border-2 border-[#4A9A62]/35 rounded-full animate-bounce-delayed-2" />
+        <div className="absolute bottom-[35%] right-[15%] w-3 h-3 border-2 border-[#4A9A62]/30 rounded-full animate-bounce" />
+      </div>
+
+      {/* Decorative Lines */}
+      <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
+        {/* Top line */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#4A9A62]/30 to-transparent animate-fadeInUp" />
+        {/* Bottom line */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#4A9A62]/30 to-transparent animate-fadeInUp-delayed-1" />
+      </div>
+
       <div className={contentClasses}>
         {/* Heading */}
-        <h1 className={headingClasses}>
+        <h1 className={cn(headingClasses, 'animate-fadeInUp')}>
           {translations.heading}
         </h1>
 
         {/* Subtitle */}
-        <p className={subtitleClasses}>
+        <p className={cn(subtitleClasses, 'animate-fadeInUp-delayed-1')}>
           {translations.subtitle}
         </p>
 
         {/* Trust Strip */}
-        <TrustStripDark
-          items={trustItems}
-          variant="compact"
-          className="justify-center"
-        />
+        <div className="animate-fadeInUp-delayed-2">
+          <TrustStripDark
+            items={trustItems}
+            variant="compact"
+            className="justify-center"
+          />
+        </div>
 
         {/* CTAs */}
-        <div className={ctaContainerClasses}>
+        <div className={cn(ctaContainerClasses, 'animate-scaleIn-delayed-2')}>
           <ButtonDark
             variant="primary"
             size="lg"
             onClick={onRequestQuote}
-            className="w-full sm:w-auto"
+            className="w-full sm:w-auto relative overflow-hidden group"
             aria-label={translations.ctaPrimary}
           >
-            {translations.ctaPrimary}
+            <span className="relative z-10">{translations.ctaPrimary}</span>
+            {/* Shimmer effect */}
+            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           </ButtonDark>
 
           <ButtonDark
@@ -187,10 +216,15 @@ export const CatalogHeaderDark: React.FC<CatalogHeaderDarkProps> = ({
             icon={downloadIcon}
             iconPosition="left"
             onClick={onDownloadCatalog}
-            className="w-full sm:w-auto"
+            className="w-full sm:w-auto relative group"
             aria-label={translations.ctaSecondary}
           >
-            {translations.ctaSecondary}
+            <span className="relative z-10 flex items-center gap-2">
+              {downloadIcon}
+              {translations.ctaSecondary}
+            </span>
+            {/* Border glow on hover */}
+            <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_15px_rgba(74,154,98,0.5)]" />
           </ButtonDark>
         </div>
       </div>

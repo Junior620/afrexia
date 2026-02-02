@@ -65,10 +65,16 @@ export const rfqFormSchema = z.object({
     .refine((val) => val.length >= 1, 'Please select a product'),
 
   quantity: z
-    .number()
-    .positive('Quantity must be greater than 0')
-    .max(1000000, 'Quantity exceeds maximum allowed')
-    .or(z.string().regex(/^\d+(\.\d+)?$/).transform(Number)),
+    .union([
+      z.number().positive('Quantity must be greater than 0').max(1000000, 'Quantity exceeds maximum allowed'),
+      z.string()
+        .min(1, 'Quantity is required')
+        .regex(/^\d+(\.\d+)?$/, 'Quantity must be a valid number')
+        .transform((val) => parseFloat(val))
+        .refine((val) => !isNaN(val) && val > 0, 'Quantity must be greater than 0')
+        .refine((val) => val <= 1000000, 'Quantity exceeds maximum allowed'),
+    ])
+    .refine((val) => typeof val === 'number' && !isNaN(val), 'Quantity is required'),
 
   quantityUnit: z.enum(quantityUnits, {
     errorMap: () => ({ message: 'Please select a valid quantity unit' }),

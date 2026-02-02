@@ -514,40 +514,70 @@ export default async function AboutPage({ params }: AboutPageProps) {
           <div className="absolute inset-0 bg-gradient-to-b from-[#0A1410]/60 via-[#0A1410]/70 to-[#0A1410]" />
         </div>
 
+        {/* Animated Background Particles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-[#4A9A62]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0s', animationDuration: '4s' }} />
+          <div className="absolute top-40 right-20 w-40 h-40 bg-[#A89858]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s', animationDuration: '5s' }} />
+          <div className="absolute bottom-20 left-1/4 w-36 h-36 bg-[#4A9A62]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s', animationDuration: '6s' }} />
+          <div className="absolute top-1/3 right-1/4 w-28 h-28 bg-[#A89858]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s', animationDuration: '4.5s' }} />
+        </div>
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#E8F5E9] mb-6">
+          {/* Decorative top line */}
+          <div className="flex items-center justify-center mb-8 animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
+            <div className="h-px w-16 bg-gradient-to-r from-transparent via-[#4A9A62] to-transparent" />
+          </div>
+
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#E8F5E9] mb-6 animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
             {t.hero.title}
           </h1>
-          <p className="text-lg md:text-xl text-[#C5D9C0] max-w-3xl mx-auto mb-6">
+          <p className="text-lg md:text-xl text-[#C5D9C0] max-w-3xl mx-auto mb-6 animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
             {t.hero.subtitle}
           </p>
           
-          <div className="flex flex-wrap items-center justify-center gap-3 text-sm">
+          <div className="flex flex-wrap items-center justify-center gap-3 text-sm animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
             {t.hero.badges.map((badge: string, index: number) => (
               <span
                 key={index}
-                className="px-4 py-2 bg-[#0F1814]/80 border border-[rgba(255,255,255,0.08)] rounded-full text-[#A89858]"
+                className="group relative px-4 py-2 bg-[#0F1814]/80 border border-[rgba(255,255,255,0.08)] rounded-full text-[#A89858] hover:border-[#A89858]/40 hover:bg-[#0F1814] transition-all duration-300 hover:scale-105 overflow-hidden"
               >
-                {badge}
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                <span className="relative z-10">{badge}</span>
               </span>
             ))}
           </div>
+
+          {/* Decorative bottom element */}
+          <div className="flex items-center justify-center mt-8 animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
+            <div className="h-1 w-24 bg-gradient-to-r from-transparent via-[#4A9A62] to-transparent rounded-full" />
+          </div>
         </div>
+
+        {/* Floating decorative circles */}
+        <div className="absolute top-10 left-10 w-2 h-2 bg-[#4A9A62] rounded-full animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }} />
+        <div className="absolute top-20 right-16 w-3 h-3 bg-[#A89858] rounded-full animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '3.5s' }} />
+        <div className="absolute bottom-32 left-20 w-2 h-2 bg-[#4A9A62] rounded-full animate-bounce" style={{ animationDelay: '1s', animationDuration: '4s' }} />
+        <div className="absolute bottom-20 right-32 w-3 h-3 bg-[#A89858] rounded-full animate-bounce" style={{ animationDelay: '1.5s', animationDuration: '3.2s' }} />
       </section>
 
       {/* Intro Section - Qui sommes-nous */}
-      <section className="scroll-reveal py-20 px-4 sm:px-6 lg:px-8 opacity-0 translate-y-8 transition-all duration-700">
-        <div className="max-w-7xl mx-auto">
+      <section className="scroll-reveal py-20 px-4 sm:px-6 lg:px-8 opacity-0 translate-y-8 transition-all duration-700 relative overflow-hidden">
+        {/* Large animated background blurs */}
+        <div className="absolute -top-40 -left-40 w-96 h-96 bg-[#4A9A62]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s' }} />
+        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-[#A89858]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s', animationDelay: '2s' }} />
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-5 gap-12 items-center">
             {/* Content - 60% */}
             <div className="lg:col-span-3">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#E8F5E9] mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#E8F5E9] mb-6 animate-fadeInUp">
                 {t.intro.title}
               </h2>
               
               <div className="space-y-4">
                 {t.intro.paragraphs.map((paragraph: string, index: number) => (
-                  <p key={index} className="text-base text-[#C5D9C0] leading-relaxed">
+                  <p key={index} className="text-base text-[#C5D9C0] leading-relaxed animate-fadeInUp" style={{ animationDelay: `${0.1 + index * 0.1}s` }}>
                     {paragraph}
                   </p>
                 ))}
@@ -558,37 +588,51 @@ export default async function AboutPage({ params }: AboutPageProps) {
                 {t.intro.stats.map((stat: { value: string; label: string }, index: number) => (
                   <div
                     key={index}
-                    className="group relative bg-gradient-to-br from-[#0F1814] to-[#0A1410] border border-[rgba(255,255,255,0.08)] rounded-lg p-6 text-center hover:border-[rgba(74,154,98,0.4)] hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(74,154,98,0.15)]"
+                    className="group relative bg-gradient-to-br from-[#0F1814] to-[#0A1410] border border-[rgba(255,255,255,0.08)] rounded-lg p-6 text-center hover:border-[rgba(74,154,98,0.4)] hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(74,154,98,0.15)] animate-scaleIn overflow-hidden"
+                    style={{ animationDelay: `${0.5 + index * 0.1}s` }}
                   >
+                    {/* Animated corner decoration */}
+                    <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-[#4A9A62]/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    
                     {/* Subtle glow effect on hover */}
                     <div className="absolute inset-0 bg-gradient-to-br from-[#4A9A62]/0 to-[#4A9A62]/0 group-hover:from-[#4A9A62]/5 group-hover:to-[#4A9A62]/5 transition-all duration-300 rounded-lg" />
                     
+                    {/* Animated bottom border */}
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#4A9A62] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                    
                     {/* Content */}
                     <div className="relative z-10">
-                      <div className="text-3xl font-bold text-[#4A9A62] mb-2 group-hover:scale-105 transition-transform duration-300">
+                      <div className="text-3xl font-bold text-[#4A9A62] mb-2 group-hover:scale-110 transition-transform duration-300">
                         {stat.value}
                       </div>
                       <div className="text-sm text-[#C5D9C0]">
                         {stat.label}
                       </div>
                     </div>
+
+                    {/* Pulse ring effect */}
+                    <div className="absolute inset-0 rounded-lg border-2 border-[#4A9A62]/0 group-hover:border-[#4A9A62]/30 group-hover:scale-105 transition-all duration-500" />
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Image - 40% */}
-            <div className="lg:col-span-2">
-              <div className="relative h-full min-h-[400px] rounded-lg overflow-hidden border border-[rgba(255,255,255,0.08)] shadow-[0_20px_60px_rgba(0,0,0,0.4)] hover:shadow-[0_25px_70px_rgba(74,154,98,0.2)] hover:border-[rgba(74,154,98,0.3)] transition-all duration-500 hover:-translate-y-2 hover:rotate-1">
+            <div className="lg:col-span-2 animate-scaleIn" style={{ animationDelay: '0.3s' }}>
+              <div className="group relative h-full min-h-[400px] rounded-lg overflow-hidden border border-[rgba(255,255,255,0.08)] shadow-[0_20px_60px_rgba(0,0,0,0.4)] hover:shadow-[0_25px_70px_rgba(74,154,98,0.2)] hover:border-[rgba(74,154,98,0.3)] transition-all duration-500 hover:-translate-y-2 hover:rotate-1">
                 <Image
                   src="/assets/rogess.jpg"
                   alt="AFREXIA operations"
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover group-hover:scale-110 group-hover:rotate-2 transition-transform duration-700"
                 />
                 
                 {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1410]/40 via-transparent to-transparent" />
+                
+                {/* Corner accent */}
+                <div className="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-[#4A9A62]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute bottom-4 left-4 w-12 h-12 border-b-2 border-l-2 border-[#4A9A62]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
             </div>
           </div>
@@ -596,33 +640,43 @@ export default async function AboutPage({ params }: AboutPageProps) {
       </section>
 
       {/* Bridge Section - Building Bridges */}
-      <section className="scroll-reveal py-20 px-4 sm:px-6 lg:px-8 bg-[#0F1814]/30 opacity-0 translate-y-8 transition-all duration-700">
-        <div className="max-w-7xl mx-auto">
+      <section className="scroll-reveal py-20 px-4 sm:px-6 lg:px-8 bg-[#0F1814]/30 opacity-0 translate-y-8 transition-all duration-700 relative overflow-hidden">
+        {/* Background particles */}
+        <div className="absolute top-10 left-10 w-64 h-64 bg-[#4A9A62]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '7s' }} />
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-[#A89858]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '9s', animationDelay: '1s' }} />
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-5 gap-12 items-center">
             {/* Image - 40% (Left side) */}
-            <div className="lg:col-span-2 order-2 lg:order-1">
-              <div className="relative h-full min-h-[400px] rounded-lg overflow-hidden border border-[rgba(255,255,255,0.08)] shadow-[0_20px_60px_rgba(0,0,0,0.4)] hover:shadow-[0_25px_70px_rgba(74,154,98,0.2)] hover:border-[rgba(74,154,98,0.3)] transition-all duration-500 hover:-translate-y-2 hover:-rotate-1">
+            <div className="lg:col-span-2 order-2 lg:order-1 animate-scaleIn" style={{ animationDelay: '0.2s' }}>
+              <div className="group relative h-full min-h-[400px] rounded-lg overflow-hidden border border-[rgba(255,255,255,0.08)] shadow-[0_20px_60px_rgba(0,0,0,0.4)] hover:shadow-[0_25px_70px_rgba(74,154,98,0.2)] hover:border-[rgba(74,154,98,0.3)] transition-all duration-500 hover:-translate-y-2 hover:-rotate-1">
                 <Image
                   src="/assets/roger1.jpg"
                   alt="Afrexia field operations"
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover group-hover:scale-110 group-hover:-rotate-2 transition-transform duration-700"
                 />
                 
                 {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1410]/40 via-transparent to-transparent" />
+                
+                {/* Animated corner accents */}
+                <div className="absolute top-4 left-4 w-12 h-12 border-t-2 border-l-2 border-[#4A9A62]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute bottom-4 right-4 w-12 h-12 border-b-2 border-r-2 border-[#4A9A62]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
             </div>
 
             {/* Content - 60% (Right side) */}
             <div className="lg:col-span-3 order-1 lg:order-2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#4A9A62] mb-6 leading-tight">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#4A9A62] mb-6 leading-tight animate-fadeInUp relative inline-block">
                 {t.bridge.title}
+                {/* Underline decoration */}
+                <div className="absolute -bottom-2 left-0 w-24 h-1 bg-gradient-to-r from-[#4A9A62] to-transparent rounded-full animate-slideInRight" />
               </h2>
               
               <div className="space-y-4">
                 {t.bridge.paragraphs.map((paragraph: string, index: number) => (
-                  <p key={index} className="text-base text-[#C5D9C0] leading-relaxed">
+                  <p key={index} className="text-base text-[#C5D9C0] leading-relaxed animate-fadeInUp" style={{ animationDelay: `${0.1 + index * 0.1}s` }}>
                     {paragraph}
                   </p>
                 ))}
@@ -633,18 +687,23 @@ export default async function AboutPage({ params }: AboutPageProps) {
       </section>
 
       {/* Commitment Section - Notre engagement envers les producteurs */}
-      <section className="scroll-reveal py-20 px-4 sm:px-6 lg:px-8 opacity-0 translate-y-8 transition-all duration-700">
-        <div className="max-w-7xl mx-auto">
+      <section className="scroll-reveal py-20 px-4 sm:px-6 lg:px-8 opacity-0 translate-y-8 transition-all duration-700 relative overflow-hidden">
+        {/* Background glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#A89858]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s' }} />
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-5 gap-12 items-center">
             {/* Content - 40% (Left side) */}
             <div className="lg:col-span-2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#A89858] mb-6 leading-tight">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#A89858] mb-6 leading-tight animate-fadeInUp relative inline-block">
                 {t.commitment.title}
+                {/* Decorative underline */}
+                <div className="absolute -bottom-2 left-0 w-20 h-1 bg-gradient-to-r from-[#A89858] to-transparent rounded-full animate-slideInRight" />
               </h2>
               
               <div className="space-y-4">
                 {t.commitment.paragraphs.map((paragraph: string, index: number) => (
-                  <p key={index} className="text-base text-[#C5D9C0] leading-relaxed">
+                  <p key={index} className="text-base text-[#C5D9C0] leading-relaxed animate-fadeInUp" style={{ animationDelay: `${0.1 + index * 0.1}s` }}>
                     {paragraph}
                   </p>
                 ))}
@@ -652,40 +711,44 @@ export default async function AboutPage({ params }: AboutPageProps) {
             </div>
 
             {/* Images Grid - 60% (Right side) */}
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-3 animate-scaleIn" style={{ animationDelay: '0.3s' }}>
               <div className="relative">
                 {/* Small image - Top Left (extends beyond left edge) */}
-                <div className="absolute -top-6 -left-12 w-1/3 z-10">
-                  <div className="relative h-32 rounded-lg overflow-hidden border border-[rgba(255,255,255,0.08)] shadow-[0_20px_60px_rgba(0,0,0,0.4)] hover:shadow-[0_25px_70px_rgba(74,154,98,0.2)] hover:border-[rgba(74,154,98,0.3)] transition-all duration-500 hover:-translate-y-2">
+                <div className="absolute -top-6 -left-12 w-1/3 z-10 animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
+                  <div className="group relative h-32 rounded-lg overflow-hidden border border-[rgba(255,255,255,0.08)] shadow-[0_20px_60px_rgba(0,0,0,0.4)] hover:shadow-[0_25px_70px_rgba(74,154,98,0.2)] hover:border-[rgba(74,154,98,0.3)] transition-all duration-500 hover:-translate-y-2 hover:rotate-3">
                     <Image
                       src="/assets/1.jpg"
                       alt="Engagement producteurs 1"
                       fill
-                      className="object-cover hover:scale-105 transition-transform duration-500"
+                      className="object-cover group-hover:scale-110 group-hover:rotate-2 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A1410]/40 via-transparent to-transparent" />
                   </div>
                 </div>
 
                 {/* Large image - Center */}
-                <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-[rgba(255,255,255,0.08)] shadow-[0_20px_60px_rgba(0,0,0,0.4)] hover:shadow-[0_25px_70px_rgba(74,154,98,0.2)] hover:border-[rgba(74,154,98,0.3)] transition-all duration-500 hover:-translate-y-2">
+                <div className="group relative aspect-[4/3] rounded-lg overflow-hidden border border-[rgba(255,255,255,0.08)] shadow-[0_20px_60px_rgba(0,0,0,0.4)] hover:shadow-[0_25px_70px_rgba(74,154,98,0.2)] hover:border-[rgba(74,154,98,0.3)] transition-all duration-500 hover:-translate-y-2 animate-scaleIn" style={{ animationDelay: '0.5s' }}>
                   <Image
                     src="/assets/2.jpg"
                     alt="Engagement producteurs 2"
                     fill
-                    className="object-cover hover:scale-105 transition-transform duration-500"
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0A1410]/40 via-transparent to-transparent" />
+                  
+                  {/* Corner accents */}
+                  <div className="absolute top-4 left-4 w-10 h-10 border-t-2 border-l-2 border-[#A89858]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute bottom-4 right-4 w-10 h-10 border-b-2 border-r-2 border-[#A89858]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
 
                 {/* Small image - Bottom Right (extends beyond right edge) */}
-                <div className="absolute -bottom-6 -right-12 w-2/5 z-10">
-                  <div className="relative h-40 rounded-lg overflow-hidden border border-[rgba(255,255,255,0.08)] shadow-[0_20px_60px_rgba(0,0,0,0.4)] hover:shadow-[0_25px_70px_rgba(74,154,98,0.2)] hover:border-[rgba(74,154,98,0.3)] transition-all duration-500 hover:-translate-y-2">
+                <div className="absolute -bottom-6 -right-12 w-2/5 z-10 animate-fadeInUp" style={{ animationDelay: '0.6s' }}>
+                  <div className="group relative h-40 rounded-lg overflow-hidden border border-[rgba(255,255,255,0.08)] shadow-[0_20px_60px_rgba(0,0,0,0.4)] hover:shadow-[0_25px_70px_rgba(74,154,98,0.2)] hover:border-[rgba(74,154,98,0.3)] transition-all duration-500 hover:-translate-y-2 hover:-rotate-3">
                     <Image
                       src="/assets/3.jpg"
                       alt="Engagement producteurs 3"
                       fill
-                      className="object-cover hover:scale-105 transition-transform duration-500"
+                      className="object-cover group-hover:scale-110 group-hover:-rotate-2 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A1410]/40 via-transparent to-transparent" />
                   </div>
@@ -697,44 +760,70 @@ export default async function AboutPage({ params }: AboutPageProps) {
       </section>
 
       {/* Story & Mission Section - Side by Side */}
-      <section className="scroll-reveal py-20 px-4 sm:px-6 lg:px-8 bg-[#0F1814]/30 opacity-0 translate-y-8 transition-all duration-700">
-        <div className="max-w-7xl mx-auto">
+      <section className="scroll-reveal py-20 px-4 sm:px-6 lg:px-8 bg-[#0F1814]/30 opacity-0 translate-y-8 transition-all duration-700 relative overflow-hidden">
+        {/* Background particles */}
+        <div className="absolute top-20 left-20 w-72 h-72 bg-[#4A9A62]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s' }} />
+        <div className="absolute bottom-20 right-20 w-72 h-72 bg-[#A89858]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '7s', animationDelay: '1s' }} />
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Story */}
-            <div className="bg-[#0F1814] border border-[rgba(255,255,255,0.08)] rounded-lg p-8 hover:border-[rgba(74,154,98,0.4)] hover:-translate-y-1 transition-all duration-300">
-              <h2 className="text-2xl md:text-3xl font-bold text-[#E8F5E9] mb-4">
+            <div className="group relative bg-[#0F1814] border border-[rgba(255,255,255,0.08)] rounded-lg p-8 hover:border-[rgba(74,154,98,0.4)] hover:-translate-y-1 transition-all duration-300 animate-scaleIn overflow-hidden" style={{ animationDelay: '0.1s' }}>
+              {/* Animated top border */}
+              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#4A9A62] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+              
+              {/* Corner glow */}
+              <div className="absolute top-0 left-0 w-24 h-24 bg-gradient-to-br from-[#4A9A62]/10 to-transparent rounded-br-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <h2 className="text-2xl md:text-3xl font-bold text-[#E8F5E9] mb-4 relative z-10">
                 {t.story.title}
               </h2>
-              <p className="text-base text-[#C5D9C0] leading-relaxed">
+              <p className="text-base text-[#C5D9C0] leading-relaxed relative z-10">
                 {t.story.content}
               </p>
+
+              {/* Pulse ring */}
+              <div className="absolute inset-0 rounded-lg border-2 border-[#4A9A62]/0 group-hover:border-[#4A9A62]/20 group-hover:scale-105 transition-all duration-500" />
             </div>
 
             {/* Mission */}
-            <div className="bg-[#0F1814] border border-[rgba(255,255,255,0.08)] rounded-lg p-8 hover:border-[rgba(74,154,98,0.4)] hover:-translate-y-1 transition-all duration-300">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-lg bg-[#4A9A62]/10 border border-[#4A9A62]/20 flex items-center justify-center flex-shrink-0">
+            <div className="group relative bg-[#0F1814] border border-[rgba(255,255,255,0.08)] rounded-lg p-8 hover:border-[rgba(74,154,98,0.4)] hover:-translate-y-1 transition-all duration-300 animate-scaleIn overflow-hidden" style={{ animationDelay: '0.2s' }}>
+              {/* Animated top border */}
+              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#4A9A62] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+              
+              {/* Corner glow */}
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#4A9A62]/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div className="flex items-center gap-3 mb-4 relative z-10">
+                <div className="w-12 h-12 rounded-lg bg-[#4A9A62]/10 border border-[#4A9A62]/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                   <Eye className="w-6 h-6 text-[#4A9A62]" />
                 </div>
                 <h2 className="text-2xl md:text-3xl font-bold text-[#E8F5E9]">
                   {t.mission.title}
                 </h2>
               </div>
-              <p className="text-base text-[#C5D9C0] leading-relaxed">
+              <p className="text-base text-[#C5D9C0] leading-relaxed relative z-10">
                 {t.mission.content}
               </p>
+
+              {/* Pulse ring */}
+              <div className="absolute inset-0 rounded-lg border-2 border-[#4A9A62]/0 group-hover:border-[#4A9A62]/20 group-hover:scale-105 transition-all duration-500" />
             </div>
           </div>
         </div>
       </section>
 
       {/* Values Section */}
-      <section className="scroll-reveal py-20 px-4 sm:px-6 lg:px-8 opacity-0 translate-y-8 transition-all duration-700">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#E8F5E9] text-center mb-4">
+      <section className="scroll-reveal py-20 px-4 sm:px-6 lg:px-8 opacity-0 translate-y-8 transition-all duration-700 relative overflow-hidden">
+        {/* Large background blurs */}
+        <div className="absolute -top-40 -left-40 w-96 h-96 bg-[#4A9A62]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '9s' }} />
+        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-[#A89858]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '11s', animationDelay: '2s' }} />
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#E8F5E9] text-center mb-4 animate-fadeInUp">
             {t.values.title}
           </h2>
-          <p className="text-lg text-[#C5D9C0] text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-lg text-[#C5D9C0] text-center mb-12 max-w-2xl mx-auto animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
             {locale === 'fr' ? 'Les principes qui guident notre action quotidienne' : 
              locale === 'en' ? 'The principles that guide our daily actions' :
              locale === 'es' ? 'Los principios que guían nuestra acción diaria' :
@@ -748,18 +837,32 @@ export default async function AboutPage({ params }: AboutPageProps) {
               return (
                 <div
                   key={index}
-                  className="bg-[#0F1814] border border-[rgba(255,255,255,0.08)] rounded-lg p-6 hover:border-[rgba(74,154,98,0.4)] hover:-translate-y-1 transition-all duration-300 group"
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  className="group relative bg-[#0F1814] border border-[rgba(255,255,255,0.08)] rounded-lg p-6 hover:border-[rgba(74,154,98,0.4)] hover:-translate-y-1 transition-all duration-300 animate-scaleIn overflow-hidden"
+                  style={{ animationDelay: `${0.2 + index * 0.1}s` }}
                 >
-                  <div className="w-12 h-12 rounded-lg bg-[#4A9A62]/10 border border-[#4A9A62]/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="w-6 h-6 text-[#4A9A62]" />
+                  {/* Corner decoration */}
+                  <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-[#4A9A62]/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  {/* Animated bottom border */}
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#4A9A62] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                  
+                  <div className="relative z-10">
+                    <div className="w-12 h-12 rounded-lg bg-[#4A9A62]/10 border border-[#4A9A62]/20 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                      <Icon className="w-6 h-6 text-[#4A9A62]" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-[#E8F5E9] mb-3">
+                      {value.title}
+                    </h3>
+                    <p className="text-sm text-[#C5D9C0] leading-relaxed">
+                      {value.description}
+                    </p>
                   </div>
-                  <h3 className="text-lg font-semibold text-[#E8F5E9] mb-3">
-                    {value.title}
-                  </h3>
-                  <p className="text-sm text-[#C5D9C0] leading-relaxed">
-                    {value.description}
-                  </p>
+
+                  {/* Glow effect on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#4A9A62]/0 to-[#4A9A62]/0 group-hover:from-[#4A9A62]/5 group-hover:to-[#4A9A62]/5 transition-all duration-300 rounded-lg" />
+                  
+                  {/* Pulse ring */}
+                  <div className="absolute inset-0 rounded-lg border-2 border-[#4A9A62]/0 group-hover:border-[#4A9A62]/20 group-hover:scale-105 transition-all duration-500" />
                 </div>
               );
             })}
@@ -768,13 +871,17 @@ export default async function AboutPage({ params }: AboutPageProps) {
       </section>
 
       {/* Approach Section */}
-      <section className="scroll-reveal py-20 px-4 sm:px-6 lg:px-8 bg-[#0F1814]/30 opacity-0 translate-y-8 transition-all duration-700">
-        <div className="max-w-7xl mx-auto">
+      <section className="scroll-reveal py-20 px-4 sm:px-6 lg:px-8 bg-[#0F1814]/30 opacity-0 translate-y-8 transition-all duration-700 relative overflow-hidden">
+        {/* Background particles */}
+        <div className="absolute top-10 left-10 w-80 h-80 bg-[#4A9A62]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '7s' }} />
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-[#A89858]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s', animationDelay: '1.5s' }} />
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#E8F5E9] mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#E8F5E9] mb-4 animate-fadeInUp">
               {t.approach.title}
             </h2>
-            <p className="text-lg text-[#C5D9C0]">
+            <p className="text-lg text-[#C5D9C0] animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
               {t.approach.subtitle}
             </p>
           </div>
@@ -785,16 +892,22 @@ export default async function AboutPage({ params }: AboutPageProps) {
               return (
                 <div
                   key={index}
-                  className="bg-[#0F1814] border border-[rgba(255,255,255,0.08)] rounded-lg p-8 hover:border-[rgba(74,154,98,0.4)] hover:-translate-y-1 transition-all duration-300 group"
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  className="group relative bg-[#0F1814] border border-[rgba(255,255,255,0.08)] rounded-lg p-8 hover:border-[rgba(74,154,98,0.4)] hover:-translate-y-1 transition-all duration-300 animate-scaleIn overflow-hidden"
+                  style={{ animationDelay: `${0.2 + index * 0.1}s` }}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-[#4A9A62]/10 border border-[#4A9A62]/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  {/* Animated top border */}
+                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#4A9A62] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+                  
+                  {/* Corner glow */}
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#4A9A62]/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <div className="flex items-start gap-4 relative z-10">
+                    <div className="w-12 h-12 rounded-lg bg-[#4A9A62]/10 border border-[#4A9A62]/20 flex items-center justify-center flex-shrink-0 group-hover:scale-125 group-hover:rotate-12 transition-all duration-300">
                       <Icon className="w-6 h-6 text-[#4A9A62]" />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-3">
-                        <span className="text-sm font-bold text-[#4A9A62] bg-[#4A9A62]/10 px-3 py-1 rounded-full">
+                        <span className="text-sm font-bold text-[#4A9A62] bg-[#4A9A62]/10 px-3 py-1 rounded-full group-hover:scale-110 transition-transform duration-300">
                           {index + 1}
                         </span>
                         <h3 className="text-xl font-semibold text-[#E8F5E9]">
@@ -806,6 +919,12 @@ export default async function AboutPage({ params }: AboutPageProps) {
                       </p>
                     </div>
                   </div>
+
+                  {/* Glow effect on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#4A9A62]/0 to-[#4A9A62]/0 group-hover:from-[#4A9A62]/5 group-hover:to-[#4A9A62]/5 transition-all duration-300 rounded-lg" />
+                  
+                  {/* Pulse ring */}
+                  <div className="absolute inset-0 rounded-lg border-2 border-[#4A9A62]/0 group-hover:border-[#4A9A62]/20 group-hover:scale-105 transition-all duration-500" />
                 </div>
               );
             })}
@@ -825,27 +944,56 @@ export default async function AboutPage({ params }: AboutPageProps) {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0A1410] via-[#0A1410]/80 to-[#0A1410]" />
         </div>
 
+        {/* Animated particles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-10 left-10 w-3 h-3 bg-[#4A9A62] rounded-full animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }} />
+          <div className="absolute top-20 right-20 w-2 h-2 bg-[#A89858] rounded-full animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '3.5s' }} />
+          <div className="absolute bottom-20 left-1/4 w-3 h-3 bg-[#4A9A62] rounded-full animate-bounce" style={{ animationDelay: '1s', animationDuration: '4s' }} />
+          <div className="absolute bottom-32 right-1/3 w-2 h-2 bg-[#A89858] rounded-full animate-bounce" style={{ animationDelay: '1.5s', animationDuration: '3.2s' }} />
+        </div>
+
+        {/* Animated rings */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-[#4A9A62]/10 rounded-full animate-ping" style={{ animationDuration: '3s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-[#A89858]/10 rounded-full animate-ping" style={{ animationDuration: '4s', animationDelay: '1s' }} />
+
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#E8F5E9] mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#E8F5E9] mb-4 animate-fadeInUp">
             {t.cta.title}
           </h2>
-          <p className="text-lg text-[#C5D9C0] mb-8">
+          <p className="text-lg text-[#C5D9C0] mb-8 animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
             {t.cta.subtitle}
           </p>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
             <Link
               href={`/${locale}/rfq`}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#4A9A62] text-white font-semibold rounded-lg hover:bg-[#3d8251] transition-colors"
+              className="group relative inline-flex items-center gap-2 px-8 py-4 bg-[#4A9A62] text-white font-semibold rounded-lg hover:bg-[#3d8251] transition-all duration-300 hover:scale-105 overflow-hidden"
             >
-              {t.cta.primary}
+              {/* Shimmer effect */}
+              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <span className="relative z-10">{t.cta.primary}</span>
+              <span className="relative z-10 group-hover:translate-x-1 transition-transform duration-300">→</span>
             </Link>
             <Link
               href={`/${locale}/contact`}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#0F1814] border border-[rgba(255,255,255,0.08)] text-[#E8F5E9] font-semibold rounded-lg hover:border-[#4A9A62] transition-colors"
+              className="group relative inline-flex items-center gap-2 px-8 py-4 bg-[#0F1814] border border-[rgba(255,255,255,0.08)] text-[#E8F5E9] font-semibold rounded-lg hover:border-[#4A9A62] transition-all duration-300 hover:scale-105 overflow-hidden"
             >
-              {t.cta.secondary}
+              {/* Border glow effect */}
+              <div className="absolute inset-0 rounded-lg border-2 border-[#4A9A62]/0 group-hover:border-[#4A9A62]/30 transition-all duration-300" />
+              <span className="relative z-10">{t.cta.secondary}</span>
             </Link>
+          </div>
+
+          {/* Pulse dot indicator */}
+          <div className="flex items-center justify-center gap-2 mt-6 animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
+            <div className="w-2 h-2 bg-[#4A9A62] rounded-full animate-pulse" />
+            <span className="text-sm text-[#C5D9C0]">
+              {locale === 'fr' ? 'Réponse sous 24h' : 
+               locale === 'en' ? 'Response within 24h' :
+               locale === 'es' ? 'Respuesta en 24h' :
+               locale === 'de' ? 'Antwort innerhalb 24h' :
+               'Ответ в течение 24ч'}
+            </span>
           </div>
         </div>
       </section>

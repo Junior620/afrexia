@@ -120,7 +120,7 @@ export function MobileNav({ locale, navItems, rfqItem }: MobileNavProps) {
       <button
         ref={hamburgerRef}
         onClick={() => setIsOpen(!isOpen)}
-        className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 lg:hidden focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary rounded-lg"
+        className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 xl:hidden focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary rounded-lg"
         aria-label={isOpen ? closeMenuLabel : openMenuLabel}
         aria-expanded={isOpen}
         aria-controls="mobile-menu"
@@ -146,7 +146,7 @@ export function MobileNav({ locale, navItems, rfqItem }: MobileNavProps) {
       {/* Mobile menu overlay - closes on click (Requirement 5.6) */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+          className="fixed inset-0 z-40 bg-black/50 xl:hidden"
           onClick={handleOverlayClick}
           aria-hidden="true"
         />
@@ -156,7 +156,7 @@ export function MobileNav({ locale, navItems, rfqItem }: MobileNavProps) {
       <nav
         id="mobile-menu"
         ref={navRef as React.RefObject<HTMLElement>}
-        className={`fixed right-0 top-0 z-50 h-full w-80 max-w-[85vw] bg-white dark:bg-dark-bg-secondary shadow-xl transition-transform duration-300 lg:hidden ${
+        className={`fixed right-0 top-0 z-50 h-full w-80 max-w-[85vw] bg-white dark:bg-dark-bg-secondary shadow-xl transition-transform duration-300 xl:hidden ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         role="dialog"

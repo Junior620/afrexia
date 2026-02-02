@@ -42,8 +42,8 @@ export function Navigation({ locale, navItems, rfqItem }: NavigationProps) {
 
   return (
     <>
-      {/* Desktop Navigation - hidden below lg breakpoint (1024px) */}
-      <nav className="hidden lg:block" aria-label={getTranslation(locale, 'accessibility.mainNavigation')}>
+      {/* Desktop Navigation - hidden below xl breakpoint (1280px) */}
+      <nav className="hidden xl:block" aria-label={getTranslation(locale, 'accessibility.mainNavigation')}>
         <ul className="flex items-center gap-1">
           {navItems.map((item) => (
             <li key={item.href}>
@@ -63,7 +63,7 @@ export function Navigation({ locale, navItems, rfqItem }: NavigationProps) {
         </ul>
       </nav>
 
-      {/* Mobile Navigation - shown below lg breakpoint (1024px) */}
+      {/* Mobile Navigation - shown below xl breakpoint (1280px) */}
       <MobileNav locale={locale} navItems={navItems} rfqItem={rfqItem} />
     </>
   );

@@ -205,33 +205,65 @@ export default async function TraceabilityPage({
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,transparent_50%,rgba(0,0,0,0.3)_100%)]" />
         </div>
 
+        {/* Animated Background Particles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-[1]">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-[#4A9A62]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0s', animationDuration: '4s' }} />
+          <div className="absolute top-40 right-20 w-40 h-40 bg-[#A89858]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s', animationDuration: '5s' }} />
+          <div className="absolute bottom-20 left-1/4 w-36 h-36 bg-[#4A9A62]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s', animationDuration: '6s' }} />
+          <div className="absolute top-1/3 right-1/4 w-28 h-28 bg-[#A89858]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s', animationDuration: '4.5s' }} />
+        </div>
+
+        {/* Floating decorative circles */}
+        <div className="absolute top-10 left-10 w-2 h-2 bg-[#4A9A62] rounded-full animate-bounce z-[1]" style={{ animationDelay: '0s', animationDuration: '3s' }} />
+        <div className="absolute top-20 right-16 w-3 h-3 bg-[#A89858] rounded-full animate-bounce z-[1]" style={{ animationDelay: '0.5s', animationDuration: '3.5s' }} />
+        <div className="absolute bottom-32 left-20 w-2 h-2 bg-[#4A9A62] rounded-full animate-bounce z-[1]" style={{ animationDelay: '1s', animationDuration: '4s' }} />
+        <div className="absolute bottom-20 right-32 w-3 h-3 bg-[#A89858] rounded-full animate-bounce z-[1]" style={{ animationDelay: '1.5s', animationDuration: '3.2s' }} />
+
         <div className="container mx-auto px-4 relative z-10">
           <ScrollReveal animation="fade">
             <div className="max-w-5xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[#E8F5E9] leading-tight">
+              {/* Decorative top line */}
+              <div className="flex items-center justify-center mb-8 animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
+                <div className="h-px w-16 bg-gradient-to-r from-transparent via-[#4A9A62] to-transparent" />
+              </div>
+
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[#E8F5E9] leading-tight animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
                 {locale === 'fr' ? 'Traçabilité & Conformité RDUE' : t.traceability.title}
               </h1>
-              <p className="text-xl md:text-2xl text-[#C5D9C0] leading-relaxed max-w-3xl mx-auto mb-8">
+              <p className="text-xl md:text-2xl text-[#C5D9C0] leading-relaxed max-w-3xl mx-auto mb-8 animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
                 {locale === 'fr' 
                   ? 'Transparence de la ferme au port — traçabilité lot et documentation de diligence raisonnable pour l\'Union Européenne.'
                   : t.traceability.subtitle}
               </p>
 
-              <TraceabilityHeroBadges badges={heroBadges} />
+              <div className="animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
+                <TraceabilityHeroBadges badges={heroBadges} />
+              </div>
+
+              {/* Decorative bottom element */}
+              <div className="flex items-center justify-center mt-8 animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
+                <div className="h-1 w-24 bg-gradient-to-r from-transparent via-[#4A9A62] to-transparent rounded-full" />
+              </div>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
       {/* EUDR Overview Section */}
-      <section className="py-20 bg-[#0F1814]">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-[#0F1814] relative overflow-hidden">
+        {/* Background particles */}
+        <div className="absolute top-10 left-10 w-72 h-72 bg-[#4A9A62]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '7s' }} />
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-[#A89858]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '9s', animationDelay: '1s' }} />
+
+        <div className="container mx-auto px-4 relative z-10">
           <ScrollReveal animation="fade">
             <div className="max-w-4xl mx-auto text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#E8F5E9] mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#E8F5E9] mb-6 animate-fadeInUp relative inline-block">
                 {locale === 'fr' ? 'Conformité RDUE' : t.traceability.eudr.title}
+                {/* Decorative underline */}
+                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-[#4A9A62] to-transparent rounded-full animate-slideInRight" />
               </h2>
-              <p className="text-lg text-[#C5D9C0] leading-relaxed">
+              <p className="text-lg text-[#C5D9C0] leading-relaxed animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
                 {locale === 'fr'
                   ? 'Nous structurons la traçabilité et la documentation nécessaires pour sécuriser les expéditions vers l\'UE, avec un niveau de preuve adapté aux exigences de diligence raisonnable.'
                   : t.traceability.eudr.description}
@@ -242,14 +274,18 @@ export default async function TraceabilityPage({
       </section>
 
       {/* Due Diligence Process Section */}
-      <section className="py-20 bg-[#0A1410]">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-[#0A1410] relative overflow-hidden">
+        {/* Large background blurs */}
+        <div className="absolute -top-40 -left-40 w-96 h-96 bg-[#4A9A62]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s' }} />
+        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-[#A89858]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s', animationDelay: '2s' }} />
+
+        <div className="container mx-auto px-4 relative z-10">
           <ScrollReveal animation="fade">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#E8F5E9] mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#E8F5E9] mb-4 animate-fadeInUp">
                 {locale === 'fr' ? 'Processus de Diligence Raisonnable' : t.traceability.dueDiligence.title}
               </h2>
-              <p className="text-xl text-[#C5D9C0] max-w-3xl mx-auto">
+              <p className="text-xl text-[#C5D9C0] max-w-3xl mx-auto animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
                 {locale === 'fr' 
                   ? 'Six étapes pour structurer la conformité et la traçabilité de vos expéditions.'
                   : t.traceability.dueDiligence.subtitle}
@@ -266,16 +302,30 @@ export default async function TraceabilityPage({
                   animation="slide-up"
                   delay={index * 0.1}
                 >
-                  <div className="bg-[#0F1814] rounded-xl p-8 hover:shadow-2xl hover:shadow-[rgba(74,154,98,0.2)] transition-all duration-300 h-full border border-[rgba(255,255,255,0.08)] hover:border-[rgba(74,154,98,0.4)] hover:-translate-y-1">
-                    <div className="w-16 h-16 bg-[rgba(74,154,98,0.15)] border border-[rgba(74,154,98,0.3)] rounded-lg flex items-center justify-center mb-6">
-                      <Icon className="w-8 h-8 text-[#4A9A62]" />
+                  <div className="group relative bg-[#0F1814] rounded-xl p-8 hover:shadow-2xl hover:shadow-[rgba(74,154,98,0.2)] transition-all duration-300 h-full border border-[rgba(255,255,255,0.08)] hover:border-[rgba(74,154,98,0.4)] hover:-translate-y-1 overflow-hidden">
+                    {/* Corner decoration */}
+                    <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-[#4A9A62]/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    
+                    {/* Animated top border */}
+                    <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#4A9A62] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+                    
+                    <div className="relative z-10">
+                      <div className="w-16 h-16 bg-[rgba(74,154,98,0.15)] border border-[rgba(74,154,98,0.3)] rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                        <Icon className="w-8 h-8 text-[#4A9A62]" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-[#E8F5E9] mb-4">
+                        {step.title}
+                      </h3>
+                      <p className="text-[#C5D9C0] leading-relaxed">
+                        {step.description}
+                      </p>
                     </div>
-                    <h3 className="text-2xl font-bold text-[#E8F5E9] mb-4">
-                      {step.title}
-                    </h3>
-                    <p className="text-[#C5D9C0] leading-relaxed">
-                      {step.description}
-                    </p>
+
+                    {/* Glow effect on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#4A9A62]/0 to-[#4A9A62]/0 group-hover:from-[#4A9A62]/5 group-hover:to-[#4A9A62]/5 transition-all duration-300 rounded-xl" />
+                    
+                    {/* Pulse ring */}
+                    <div className="absolute inset-0 rounded-xl border-2 border-[#4A9A62]/0 group-hover:border-[#4A9A62]/20 group-hover:scale-105 transition-all duration-500" />
                   </div>
                 </ScrollReveal>
               );
@@ -285,19 +335,23 @@ export default async function TraceabilityPage({
       </section>
 
       {/* Supply Chain Journey Section */}
-      <section className="py-20 bg-[#0F1814]">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-[#0F1814] relative overflow-hidden">
+        {/* Background particles */}
+        <div className="absolute top-20 left-20 w-72 h-72 bg-[#4A9A62]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s' }} />
+        <div className="absolute bottom-20 right-20 w-72 h-72 bg-[#A89858]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '7s', animationDelay: '1s' }} />
+
+        <div className="container mx-auto px-4 relative z-10">
           <ScrollReveal animation="fade">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#E8F5E9] mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#E8F5E9] mb-4 animate-fadeInUp">
                 {locale === 'fr' ? 'Parcours de la Chaîne d\'Approvisionnement' : t.traceability.supplyChain.title}
               </h2>
-              <p className="text-xl text-[#C5D9C0] max-w-3xl mx-auto mb-4">
+              <p className="text-xl text-[#C5D9C0] max-w-3xl mx-auto mb-4 animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
                 {locale === 'fr' 
                   ? 'Suivez vos produits de l\'origine à la destination.'
                   : t.traceability.supplyChain.subtitle}
               </p>
-              <p className="text-base text-[#80996F] max-w-4xl mx-auto">
+              <p className="text-base text-[#80996F] max-w-4xl mx-auto animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
                 {locale === 'fr'
                   ? 'Visualisation intégrée : parcelle → lot → entrepôt → port → conteneur.'
                   : t.traceability.supplyChain.description}
@@ -307,29 +361,40 @@ export default async function TraceabilityPage({
 
           {/* Placeholder for SupplyChainAnimation component */}
           <ScrollReveal animation="fade">
-            <div className="bg-[#0A1410] rounded-xl p-12 border border-[rgba(255,255,255,0.08)]">
-              <div className="text-center text-[#80996F]">
-                <Satellite className="w-16 h-16 mx-auto mb-4 text-[#4A9A62]" />
+            <div className="group relative bg-[#0A1410] rounded-xl p-12 border border-[rgba(255,255,255,0.08)] hover:border-[rgba(74,154,98,0.4)] transition-all duration-300 overflow-hidden">
+              {/* Animated rings */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-[#4A9A62]/10 rounded-full animate-ping" style={{ animationDuration: '3s' }} />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 border border-[#A89858]/10 rounded-full animate-ping" style={{ animationDuration: '4s', animationDelay: '1s' }} />
+              
+              <div className="text-center text-[#80996F] relative z-10">
+                <Satellite className="w-16 h-16 mx-auto mb-4 text-[#4A9A62] group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 animate-pulse" />
                 <p className="text-lg">
                   {locale === 'fr' 
                     ? 'Visualisation interactive de la chaîne d\'approvisionnement à venir'
                     : 'Interactive supply chain visualization coming soon'}
                 </p>
               </div>
+
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#4A9A62]/0 to-[#4A9A62]/0 group-hover:from-[#4A9A62]/5 group-hover:to-[#4A9A62]/5 transition-all duration-300 rounded-xl" />
             </div>
           </ScrollReveal>
         </div>
       </section>
 
       {/* Compliance Measures Section */}
-      <section className="py-20 bg-[#0A1410]">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-[#0A1410] relative overflow-hidden">
+        {/* Large background blurs */}
+        <div className="absolute -top-40 -left-40 w-96 h-96 bg-[#4A9A62]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '9s' }} />
+        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-[#A89858]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '11s', animationDelay: '2s' }} />
+
+        <div className="container mx-auto px-4 relative z-10">
           <ScrollReveal animation="fade">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#E8F5E9] mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#E8F5E9] mb-4 animate-fadeInUp">
                 {locale === 'fr' ? 'Mesures de Conformité' : t.traceability.compliance.title}
               </h2>
-              <p className="text-xl text-[#C5D9C0] max-w-3xl mx-auto">
+              <p className="text-xl text-[#C5D9C0] max-w-3xl mx-auto animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
                 {locale === 'fr'
                   ? 'Outils et processus pour garantir la conformité réglementaire.'
                   : t.traceability.compliance.subtitle}
@@ -346,16 +411,30 @@ export default async function TraceabilityPage({
                   animation="slide-up"
                   delay={index * 0.1}
                 >
-                  <div className="bg-[#0F1814] rounded-xl p-8 hover:shadow-2xl hover:shadow-[rgba(74,154,98,0.2)] transition-all duration-300 h-full border border-[rgba(255,255,255,0.08)] hover:border-[rgba(74,154,98,0.4)] hover:-translate-y-1">
-                    <div className="w-16 h-16 bg-[rgba(74,154,98,0.15)] border border-[rgba(74,154,98,0.3)] rounded-lg flex items-center justify-center mb-6">
-                      <Icon className="w-8 h-8 text-[#4A9A62]" />
+                  <div className="group relative bg-[#0F1814] rounded-xl p-8 hover:shadow-2xl hover:shadow-[rgba(74,154,98,0.2)] transition-all duration-300 h-full border border-[rgba(255,255,255,0.08)] hover:border-[rgba(74,154,98,0.4)] hover:-translate-y-1 overflow-hidden">
+                    {/* Corner decoration */}
+                    <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-[#4A9A62]/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    
+                    {/* Animated bottom border */}
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#4A9A62] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                    
+                    <div className="relative z-10">
+                      <div className="w-16 h-16 bg-[rgba(74,154,98,0.15)] border border-[rgba(74,154,98,0.3)] rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                        <Icon className="w-8 h-8 text-[#4A9A62]" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-[#E8F5E9] mb-4">
+                        {measure.title}
+                      </h3>
+                      <p className="text-[#C5D9C0] leading-relaxed">
+                        {measure.description}
+                      </p>
                     </div>
-                    <h3 className="text-2xl font-bold text-[#E8F5E9] mb-4">
-                      {measure.title}
-                    </h3>
-                    <p className="text-[#C5D9C0] leading-relaxed">
-                      {measure.description}
-                    </p>
+
+                    {/* Glow effect on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#4A9A62]/0 to-[#4A9A62]/0 group-hover:from-[#4A9A62]/5 group-hover:to-[#4A9A62]/5 transition-all duration-300 rounded-xl" />
+                    
+                    {/* Pulse ring */}
+                    <div className="absolute inset-0 rounded-xl border-2 border-[#4A9A62]/0 group-hover:border-[#4A9A62]/20 group-hover:scale-105 transition-all duration-500" />
                   </div>
                 </ScrollReveal>
               );
@@ -365,14 +444,18 @@ export default async function TraceabilityPage({
       </section>
 
       {/* Documentation Section */}
-      <section className="py-20 bg-[#0F1814]">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-[#0F1814] relative overflow-hidden">
+        {/* Background particles */}
+        <div className="absolute top-10 left-10 w-64 h-64 bg-[#4A9A62]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '7s' }} />
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-[#A89858]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '9s', animationDelay: '1s' }} />
+
+        <div className="container mx-auto px-4 relative z-10">
           <ScrollReveal animation="fade">
             <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#E8F5E9] mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#E8F5E9] mb-4 animate-fadeInUp">
                 {locale === 'fr' ? 'Documentation disponible' : t.traceability.documentation.title}
               </h2>
-              <p className="text-xl text-[#C5D9C0] max-w-3xl mx-auto mb-12">
+              <p className="text-xl text-[#C5D9C0] max-w-3xl mx-auto mb-12 animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
                 {locale === 'fr' 
                   ? 'Téléchargez nos guides et modèles pour faciliter votre conformité.'
                   : t.traceability.documentation.subtitle}
@@ -382,38 +465,62 @@ export default async function TraceabilityPage({
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <ScrollReveal animation="slide-up" delay={0}>
-              <div className="bg-[#0A1410] rounded-xl p-8 text-center border border-[rgba(255,255,255,0.08)] hover:border-[rgba(74,154,98,0.4)] hover:shadow-2xl hover:shadow-[rgba(74,154,98,0.2)] transition-all duration-300 hover:-translate-y-1">
-                <Download className="w-12 h-12 mx-auto mb-4 text-[#4A9A62]" />
-                <h3 className="text-xl font-bold text-[#E8F5E9] mb-4">
+              <div className="group relative bg-[#0A1410] rounded-xl p-8 text-center border border-[rgba(255,255,255,0.08)] hover:border-[rgba(74,154,98,0.4)] hover:shadow-2xl hover:shadow-[rgba(74,154,98,0.2)] transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                {/* Corner glow */}
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#4A9A62]/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <Download className="w-12 h-12 mx-auto mb-4 text-[#4A9A62] group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300" />
+                <h3 className="text-xl font-bold text-[#E8F5E9] mb-4 relative z-10">
                   {locale === 'fr' ? 'Guide de Conformité RDUE' : t.traceability.documentation.eudrGuide}
                 </h3>
-                <button className="bg-[#4A9A62] hover:bg-[#5AAA72] text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-                  {t.common.download}
+                <button className="group/btn relative bg-[#4A9A62] hover:bg-[#5AAA72] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 overflow-hidden">
+                  {/* Shimmer effect */}
+                  <div className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                  <span className="relative z-10">{t.common.download}</span>
                 </button>
+
+                {/* Pulse ring */}
+                <div className="absolute inset-0 rounded-xl border-2 border-[#4A9A62]/0 group-hover:border-[#4A9A62]/20 group-hover:scale-105 transition-all duration-500" />
               </div>
             </ScrollReveal>
 
             <ScrollReveal animation="slide-up" delay={0.1}>
-              <div className="bg-[#0A1410] rounded-xl p-8 text-center border border-[rgba(255,255,255,0.08)] hover:border-[rgba(74,154,98,0.4)] hover:shadow-2xl hover:shadow-[rgba(74,154,98,0.2)] transition-all duration-300 hover:-translate-y-1">
-                <Download className="w-12 h-12 mx-auto mb-4 text-[#4A9A62]" />
-                <h3 className="text-xl font-bold text-[#E8F5E9] mb-4">
+              <div className="group relative bg-[#0A1410] rounded-xl p-8 text-center border border-[rgba(255,255,255,0.08)] hover:border-[rgba(74,154,98,0.4)] hover:shadow-2xl hover:shadow-[rgba(74,154,98,0.2)] transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                {/* Corner glow */}
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#4A9A62]/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <Download className="w-12 h-12 mx-auto mb-4 text-[#4A9A62] group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300" />
+                <h3 className="text-xl font-bold text-[#E8F5E9] mb-4 relative z-10">
                   {locale === 'fr' ? 'Modèle de Déclaration de Diligence Raisonnable' : t.traceability.documentation.dueDiligenceStatement}
                 </h3>
-                <button className="bg-[#4A9A62] hover:bg-[#5AAA72] text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-                  {t.common.download}
+                <button className="group/btn relative bg-[#4A9A62] hover:bg-[#5AAA72] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 overflow-hidden">
+                  {/* Shimmer effect */}
+                  <div className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                  <span className="relative z-10">{t.common.download}</span>
                 </button>
+
+                {/* Pulse ring */}
+                <div className="absolute inset-0 rounded-xl border-2 border-[#4A9A62]/0 group-hover:border-[#4A9A62]/20 group-hover:scale-105 transition-all duration-500" />
               </div>
             </ScrollReveal>
 
             <ScrollReveal animation="slide-up" delay={0.2}>
-              <div className="bg-[#0A1410] rounded-xl p-8 text-center border border-[rgba(255,255,255,0.08)] hover:border-[rgba(74,154,98,0.4)] hover:shadow-2xl hover:shadow-[rgba(74,154,98,0.2)] transition-all duration-300 hover:-translate-y-1">
-                <Download className="w-12 h-12 mx-auto mb-4 text-[#4A9A62]" />
-                <h3 className="text-xl font-bold text-[#E8F5E9] mb-4">
+              <div className="group relative bg-[#0A1410] rounded-xl p-8 text-center border border-[rgba(255,255,255,0.08)] hover:border-[rgba(74,154,98,0.4)] hover:shadow-2xl hover:shadow-[rgba(74,154,98,0.2)] transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                {/* Corner glow */}
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#4A9A62]/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <Download className="w-12 h-12 mx-auto mb-4 text-[#4A9A62] group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300" />
+                <h3 className="text-xl font-bold text-[#E8F5E9] mb-4 relative z-10">
                   {locale === 'fr' ? 'Exemple de Rapport de Traçabilité' : t.traceability.documentation.traceabilityReport}
                 </h3>
-                <button className="bg-[#4A9A62] hover:bg-[#5AAA72] text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-                  {t.common.download}
+                <button className="group/btn relative bg-[#4A9A62] hover:bg-[#5AAA72] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 overflow-hidden">
+                  {/* Shimmer effect */}
+                  <div className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                  <span className="relative z-10">{t.common.download}</span>
                 </button>
+
+                {/* Pulse ring */}
+                <div className="absolute inset-0 rounded-xl border-2 border-[#4A9A62]/0 group-hover:border-[#4A9A62]/20 group-hover:scale-105 transition-all duration-500" />
               </div>
             </ScrollReveal>
           </div>
@@ -433,29 +540,56 @@ export default async function TraceabilityPage({
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,transparent_40%,rgba(0,0,0,0.4)_100%)]" />
         </div>
 
+        {/* Animated particles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-[1]">
+          <div className="absolute top-10 left-10 w-3 h-3 bg-[#4A9A62] rounded-full animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }} />
+          <div className="absolute top-20 right-20 w-2 h-2 bg-[#A89858] rounded-full animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '3.5s' }} />
+          <div className="absolute bottom-20 left-1/4 w-3 h-3 bg-[#4A9A62] rounded-full animate-bounce" style={{ animationDelay: '1s', animationDuration: '4s' }} />
+          <div className="absolute bottom-32 right-1/3 w-2 h-2 bg-[#A89858] rounded-full animate-bounce" style={{ animationDelay: '1.5s', animationDuration: '3.2s' }} />
+        </div>
+
+        {/* Animated rings */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-[#4A9A62]/10 rounded-full animate-ping z-[1]" style={{ animationDuration: '3s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-[#A89858]/10 rounded-full animate-ping z-[1]" style={{ animationDuration: '4s', animationDelay: '1s' }} />
+
         <div className="container mx-auto px-4 text-center relative z-10">
           <ScrollReveal animation="fade">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#E8F5E9] mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#E8F5E9] mb-6 animate-fadeInUp">
               {locale === 'fr' ? 'Besoin de produits conformes au RDUE ?' : t.traceability.cta.title}
             </h2>
-            <p className="text-lg md:text-xl text-[#C5D9C0] mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-[#C5D9C0] mb-10 max-w-2xl mx-auto leading-relaxed animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
               {locale === 'fr'
                 ? 'Parlons de vos exigences : origine, volumes, incoterms, niveau de preuve documentaire.'
                 : t.traceability.cta.subtitle}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
               <Link
                 href={`/${locale}/contact`}
-                className="inline-flex items-center justify-center bg-transparent hover:bg-[rgba(255,255,255,0.1)] text-[#E8F5E9] border-2 border-[rgba(255,255,255,0.2)] hover:border-[rgba(255,255,255,0.3)] px-8 py-4 rounded-xl font-semibold text-base transition-all"
+                className="group relative inline-flex items-center justify-center bg-transparent hover:bg-[rgba(255,255,255,0.1)] text-[#E8F5E9] border-2 border-[rgba(255,255,255,0.2)] hover:border-[rgba(255,255,255,0.3)] px-8 py-4 rounded-xl font-semibold text-base transition-all hover:scale-105 overflow-hidden"
               >
-                {locale === 'fr' ? 'Nous contacter' : t.traceability.cta.contact}
+                {/* Border glow effect */}
+                <div className="absolute inset-0 rounded-xl border-2 border-[#4A9A62]/0 group-hover:border-[#4A9A62]/30 transition-all duration-300" />
+                <span className="relative z-10">{locale === 'fr' ? 'Nous contacter' : t.traceability.cta.contact}</span>
               </Link>
               <Link
                 href={`/${locale}/rfq`}
-                className="inline-flex items-center justify-center bg-[#4A9A62] hover:bg-[#5AAA72] text-white px-8 py-4 rounded-xl font-semibold text-base transition-all shadow-lg hover:shadow-xl"
+                className="group relative inline-flex items-center justify-center bg-[#4A9A62] hover:bg-[#5AAA72] text-white px-8 py-4 rounded-xl font-semibold text-base transition-all shadow-lg hover:shadow-xl hover:scale-105 overflow-hidden"
               >
-                {locale === 'fr' ? 'Demander un devis' : t.traceability.cta.rfq}
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                <span className="relative z-10">{locale === 'fr' ? 'Demander un devis' : t.traceability.cta.rfq}</span>
+                <span className="relative z-10 ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
               </Link>
+            </div>
+
+            {/* Pulse dot indicator */}
+            <div className="flex items-center justify-center gap-2 mt-6 animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
+              <div className="w-2 h-2 bg-[#4A9A62] rounded-full animate-pulse" />
+              <span className="text-sm text-[#C5D9C0]">
+                {locale === 'fr' ? 'Réponse sous 24h' : 
+                 locale === 'en' ? 'Response within 24h' :
+                 'Response within 24h'}
+              </span>
             </div>
           </ScrollReveal>
         </div>

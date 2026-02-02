@@ -155,7 +155,14 @@ export default async function ContactPage({ params }: ContactPageProps) {
     <div className="min-h-screen bg-[#0A1410]">
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0F1814] to-[#0A1410]" />
+        <div className="absolute inset-0">
+          <img
+            src="/assets/hero.jpg"
+            alt=""
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0A1410]/85 via-[#0A1410]/75 to-[#0A1410]" />
+        </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
