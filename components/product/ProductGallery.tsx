@@ -24,6 +24,12 @@ export function ProductGallery({ images, productName, locale }: ProductGalleryPr
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const [isZoomed, setIsZoomed] = useState(false);
+  const [showAllThumbnails, setShowAllThumbnails] = useState(false);
+
+  // Limit thumbnails display to 8 initially
+  const maxVisibleThumbnails = 8;
+  const hasMoreThumbnails = images.length > maxVisibleThumbnails;
+  const visibleThumbnails = showAllThumbnails ? images : images.slice(0, maxVisibleThumbnails);
 
   // Minimum swipe distance (in px)
   const minSwipeDistance = 50;
@@ -229,32 +235,47 @@ export function ProductGallery({ images, productName, locale }: ProductGalleryPr
 
       {/* Thumbnails */}
       {images.length > 1 && (
-        <div className="grid grid-cols-4 md:grid-cols-6 gap-2">
-          {images.map((image, index) => {
-            const thumbUrl = urlFor(image)?.width(200).height(150).url();
-            const thumbAlt = image.alt || `${productName} - Image ${index + 1}`;
-            
-            return (
-              <button
-                key={index}
-                onClick={() => setSelectedIndex(index)}
-                className={`relative aspect-[4/3] overflow-hidden rounded-lg border-2 transition-all ${
-                  index === selectedIndex
-                    ? 'border-primary ring-2 ring-primary ring-offset-2 dark:ring-offset-dark-bg-primary'
-                    : 'border-border dark:border-dark-border hover:border-border dark:hover:border-dark-border'
-                }`}
-                aria-label={`${locale === 'fr' ? 'Voir l\'image' : 'View image'} ${index + 1}`}
-              >
-                <Image
-                  src={thumbUrl || '/assets/placeholder.svg'}
-                  alt={thumbAlt}
-                  fill
-                  sizes="(max-width: 768px) 25vw, 150px"
-                  className="object-cover dark:opacity-90"
-                />
-              </button>
-            );
-          })}
+        <div className="space-y-3">
+          <div className="grid grid-cols-4 md:grid-cols-6 gap-2">
+            {visibleThumbnails.map((image, index) => {
+              const thumbUrl = urlFor(image)?.width(200).height(150).url();
+              const thumbAlt = image.alt || `${productName} - Image ${index + 1}`;
+              
+              return (
+                <button
+                  key={index}
+                  onClick={() => setSelectedIndex(index)}
+                  className={`relative aspect-[4/3] overflow-hidden rounded-lg border-2 transition-all ${
+                    index === selectedIndex
+                      ? 'border-primary ring-2 ring-primary ring-offset-2 dark:ring-offset-dark-bg-primary'
+                      : 'border-border dark:border-dark-border hover:border-border dark:hover:border-dark-border'
+                  }`}
+                  aria-label={`${locale === 'fr' ? 'Voir l\'image' : 'View image'} ${index + 1}`}
+                >
+                  <Image
+                    src={thumbUrl || '/assets/placeholder.svg'}
+                    alt={thumbAlt}
+                    fill
+                    sizes="(max-width: 768px) 25vw, 150px"
+                    className="object-cover dark:opacity-90"
+                  />
+                </button>
+              );
+            })}
+          </div>
+          
+          {/* Show More/Less button */}
+          {hasMoreThumbnails && (
+            <button
+              onClick={() => setShowAllThumbnails(!showAllThumbnails)}
+              className="w-full py-2 px-4 rounded-lg border border-border dark:border-dark-border hover:bg-light dark:hover:bg-dark-bg-tertiary transition-colors text-sm font-medium text-foreground dark:text-dark-text-primary"
+            >
+              {showAllThumbnails 
+                ? (locale === 'fr' ? `Voir moins` : `Show less`)
+                : (locale === 'fr' ? `Voir ${images.length - maxVisibleThumbnails} images de plus` : `Show ${images.length - maxVisibleThumbnails} more images`)
+              }
+            </button>
+          )}
         </div>
       )}
 
