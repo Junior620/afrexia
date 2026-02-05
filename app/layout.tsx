@@ -11,8 +11,8 @@ export const metadata = {
   },
 };
 
-// Inline script to prevent FOUC (Flash of Unstyled Content)
-const themeScript = `(function(){try{var storageKey='afrexia-theme';var theme=null;try{theme=localStorage.getItem(storageKey);}catch(e){}if(!theme||(theme!=='light'&&theme!=='dark')){if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){theme='dark';}else{theme='light';}}if(theme==='dark'){document.documentElement.classList.add('dark');}}catch(e){}})();`;
+// Inline script to prevent FOUC (Flash of Unstyled Content) - Default to dark mode
+const themeScript = `(function(){try{var storageKey='afrexia-theme';var theme=null;try{theme=localStorage.getItem(storageKey);}catch(e){}if(!theme||(theme!=='light'&&theme!=='dark')){theme='dark';}if(theme==='dark'){document.documentElement.classList.add('dark');}}catch(e){}})();`;
 
 export default function RootLayout({
   children,

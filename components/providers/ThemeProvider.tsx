@@ -51,15 +51,15 @@ function saveTheme(storageKey: string, theme: Theme): void {
 
 export function ThemeProvider({
   children,
-  defaultTheme,
+  defaultTheme = 'dark', // Default to dark mode (Dark Green Premium)
   storageKey = STORAGE_KEY,
 }: ThemeProviderProps) {
   const [theme, setThemeState] = useState<Theme>(() => {
-    // Initialize from stored preference or system preference
+    // Initialize from stored preference or default to dark
     const stored = getStoredTheme(storageKey);
     if (stored) return stored;
     if (defaultTheme) return defaultTheme;
-    return getSystemPreference();
+    return 'dark'; // Fallback to dark mode
   });
 
   // Apply theme class to document root
