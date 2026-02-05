@@ -19,6 +19,13 @@ export function Hero({ locale }: HeroProps) {
     '/assets/hero-2.jpg',
     '/assets/hero-3.jpg',
     '/assets/hero-4.jpg',
+    '/assets/hero-5.jpg',
+    '/assets/hero-6.jpg',
+    '/assets/hero-7.jpg',
+    '/assets/hero-8.jpg',
+    '/assets/hero-9.jpg',
+    '/assets/hero-10.jpg',
+    '/assets/hero-11.jpg',
   ];
 
   // Auto-rotate images every 2 seconds

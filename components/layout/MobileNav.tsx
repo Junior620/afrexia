@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Locale } from '@/types';
 import { getTranslation } from '@/lib/i18n/translations';
 import { trapFocus } from '@/lib/accessibility/focus-trap';
+import { Portal } from '@/components/Portal';
 
 interface NavItem {
   href: string;
@@ -43,12 +44,10 @@ export function MobileNav({ locale, navItems, rfqItem }: MobileNavProps) {
   const hamburgerRef = useRef<HTMLButtonElement>(null);
 
   // Get localized labels (Requirement 20.2)
-  const mainNavLabel = getTranslation(locale, 'accessibility.mainNavigation');
   const mobileNavLabel = getTranslation(locale, 'accessibility.mobileNavigation');
   const openMenuLabel = getTranslation(locale, 'accessibility.openMenu');
   const closeMenuLabel = getTranslation(locale, 'accessibility.closeMenu');
   const menuExpandedLabel = getTranslation(locale, 'accessibility.menuExpanded');
-  const menuCollapsedLabel = getTranslation(locale, 'accessibility.menuCollapsed');
 
   // Close menu when route changes (Requirement 5.3)
   useEffect(() => {
@@ -105,15 +104,6 @@ export function MobileNav({ locale, navItems, rfqItem }: MobileNavProps) {
     }, 100);
   };
 
-  // Handle close button click
-  const handleClose = () => {
-    setIsOpen(false);
-    // Return focus to hamburger button
-    setTimeout(() => {
-      hamburgerRef.current?.focus();
-    }, 100);
-  };
-
   return (
     <>
       {/* Hamburger button - minimum 44x44px touch target (Requirement 6.2) */}
@@ -143,75 +133,80 @@ export function MobileNav({ locale, navItems, rfqItem }: MobileNavProps) {
         />
       </button>
 
-      {/* Mobile menu overlay - closes on click (Requirement 5.6) */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-black/50 xl:hidden"
-          onClick={handleOverlayClick}
-          aria-hidden="true"
-        />
-      )}
+      {/* Mobile menu with overlay - rendered via Portal to escape parent transforms */}
+      <Portal>
+        {isOpen && (
+          <div className="fixed inset-0 z-[60] xl:hidden">
+            {/* Overlay - closes on click (Requirement 5.6) */}
+            <div
+              className="absolute inset-0 bg-black/50"
+              onClick={handleOverlayClick}
+              aria-hidden="true"
+            />
 
-      {/* Mobile menu - drawer style with 300ms slide animation (Requirement 5.1) */}
-      <nav
-        id="mobile-menu"
-        ref={navRef as React.RefObject<HTMLElement>}
-        className={`fixed right-0 top-0 z-50 h-full w-80 max-w-[85vw] bg-white dark:bg-dark-bg-secondary shadow-xl transition-transform duration-300 xl:hidden ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-        role="dialog"
-        aria-modal="true"
-        aria-label={mobileNavLabel}
-      >
-        {/* Screen reader announcement for menu state (Requirement 6.5) */}
-        <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
-          {isOpen ? menuExpandedLabel : menuCollapsedLabel}
-        </div>
-        <div className="flex h-full flex-col p-6 overflow-y-auto">
-          {/* Close button - minimum 44x44px touch target (Requirement 6.2) */}
-          <button
-            onClick={handleClose}
-            className="mb-8 self-end flex h-11 w-11 items-center justify-center text-2xl text-primary dark:text-dark-primary hover:text-primary-dark dark:hover:text-dark-secondary focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary rounded-lg"
-            aria-label={closeMenuLabel}
-          >
-            ×
-          </button>
+            {/* Drawer - slides in from right (Requirement 5.1) */}
+            <nav
+              id="mobile-menu"
+              ref={navRef as React.RefObject<HTMLElement>}
+              className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white dark:bg-dark-bg-primary shadow-2xl animate-slideInRight overflow-y-auto"
+              role="dialog"
+              aria-modal="true"
+              aria-label={mobileNavLabel}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Screen reader announcement for menu state (Requirement 6.5) */}
+              <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+                {menuExpandedLabel}
+              </div>
 
-          {/* Navigation links - minimum 44x44px touch targets (Requirement 6.2) */}
-          <ul className="flex flex-col gap-2" role="list">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={`block rounded-lg px-4 py-3 min-h-[44px] text-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary ${
-                    isActive(item.href)
-                      ? 'bg-primary text-white dark:bg-dark-primary'
-                      : 'text-primary dark:text-dark-text-primary hover:bg-light dark:hover:bg-dark-bg-tertiary'
-                  }`}
-                  aria-current={isActive(item.href) ? 'page' : undefined}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-            
-            {/* RFQ button - prominent in mobile menu */}
-            <li className="mt-4 pt-4 border-t border-neutral/20 dark:border-dark-border/30">
-              <Link
-                href={rfqItem.href}
-                className={`block rounded-lg px-4 py-3 min-h-[44px] text-lg font-semibold text-center transition-colors focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary ${
-                  isActive(rfqItem.href)
-                    ? 'bg-primary-dark text-white dark:bg-dark-secondary'
-                    : 'bg-primary text-white hover:bg-primary-dark dark:bg-dark-primary dark:hover:bg-dark-secondary'
-                }`}
-                aria-current={isActive(rfqItem.href) ? 'page' : undefined}
-              >
-                {rfqItem.label}
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </nav>
+              {/* Header with title and spacing */}
+              <div className="sticky top-0 bg-white dark:bg-dark-bg-primary border-b border-neutral/20 dark:border-dark-border/30 px-6 py-4 z-10">
+                <h2 className="text-lg font-semibold text-primary dark:text-dark-primary">
+                  Menu
+                </h2>
+              </div>
+
+              {/* Navigation links - minimum 44x44px touch targets (Requirement 6.2) */}
+              <div className="px-4 py-6">
+                <ul className="flex flex-col gap-2" role="list">
+                  {navItems.map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        onClick={() => setIsOpen(false)}
+                        className={`block rounded-lg px-4 py-3 min-h-[44px] text-base font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary ${
+                          isActive(item.href)
+                            ? 'bg-primary text-white dark:bg-dark-primary'
+                            : 'text-primary dark:text-dark-text-primary hover:bg-light dark:hover:bg-dark-bg-tertiary'
+                        }`}
+                        aria-current={isActive(item.href) ? 'page' : undefined}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                  
+                  {/* RFQ button - prominent in mobile menu */}
+                  <li className="mt-4 pt-4 border-t border-neutral/20 dark:border-dark-border/30">
+                    <Link
+                      href={rfqItem.href}
+                      onClick={() => setIsOpen(false)}
+                      className={`block rounded-lg px-4 py-3 min-h-[44px] text-base font-semibold text-center transition-colors focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary ${
+                        isActive(rfqItem.href)
+                          ? 'bg-primary-dark text-white dark:bg-dark-secondary'
+                          : 'bg-primary text-white hover:bg-primary-dark dark:bg-dark-primary dark:hover:bg-dark-secondary'
+                      }`}
+                      aria-current={isActive(rfqItem.href) ? 'page' : undefined}
+                    >
+                      {rfqItem.label}
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        )}
+      </Portal>
     </>
   );
 }
