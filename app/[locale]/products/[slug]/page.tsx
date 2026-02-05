@@ -63,7 +63,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return '';
   };
 
-  const description = product.seo?.metaDescription?.[locale] || getDescriptionText(product.description[locale]);
+  const description = product.seo?.metaDescription?.[locale] || 
+    (product.description?.[locale] ? getDescriptionText(product.description[locale]) : '');
 
   const canonicalUrl = `https://afrexia.com/${locale}/products/${slug}`;
   const alternateUrls = {
@@ -183,7 +184,9 @@ export default async function ProductDetailPage({ params }: PageProps) {
     return '';
   };
 
-  const description = getDescriptionText(product.description[locale]);
+  const description = product.description?.[locale] 
+    ? getDescriptionText(product.description[locale]) 
+    : '';
 
   // Category labels
   const categoryLabels: Record<string, { fr: string; en: string }> = {
@@ -192,6 +195,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
     pepper: { fr: 'Poivre', en: 'Pepper' },
     wood: { fr: 'Bois', en: 'Wood' },
     corn: { fr: 'Maïs', en: 'Corn' },
+    rice: { fr: 'Riz', en: 'Rice' },
+    'refined-sugar': { fr: 'Sucre Raffiné', en: 'Refined Sugar' },
+    'petroleum-products': { fr: 'Produits Pétroliers', en: 'Petroleum Products' },
+    'palm-oil': { fr: 'Huile de Palme', en: 'Palm Oil' },
+    'tropical-fruits': { fr: 'Fruits Tropicaux', en: 'Tropical Fruits' },
   };
 
   const categoryLabel = categoryLabels[product.category]?.[locale] || product.category;
