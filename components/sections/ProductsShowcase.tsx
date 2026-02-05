@@ -69,8 +69,8 @@ export function ProductsShowcase({ products, locale }: ProductsShowcaseProps) {
 
   const t = content[locale] || content.en;
 
-  // Show first 6 products as featured (better for B2B showcase)
-  const featuredProducts = products.slice(0, 6);
+  // Show first 3 products as featured on homepage
+  const featuredProducts = products.slice(0, 3);
 
   return (
     <section className="py-16 md:py-24 bg-white dark:bg-dark-bg-primary">
