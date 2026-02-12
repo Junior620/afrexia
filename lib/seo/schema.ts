@@ -28,7 +28,8 @@ export function generateOrganizationSchema(locale: Locale) {
       email: 'kemajoujulien@afrexiacmr.com',
     },
     sameAs: [
-      // Add social media URLs when available
+      'https://www.facebook.com/share/1GCF36thC2/',
+      'https://www.instagram.com/afrexiacmr',
     ],
   };
 }
