@@ -13,7 +13,7 @@ import { PartnerContent } from '@/types/partner-section';
  * 
  * Requirements:
  * - 4.1: Eyebrow label "Partenaire opérationnel"
- * - 4.2: Title "Afexia × SCPB SARL"
+ * - 4.2: Title "Afrexia × SCPB SARL"
  * - 4.3: Subtitle with proof-oriented messaging
  * - 4.4: Body text limited to 90-120 words
  * - 4.5: Exactly 3 key facts as bullet points
@@ -27,7 +27,7 @@ export const partnerSectionContent: Record<Locale, PartnerContent> = {
     relationship: 'Partenaire stratégique / filleule Afrexia',
     partnerUrl: 'https://ste-scpb.com',
     eyebrow: 'Partenaire opérationnel',
-    title: 'Afexia × SCPB SARL',
+    title: 'Afrexia × SCPB SARL',
     subtitle: 'Un ancrage local solide, des standards internationaux, une exécution prête pour audit.',
     bodyText: [
       'SCPB SARL assure la collecte, le stockage et la préparation export de nos produits directement à la source. Cette présence locale garantit un contrôle qualité rigoureux et une traçabilité complète de la ferme au port. Nos équipes sur le terrain supervisent chaque étape du processus, de la réception des matières premières jusqu\'à l\'expédition finale.',
@@ -73,7 +73,7 @@ export const partnerSectionContent: Record<Locale, PartnerContent> = {
     relationship: 'Strategic partner / Afrexia subsidiary',
     partnerUrl: 'https://ste-scpb.com',
     eyebrow: 'Operational partner',
-    title: 'Afexia × SCPB SARL',
+    title: 'Afrexia × SCPB SARL',
     subtitle: 'Strong local presence, international standards, audit-ready execution.',
     bodyText: [
       'SCPB SARL handles collection, storage, and export preparation of our products directly at source. This local presence ensures rigorous quality control and complete traceability from farm to port. Our on-ground teams supervise every step of the process, from raw material reception through quality inspection to final shipment preparation.',
@@ -119,7 +119,7 @@ export const partnerSectionContent: Record<Locale, PartnerContent> = {
     relationship: 'Socio estratégico / filial de Afrexia',
     partnerUrl: 'https://ste-scpb.com',
     eyebrow: 'Socio operacional',
-    title: 'Afexia × SCPB SARL',
+    title: 'Afrexia × SCPB SARL',
     subtitle: 'Fuerte presencia local, estándares internacionales, ejecución lista para auditoría.',
     bodyText: [
       'SCPB SARL gestiona la recolección, almacenamiento y preparación de exportación de nuestros productos directamente en origen. Esta presencia local garantiza un control de calidad riguroso y una trazabilidad completa desde la granja hasta el puerto. Nuestros equipos sobre el terreno supervisan cada paso del proceso, desde la recepción de materias primas hasta la preparación del envío final.',
@@ -165,7 +165,7 @@ export const partnerSectionContent: Record<Locale, PartnerContent> = {
     relationship: 'Strategischer Partner / Afrexia-Tochtergesellschaft',
     partnerUrl: 'https://ste-scpb.com',
     eyebrow: 'Operativer Partner',
-    title: 'Afexia × SCPB SARL',
+    title: 'Afrexia × SCPB SARL',
     subtitle: 'Starke lokale Präsenz, internationale Standards, prüfungsbereite Ausführung.',
     bodyText: [
       'SCPB SARL übernimmt die Sammlung, Lagerung und Exportvorbereitung unserer Produkte direkt an der Quelle. Diese lokale Präsenz gewährleistet eine strenge Qualitätskontrolle und vollständige Rückverfolgbarkeit vom Bauernhof bis zum Hafen. Unsere Teams vor Ort überwachen jeden Schritt des Prozesses, von der Rohstoffannahme über die Qualitätsprüfung bis zur endgültigen Versandvorbereitung.',
@@ -211,7 +211,7 @@ export const partnerSectionContent: Record<Locale, PartnerContent> = {
     relationship: 'Стратегический партнер / дочерняя компания Afrexia',
     partnerUrl: 'https://ste-scpb.com',
     eyebrow: 'Операционный партнер',
-    title: 'Afexia × SCPB SARL',
+    title: 'Afrexia × SCPB SARL',
     subtitle: 'Сильное местное присутствие, международные стандарты, готовность к аудиту.',
     bodyText: [
       'SCPB SARL занимается сбором, хранением и подготовкой к экспорту наших продуктов непосредственно у источника. Это местное присутствие обеспечивает строгий контроль качества и полную отслеживаемость от фермы до порта. Наши команды на местах контролируют каждый этап процесса, от приема сырья через контроль качества до окончательной подготовки к отправке.',
