@@ -18,19 +18,19 @@ export function OfficeLocationMap({ locale }: OfficeLocationMapProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   // Afrexia office coordinates (Douala, Cameroon)
-  // From Google Maps: https://maps.app.goo.gl/H7wHU2L6S2WRjepm8
+  // Immeuble Socar, Bd de la Liberté
   const officeLocation = {
-    latitude: 4.0511,
-    longitude: 9.7679,
+    latitude: 4.0537097,
+    longitude: 9.6982764,
     name: locale === 'fr' ? 'Bureau Afrexia' : 'Afrexia Office',
-    address: locale === 'fr' ? 'Douala, Cameroun' : 'Douala, Cameroon',
+    address: locale === 'fr' ? 'Immeuble Socar, Bd de la Liberté, Douala' : 'Immeuble Socar, Bd de la Liberté, Douala',
   };
 
   useEffect(() => {
     const initMap = async () => {
       // Check if Mapbox token is available
       const token = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
-      
+
       if (!token || token.includes('XXXXXXXXXX')) {
         console.warn('Mapbox token not configured, falling back to Google Maps');
         setMapError(true);
@@ -60,7 +60,7 @@ export function OfficeLocationMap({ locale }: OfficeLocationMapProps) {
           container: mapContainer.current,
           style: 'mapbox://styles/mapbox/dark-v11',
           center: [officeLocation.longitude, officeLocation.latitude],
-          zoom: 14,
+          zoom: 15, // Increased zoom slightly for better city view
           attributionControl: false,
         });
 
@@ -116,9 +116,9 @@ export function OfficeLocationMap({ locale }: OfficeLocationMapProps) {
   // Fallback to Google Maps if Mapbox fails
   if (mapError) {
     return (
-      <div className="h-[400px] w-full overflow-hidden rounded-lg border border-[rgba(255,255,255,0.08)]">
+      <div className="h-[600px] w-full overflow-hidden rounded-lg border border-[rgba(255,255,255,0.08)]">
         <iframe
-          src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.8976845678!2d${officeLocation.longitude}!3d${officeLocation.latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwMDMnMDQuMCJOIDnCsDQ2JzA0LjQiRQ!5e0!3m2!1s${locale}!2scm!4v1234567890`}
+          src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.8976845678!2d${officeLocation.longitude}!3d${officeLocation.latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwMDMnMTMuNCJOIDnCsDQxJzUzLjgiRQ!5e0!3m2!1s${locale}!2scm!4v1234567890`}
           width="100%"
           height="100%"
           style={{ border: 0 }}
@@ -133,7 +133,7 @@ export function OfficeLocationMap({ locale }: OfficeLocationMapProps) {
   }
 
   return (
-    <div className="relative h-[400px] w-full overflow-hidden rounded-lg border border-[rgba(255,255,255,0.08)]">
+    <div className="relative h-[600px] w-full overflow-hidden rounded-lg border border-[rgba(255,255,255,0.08)]">
       {isLoading && (
         <div className="absolute inset-0 z-10 flex items-center justify-center bg-[#0A1410]">
           <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#4A9A62] border-t-transparent" />

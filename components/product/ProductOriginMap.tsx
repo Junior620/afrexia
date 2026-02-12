@@ -71,15 +71,15 @@ export function ProductOriginMap({ origins, locale }: ProductOriginMapProps) {
         // Multiple origins: calculate bounds
         const lngs = origins.map((o) => o.coordinates.lng);
         const lats = origins.map((o) => o.coordinates.lat);
-        
+
         const minLng = Math.min(...lngs);
         const maxLng = Math.max(...lngs);
         const minLat = Math.min(...lats);
         const maxLat = Math.max(...lats);
-        
+
         const centerLng = (minLng + maxLng) / 2;
         const centerLat = (minLat + maxLat) / 2;
-        
+
         setViewState({
           longitude: centerLng,
           latitude: centerLat,
@@ -123,7 +123,7 @@ export function ProductOriginMap({ origins, locale }: ProductOriginMapProps) {
     );
   }
 
-  const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
+  const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
   if (!mapboxToken) {
     return (

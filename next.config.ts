@@ -41,6 +41,8 @@ const nextConfig: NextConfig = {
               "connect-src 'self' https://cdn.sanity.io https://*.sanity.io https://api.mapbox.com https://events.mapbox.com https://plausible.io https://www.google-analytics.com https://*.sentry.io",
               "frame-src 'self' https://www.google.com",
               "media-src 'self' https://cdn.sanity.io",
+              "worker-src 'self' blob:",
+              "child-src 'self' blob:",
             ].join('; '),
           },
           {
@@ -70,13 +72,13 @@ const nextConfig: NextConfig = {
 };
 
 // Only wrap with Sentry if auth token is configured
-const hasSentryConfig = process.env.SENTRY_AUTH_TOKEN && 
-                        process.env.SENTRY_ORG && 
-                        process.env.SENTRY_PROJECT;
+const hasSentryConfig = process.env.SENTRY_AUTH_TOKEN &&
+  process.env.SENTRY_ORG &&
+  process.env.SENTRY_PROJECT;
 
 if (hasSentryConfig) {
   const { withSentryConfig } = require('@sentry/nextjs');
-  
+
   const sentryWebpackPluginOptions = {
     org: process.env.SENTRY_ORG,
     project: process.env.SENTRY_PROJECT,
