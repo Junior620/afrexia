@@ -45,8 +45,8 @@ export function Footer({ locale }: FooterProps) {
 
   // Contact information
   const contactInfo = {
-    email: 'contact@afrexia.com',
-    phone: '+237 XXX XXX XXX',
+    email: 'kemajoujulien@afrexiacmr.com',
+    phone: '+237 658 112 510 / +33 753 195 242',
     address: locale === 'fr' ? 'Douala, Cameroun' : 'Douala, Cameroon',
   };
 

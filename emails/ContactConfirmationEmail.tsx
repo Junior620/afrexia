@@ -89,7 +89,7 @@ export function ContactConfirmationEmail({
                 : 'Si votre demande est urgente, contactez-nous directement:'}
             </Text>
             <Text style={text}>
-              <strong>Email:</strong> contact@afrexia.com
+              <strong>Email:</strong> kemajoujulien@afrexiacmr.com
             </Text>
             <Text style={text}>
               <strong>{isEnglish ? 'Phone:' : 'Téléphone:'}</strong> +237 XXX

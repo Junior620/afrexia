@@ -25,7 +25,7 @@ export function generateOrganizationSchema(locale: Locale) {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'sales',
-      email: 'contact@afrexia.com',
+      email: 'kemajoujulien@afrexiacmr.com',
     },
     sameAs: [
       // Add social media URLs when available

@@ -227,10 +227,10 @@ export default async function ContactPage({ params }: ContactPageProps) {
                         {t.info.email}
                       </p>
                       <a
-                        href="mailto:contact@afrexia.com"
+                        href="mailto:kemajoujulien@afrexiacmr.com"
                         className="text-[#4A9A62] hover:text-[#3d8251] transition-colors text-sm"
                       >
-                        contact@afrexia.com
+                        kemajoujulien@afrexiacmr.com
                       </a>
                     </div>
                   </div>
@@ -245,13 +245,19 @@ export default async function ContactPage({ params }: ContactPageProps) {
                         {t.info.phone}
                       </p>
                       <a
-                        href="tel:+237XXXXXXXXX"
+                        href="tel:+237658112510"
                         className="text-[#4A9A62] hover:text-[#3d8251] transition-colors text-sm block"
                       >
-                        +237 XXX XXX XXX
+                        +237 658 112 510
                       </a>
                       <a
-                        href="https://wa.me/237XXXXXXXXX"
+                        href="tel:+33753195242"
+                        className="text-[#4A9A62] hover:text-[#3d8251] transition-colors text-sm block mt-1"
+                      >
+                        +33 753 195 242
+                      </a>
+                      <a
+                        href="https://wa.me/237658112510"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[#4A9A62] hover:text-[#3d8251] transition-colors text-xs flex items-center gap-1 mt-1"
