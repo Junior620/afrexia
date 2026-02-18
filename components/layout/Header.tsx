@@ -51,10 +51,6 @@ export function Header({ locale }: HeaderProps) {
       label: getTranslation(locale, 'navigation.solutions'),
     },
     {
-      href: `/${locale}/quality`,
-      label: getTranslation(locale, 'navigation.quality'),
-    },
-    {
       href: `/${locale}/traceability`,
       label: getTranslation(locale, 'navigation.traceability'),
     },

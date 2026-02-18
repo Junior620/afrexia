@@ -110,6 +110,12 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(`/${locale}/about`, request.url));
   }
 
+  // Redirect /quality to /traceability (quality content is now in traceability page)
+  if (pathname.match(/^\/(fr|en|es|de|ru)\/quality\/?$/)) {
+    const locale = pathname.split('/')[1];
+    return NextResponse.redirect(new URL(`/${locale}/traceability`, request.url));
+  }
+
   // Check if pathname already has a locale
   const pathnameLocale = getLocaleFromPathname(pathname);
 

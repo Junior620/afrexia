@@ -21,7 +21,6 @@ export function Footer({ locale }: FooterProps) {
   const companyLinks = [
     { href: `/${locale}/about`, label: getTranslation(locale, 'navigation.about') },
     { href: `/${locale}/solutions`, label: getTranslation(locale, 'navigation.solutions') },
-    { href: `/${locale}/quality`, label: getTranslation(locale, 'navigation.quality') },
     { href: `/${locale}/traceability`, label: getTranslation(locale, 'navigation.traceability') },
   ];
 

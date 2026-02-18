@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Locale } from '@/types';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { TraceabilityHeroBadges } from '@/components/traceability';
+import { QualityContentSection } from '@/app/[locale]/traceability/QualityContentSection';
 import {
   MapPin,
   FileText,
@@ -526,6 +527,9 @@ export default async function TraceabilityPage({
           </div>
         </div>
       </section>
+
+      {/* Quality & Compliance Content */}
+      <QualityContentSection locale={locale} />
 
       {/* CTA Section */}
       <section className="relative py-20 mb-20 overflow-hidden">
