@@ -63,10 +63,6 @@ export function Header({ locale }: HeaderProps) {
       label: getTranslation(locale, 'navigation.about'),
     },
     {
-      href: `/${locale}/team`,
-      label: getTranslation(locale, 'navigation.team'),
-    },
-    {
       href: `/${locale}/contact`,
       label: getTranslation(locale, 'navigation.contact'),
     },

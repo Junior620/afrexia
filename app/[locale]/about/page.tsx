@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Locale } from '@/types';
 import { Award, Eye, Leaf, Handshake, Building2, Users, Target, TrendingUp } from 'lucide-react';
 import { ScrollRevealWrapper } from '@/app/[locale]/about/ScrollRevealWrapper';
+import { TeamMembersSection } from '@/app/[locale]/about/TeamMembersSection';
 
 interface AboutPageProps {
   params: Promise<{
@@ -929,6 +930,35 @@ export default async function AboutPage({ params }: AboutPageProps) {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="scroll-reveal py-20 px-4 sm:px-6 lg:px-8 opacity-0 translate-y-8 transition-all duration-700 relative overflow-hidden">
+        {/* Background particles */}
+        <div className="absolute top-10 left-10 w-64 h-64 bg-[#4A9A62]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '7s' }} />
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-[#A89858]/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '9s', animationDelay: '1s' }} />
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#E8F5E9] mb-4 animate-fadeInUp">
+              {locale === 'fr' ? 'Notre Équipe' : 
+               locale === 'en' ? 'Our Team' :
+               locale === 'es' ? 'Nuestro Equipo' :
+               locale === 'de' ? 'Unser Team' :
+               'Наша Команда'}
+            </h2>
+            <p className="text-lg text-[#C5D9C0] max-w-2xl mx-auto animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
+              {locale === 'fr' ? 'Équipe terrain + export : sourcing, QA, conformité RDUE et logistique, de la ferme au port.' :
+               locale === 'en' ? 'Field + export team: sourcing, QA, EUDR compliance and logistics, from farm to port.' :
+               locale === 'es' ? 'Equipo de campo + exportación: abastecimiento, QA, cumplimiento EUDR y logística, de la granja al puerto.' :
+               locale === 'de' ? 'Feld + Export-Team: Beschaffung, QA, EUDR-Compliance und Logistik, vom Bauernhof zum Hafen.' :
+               'Полевая + экспортная команда: закупки, QA, соответствие EUDR и логистика, от фермы до порта.'}
+            </p>
+          </div>
+
+          {/* Team members will be loaded from Sanity CMS */}
+          <TeamMembersSection locale={locale} />
         </div>
       </section>
 

@@ -104,6 +104,12 @@ function determineLocale(request: NextRequest): Locale {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Redirect /team to /about (team content is now in about page)
+  if (pathname.match(/^\/(fr|en|es|de|ru)\/team\/?$/)) {
+    const locale = pathname.split('/')[1];
+    return NextResponse.redirect(new URL(`/${locale}/about`, request.url));
+  }
+
   // Check if pathname already has a locale
   const pathnameLocale = getLocaleFromPathname(pathname);
 
