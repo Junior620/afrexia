@@ -32,6 +32,9 @@ importers:
       '@vercel/kv':
         specifier: ^3.0.0
         version: 3.0.0
+      '@vercel/speed-insights':
+        specifier: ^1.3.1
+        version: 1.3.1(next@15.5.12(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.58.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -3622,6 +3625,29 @@ packages:
     resolution: {integrity: sha512-pKT8fRnfyYk2MgvyB6fn6ipJPCdfZwiKDdw7vB+HL50rjboEBHDVBEcnwfkEpVSp2AjNtoaOUH7zG+bVC/rvSg==}
     engines: {node: '>=14.6'}
     deprecated: 'Vercel KV is deprecated. If you had an existing KV store, it should have moved to Upstash Redis which you will see under Vercel Integrations. For new projects, install a Redis integration from Vercel Marketplace: https://vercel.com/marketplace?category=storage&search=redis'
+
+  '@vercel/speed-insights@1.3.1':
+    resolution: {integrity: sha512-PbEr7FrMkUrGYvlcLHGkXdCkxnylCWePx7lPxxq36DNdfo9mcUjLOmqOyPDHAOgnfqgGGdmE3XI9L/4+5fr+vQ==}
+    peerDependencies:
+      '@sveltejs/kit': ^1 || ^2
+      next: '>= 13'
+      react: ^18 || ^19 || ^19.0.0-rc
+      svelte: '>= 4'
+      vue: ^3
+      vue-router: ^4
+    peerDependenciesMeta:
+      '@sveltejs/kit':
+        optional: true
+      next:
+        optional: true
+      react:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
+      vue-router:
+        optional: true
 
   '@vercel/stega@1.0.0':
     resolution: {integrity: sha512-jyDUZEBjxmlh28J4y2wB6dBKayYOw1+9fRNRHWRN2oSO+LnooRHUe2z3JeTkCqXY2yrZ9dmtCl982YNIoIBeuw==}
@@ -12021,6 +12047,11 @@ snapshots:
   '@vercel/kv@3.0.0':
     dependencies:
       '@upstash/redis': 1.36.4
+
+  '@vercel/speed-insights@1.3.1(next@15.5.12(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.58.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)':
+    optionalDependencies:
+      next: 15.5.12(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.58.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      react: 19.2.4
 
   '@vercel/stega@1.0.0': {}
 

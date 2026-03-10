@@ -1,4 +1,5 @@
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata = {
   title: 'Afrexia - Premium African Agricultural Commodities',
@@ -40,6 +41,7 @@ export default function RootLayout({
       <body className="font-sans antialiased" suppressHydrationWarning>
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
