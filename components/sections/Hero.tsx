@@ -16,12 +16,9 @@ export function Hero({ locale }: HeroProps) {
   // Array of hero images - add more images as needed
   const heroImages = [
     '/assets/hero.jpg',
-    '/assets/hero-2.jpg',
-    '/assets/hero-3.jpg',
     '/assets/hero-7.jpg',
     '/assets/hero-8.jpg',
     '/assets/hero-9.jpg',
-    '/assets/hero-11.jpg',
     '/assets/hero-12.jpg',
     '/assets/hero-13.jpg',
     '/assets/hero-14.jpg',
@@ -32,6 +29,12 @@ export function Hero({ locale }: HeroProps) {
     '/assets/hero-19.jpg',
     '/assets/hero-20.jpg',
     '/assets/hero-21.jpg',
+    '/assets/hero-22.jpg',
+    '/assets/hero-23.jpg',
+    '/assets/hero-24.jpg',
+    '/assets/hero-25.jpg',
+    '/assets/hero-26.jpg',
+    '/assets/hero-27.jpg',
 
   ];
 
