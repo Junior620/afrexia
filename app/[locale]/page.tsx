@@ -92,7 +92,7 @@ export default async function HomePage({ params }: HomePageProps) {
 
   return (
     <main className="min-h-screen">
-      {/* Hero Section */}
+      {/* Hero Section with integrated Price Marquee */}
       <Hero locale={locale} />
 
       {/* Statistics Section */}

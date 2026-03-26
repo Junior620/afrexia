@@ -293,6 +293,10 @@ const config: Config = {
           '42%': { transform: 'scale(1.1)' },
           '56%': { transform: 'scale(1)' },
         },
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-25%)' },
+        },
       },
       animation: {
         float: 'float 6s ease-in-out infinite',
@@ -324,6 +328,7 @@ const config: Config = {
         heartbeat: 'heartbeat 2s ease-in-out infinite',
         'heartbeat-delayed-1': 'heartbeat 2s ease-in-out infinite 0.4s',
         'heartbeat-delayed-2': 'heartbeat 2s ease-in-out infinite 0.8s',
+        marquee: 'marquee 25s linear infinite',
       },
     },
   },

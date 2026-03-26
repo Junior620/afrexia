@@ -84,36 +84,36 @@ export function Hero({ locale }: HeroProps) {
   const t = content[locale] || content.en;
 
   return (
-    <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-sand dark:bg-dark-bg-primary">
-      {/* Animated Background Particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Large pulse particles */}
-        <div className="absolute top-[10%] left-[5%] w-40 h-40 bg-accent/10 dark:bg-dark-primary/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-[20%] right-[10%] w-48 h-48 bg-secondary/8 dark:bg-dark-primary/8 rounded-full blur-3xl animate-pulse-delayed-1" />
-        <div className="absolute bottom-[15%] left-[15%] w-44 h-44 bg-primary/12 dark:bg-dark-primary/12 rounded-full blur-3xl animate-pulse-delayed-2" />
-        <div className="absolute bottom-[25%] right-[8%] w-36 h-36 bg-accent/10 dark:bg-dark-primary/10 rounded-full blur-3xl animate-pulse" />
-      </div>
+    <section className="relative min-h-[85vh] flex flex-col overflow-hidden bg-sand dark:bg-dark-bg-primary">
+      {/* Hero Content */}
+      <div className="flex-1 flex items-center">
+        {/* Animated Background Particles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Large pulse particles */}
+          <div className="absolute top-[10%] left-[5%] w-40 h-40 bg-accent/10 dark:bg-dark-primary/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute top-[20%] right-[10%] w-48 h-48 bg-secondary/8 dark:bg-dark-primary/8 rounded-full blur-3xl animate-pulse-delayed-1" />
+          <div className="absolute bottom-[15%] left-[15%] w-44 h-44 bg-primary/12 dark:bg-dark-primary/12 rounded-full blur-3xl animate-pulse-delayed-2" />
+          <div className="absolute bottom-[25%] right-[8%] w-36 h-36 bg-accent/10 dark:bg-dark-primary/10 rounded-full blur-3xl animate-pulse" />
+        </div>
 
-      {/* Floating Decorative Circles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[15%] left-[8%] w-3 h-3 border-2 border-accent/40 dark:border-dark-primary/40 rounded-full animate-bounce" />
-        <div className="absolute top-[35%] right-[12%] w-2 h-2 border-2 border-secondary/50 dark:border-dark-primary/50 rounded-full animate-bounce-delayed-1" />
-        <div className="absolute bottom-[20%] left-[10%] w-2.5 h-2.5 border-2 border-primary/45 dark:border-dark-primary/45 rounded-full animate-bounce-delayed-2" />
-        <div className="absolute bottom-[40%] right-[18%] w-3 h-3 border-2 border-accent/40 dark:border-dark-primary/40 rounded-full animate-bounce" />
-      </div>
+        {/* Floating Decorative Circles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-[15%] left-[8%] w-3 h-3 border-2 border-accent/40 dark:border-dark-primary/40 rounded-full animate-bounce" />
+          <div className="absolute top-[35%] right-[12%] w-2 h-2 border-2 border-secondary/50 dark:border-dark-primary/50 rounded-full animate-bounce-delayed-1" />
+          <div className="absolute bottom-[20%] left-[10%] w-2.5 h-2.5 border-2 border-primary/45 dark:border-dark-primary/45 rounded-full animate-bounce-delayed-2" />
+          <div className="absolute bottom-[40%] right-[18%] w-3 h-3 border-2 border-accent/40 dark:border-dark-primary/40 rounded-full animate-bounce" />
+        </div>
 
-      {/* Decorative Lines */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Top line */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 dark:via-dark-primary/30 to-transparent animate-fadeInUp" />
-        {/* Bottom line */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 dark:via-dark-primary/30 to-transparent animate-fadeInUp-delayed-1" />
-      </div>
+        {/* Decorative Lines */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Top line */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 dark:via-dark-primary/30 to-transparent animate-fadeInUp" />
+        </div>
 
-      {/* Responsive container with proper padding at each breakpoint */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[100%] sm:max-w-[720px] md:max-w-[960px] lg:max-w-[1200px]">
-        {/* Vertical stack on mobile, horizontal on desktop */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+        {/* Responsive container with proper padding at each breakpoint */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[100%] sm:max-w-[720px] md:max-w-[960px] lg:max-w-[1200px]">
+          {/* Vertical stack on mobile, horizontal on desktop */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Left Content */}
           <div className="relative z-10">
             <ScrollReveal animation="fade" delay={0.1}>
@@ -224,7 +224,7 @@ export function Hero({ locale }: HeroProps) {
 
       {/* Scroll indicator */}
       <ScrollReveal animation="fade" delay={0.8}>
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden lg:block">
+        <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 animate-bounce hidden lg:block z-20">
           <svg
             className="w-6 h-6 text-primary dark:text-dark-primary"
             fill="none"
@@ -240,6 +240,104 @@ export function Hero({ locale }: HeroProps) {
           </svg>
         </div>
       </ScrollReveal>
+      </div>
+
+      {/* Price Marquee at bottom of Hero */}
+      <PriceMarquee locale={locale} />
     </section>
+  );
+}
+
+// Price Marquee Component
+interface PriceData {
+  name: string;
+  price: string;
+  unit: string;
+  change: number;
+  trend: 'up' | 'down';
+}
+
+function PriceMarquee({ locale }: { locale: Locale }) {
+  const [prices] = useState<PriceData[]>([
+    {
+      name: locale === 'fr' ? 'Cacao FOB' : 'Cocoa FOB',
+      price: '2,350',
+      unit: 'FCFA/KG',
+      change: 2.4,
+      trend: 'up',
+    },
+    {
+      name: locale === 'fr' ? 'Café Arabica FOB' : 'Arabica Coffee FOB',
+      price: '1,280',
+      unit: 'FCFA/KG',
+      change: -1.2,
+      trend: 'down',
+    },
+    {
+      name: locale === 'fr' ? 'Café Robusta FOB' : 'Robusta Coffee FOB',
+      price: '950',
+      unit: 'FCFA/KG',
+      change: 0.8,
+      trend: 'up',
+    },
+  ]);
+
+  return (
+    <div className="relative w-full overflow-hidden bg-gradient-to-r from-[#0A1410] via-[#0F1915] to-[#0A1410] border-t border-[#4A9A62]/30 py-4 shadow-lg">
+      {/* Animated background glow */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4A9A62]/5 to-transparent animate-shimmer" />
+      
+      {/* Gradient overlays for fade effect */}
+      <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-[#0A1410] via-[#0A1410]/80 to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-[#0A1410] via-[#0A1410]/80 to-transparent z-10 pointer-events-none" />
+
+      {/* Scrolling content - duplicate multiple times for seamless loop */}
+      <div className="flex animate-marquee whitespace-nowrap">
+        {/* Repeat 4 times to ensure seamless scrolling */}
+        {[...Array(4)].map((_, setIndex) => (
+          <div key={setIndex} className="flex">
+            {prices.map((item, index) => (
+              <PriceItem key={`set-${setIndex}-${index}`} item={item} />
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PriceItem({ item }: { item: PriceData }) {
+  return (
+    <div className="inline-flex items-center gap-4 mx-8 px-6 py-3 bg-gradient-to-br from-[#141D18] to-[#0F1814] rounded-xl border border-[#4A9A62]/40 hover:border-[#4A9A62]/70 hover:shadow-lg hover:shadow-[#4A9A62]/20 transition-all duration-300 group relative overflow-hidden">
+      {/* Hover glow effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4A9A62]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      
+      {/* Product name with icon */}
+      <div className="flex items-center gap-2 relative z-10">
+        <div className="w-2 h-2 rounded-full bg-[#4A9A62] animate-pulse" />
+        <span className="text-[#E8F5E9] font-bold text-sm tracking-wide">{item.name}</span>
+      </div>
+
+      {/* Separator */}
+      <div className="h-6 w-px bg-gradient-to-b from-transparent via-[#4A9A62]/50 to-transparent relative z-10" />
+
+      {/* Price with enhanced styling */}
+      <div className="flex items-baseline gap-1.5 relative z-10">
+        <span className="text-white font-extrabold text-lg tracking-tight">{item.price}</span>
+        <span className="text-[#B0D4B8] text-xs font-medium uppercase tracking-wider">{item.unit}</span>
+      </div>
+
+      {/* Change indicator with enhanced design */}
+      <div
+        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold text-xs relative z-10 ${
+          item.trend === 'up'
+            ? 'bg-gradient-to-r from-[#4A9A62]/30 to-[#4A9A62]/20 text-[#4A9A62] shadow-[0_0_10px_rgba(74,154,98,0.3)]'
+            : 'bg-gradient-to-r from-red-500/30 to-red-500/20 text-red-400 shadow-[0_0_10px_rgba(239,68,68,0.3)]'
+        }`}
+      >
+        <span className="text-sm">{item.trend === 'up' ? '↑' : '↓'}</span>
+        <span>{Math.abs(item.change)}%</span>
+      </div>
+    </div>
   );
 }
