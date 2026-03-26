@@ -18,7 +18,6 @@ export function Hero({ locale }: HeroProps) {
     '/assets/hero.jpg',
     '/assets/hero-2.jpg',
     '/assets/hero-3.jpg',
-    '/assets/hero-4.jpg',
     '/assets/hero-7.jpg',
     '/assets/hero-8.jpg',
     '/assets/hero-9.jpg',
