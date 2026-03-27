@@ -13,5 +13,15 @@
   "github": {
     "silent": false,
     "autoAlias": true
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/cron/update-coffee-prices",
+      "schedule": "0 13 * * 1-5"
+    },
+    {
+      "path": "/api/cron/update-cocoa-price",
+      "schedule": "30 17 * * 1-5"
+    }
+  ]
 }

@@ -256,29 +256,56 @@ interface PriceData {
 }
 
 function PriceMarquee({ locale }: { locale: Locale }) {
-  const [prices] = useState<PriceData[]>([
+  const defaultPrices: PriceData[] = [
     {
       name: locale === 'fr' ? 'Cacao FOB' : 'Cocoa FOB',
-      price: '2,350',
-      unit: 'FCFA/KG',
-      change: 2.4,
+      price: '2,392',
+      unit: '£/T ICE London',
+      change: 0,
       trend: 'up',
     },
     {
       name: locale === 'fr' ? 'Café Arabica FOB' : 'Arabica Coffee FOB',
       price: '1,280',
-      unit: 'FCFA/KG',
-      change: -1.2,
-      trend: 'down',
+      unit: 'FCFA/KG FOB ONCC',
+      change: 0,
+      trend: 'up',
     },
     {
       name: locale === 'fr' ? 'Café Robusta FOB' : 'Robusta Coffee FOB',
       price: '950',
-      unit: 'FCFA/KG',
-      change: 0.8,
+      unit: 'FCFA/KG FOB ONCC',
+      change: 0,
       trend: 'up',
     },
-  ]);
+  ];
+
+  const [prices, setPrices] = useState<PriceData[]>(defaultPrices);
+
+  useEffect(() => {
+    fetch('/api/prices')
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data || data.length === 0) return;
+        const mapped: PriceData[] = data.map((item: {
+          product: string;
+          price: number;
+          unit: string;
+          change: number;
+          trend: 'up' | 'down' | 'stable';
+        }) => ({
+          name: item.product,
+          price: item.price.toLocaleString('fr-FR'),
+          unit: item.unit,
+          change: Math.abs(item.change ?? 0),
+          trend: item.trend === 'down' ? 'down' : 'up',
+        }));
+        setPrices(mapped);
+      })
+      .catch(() => {
+        // Garder les prix par défaut en cas d'erreur
+      });
+  }, []);
 
   return (
     <div className="relative w-full overflow-hidden bg-gradient-to-r from-[#0A1410] via-[#0F1915] to-[#0A1410] border-t border-[#4A9A62]/30 py-4 shadow-lg">

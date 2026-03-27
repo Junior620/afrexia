@@ -11,6 +11,7 @@ import teamMember from './teamMember'
 import resource from './resource'
 import page from './page'
 import siteSettings from './siteSettings'
+import commodityPrice from './commodityPrice'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -25,5 +26,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     resource,
     page,
     siteSettings,
+    commodityPrice,
   ],
 }
