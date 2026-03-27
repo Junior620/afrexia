@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-// import { Inter } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import '../globals.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
@@ -11,6 +10,7 @@ import { Footer } from '@/components/layout/Footer';
 import { CookieConsent } from '@/components/layout/CookieConsent';
 import { SkipToContent } from '@/components/layout/SkipToContent';
 import { locales, isValidLocale } from '@/lib/i18n/config';
+import { PriceServiceServer } from '@/lib/sanity/priceService';
 
 // Temporarily disabled Google Fonts due to network issues
 // const inter = Inter({
@@ -46,6 +46,9 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
     notFound();
   }
 
+  // Fetch prices server-side to avoid flash of static data
+  const prices = await PriceServiceServer.getPrices().catch(() => []);
+
   return (
     <ErrorBoundary>
       <ThemeProvider>
@@ -53,7 +56,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
           <AnalyticsProvider>
             <SkipToContent />
             <div className="flex min-h-screen flex-col">
-              <Header locale={locale} />
+              <Header locale={locale} initialPrices={prices} />
               <main id="main-content" className="flex-1" tabIndex={-1}>
                 {children}
               </main>

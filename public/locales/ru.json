@@ -431,5 +431,10 @@
       "qaDocumented": "QA документирован",
       "chainOfCustody": "Цепочка поставок"
     }
+  },
+  "prices": {
+    "cocoa": "Какао",
+    "arabicaCoffee": "Кофе Арабика",
+    "robustaCoffee": "Кофе Робуста"
   }
 }

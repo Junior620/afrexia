@@ -12,6 +12,13 @@ import { PriceTickerBar } from './PriceTickerBar';
 
 interface HeaderProps {
   locale: Locale;
+  initialPrices?: Array<{
+    product: string;
+    price: number;
+    unit: string;
+    change: number;
+    trend: 'up' | 'down' | 'stable';
+  }>;
 }
 
 /**
@@ -22,7 +29,7 @@ interface HeaderProps {
  * - 3.1: Responsive navigation with mobile menu below 768px
  * - 6.2: Minimum touch target sizes (44x44px)
  */
-export function Header({ locale }: HeaderProps) {
+export function Header({ locale, initialPrices = [] }: HeaderProps) {
   const headerRef = useRef<HTMLElement>(null);
 
   // Calculate and expose header height for scroll offset calculations
@@ -74,7 +81,7 @@ export function Header({ locale }: HeaderProps) {
       className="sticky top-0 z-50 w-full border-b border-neutral/20 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:border-dark-border/30 dark:bg-dark-bg-primary/95 dark:supports-[backdrop-filter]:bg-dark-bg-primary/80"
     >
       {/* Price ticker bar above navbar */}
-      <PriceTickerBar locale={locale} />
+      <PriceTickerBar locale={locale} initialPrices={initialPrices} />
 
       <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo - Minimum 44x44px touch target */}

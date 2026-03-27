@@ -431,5 +431,10 @@
       "qaDocumented": "QA documented",
       "chainOfCustody": "Chain of custody"
     }
+  },
+  "prices": {
+    "cocoa": "Cocoa",
+    "arabicaCoffee": "Arabica Coffee",
+    "robustaCoffee": "Robusta Coffee"
   }
 }

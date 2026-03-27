@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Locale } from '@/types';
+import { getTranslation } from '@/lib/i18n/translations';
 
 interface PriceData {
   name: string;
@@ -13,26 +14,33 @@ interface PriceData {
 
 interface PriceTickerBarProps {
   locale: Locale;
+  initialPrices?: Array<{
+    product: string;
+    price: number;
+    unit: string;
+    change: number;
+    trend: 'up' | 'down' | 'stable';
+  }>;
 }
 
-export function PriceTickerBar({ locale }: PriceTickerBarProps) {
-  const defaultPrices: PriceData[] = [
+export function PriceTickerBar({ locale, initialPrices = [] }: PriceTickerBarProps) {
+  const fallbackPrices: PriceData[] = [
     {
-      name: locale === 'fr' ? 'Cacao' : 'Cocoa',
+      name: getTranslation(locale, 'prices.cocoa'),
       price: '2,392',
       unit: '£/T ICE London',
       change: 0,
       trend: 'up',
     },
     {
-      name: locale === 'fr' ? 'Café Arabica' : 'Arabica Coffee',
+      name: getTranslation(locale, 'prices.arabicaCoffee'),
       price: '1,280',
       unit: 'FCFA/KG FOB ONCC',
       change: 0,
       trend: 'up',
     },
     {
-      name: locale === 'fr' ? 'Café Robusta' : 'Robusta Coffee',
+      name: getTranslation(locale, 'prices.robustaCoffee'),
       price: '950',
       unit: 'FCFA/KG FOB ONCC',
       change: 0,
@@ -40,9 +48,23 @@ export function PriceTickerBar({ locale }: PriceTickerBarProps) {
     },
   ];
 
-  const [prices, setPrices] = useState<PriceData[]>(defaultPrices);
+  // Map server prices if available, otherwise use fallback
+  const serverMapped: PriceData[] = initialPrices.map((item) => ({
+    name: item.product,
+    price: item.price.toLocaleString('fr-FR'),
+    unit: item.unit,
+    change: Math.abs(item.change ?? 0),
+    trend: item.trend === 'down' ? 'down' : 'up',
+  }));
+
+  const [prices, setPrices] = useState<PriceData[]>(
+    serverMapped.length > 0 ? serverMapped : fallbackPrices
+  );
 
   useEffect(() => {
+    // Only re-fetch if we didn't get server prices
+    if (initialPrices.length > 0) return;
+
     fetch('/api/prices')
       .then((res) => res.json())
       .then((data) => {
@@ -63,16 +85,16 @@ export function PriceTickerBar({ locale }: PriceTickerBarProps) {
         setPrices(mapped);
       })
       .catch(() => {});
-  }, []);
+  }, [initialPrices.length]);
 
   return (
-    <div className="relative w-full overflow-hidden bg-gradient-to-r from-[#0A1410] via-[#0F1915] to-[#0A1410] border-b border-[#4A9A62]/30 py-2 shadow-lg">
+    <div className="relative w-full overflow-hidden bg-black border-b border-[#4A9A62]/30 py-2 shadow-lg">
       {/* Animated background glow */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4A9A62]/5 to-transparent animate-shimmer" />
 
       {/* Gradient fade edges */}
-      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#0A1410] to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#0A1410] to-transparent z-10 pointer-events-none" />
+      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
 
       {/* Scrolling ticker */}
       <div className="flex animate-marquee whitespace-nowrap">
