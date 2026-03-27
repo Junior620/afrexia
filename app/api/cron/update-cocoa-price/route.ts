@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PriceServiceServer } from '@/lib/sanity/priceService';
+import chromium from '@sparticuz/chromium-min';
+import { chromium as playwrightChromium } from 'playwright-core';
 
 export const dynamic = 'force-dynamic';
-export const maxDuration = 30;
+export const maxDuration = 60;
 
 interface PriceData {
   product: string;
@@ -14,47 +16,68 @@ interface PriceData {
 }
 
 /**
- * Fetch cocoa price from Yahoo Finance API (no browser needed)
- * Symbol: CC=F = Cocoa Futures (ICE)
+ * Scrape ICE London Cocoa Futures avec chromium-min (compatible Vercel serverless)
  */
-async function fetchCocoaPriceFromYahoo(): Promise<PriceData> {
-  const symbol = 'CC%3DF'; // CC=F encoded
-  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1d&range=1d`;
+async function fetchCocoaPriceFromICE(): Promise<PriceData> {
+  let browser;
+  try {
+    browser = await playwrightChromium.launch({
+      args: chromium.args,
+      executablePath: await chromium.executablePath(
+        'https://github.com/Sparticuz/chromium/releases/download/v131.0.1/chromium-v131.0.1-pack.tar'
+      ),
+      headless: true,
+    });
 
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-      'Accept': 'application/json',
-    },
-    next: { revalidate: 0 },
-  });
+    const context = await browser.newContext({
+      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+    });
 
-  if (!response.ok) {
-    throw new Error(`Yahoo Finance returned status ${response.status}`);
+    const page = await context.newPage();
+
+    await page.goto(
+      'https://www.ice.com/products/37089076/London-Cocoa-Futures/data?marketId=7758984',
+      { waitUntil: 'domcontentloaded', timeout: 60000 }
+    );
+
+    await page.waitForTimeout(5000);
+    await page.waitForSelector('table tbody tr td', { timeout: 20000 });
+
+    const priceElement = page.locator(
+      'xpath=/html/body/div[1]/div/main/div/div/div/div/div/div[4]/div/div/div[1]/table/tbody[1]/tr[1]/td[2]'
+    ).first();
+
+    const priceText = await priceElement.textContent();
+
+    if (!priceText) {
+      throw new Error('Price element found but no text content');
+    }
+
+    const priceMatch = priceText.trim().match(/[\d,]+\.?\d*/);
+    if (!priceMatch) {
+      throw new Error(`No price found in ICE text: ${priceText}`);
+    }
+
+    const price = parseFloat(priceMatch[0].replace(/,/g, ''));
+
+    if (isNaN(price) || price <= 0) {
+      throw new Error(`Invalid ICE cocoa price: ${price}`);
+    }
+
+    await browser.close();
+
+    return {
+      product: 'Cacao',
+      price,
+      unit: '£/T ICE London',
+      trend: 'stable',
+      change: 0,
+      source: 'ICE',
+    };
+  } catch (error) {
+    if (browser) await browser.close();
+    throw error;
   }
-
-  const data = await response.json();
-  const result = data?.chart?.result?.[0];
-  const meta = result?.meta;
-
-  if (!meta?.regularMarketPrice) {
-    throw new Error('No price data found in Yahoo Finance response');
-  }
-
-  const price = parseFloat(meta.regularMarketPrice.toFixed(2));
-
-  if (isNaN(price) || price <= 0) {
-    throw new Error(`Invalid cocoa price from Yahoo: ${price}`);
-  }
-
-  return {
-    product: 'Cacao',
-    price,
-    unit: '$/T ICE',
-    trend: 'stable',
-    change: 0,
-    source: 'Yahoo Finance (ICE)',
-  };
 }
 
 export async function GET(request: NextRequest) {
@@ -70,8 +93,8 @@ export async function GET(request: NextRequest) {
     // 1. Récupérer les prix actuels depuis Sanity
     const currentPrices = await PriceServiceServer.getPrices();
 
-    // 2. Fetch nouveau prix depuis Yahoo Finance (ICE Cocoa Futures)
-    const newCocoaPrice = await fetchCocoaPriceFromYahoo();
+    // 2. Fetch nouveau prix depuis ICE London
+    const newCocoaPrice = await fetchCocoaPriceFromICE();
 
     // 3. Calculer la variation automatiquement
     const oldPrice = currentPrices.find((p) => p.product === 'Cacao');
