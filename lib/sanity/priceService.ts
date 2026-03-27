@@ -9,9 +9,13 @@ interface PriceData {
   source: string;
 }
 
+export interface PriceHistoryEntry extends PriceData {
+  recordedAt: string;
+}
+
 export class PriceServiceServer {
   /**
-   * Récupère tous les prix depuis Sanity
+   * Récupère tous les prix actuels depuis Sanity
    */
   static async getPrices(): Promise<PriceData[]> {
     const query = `*[_type == "commodityPrice"] | order(product asc) {
@@ -28,18 +32,56 @@ export class PriceServiceServer {
   }
 
   /**
-   * Met à jour ou crée les prix dans Sanity
+   * Récupère l'historique des prix pour un produit donné
+   * @param product - Nom du produit (ex: "Cacao", "Café Arabica")
+   * @param limit - Nombre d'entrées à retourner (défaut: 30)
+   */
+  static async getPriceHistory(product: string, limit = 30): Promise<PriceHistoryEntry[]> {
+    const query = `*[_type == "priceHistory" && product == $product] | order(recordedAt desc) [0...$limit] {
+      product,
+      price,
+      unit,
+      trend,
+      change,
+      source,
+      recordedAt
+    }`;
+
+    return await client.fetch(query, { product, limit });
+  }
+
+  /**
+   * Récupère l'historique de tous les produits
+   * @param limit - Nombre d'entrées par produit (défaut: 30)
+   */
+  static async getAllPriceHistory(limit = 30): Promise<PriceHistoryEntry[]> {
+    const query = `*[_type == "priceHistory"] | order(recordedAt desc) [0...$limit] {
+      product,
+      price,
+      unit,
+      trend,
+      change,
+      source,
+      recordedAt
+    }`;
+
+    return await client.fetch(query, { limit });
+  }
+
+  /**
+   * Met à jour le prix actuel ET sauvegarde dans l'historique
    */
   static async updatePrices(prices: PriceData[]): Promise<void> {
+    const now = new Date().toISOString();
+
     for (const priceData of prices) {
-      // Chercher si le produit existe déjà
+      // 1. Mettre à jour ou créer le document commodityPrice (prix actuel)
       const existing = await client.fetch(
         `*[_type == "commodityPrice" && product == $product][0]`,
         { product: priceData.product }
       );
 
       if (existing) {
-        // Mettre à jour
         await writeClient
           .patch(existing._id)
           .set({
@@ -48,11 +90,10 @@ export class PriceServiceServer {
             trend: priceData.trend,
             change: priceData.change,
             source: priceData.source,
-            lastUpdated: new Date().toISOString(),
+            lastUpdated: now,
           })
           .commit();
       } else {
-        // Créer nouveau document
         await writeClient.create({
           _type: 'commodityPrice',
           product: priceData.product,
@@ -61,9 +102,21 @@ export class PriceServiceServer {
           trend: priceData.trend,
           change: priceData.change,
           source: priceData.source,
-          lastUpdated: new Date().toISOString(),
+          lastUpdated: now,
         });
       }
+
+      // 2. Créer une entrée dans l'historique
+      await writeClient.create({
+        _type: 'priceHistory',
+        product: priceData.product,
+        price: priceData.price,
+        unit: priceData.unit,
+        trend: priceData.trend,
+        change: priceData.change,
+        source: priceData.source,
+        recordedAt: now,
+      });
     }
   }
 }

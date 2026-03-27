@@ -8,6 +8,7 @@ import { getTranslation } from '@/lib/i18n/translations';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { Navigation } from './Navigation';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import { PriceTickerBar } from './PriceTickerBar';
 
 interface HeaderProps {
   locale: Locale;
@@ -72,6 +73,9 @@ export function Header({ locale }: HeaderProps) {
       ref={headerRef}
       className="sticky top-0 z-50 w-full border-b border-neutral/20 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:border-dark-border/30 dark:bg-dark-bg-primary/95 dark:supports-[backdrop-filter]:bg-dark-bg-primary/80"
     >
+      {/* Price ticker bar above navbar */}
+      <PriceTickerBar locale={locale} />
+
       <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo - Minimum 44x44px touch target */}
         <Link

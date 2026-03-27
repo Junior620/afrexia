@@ -328,7 +328,7 @@ const config: Config = {
         heartbeat: 'heartbeat 2s ease-in-out infinite',
         'heartbeat-delayed-1': 'heartbeat 2s ease-in-out infinite 0.4s',
         'heartbeat-delayed-2': 'heartbeat 2s ease-in-out infinite 0.8s',
-        marquee: 'marquee 25s linear infinite',
+        marquee: 'marquee 15s linear infinite',
       },
     },
   },
