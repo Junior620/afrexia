@@ -61,13 +61,8 @@ export default defineType({
       of: [{ type: 'string' }],
       description: 'Industries ou secteurs cibles dans ce pays',
     }),
-    defineField({
-      name: 'mainPorts',
-      title: 'Ports Principaux',
-      type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'destinationPort' }] }],
-      description: 'Ports de destination recommandés pour ce pays',
-    }),
+    // mainPorts field disabled — destinationPort schema not yet created (V2)
+    // defineField({ name: 'mainPorts', ... })
     defineField({
       name: 'requiredCertifications',
       title: 'Certifications Requises',
