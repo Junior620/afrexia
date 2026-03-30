@@ -13,6 +13,7 @@ import page from './page'
 import siteSettings from './siteSettings'
 import commodityPrice from './commodityPrice'
 import priceHistory from './priceHistory'
+import exportCountry from './exportCountry'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -29,5 +30,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     siteSettings,
     commodityPrice,
     priceHistory,
+    exportCountry,
   ],
 }
