@@ -15,6 +15,13 @@ export function middleware(request: NextRequest) {
   const segments = pathname.split('/');
   const potentialLocale = segments[1]; // e.g. /xx/... → 'xx'
 
+  // Redirect root path to default locale
+  if (pathname === '/') {
+    const url = request.nextUrl.clone();
+    url.pathname = `/${DEFAULT_LOCALE}`;
+    return NextResponse.redirect(url, { status: 301 });
+  }
+
   // If the first segment looks like a locale (2-3 chars) but is not supported, redirect
   if (
     potentialLocale &&

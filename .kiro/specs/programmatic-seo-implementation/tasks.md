@@ -458,7 +458,7 @@ Ce document définit les tâches d'implémentation pour le système de SEO progr
   - Obtenir l'approbation de l'équipe pour déploiement production
   - _Requirements: Toutes les requirements V1_
 
-- [-] 10.4 Déployer en production
+- [x] 10.4 Déployer en production
   - Merger la branche staging vers main
   - Déploiement automatique via Vercel
   - Configurer le monitoring (Sentry, Vercel Analytics)
