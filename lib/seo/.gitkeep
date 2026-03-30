@@ -1,0 +1,10 @@
+# SEO Services Directory
+
+This directory contains all the core services for the programmatic SEO implementation:
+
+- `routeCombinationValidator.ts` - Validates route combinations
+- `contentGenerator.ts` - Generates unique content for pages
+- `metadataGenerator.ts` - Generates SEO metadata
+- `sitemapGenerator.ts` - Generates XML sitemaps
+- `indexabilityController.ts` - Controls page indexability
+- `internalLinkingEngine.ts` - Manages internal linking
